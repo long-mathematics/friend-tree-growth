@@ -28,6 +28,13 @@ checker only adds an exact minimum-slack recorder in the existing vertex checks;
 `verification_patch.diff` is written with each full run so that this modification
 can be inspected.
 
+The floating-point proposal builder is compiled with `-ffp-contract=off`.
+Fused multiply-add contraction on `x86-64-v3` can change the proposed rational
+coefficient bytes even when the exact inequalities pass. Disabling contraction
+reproduces the pinned binary in the controlled compiler experiment recorded in
+`verification/compiler_reproducibility.json`. The upstream source files, GMP
+checks, rational constants, and certificate hash remain unchanged.
+
 The original exponent-existence proof is cited separately at the more recent
 immutable revision
 [`88f2f9c8c3ebc1b4e0c980db6afd97d29f3df176`](https://github.com/uzay-eth/friend-tree-exponent/tree/88f2f9c8c3ebc1b4e0c980db6afd97d29f3df176).

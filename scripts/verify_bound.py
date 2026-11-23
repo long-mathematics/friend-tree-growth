@@ -27,9 +27,14 @@ ZETA = "199752266575452391/1200500000000000000000000000"
 
 
 def run(script: str, arguments: list[str], log: Path) -> None:
-    with log.open("w") as stream:
-        subprocess.run([sys.executable, str(SCRIPTS / script), *arguments],
-                       stdout=stream, stderr=subprocess.STDOUT, check=True)
+    try:
+        with log.open("w") as stream:
+            subprocess.run([sys.executable, str(SCRIPTS / script), *arguments],
+                           stdout=stream, stderr=subprocess.STDOUT, check=True)
+    except subprocess.CalledProcessError:
+        print(f"FAIL {script}; diagnostic log: {log}", file=sys.stderr, flush=True)
+        print(log.read_text(errors="replace")[-12000:], file=sys.stderr, flush=True)
+        raise
     print(f"PASS {script}", flush=True)
 
 
@@ -58,17 +63,29 @@ def main() -> None:
         if digest(binary) != manifest["certificate"]["sha256"]:
             raise ValueError("The reused certificate does not match the pinned binary.")
         original_args.append("--reuse-binary")
-    run("verify_supersolution_certificate.py", original_args,
-        args.output_dir / "original_certificate_runner.log")
+    diagnostics = [
+        ("verification_with_slack.log", "original_certificate_verification.log"),
+        ("verification_patch.diff", "verification_patch.diff"),
+    ]
+    if not args.reuse_binary:
+        diagnostics.append(("build.log", "certificate_build.log"))
+    for name, _ in diagnostics:
+        (args.work_dir / name).unlink(missing_ok=True)
+    try:
+        run("verify_supersolution_certificate.py", original_args,
+            args.output_dir / "original_certificate_runner.log")
+    finally:
+        # Preserve the child process diagnostics even if it fails before the
+        # final JSON report, so CI artifacts show the underlying cause.
+        for name, destination in diagnostics:
+            source = args.work_dir / name
+            if source.exists() and source != args.output_dir / destination:
+                shutil.copyfile(source, args.output_dir / destination)
     binary = args.work_dir / "upper_5665.bin"
     if digest(binary) != manifest["certificate"]["sha256"]:
         raise ValueError("The rebuilt certificate differs from the pinned binary.")
     shutil.copyfile(args.work_dir / "supersolution_certificate_verification.json",
                     args.output_dir / "original_certificate_verification.json")
-    shutil.copyfile(args.work_dir / "verification_with_slack.log",
-                    args.output_dir / "original_certificate_verification.log")
-    shutil.copyfile(args.work_dir / "verification_patch.diff",
-                    args.output_dir / "verification_patch.diff")
     correction_path = args.output_dir / "corrected_certificate_checks.json"
     run("continuation_certificate_bounds.py", [
         "--certificate", str(binary), "--perturb-core", "--verify-beta", BETA,

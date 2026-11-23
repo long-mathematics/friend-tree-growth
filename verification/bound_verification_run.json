@@ -11,7 +11,7 @@
   "original_exact_GMP_inequalities": 17329108,
   "modified_vertex_rows": 484138,
   "source_sha256": {
-    "verify_supersolution_certificate.py": "05644e06f9365dd512417170ee01a5275105e583ed987f5e0fe4b4a8d5edcf90",
+    "verify_supersolution_certificate.py": "90579ec4fe807f96595eb4d201cf0e1f194d55bf72e18d824a87506b9ca3d758",
     "continuation_certificate_bounds.py": "058db926b860db17fd90aab6a8be3817956f9c14061f5e4a0132b095b90f72f2",
     "verify_supersolution_evaluator.py": "ca34c2c596d306ccfbca98bb4a3b49af822315c024c56b54950b5fd327e842de",
     "continuation_verify_evaluator.py": "e359cf89057641f5c7a5e240b82497683adbdcb519b5e5fc55c4acd0d6745f1d",
@@ -19,7 +19,7 @@
     "continuation_supersolution.py": "4e5b1da8c43fb3bd779a7691e49439fa0db1881cfae7c1daa01b048929f2c5a5",
     "core_clock_kernel.py": "ecb25b9104a5ccccd3f4ea5068e54fe695d85068f0212f5ba664b22224269058",
     "fetch_upstream.py": "17f02424955ac9f56699ad9ea5cebf148ea77e51b5163b5062a20eca16dab57a",
-    "verify_bound.py": "2778058f2407e4581276d2b9b804c26d31eb93e771d680651095cb8450adb259"
+    "verify_bound.py": "da05200c972d2318ffe14cab20f9468d191bc24b6e543a4b70ac8d0354bdd805"
   },
   "scope": "Full rerun of the upstream exact checker with instrumentation that only records vertex slack, followed by the exact corrected-row check. This is not a second independent implementation of the full certificate. The all-degree tail argument and drift-to-growth implication are analytic."
 }

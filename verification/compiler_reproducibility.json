@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "purpose": "A controlled proposal-builder experiment isolating floating-point contraction; not a change to the exact certificate or proof.",
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "upstream_commit": "ba2ec2e1935e0858e6bae2b40a9ee07c9b5665aa",
+  "builder_source_sha256": "beda03931551b6da514fd6f14218ec769ef73c982b2f483fa683fa0a3902b8c2",
+  "arguments": [
+    "1",
+    "1133",
+    "2000"
+  ],
+  "OMP_NUM_THREADS": "4",
+  "expected_certificate_sha256": "3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe",
+  "experiments": {
+    "v3": {
+      "builder_flags": [
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-fopenmp",
+        "-march=x86-64-v3"
+      ],
+      "certificate_sha256": "488473b1d9351cb44ef54bcdca6f20a16c2377ede5ea7c50886934cf014924d6",
+      "matches_pinned_binary": false,
+      "certificate_bytes": 138446792
+    },
+    "v3_no_contract": {
+      "builder_flags": [
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-fopenmp",
+        "-march=x86-64-v3",
+        "-ffp-contract=off"
+      ],
+      "certificate_sha256": "3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe",
+      "matches_pinned_binary": true,
+      "certificate_bytes": 138446792
+    }
+  },
+  "adopted_builder_flag": "-ffp-contract=off",
+  "exact_GMP_checks_changed": false,
+  "source_or_data_pins_changed": false
+}

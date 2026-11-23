@@ -110,12 +110,16 @@ def main():
     env = os.environ.copy()
     env['OMP_NUM_THREADS'] = '4'
     if not args.reuse_binary:
-        subprocess.run(['gcc', '-O3', '-Wall', '-Wextra', '-fopenmp',
+        # The proposal arrays were generated with separate multiplication and
+        # addition rounding. FMA contraction changes their final rational bytes
+        # on targets such as x86-64-v3; the exact checker must retain its pins.
+        subprocess.run(['gcc', '-O3', '-ffp-contract=off', '-Wall', '-Wextra', '-fopenmp',
                         str(source_dir / 'cert_build.c'), '-lm',
                         '-o', str(out / 'cert_build')], check=True)
         with (out / 'build.log').open('w') as log:
             subprocess.run([str(out / 'cert_build'), '1', '1133', '2000', str(binary)],
                            stdout=log, stderr=subprocess.STDOUT, env=env, check=True)
+    print('BUILT_CERTIFICATE_SHA256=' + sha256(binary), flush=True)
     subprocess.run(['gcc', '-O3', '-Wall', '-Wextra', '-fopenmp',
                     '-I' + str(source_dir), str(verifier_source), '-lgmp',
                     '-o', str(out / 'verify_with_slack')], check=True)

@@ -57,8 +57,10 @@ The runner performs the following steps:
    `verification/upstream_manifest.json`. Every downloaded file must match its
    SHA-256 digest. The complete upstream license is included.
 2. Compile the upstream builder and construct `upper_5665.bin`. The builder uses
-   floating-point proposals. The binary's digest must match the pinned data
-   before it is accepted by the downstream evaluator.
+   floating-point proposals. Compilation disables fused multiply-add contraction
+   with `-ffp-contract=off` so that multiply/add rounding reproduces the pinned
+   coefficient bytes on newer processor targets. The binary's digest must
+   match the pinned data before it is accepted by the downstream evaluator.
 3. Compile and run the upstream GMP checker, with a patch that records the
    minimum vertex slack. Its original inequality tests remain in place. Require
    **17,329,108 exact inequalities with zero failures** and the original tree
@@ -118,7 +120,15 @@ An explicitly supplied source directory is still checked against the same
 manifest. A mismatching existing source is rejected rather than silently
 overwritten. A builder output with a different digest also fails closed;
 platform-dependent numerical proposals must be investigated before the
-certificate constants are reused.
+certificate constants are reused. The exact checker and its source/data pins
+are unchanged by the builder's floating-point compilation setting. A controlled
+`x86-64-v3` experiment is recorded in
+`verification/compiler_reproducibility.json`.
+
+If a child verifier fails, the runner prints the diagnostic log tail and copies
+available builder and GMP logs into the report directory before exiting. CI
+therefore retains the underlying failure, even when no final JSON report can
+be written.
 
 ## What the implementation does not claim
 
