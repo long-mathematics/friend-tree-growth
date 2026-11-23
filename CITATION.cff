@@ -17,6 +17,8 @@ keywords:
   - Crump-Mode-Jagers processes
   - E-functions
   - irrationality
+  - coefficient heights
+  - hypergeometric functions
 abstract: >-
   Research drafts and exact verification scripts for the random friend-tree
   growth exponent and a related family of local redirection models. The
@@ -25,5 +27,8 @@ abstract: >-
   robustness under bounded predictable boundary input, and an improved
   rational upper certificate. The companion draft proves almost-sure growth
   and irrationality of the local-model exponent for finite algebraic
-  activation parameters. Irrationality and transcendence of the original
-  random friend-tree exponent remain open.
+  activation parameters. A third draft gives the exact original-kernel
+  first-promotion transform, rational-summation classification, certified
+  tail bounds, and sharp coefficient-height asymptotics at algebraic
+  discounts. Irrationality and transcendence of the original random
+  friend-tree exponent remain open.

@@ -4,7 +4,7 @@ Research drafts and exact verification programs by **Christopher D. Long**.
 
 This project studies the growth exponent of the original random friend tree
 and the arithmetic of exponents in a related family of local redirection
-trees. It contains two manuscripts with different scopes.
+trees. It contains three manuscripts with different scopes.
 
 ## Manuscripts
 
@@ -12,6 +12,7 @@ trees. It contains two manuscripts with different scopes.
 | --- | --- | --- |
 | **Effective computation and boundary robustness of the random friend-tree exponent** | An exact pressure characterization, a terminating two-sided computation theorem, a uniform boundary-leaf resolvent estimate, robustness under bounded predictable boundary input, and a sharper rational upper bound for the original exponent. | [PDF](friend_tree_growth.pdf) · [LaTeX](friend_tree_growth.tex) |
 | **Growth and irrationality in local redirection trees** | An exact CMJ representation, almost-sure power-law growth from every finite tree seed, effective root isolation, and irrationality for every finite algebraic activation parameter. | [PDF](local_redirection_irrationality.pdf) · [LaTeX](local_redirection_irrationality.tex) |
+| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | The exact inert-newborn first-promotion transform, rational telescopability classification, accelerated enclosures, sharp coefficient-height growth at algebraic discounts, and the precise remaining arithmetic gaps. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
 
 These are research drafts dated November 23, 2026. The repository includes
 written proofs, internal dependency audits, and reproducible finite
@@ -87,6 +88,40 @@ The [local-model audit](docs/local_model_proof_audit.md) records the
 branching-process and arithmetic inputs. The exact example brackets are in
 [verification/van_root_checks.json](verification/van_root_checks.json).
 
+## First-promotion arithmetic and transcendence targets
+
+The third manuscript studies the first proper promotion from the original
+inert newborn, including its null stub events. Its exact discounted weights
+are
+
+$$
+t_n(s)=\frac{(n!)^2}{\prod_{j=1}^n[j^2+(s+2)j+s]},\qquad
+\Phi(s)=\sum_{n\ge1}t_n(s)=\mathbb E e^{-s\tau}.
+$$
+
+It gives a positive rational reduction, classifies rational telescopes
+(they exist exactly at positive integer `s`), and constructs rational
+enclosures of width `O_s(M^(-s-5))`. For positive algebraic `s`, writing
+`vartheta = (s + sqrt(s^2+4))/2` and `D = [Q(vartheta):Q]`, it proves the
+absolute logarithmic height asymptotic
+
+$$
+h(t_n(s))=\left(2-\frac2D\right)n\log n+O_s(n).
+$$
+
+This determines exactly when the two natural generating functions satisfy
+the `E`- and `G`-function arithmetic conditions. The note also states an
+equivalent specialization target for transcendence of the local exponents
+and checks the scope of the relevant classical `E*`-function theorem.
+
+These results concern an exact component of the original kernel.
+**They do not prove irrationality or transcendence of `mu` or transcendence
+of the local exponents.** In particular, `Phi(mu) = 1` is not the critical
+equation. A signed expression for the full pressure equation, with proved
+nonvanishing and sufficiently strong height/error estimates, remains to be
+constructed. See the [transcendence dependency audit](docs/transcendence_proof_dependencies.md)
+and [exact first-promotion report](verification/first_promotion_checks.json).
+
 ## Questions still open in this work
 
 - Irrationality or transcendence of the **original** exponent `mu`.
@@ -123,11 +158,13 @@ dependencies, and reference reports. See [upstream provenance](docs/UPSTREAM.md)
 for immutable revisions and file hashes. Re-running the same upstream
 checker is described as reproduction, not as an independent implementation.
 
-Build both manuscripts with a standard LaTeX installation:
+Build all three manuscripts with a standard LaTeX installation:
 
 ```bash
 python3 scripts/build_papers.py
 ```
+
+To build only the transcendence continuation, add `--paper transcendence`.
 
 The build tool writes the PDFs at the repository root and keeps temporary
 files in `build/papers/`. It rejects unresolved references and overfull boxes.

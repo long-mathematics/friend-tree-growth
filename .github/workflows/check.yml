@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Install LaTeX packages
         run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended lmodern
-      - name: Build both manuscripts
+      - name: Build all manuscripts
         run: python3 scripts/build_papers.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -39,4 +39,5 @@ jobs:
           path: |
             friend_tree_growth.pdf
             local_redirection_irrationality.pdf
+            friend_tree_transcendence_progress.pdf
             build/papers/build_report.json

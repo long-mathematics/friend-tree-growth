@@ -3,7 +3,9 @@
 The main draft's completed theorem is effective computation of the original
 exponent, using an exact characteristic pressure and a uniform boundary
 comparison. The local-model companion supplies a concrete irrationality
-theorem. The following targets concern additional results.
+theorem. The first-promotion continuation proves exact reductions and sharp
+coefficient-height asymptotics for one component of the original kernel.
+The following targets concern additional results.
 
 ## 1. Make computation practical
 
@@ -52,6 +54,35 @@ nonzero integer of absolute value below one. Both the nonvanishing and the
 arithmetic growth estimates are necessary; numerical smallness alone is
 insufficient.
 
+### Established first-promotion arithmetic
+
+The [transcendence continuation](../friend_tree_transcendence_progress.pdf)
+now gives an exact hypergeometric transform for the full waiting phase
+before the inert newborn's first promotion. It proves a positive residual
+identity and excludes a rational telescope at every parameter in the
+current enclosure for `mu`.
+
+For positive algebraic `s`, with
+`D = [Q((s + sqrt(s^2+4))/2):Q]`, its coefficients satisfy
+`h(t_n(s)) = (2 - 2/D)*n*log(n) + O_s(n)`. At rational discounts, it also
+determines the leading growth of primitive denominators and their least
+common denominator. The exceptional rational parameters with `s^2+4` a
+rational square are dense, including examples inside the enclosure.
+
+These statements identify the arithmetic cost of the natural series; they
+do not classify the arithmetic nature of its evaluated sum. The positive
+residual and rational nonsummability do not prove that a nonzero arithmetic
+class survives after all environments enter the global critical equation.
+The next target is a signed critical boundary functional detecting
+`r_infty(s)-1`, with both global noncancellation and a height/error balance
+strong enough for algebraic separation. No such functional is constructed
+in the continuation. Its accelerated rational enclosures concern the
+first-promotion transform, not improved bounds for `mu`.
+
+The [dependency audit](transcendence_proof_dependencies.md) records the
+proved components, the classical arithmetic inputs, and the remaining
+transfer problem.
+
 ## 3. Resolve the critical resolvent boundary term
 
 Separate exploratory work constructs a critical generator eigenfunction
@@ -82,6 +113,16 @@ algebraic irrational exponents. Extending the argument to all algebraic
 candidate exponents requires a further specialization theorem; the
 rational-parameter E-function denominator argument is not automatically
 valid at an algebraic irrational parameter.
+
+The continuation makes this local target exact: transcendence of
+`alpha_omega` for every finite algebraic `omega >= 0` is equivalent to
+transcendence of `F(x)` for every algebraic real `x` in `[alpha_0,1)`, where
+`alpha_0` is the PAN root. Sprindzuk's applicable `E*`-function theorem
+gives finiteness under fixed degree bounds for fixed algebraic irrational
+function parameter. It does not exclude the required evaluation point
+`-1`; its exceptional set also varies with that parameter. Resolving this
+specialization remains a local-model goal, with no automatic transfer to
+the original exponent.
 
 For the original tree, even irrationality remains open. Neither the
 computable character of the root nor the presence of Mellin integrals is
