@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "beta": "2832242711/5000000000",
+  "tau": "5294970481/100000000000000",
+  "zeta": "199752266575452391/1200500000000000000000000000",
+  "states": 20,
+  "tested_discounts": [
+    "2832242711/5000000000",
+    "2832243211/5000000000",
+    "1133/2000"
+  ],
+  "exact_generator_checks": 60,
+  "corrected_leaf_jump_checks": 103,
+  "corrected_promotion_jump_checks": 94,
+  "nested_kernel_intervals": 14
+}

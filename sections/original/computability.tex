@@ -1,0 +1,144 @@
+\section{Effective computation of the exact exponent}
+\label{ecc:section}
+
+\subsection{The two exact characterizations}
+
+For a newborn core in an admissible finite environment $x$, let
+\[
+ F_x(t)=\mathbb E_x C_{\rm tag}(t),\qquad
+ G(t)=\sup_x F_x(t),\qquad H(t)=1+\int_0^tG(u)\,du.
+\]
+The supremum includes the finite inert environments used by the pruning
+construction; their finite-horizon rewards are limits of rewards in
+genuine finite trees.  The future-child decomposition in Section~\ref{uniform:section} gives
+$H(t+u)\le H(t)H(u)$ and $G(t)\le H(t)\le1+tG(t)$.
+Theorem~\ref{erc:equality} therefore gives
+\begin{equation}\label{ecc:inf-characterization}
+ \boxed{\displaystyle
+ \mu=\inf_{T\in\mathbb Q_{>0}}\frac{\log H(T)}{T}.}
+\end{equation}
+Restricting to rational times is valid by continuity of $H$.
+Every fixed rational-time value $H(T)$ is effectively computable.
+
+There is also the exact scalar pressure equation from the inert newborn
+process.  Give its initial root core genealogical depth zero.  Let
+$\sigma_v$ be the birth time of a future core $v$, and put
+\[
+ A_m^\infty(s)=\mathbb E_\infty
+       \sum_{v:\,\operatorname{depth}(v)=m}e^{-s\sigma_v},
+ \qquad m\ge1,\quad s>0.
+\]
+Theorem~\ref{gc:root} proves that
+\begin{equation}\label{ecc:pressure}
+ r_\infty(s)=\lim_{m\to\infty}A_m^\infty(s)^{1/m}
+\end{equation}
+exists, is positive, continuous, and strictly decreasing, and that
+\begin{equation}\label{ecc:unique-root}
+ \boxed{r_\infty(\mu)=1.}
+\end{equation}
+Moreover,
+\begin{equation}\label{ecc:lower-witness}
+ s<\mu\quad\Longleftrightarrow\quad
+ A_m^\infty(s)>12(s+3)\text{ for some finite }m.
+\end{equation}
+The older constant $12(s+3)$ is sufficient here; no sharper minorization
+constant is needed for computability.
+
+The two characterizations supply complementary strict certificates. No equality of distinct pressure functions away from their critical points is required.
+
+\subsection{What the finite upper calculation consists of}
+
+Here are the effective ingredients for $H(T)$, summarized from Section~\ref{profile:time} so
+that the infimum in~\eqref{ecc:inf-characterization} is usable.
+Prune the newborn exterior at depth $R$ or its first vertex of degree
+at least $M$.  The resulting profile set is finite and explicitly
+enumerable.  For all $0\le t\le T$, the locality coupling bounds
+the error between the true supremum and the maximum of the retained
+profile means by
+\begin{equation}\label{ecc:profile-error}
+ e^T\left(\frac{T^R}{R!}+\frac{e^T-1}{M}\right).
+\end{equation}
+For a fixed profile with $n$ initial real vertices, stop above total
+population $N$.  The remaining finite generator has rational rates.
+Its matrix exponential is computed by uniformization, using a rational
+Poisson-series enclosure.  The omitted mean is at most
+\begin{equation}\label{ecc:population-error}
+ \frac{n(n+1)e^{2T}-ne^T}{N}.
+\end{equation}
+Finally $G$ is $e^T$-Lipschitz on $[0,T]$, so rational-grid quadrature,
+together with~\eqref{ecc:profile-error}--\eqref{ecc:population-error},
+computes $H(T)$ with any specified positive rational error.
+All exponential and logarithmic quantities in these bounds admit
+elementary certified rational enclosures.
+
+Consequently the following upper search is sound and complete:
+enumerate positive rational $T$ and improving certified bounds
+$H(T)\le\overline h$, and stop when
+\begin{equation}\label{ecc:upper-witness}
+ \overline h<e^{sT}
+\end{equation}
+has been certified by rational enclosures.  Success implies $\mu<s$.
+For every rational $s>\mu$, submultiplicativity and
+\eqref{ecc:inf-characterization} supply a strict witness, so this search
+eventually stops.  It is not claimed to stop when $s=\mu$.
+
+For the lower search, enumerate finite histories of the exactly
+eliminated waiting-event kernel.  At rational $s$, all retained beta
+weights are rational and nonnegative.  The earlier program
+\texttt{scripts/inert\_growth\_kernel.py} computes increasing finite sums
+$L_{m,R,N}(s)\le A_m^\infty(s)$.  Enumerating $m,R,N$ and stopping when
+\[
+ L_{m,R,N}(s)>12(s+3)
+\]
+is therefore sound and, by~\eqref{ecc:lower-witness}, complete for
+$s<\mu$.  Each attempted certificate is finite exact arithmetic.
+
+\begin{theorem}[Effective two-sided computation]\label{ecc:computable}
+For every positive rational $\varepsilon$, there is an algorithm which
+halts and outputs rational $a<b$ with
+\[
+ a<\mu<b,\qquad b-a<\varepsilon.
+\]
+Thus the original random friend-tree exponent is a computable real.
+\end{theorem}
+\begin{proof}
+Enumerate pairs of positive rationals $a<b$ with $b-a<\varepsilon$.
+Dovetail the lower search at $a$ and the upper search at $b$ for every
+pair: at each finite stage perform finitely many additional steps of
+finitely many searches, ensuring that each fixed search receives
+unboundedly many steps.  Return the first pair for which both
+certificates have been found.
+
+Each returned interval is sound.  Density of the rationals supplies
+a pair $a<\mu<b$ of the required width.  For that pair both searches
+halt, so the dovetailed algorithm halts.  The algorithm never needs to
+decide whether a proposed rational test value equals $\mu$.
+\end{proof}
+
+\subsection{A convergent rational series with a certified remainder}
+
+Start from $a_0=1/2$ and $b_0=3/5$, which strictly bracket the known
+exponent.  At stage $n\ge1$, use the preceding search restricted to
+\[
+ a_{n-1}<a_n<b_n<b_{n-1},\qquad b_n-a_n<2^{-n}.
+\]
+Because the previous interval strictly contains $\mu$, every stage
+terminates.  Fix a computable ordering and dovetailing schedule, so
+the rational sequence is uniquely specified by this algorithm.
+It follows that
+\begin{equation}\label{ecc:rational-series}
+ \boxed{\displaystyle
+ \mu=\frac12+\sum_{n=1}^{\infty}(a_n-a_{n-1}),\qquad
+ 0<\mu-a_n<2^{-n}.}
+\end{equation}
+All summands are positive rationals obtained by finite certificate
+searches.  The midpoint $q_n=(a_n+b_n)/2$ satisfies
+$|q_n-\mu|<2^{-n-1}$.
+
+This is an algorithmic convergent series with an explicit remainder
+bound after each completed stage.  It is not a claimed closed formula
+for the summands or an efficient high-precision numerical method.
+The search may be extremely expensive, and this work gives no useful
+running-time estimate as $\varepsilon\downarrow0$.  Those qualifications
+do not weaken the termination or error guarantees.
+

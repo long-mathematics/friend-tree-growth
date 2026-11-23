@@ -1,0 +1,173 @@
+\section{A finite rational calculator for the inert coefficients}
+\label{calc:section}
+
+This section gives a direct computation of $A_m^\infty(s)$, without
+enumerating all pruned environment profiles. The two budgets count
+different events: $R$ bounds \emph{all} actual core-clock rings, including
+null choices of the inert parent, while $N$ bounds real vertex arrivals
+after the initial tag and its one leaf. Throughout, $m\ge1$ and $s>0$.
+
+\begin{lemma}[A universal core-ring tail]\label{calc:ring-tail}
+Put
+\[
+ P_R(z)=\prod_{i=1}^R\left(1+\frac zi\right),
+ \qquad P_0(z)=1.
+\]
+The expected discounted generation-$m$ births occurring after the $R$th
+actual core-clock ring in the inert process are at most
+\begin{equation}\label{calc:tail-formula}
+ T_{m,R}(s)=
+ \left(\prod_{i=1}^R\frac{i}{i+s}\right)
+ \sum_{j=0}^{m-1}[z^j]P_R(z)\,s^{-(m-j)}.
+\end{equation}
+This is rational for rational $s$. For fixed $m,s$ it tends to zero,
+with $T_{m,R}(s)=O_{m,s}(R^{-s}(1+\log R)^{m-1})$.
+\end{lemma}
+
+\begin{proof}
+Use the common potential genealogy in which every ring of every
+potential core creates a potential child, even if its actual counterpart
+has a null or nonpromotion event. Actual cores and their clock rings
+are subsets of this potential process. The potential core population
+is a rate-one Yule process started with one vertex. Write $\tau_R$ for
+its $R$th birth time. The $R$th actual core ring occurs no earlier than
+$\tau_R$, and every omitted actual generation-$m$ birth is a potential
+generation-$m$ birth after $\tau_R$.
+
+At potential size $i$, the holding time has rate $i$, independently of
+the uniform choice of its parent. Thus the generation profile at
+$\tau_R$ is independent of $\tau_R$, and
+\[
+ \mathbb E e^{-s\tau_R}=\prod_{i=1}^R\frac{i}{i+s}.
+\]
+Its expected profile polynomial is $P_R$: adding a vertex at size $i$
+multiplies the previous expected polynomial by $1+z/i$.
+
+Conditional on the profile at $\tau_R$, a currently existing vertex
+at depth $j<m$ contributes at most, and in the potential process exactly,
+$s^{-(m-j)}$ from its new future branches. These contributions do not
+double count existing child branches: a future vertex is assigned to
+its deepest ancestor already present at $\tau_R$. Summing, and using
+independence, proves~\eqref{calc:tail-formula}.
+Finally $[z^j]P_R\le H_R^j/j!$, where $H_R=\sum_{i=1}^R1/i$, and the
+product in~\eqref{calc:tail-formula} is $O_s(R^{-s})$.
+\end{proof}
+
+\subsection{Bounding the histories discarded by a birth budget}
+
+The retained state consists of a finite rooted core, its leaf counts,
+and the initial inert stub. Its core depths are the genealogical
+depths from the original tag. For such a state $x$, define
+\begin{equation}\label{calc:future-reward}
+ V_m(x)=\sum_{v:\,d(v)<m}s^{-(m-d(v))},
+ \qquad C_m(s)=\max_{0\le r<m}s^{-r}.
+\end{equation}
+The potential-genealogy comparison shows that $V_m(x)$ bounds all
+future generation-$m$ reward from that state, independent of its
+leaf counts.
+
+Between core rings, integrate the leaf growth using the exact beta
+burst kernel. If a burst is discarded because it exceeds the real-birth
+budget, no core birth occurs before its next forced core ring, and its
+core graph and depths are unchanged. That ring can contribute at most
+one new core to the future reward, or one immediate generation-$m$
+birth. Consequently the entire omitted reward from this branch is at
+most its discounted omitted-ring mass times
+\begin{equation}\label{calc:omitted-burst}
+ V_m(x)+C_m(s).
+\end{equation}
+The omitted-ring mass is computed exactly from the Yule burst tail,
+including its factor $k/(k+s)$ for $k$ current cores.
+
+For a retained burst whose subsequent real core event itself exceeds
+the birth budget, use the sharper bound
+\begin{equation}\label{calc:omitted-core-event}
+ \mathbf1_{\{\text{new core has depth }m\}}+V_m(x_{\mathrm{post}}),
+\end{equation}
+weighted by that event's exact discounted mass. A nonpromotion event
+has no immediate reward. Null stub choices use one core ring but no
+real birth and are retained accordingly.
+
+\begin{proposition}[Certified scalar intervals]\label{calc:calculator}
+Enumerating beta bursts through at most $R$ core rings and at most $N$
+real births gives a positive finite rational sum $L_{m,R,N}(s)$ at
+rational $s$. Let $E_{m,R,N}(s)$ be the sum of the discarded-history
+bounds~\eqref{calc:omitted-burst}--\eqref{calc:omitted-core-event}. Then
+\begin{equation}\label{calc:interval}
+ L_{m,R,N}(s)\le A_m^\infty(s)
+ \le L_{m,R,N}(s)+E_{m,R,N}(s)+T_{m,R}(s).
+\end{equation}
+The upper endpoint may also be capped at $s^{-m}$. These bounds compute
+$A_m^\infty(s)$ to any prescribed rational accuracy: first increase
+$R$ until its explicit tail is small, then increase $N$ until the
+computed discarded-history bound is small.
+\end{proposition}
+
+\begin{proof}
+Retained histories have their exact positive discounted weights and
+are a subset of the original histories. The first discarded burst or
+core event accounts for a missing path by
+\eqref{calc:omitted-burst} or~\eqref{calc:omitted-core-event}. The additional
+universal tail bounds all births after $R$ actual core rings; any
+overlap between the two error terms is harmless. This proves
+\eqref{calc:interval}.
+
+For fixed $R$, at most $R+1$ real cores exist through these rings, so
+the reward bounds at every first discarded history are bounded by a
+constant depending only on $R,m,s$. The first-discard histories are
+disjoint. Their total undiscounted probability is at most the
+probability that the real population at the $R$th core ring exceeds
+$N+2$. That population is finite almost surely: the $R$th core ring
+occurs by the $R$th ring of the original tag, and the vertex process
+is nonexplosive, with birth rate at most its current population.
+Thus $E_{m,R,N}(s)\to0$ as $N\to\infty$ for fixed $R$.
+
+Every step is finite: before each retained ring there are only
+finitely many leaf allocations within the birth budget, and null
+events consume the ring budget. At rational $s$, each beta entry,
+neighbour-choice rate, tail, and reward bound is rational.
+\end{proof}
+
+\subsection{Implementation and the complete scalar lower test}
+
+The standard-library program \texttt{inert\_growth\_kernel.py} imports
+the exact burst routines from \texttt{core\_clock\_kernel.py}. It keeps
+the original tag at root zero and combines root-isomorphic states.
+It reports the lower and upper coefficient bounds, the two separate
+error terms, and the scalar test
+\begin{equation}\label{calc:scalar-test}
+ \frac{L_{m,R,N}(s)}{12(s+3)}>1.
+\end{equation}
+The uniform inert minorization and its growth-limit theorem make this
+a sufficient certificate of $s<\mu$. They also make the test complete:
+if $s<\mu$, some $m$ has $A_m^\infty(s)>12(s+3)$, and sufficiently
+large finite budgets preserve that strict inequality. This is a
+semidecision procedure, with no practical search-length estimate near
+$\mu$ and no termination claim when $s\ge\mu$.
+The optional \texttt{--search} mode implements the enumeration: at stage
+$h$, take $R=N=h$ and test generations $1,\ldots,h$. For any fixed
+successful generation the retained sums increase to its full coefficient
+along these budgets. The option \texttt{--max-stage} imposes a finite
+practical stopping point, whose failure gives no conclusion about $s-\mu$.
+
+For example, with just one allowed real birth and $m=1$, the only
+rewarded histories are initial null rings followed by a budding ring.
+Writing $a=1/[2(s+2)]$, their exact retained sum is
+\[
+ L_{1,R,1}(s)=\frac{1-a^R}{2s+3}.
+\]
+The checker verifies this identity separately from its burst and
+individual-clock comparisons.
+
+Run, for example,
+\begin{quote}\small\ttfamily
+python3 scripts/inert\_growth\_kernel.py --check\\
+python3 scripts/inert\_growth\_kernel.py --s 1/2 \textbackslash\\
+\hspace*{1em}--generation 2 --core-rings 3 --max-births 4
+\end{quote}
+The checker compares $180$ small burst calculations against an
+independent recursion over individual leaf and core clock events,
+including null events. It also checks the potential-profile tail
+identities, exact one-ring scalar partial sums, and nested certified
+intervals. These are finite verification checks, not a new numerical
+exponent bound or a replacement for the infinite coupling proofs.

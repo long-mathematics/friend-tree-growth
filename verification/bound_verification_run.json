@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "python": "3.12.14",
+  "upstream_commit": "ba2ec2e1935e0858e6bae2b40a9ee07c9b5665aa",
+  "reused_binary": false,
+  "binary_sha256": "3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe",
+  "beta": "2832242711/5000000000",
+  "tau": "5294970481/100000000000000",
+  "zeta": "199752266575452391/1200500000000000000000000000",
+  "improvement_over_1133_2000": "257289/5000000000",
+  "original_exact_GMP_inequalities": 17329108,
+  "modified_vertex_rows": 484138,
+  "source_sha256": {
+    "verify_supersolution_certificate.py": "05644e06f9365dd512417170ee01a5275105e583ed987f5e0fe4b4a8d5edcf90",
+    "continuation_certificate_bounds.py": "058db926b860db17fd90aab6a8be3817956f9c14061f5e4a0132b095b90f72f2",
+    "verify_supersolution_evaluator.py": "ca34c2c596d306ccfbca98bb4a3b49af822315c024c56b54950b5fd327e842de",
+    "continuation_verify_evaluator.py": "e359cf89057641f5c7a5e240b82497683adbdcb519b5e5fc55c4acd0d6745f1d",
+    "resolvent_supersolution.py": "0a84c609aa697bf8a7a62c2bdd0f31b97e4635bec7ea4ac593437c10bc0ca9a2",
+    "continuation_supersolution.py": "4e5b1da8c43fb3bd779a7691e49439fa0db1881cfae7c1daa01b048929f2c5a5",
+    "core_clock_kernel.py": "ecb25b9104a5ccccd3f4ea5068e54fe695d85068f0212f5ba664b22224269058",
+    "fetch_upstream.py": "17f02424955ac9f56699ad9ea5cebf148ea77e51b5163b5062a20eca16dab57a",
+    "verify_bound.py": "2778058f2407e4581276d2b9b804c26d31eb93e771d680651095cb8450adb259"
+  },
+  "scope": "Full rerun of the upstream exact checker with instrumentation that only records vertex slack, followed by the exact corrected-row check. This is not a second independent implementation of the full certificate. The all-degree tail argument and drift-to-growth implication are analytic."
+}

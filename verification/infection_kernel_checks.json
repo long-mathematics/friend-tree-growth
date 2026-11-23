@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "discount": "11/20",
+  "birth_offset": "5/2",
+  "uniform_reproduction_bound": "19/20",
+  "finite_degrees_checked": [
+    2,
+    63
+  ],
+  "terms_per_degree": 16,
+  "maximum_finite_upper_degree": 6,
+  "maximum_finite_upper_exact": "1669075573443141901662377825/1772128093509182310390306279",
+  "maximum_finite_upper_decimal": "0.9418481539548448",
+  "large_degree_threshold": 64,
+  "large_degree_squared_bound": "7/8 < (15/16)^2",
+  "all_finite_checks_exact": true,
+  "universal_absorption_cutoff_M": 132,
+  "absorption_coefficient_at_cutoff": "16000/16093"
+}

@@ -1,0 +1,84 @@
+\section{A scalar growth limit with the exact critical root}
+\label{gc:section}
+
+The inert comparison gives an actual generation limit, and the preceding continuous-time comparison identifies its critical parameter.
+
+\begin{theorem}[Exact inert-parent characteristic equation]
+\label{gc:root}
+For $s>0$, let
+\[
+ r_\infty(s)=\lim_{m\to\infty} A_m^\infty(s)^{1/m}.
+\]
+Then $r_\infty$ is positive, continuous, and strictly decreasing, and
+\begin{equation}\label{gc:crossing}
+ \boxed{r_\infty(\mu)=1,\qquad
+ r_\infty(s)>1\ (0<s<\mu),\qquad
+ r_\infty(s)<1\ (s>\mu).}
+\end{equation}
+In particular the original exponent is the unique solution of this
+scalar equation. For every $m\ge1$,
+\begin{equation}\label{gc:critical-bound}
+ A_m^\infty(\mu)\le 12(\mu+3)<43.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Tonelli's theorem gives the extended-value identity
+\[
+ 1+\sum_{m\ge1}A_m^\infty(s)
+ =s\int_0^\infty e^{-st}F_\infty(t)\,dt.
+\]
+By Theorem~\ref{gs:inert-mu}, this is finite for $s>\mu$ and infinite
+for $s<\mu$. Hence $r_\infty(s)\le1$ above $\mu$ and
+$r_\infty(s)\ge1$ below $\mu$.
+
+Each $A_m^\infty$ is a Laplace transform of a positive measure, so
+$m^{-1}\log A_m^\infty(s)$ is convex. Its pointwise limit
+$g(s)=\log r_\infty(s)$ exists by Theorem~\ref{growth:inert-limit}
+and has the finite bounds
+\[
+ -\log\bigl(2(s+2)\bigr)\le g(s)\le-\log s.
+\]
+Thus $g$ is finite, convex, continuous, and nonincreasing on
+$(0,\infty)$. If it took the same value at two distinct points,
+convexity and monotonicity would force it to be constant thereafter.
+This contradicts $g(s)\le-\log s\to-\infty$. It is strictly decreasing.
+The weak inequalities on either side of $\mu$, together with continuity
+and strict decrease, prove~\eqref{gc:crossing}.
+Equation~\eqref{growth:uniform-inert-upper} at $s=\mu$ gives
+\eqref{gc:critical-bound}; the numerical inequality uses the imported
+upper bound $\mu\le1133/2000$.
+\end{proof}
+
+\begin{corollary}[Complete scalar lower certificates]
+\label{gc:scalar-certificates}
+For every $s>0$,
+\begin{equation}\label{gc:certificate-equivalence}
+ \boxed{s<\mu\quad\Longleftrightarrow\quad
+ A_m^\infty(s)>12(s+3)\text{ for some finite }m.}
+\end{equation}
+At rational $s$, finite positive rational-history approximations provide
+a complete semidecision procedure for $s<\mu$. The same statement
+holds for a positive algebraic $s$ specified exactly: each finite
+comparison is then an exact algebraic-number sign calculation.
+\end{corollary}
+\begin{proof}
+Combine~\eqref{growth:sup-formula} with~\eqref{gc:crossing}.
+When the inequality holds, its strict margin is eventually retained
+by finite positive history approximations. Conversely every successful
+finite lower approximation is bounded by the exact quantity and is
+therefore sound. All its weights are rational functions of $s$ with
+positive denominators for $s>0$.
+\end{proof}
+
+For all sufficiently large $m$, the equation
+\[
+ \frac{A_m^\infty(s_m)}{12(s_m+3)}=1
+\]
+has a unique positive solution and $s_m\le\mu$, with $s_m\to\mu$.
+Indeed, for each fixed $s<\mu$, the left side at $s$ eventually exceeds
+one by the actual generation limit; at $\mu$ it is at most one and at
+infinity it tends to zero. Each individual left side is continuous and
+strictly decreasing. The running maxima of these roots therefore
+increase to $\mu$. No effective outer error or monotonicity of the
+individual $s_m$ is asserted.
+

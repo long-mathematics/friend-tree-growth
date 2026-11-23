@@ -1,0 +1,167 @@
+\section{Polynomial likelihood reduction of a bounded-degree parent}
+\label{plc:section}
+
+Let $Y_t$ be the retained descendant component of a newborn tag, viewed
+with its parent edge replaced by an inert stub.  Let $D_t$ be the full
+degree of its real external parent.  Fix $M\ge2$ and an initial degree
+$d\in\{2,\ldots,M\}$, and stop both coordinates at
+\[
+ \tau_M=\inf\{t:D_t=M+1\}.
+\]
+Before this stopping time, the parent's degree-increase intensity is
+\[
+ \lambda_p(t)=\sum_{v\sim p}\frac1{D_v(t)}\le D_t\le M.
+\]
+The sum includes real leaf neighbours, which contribute one, and
+inert neighbours, which contribute zero.  Since the tag is a real
+neighbour, $\lambda_p(t)>0$ at every finite state.
+There are at most $K=M+1-d$ parent degree increases before stopping.
+
+\begin{theorem}[A finite family of reference laws with polynomial loss]
+\label{plc:theorem}
+There is a reference law $\mathbb Q_d$ for $(Y,D)$, depending only on
+$d$ and $M$, with time-dependent generator before stopping
+\begin{align}
+ \mathcal G_t^{\rm ref}f(y,d)
+ &=\mathcal L_\infty f(\cdot,d)(y)
+   +\frac1d\{f(y^+,d)-f(y,d)\}\notag\\
+ &\quad+\frac1{(1+t)^2}\{f(y,d+1)-f(y,d)\},
+ \label{plc:reference-generator}
+\end{align}
+such that every actual finite exterior with parent degree $d$ satisfies
+the following bound.  For every $T\ge0$ and every nonnegative measurable
+functional $Z$ of the stopped retained-and-degree path through time $T$,
+\begin{equation}\label{plc:domination}
+ \mathbb E_{
+m actual} Z
+ \le e\,[M(1+T)^2]^K\,\mathbb E_{\mathbb Q_d} Z.
+\end{equation}
+Thus arbitrary exterior histories with a bounded-degree parent can be
+replaced by one of finitely many explicit reference models at a
+polynomial, rather than exponential, cost in the time horizon.
+\end{theorem}
+\begin{proof}
+Use the full finite-tree birth process until $\tau_M$.  A parent degree
+increase is exactly one leaf addition at the parent, with total rate
+$\lambda_p(t)$.  Change this single transition channel to the rate
+$h(t)=(1+t)^{-2}$ and leave every other transition rate unchanged.
+Both the original and the modified processes are nonexplosive: the
+modified total real birth rate is at most the original population plus
+one.  The usual finite-horizon counting-process change of measure gives
+the actual law relative to the modified law with density
+\[
+ Z_T^{\rm RN}
+ =\exp\!\left\{\int_0^{T\wedge\tau_M}
+                     (h(t)-\lambda_p(t))\,dt\right\}
+   \prod_{j:\,\sigma_j\le T\wedge\tau_M}
+        \frac{\lambda_p(\sigma_j-)}{h(\sigma_j)}.
+\]
+Here $\sigma_j$ are the parent degree-increase times, including the
+stopping increase when it occurs before $T$.  Localization in total
+population first reduces the calculation to bounded finite-state
+intensities.  Alternatively, the density follows directly by taking
+the ratio of the finite jump-history densities and then passing to the
+nonexplosive limit.
+
+There are at most $K$ factors in the product,
+$\lambda_p\le M$, and $\int_0^\infty h(t)dt=1$.  Hence pathwise
+\[
+ Z_T^{\rm RN}\le e\,[M(1+T)^2]^K.
+\]
+
+It remains to identify the marginal law of the retained coordinates
+under the modified full process.  A parent degree increase changes only
+$D$, and now has deterministic hazard $h(t)$.  A parent selection of the
+tag creates one retained root leaf at rate $1/D$.  All other retained
+transitions have exactly the inert generator $\mathcal L_\infty$.
+Every remaining exterior transition changes neither $Y$ nor $D$.
+Thus the pair $(Y,D)$ has precisely the autonomous generator
+\eqref{plc:reference-generator}; in particular its law no longer depends
+on the rest of the initial exterior.  This proves
+\eqref{plc:domination}.
+\end{proof}
+
+The reference degree chain is driven by an independent inhomogeneous
+Poisson clock with integrated hazard one, stopped after $K$ jumps.
+The input $1/D_t$ is nonincreasing, changes at most $K$ times, and is
+eventually constant on every path that does not reach the stopping
+state.  For example, taking
+$Z=C(Y_T)\mathbf1_{\{T<\tau_M\}}$ gives a uniform bound for the part
+of the tagged mean that remains behind a low-degree parent.
+
+More generally one may use
+$h(t)=\eta(1+t)^{-\beta}$ with $\eta>0$ and $\beta>1$.
+The likelihood factor is then at most
+\[
+ \exp\!\left(\frac{\eta}{\beta-1}\right)
+ \max\left\{1,\frac M\eta(1+T)^\beta\right\}^K.
+\]
+Thus the total reference jump intensity can be made arbitrarily small
+without introducing an exponential loss in~$T$.
+
+\subsection{An exponential occupation bound after the root is large}
+
+\begin{proposition}[Uniform inverse-degree exponential moment]
+\label{plc:occupation}
+Suppose a retained root starts with full degree $D_0\ge H\ge2$ and
+receives incoming leaves at predictable intensity at least
+$\rho\in(0,1]$.  The other incoming events may be arbitrary events of
+the usual core process.  Put
+\[
+ c_\rho=1+\frac3\rho,\qquad
+ \kappa_\rho=\frac\rho3,\qquad
+ A_{H,\rho}=\frac{\log(c_\rho H)+1}{\kappa_\rho H}.
+\]
+Then
+\begin{equation}\label{plc:occupation-mean}
+ \mathbb E\int_0^\infty\frac{dt}{D_t}\le A_{H,\rho}.
+\end{equation}
+For every $p>0$ with $pA_{H,\rho}<1$,
+\begin{equation}\label{plc:occupation-exponential}
+ \boxed{
+ \mathbb E\exp\!\left(p\int_0^\infty\frac{dt}{D_t}\right)
+ \le\frac1{1-pA_{H,\rho}}.
+ }
+\end{equation}
+The estimates are uniform over all finite internal environments, initial
+leaf counts and other permitted inputs.  They also hold with the
+integrals stopped at any stopping time up to which the lower immigration
+bound remains valid.
+\end{proposition}
+\begin{proof}
+The root degree is nondecreasing, so $D_t\ge H$.  Lower-couple its
+leaf count with the birth--death chain $X$ started at zero, with births
+at rate $x+\rho$ and deaths at rate one whenever $x>0$.  A rate-$\rho$
+stream is extracted from the incoming leaves, the leaf births are
+coupled by their Poisson random measures, and the comparison loses
+one leaf at every root clock ring.  Actual root leaf losses occur at
+most once at such a ring.  This is the same comparison used in
+Lemma~\ref{ps:reciprocal}.  Its reciprocal estimate gives
+\[
+ \mathbb E\frac1{D_t}
+ \le\mathbb E\min\left\{\frac1H,\frac1{X_t+1}\right\}
+ \le\min\left\{\frac1H,c_\rho e^{-\kappa_\rho t}\right\}.
+\]
+Integrating the last bound, with the two terms equal at
+$t=\log(c_\rho H)/\kappa_\rho$, proves
+\eqref{plc:occupation-mean}.
+
+The same bound applies conditionally after every stopping time: the
+root degree is still at least $H$, the comparison chain may be restarted
+at zero below its actual leaf count, and the remaining input still has
+intensity at least $\rho$.  For
+$I=\int_0^\infty D_t^{-1}dt$, iterated conditioning in the ordered
+time integrals therefore gives the Khasminskii bounds
+\[
+ \mathbb E I^n\le n!A_{H,\rho}^n\qquad(n\ge0).
+\]
+Summing the nonnegative exponential series proves
+\eqref{plc:occupation-exponential}.  With a stopping time, insert the
+indicator that the input lower bound is still in force; the same
+conditional argument only decreases the integrals.
+\end{proof}
+
+In particular, $A_{H,\rho}\to0$ as $H\to\infty$ for fixed $\rho$.
+Thus any prescribed exponential moment is uniformly finite once the
+root degree is sufficiently large.
+

@@ -1,0 +1,374 @@
+{
+  "status": "PASS",
+  "vertex_rows_rechecked": 484138,
+  "minimum_vertex_slack": "24776800469/2500000000000000",
+  "minimum_slack_state": [
+    "inner",
+    0,
+    1,
+    1
+  ],
+  "grouped_upper_A": "8424600447/5000000000",
+  "maximum_weight_state": [
+    "VSTAR",
+    1,
+    0,
+    0
+  ],
+  "uniform_reserve_bound": "2386243299812281/4212300223500000",
+  "typed_reserve_epsilon": "24776800469/1485071445500000",
+  "minimum_ratio_state": [
+    "inner",
+    0,
+    1,
+    1
+  ],
+  "typed_reserve_bound": "841268197075281/1485071445500000",
+  "binary_sha256": "3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe",
+  "incoming_INF_integer": 65007061,
+  "incoming_T1_13_integer": 25340030,
+  "row_categories": {
+    "VSTAR": {
+      "count": 8,
+      "minimum_slack": "2252542789/20000000000000",
+      "minimum_slack_state": [
+        "VSTAR",
+        1,
+        1,
+        1
+      ],
+      "minimum_ratio": "42798312991/640031631786000",
+      "minimum_ratio_state": [
+        "VSTAR",
+        1,
+        1,
+        1
+      ],
+      "ratio_row_slack": "2252542789/20000000000000",
+      "ratio_row_weight": "320015815893/190000000000",
+      "maximum_weight": "8424600447/5000000000",
+      "maximum_weight_state": [
+        "VSTAR",
+        1,
+        0,
+        0
+      ]
+    },
+    "inner": {
+      "count": 572,
+      "minimum_slack": "24776800469/2500000000000000",
+      "minimum_slack_state": [
+        "inner",
+        0,
+        1,
+        1
+      ],
+      "minimum_ratio": "24776800469/1485071445500000",
+      "minimum_ratio_state": [
+        "inner",
+        0,
+        1,
+        1
+      ],
+      "ratio_row_slack": "24776800469/2500000000000000",
+      "ratio_row_weight": "2970142891/5000000000",
+      "maximum_weight": "16621183459/10000000000",
+      "maximum_weight_state": [
+        "inner",
+        23,
+        0,
+        0
+      ]
+    },
+    "outer": {
+      "count": 482048,
+      "minimum_slack": "441395919/20000000000000",
+      "minimum_slack_state": [
+        "outer",
+        0,
+        24,
+        0,
+        1
+      ],
+      "minimum_ratio": "21608599257/869991030896000",
+      "minimum_ratio_state": [
+        "outer",
+        0,
+        140,
+        1,
+        1
+      ],
+      "ratio_row_slack": "459757431/20000000000000",
+      "ratio_row_weight": "54374439431/58750000000",
+      "maximum_weight": "1998737466907/1187500000000",
+      "maximum_weight_state": [
+        "outer",
+        799,
+        150,
+        1,
+        0
+      ]
+    },
+    "L800": {
+      "count": 302,
+      "minimum_slack": "2270004929/20000000000000",
+      "minimum_slack_state": [
+        "L800",
+        800,
+        0,
+        0
+      ],
+      "minimum_ratio": "2270004929/33478588106000",
+      "minimum_ratio_state": [
+        "L800",
+        800,
+        0,
+        0
+      ],
+      "ratio_row_slack": "2270004929/20000000000000",
+      "ratio_row_weight": "16739294053/10000000000",
+      "maximum_weight": "5336123846607/3170000000000",
+      "maximum_weight_state": [
+        "L800",
+        800,
+        150,
+        1
+      ]
+    },
+    "Ltail": {
+      "count": 1208,
+      "minimum_slack": "599757917083/5340000000000000",
+      "minimum_slack_state": [
+        "Ltail",
+        0,
+        0,
+        0,
+        1
+      ],
+      "minimum_ratio": "133763149029/2003150717392000",
+      "minimum_ratio_state": [
+        "Ltail",
+        150,
+        1,
+        1,
+        1
+      ],
+      "ratio_row_slack": "133763149029/1190000000000000",
+      "ratio_row_weight": "125196919837/74375000000",
+      "maximum_weight": "3366839863/2000000000",
+      "maximum_weight_state": [
+        "Ltail",
+        150,
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  "source_sha256": "058db926b860db17fd90aab6a8be3817956f9c14061f5e4a0132b095b90f72f2",
+  "scope": "New exact vertex-row/weight comparisons; other motif inequalities inherited from the unchanged fully verified certificate.",
+  "constant_core_correction": {
+    "verified_beta": "2832242711/5000000000",
+    "correction_t": "5294970481/100000000000000",
+    "feasible_t_interval": [
+      "763278221264673581/14415721236665000000000",
+      "32452312724432471239/612865341021362000000000"
+    ],
+    "lower_constraint": {
+      "delta": "10144196307899/144060000000000000",
+      "weight": "355446760407/245000000000",
+      "birth": "143/294",
+      "state": [
+        "outer",
+        143,
+        150,
+        1,
+        1
+      ]
+    },
+    "upper_constraint": {
+      "delta": "113073411033839/1118645000000000000",
+      "weight": "1591603737113/946000000000",
+      "birth": "795/946",
+      "state": [
+        "outer",
+        795,
+        150,
+        1,
+        1
+      ]
+    },
+    "minimum_exact_margin": "199752266575452391/1200500000000000000000000000",
+    "minimum_margin_state": [
+      "outer",
+      143,
+      150,
+      1,
+      1
+    ],
+    "minimum_adjusted_vertex_slack": "7981345592493/200000000000000000",
+    "minimum_adjusted_slack_state": [
+      "inner",
+      0,
+      1,
+      1
+    ],
+    "minimum_adjusted_ratio": "35850784573031173/696701076845969762000",
+    "minimum_adjusted_ratio_state": [
+      "outer",
+      143,
+      150,
+      1,
+      1
+    ],
+    "sharpened_beta": "394645309248668839/696701076845969762",
+    "row_categories": {
+      "VSTAR": {
+        "count": 8,
+        "minimum_margin_at_beta": "28506325972735095829/9500000000000000000000000",
+        "minimum_margin_at_beta_state": [
+          "VSTAR",
+          1,
+          1,
+          1
+        ],
+        "margin_row_original_delta": "2252542789/20000000000000",
+        "margin_row_original_weight": "320015815893/190000000000",
+        "margin_row_birth_fraction": "1",
+        "minimum_adjusted_slack": "17934688482973/200000000000000000",
+        "minimum_adjusted_slack_state": [
+          "VSTAR",
+          1,
+          1,
+          1
+        ],
+        "minimum_adjusted_ratio": "340759081176487/6400517526738278000",
+        "minimum_adjusted_ratio_state": [
+          "VSTAR",
+          1,
+          1,
+          1
+        ]
+      },
+      "inner": {
+        "count": 572,
+        "minimum_margin_at_beta": "44042114547172251793/11500000000000000000000000",
+        "minimum_margin_at_beta_state": [
+          "inner",
+          18,
+          4,
+          1
+        ],
+        "margin_row_original_delta": "21568425887487/230000000000000000",
+        "margin_row_original_weight": "15255296441/10000000000",
+        "margin_row_birth_fraction": "18/23",
+        "minimum_adjusted_slack": "7981345592493/200000000000000000",
+        "minimum_adjusted_slack_state": [
+          "inner",
+          0,
+          1,
+          1
+        ],
+        "minimum_adjusted_ratio": "405844740840279/7533804628562126000",
+        "minimum_adjusted_ratio_state": [
+          "inner",
+          22,
+          0,
+          1
+        ]
+      },
+      "outer": {
+        "count": 482048,
+        "minimum_margin_at_beta": "199752266575452391/1200500000000000000000000000",
+        "minimum_margin_at_beta_state": [
+          "outer",
+          143,
+          150,
+          1,
+          1
+        ],
+        "margin_row_original_delta": "10144196307899/144060000000000000",
+        "margin_row_original_weight": "355446760407/245000000000",
+        "margin_row_birth_fraction": "143/294",
+        "minimum_adjusted_slack": "10413160744973/200000000000000000",
+        "minimum_adjusted_slack_state": [
+          "outer",
+          0,
+          24,
+          0,
+          1
+        ],
+        "minimum_adjusted_ratio": "35850784573031173/696701076845969762000",
+        "minimum_adjusted_ratio_state": [
+          "outer",
+          143,
+          150,
+          1,
+          1
+        ]
+      },
+      "L800": {
+        "count": 302,
+        "minimum_margin_at_beta": "2203550093749243991/500000000000000000000000",
+        "minimum_margin_at_beta_state": [
+          "L800",
+          800,
+          0,
+          0
+        ],
+        "margin_row_original_delta": "2270004929/20000000000000",
+        "margin_row_original_weight": "16739294053/10000000000",
+        "margin_row_birth_fraction": "1",
+        "minimum_adjusted_slack": "18109309882973/200000000000000000",
+        "minimum_adjusted_slack_state": [
+          "L800",
+          800,
+          0,
+          0
+        ],
+        "minimum_adjusted_ratio": "18109309882973/334796471000962000",
+        "minimum_adjusted_ratio_state": [
+          "L800",
+          800,
+          0,
+          0
+        ]
+      },
+      "Ltail": {
+        "count": 1208,
+        "minimum_margin_at_beta": "168363910407214384929/59500000000000000000000000",
+        "minimum_margin_at_beta_state": [
+          "Ltail",
+          150,
+          1,
+          1,
+          1
+        ],
+        "margin_row_original_delta": "133763149029/1190000000000000",
+        "margin_row_original_weight": "125196919837/74375000000",
+        "margin_row_birth_fraction": "1",
+        "minimum_adjusted_slack": "4771851749153791/53400000000000000000",
+        "minimum_adjusted_slack_state": [
+          "Ltail",
+          0,
+          0,
+          0,
+          1
+        ],
+        "minimum_adjusted_ratio": "709654997047929/13354758183604826000",
+        "minimum_adjusted_ratio_state": [
+          "Ltail",
+          150,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "exact_rows_verified": 484138,
+    "discovery_beta_approximation": null
+  },
+  "uniform_reserve_bound_decimal": "0.566494117987998392726624225624833362497861852604960696719437",
+  "typed_reserve_bound_decimal": "0.566483316088566595498519401031739789114408637385654992044623",
+  "typed_epsilon_decimal": "0.0000166839114334045014805989682602108855913626143450079553765146"
+}

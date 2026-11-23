@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "python": "3.12.14",
+  "arithmetic": "Python fractions.Fraction; no floating-point proof decisions",
+  "source_sha256": {
+    "core_clock_kernel.py": "ecb25b9104a5ccccd3f4ea5068e54fe695d85068f0212f5ba664b22224269058",
+    "inert_growth_kernel.py": "a79c9c605980467f52b00713017b33773895e7b634e0cb850d240cf9a9a76cd6",
+    "verify_infection_kernel.py": "d6fd0656a72d64cdb8f3310b2b800985574fa0e017db92a600ecd9100daf080c",
+    "check_van_root.py": "bf4dd269a3ec24152b201bf81d323bb69ac34f04747a14badc8626d761af0b94"
+  },
+  "scope": "Finite kernel identities, bounds, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
+}

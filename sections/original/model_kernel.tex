@@ -1,0 +1,179 @@
+\section{The core process and exact waiting-event elimination}
+\label{model:section}
+
+\subsection{States, genealogy, and the imported exponent}
+
+Each real vertex has an independent rate-one source clock. At a ring it
+chooses a neighbour uniformly and creates a new leaf at that neighbour.
+The total birth rate of a full tree of size $n$ is $n$, so its embedded
+arrival chain is the discrete random friend tree. Every finite tree is
+reachable from an initial edge with positive probability in a fixed
+finite time. Consequently the expected core count from any fixed
+finite seed has upper exponential rate at most the rate from the edge.
+
+We use the following established input from~\cite{Uzay}: for the
+process started from an edge,
+\begin{equation}\label{model:imported-exponent}
+ F_2(t):=\mathbb E_{\mathrm{edge}}C(t)=e^{\mu t+o(t)},
+ \qquad
+ \mathbb E C_n=n^{\mu+o(1)},
+ \qquad 0.5650\le\mu\le0.5665.
+\end{equation}
+The proof source is fixed at the revision in the bibliography. The
+weighted planted-branch comparison used below is also stated explicitly
+with its location in that source. We do not use an unweighted ordering
+between planted and free branch means.
+
+A core state consists of a finite tree $H$ of real cores, leaf counts
+$L_i\ge0$, and inert-stub counts $b_i^\partial\ge0$. Put
+\[
+ k=|H|,\qquad c_i=\deg_H(i)+b_i^\partial,
+ \qquad D_i=L_i+c_i\ge2.
+\]
+An inert stub contributes to $D_i$ but has no clock. A choice of that
+stub produces a null transition. For a full tree all stub counts are
+zero. In that case a singleton core has at least two leaves. In the
+one-stub retained newborn, $k=1$, $c_1=L_1=1$, so the singleton has
+exactly one real leaf. These two cases have different core-ring
+transition laws and are kept separate.
+
+Whenever a core chooses one of its leaves, that leaf becomes a new
+core with one leaf of its own. Call it a core child of the selecting
+core. Other arrivals only add a leaf to an existing core. This defines
+a permanent genealogy of cores. A newborn tag has one leaf and one
+core neighbour, either a real parent or an inert stub. Let $\mathcal X$
+be the countable class of all finite environments with such a tagged
+newborn, allowing finitely many inert stubs away from the tag as well.
+Only the tag and its future genealogical descendants are counted in
+$F_x(t)$.
+
+For $s>0$, define a positive operator on bounded functions on
+$\mathcal X$ by
+\begin{equation}\label{model:tagged-kernel}
+ (\mathcal K_s f)(x)
+ =\mathbb E_x\sum_{v:\,v\text{ a future child of the tag}}
+             e^{-s\sigma_v} f(X_v),
+\end{equation}
+where $X_v$ is the entire environment at the birth of $v$, retagged
+at $v$. The strong Markov property and Tonelli's theorem give
+\[
+ (\mathcal K_s^m\mathbf1)(x)
+ =\mathbb E_x\sum_{\operatorname{depth}(v)=m}e^{-s\sigma_v}
+ =A_m(s;x).
+\]
+The whole environment is retained in $X_v$; this is not an assertion
+that descendant families evolve independently.
+
+Give every potential core a rate-one clock and let every ring create a
+potential child, whether or not the corresponding actual ring promotes
+a leaf. Assign unused potential branches fresh independent drivers.
+Every actual tagged genealogy is a subset of this potential genealogy,
+whose expected depth-$j$ count at time $t$ is $t^j/j!$. In particular
+\begin{equation}\label{model:kernel-bounds}
+ \|\mathcal K_s\|_\infty\le1/s,
+ \qquad [2(s+2)]^{-m}\le A_m(s;x)\le s^{-m}.
+\end{equation}
+For the lower bound, wait for the first ring of the tag or its initial
+leaf, and require a tag ring choosing a leaf. Before that ring the
+tag still has one core neighbour, while outside arrivals can only add
+leaves. Its leaf-choice probability is at least $1/2$. The discounted
+probability is therefore at least $1/[2(s+2)]$. Iterate at newborn
+states. Core-count Yule domination also gives $F_x(t)\le e^t$ uniformly.
+
+Finite inert environments introduce no larger fixed-time supremum.
+Replace each of their $b$ stubs by an edge to a genuine auxiliary
+parent of degree $R$, completed by $R-1$ leaves. Until a return across
+one of these edges, the retained histories agree. The probability of
+such a return by a fixed time $T$ is at most $bT/R$, since degrees
+never decrease. Uniform tagged Yule second moments and
+Cauchy--Schwarz make the difference in tagged expected rewards tend
+to zero as $R\to\infty$. Thus every fixed inert profile is a
+finite-horizon limit of genuine finite environments.
+
+\subsection{The integrated leaf burst}
+
+Between two core-clock rings, the core skeleton is fixed. Each leaf
+creates leaves at its own core at rate one, so the coordinates $L_i$
+are independent Yule processes. The next core ring has an independent
+exponential waiting time of rate $k$. Write $\mathcal Y_t$ for the
+leaf semigroup and set
+\begin{equation}\label{cc:R-def}
+ (R_{H,s}f)(L)=\int_0^\infty e^{-(k+s)t}(\mathcal Y_t f)(L)\,dt,
+ \qquad \alpha=k+s,\quad \ell=\sum_iL_i.
+\end{equation}
+If $I=\{i:L_i>0\}$ and $\ell>0$, the exact matrix entry is
+\begin{equation}\label{cc:beta-entry}
+ R_{H,s}(L,M)=
+ \left[\prod_{i\in I}\binom{M_i-1}{L_i-1}\right]
+ \mathrm B(\alpha+\ell,|M|-\ell+1)
+\end{equation}
+when $M_i\ge L_i$ for $i\in I$ and $M_i=0$ otherwise, and it is zero
+off this support. If $\ell=0$, the leaf vector remains zero and the
+only entry is $R_{H,s}(0,0)=1/\alpha$.
+
+Indeed, with $z=e^{-t}$, the Yule transition probability from $L_i>0$
+to $M_i$ is
+$\binom{M_i-1}{L_i-1}z^{L_i}(1-z)^{M_i-L_i}$.
+Multiplication and integration against $dt=-dz/z$ give
+\eqref{cc:beta-entry}. Thus leaf-clock waiting events are integrated
+exactly, including their unbounded population growth.
+
+At rational $s$, every entry is rational, since
+\[
+ \mathrm B(a,b+1)=\frac{b!}{a(a+1)\cdots(a+b)}
+ \qquad(a>0,\ b\in\mathbb Z_{\ge0}).
+\]
+The exact total-leaf tail, for $N\ge\ell>0$, is
+\begin{equation}\label{cc:exact-tail}
+ \alpha\sum_{|M|\ge N}R_{H,s}(L,M)
+ =\prod_{j=\ell}^{N-1}\frac{j}{j+\alpha}.
+\end{equation}
+To see this, observe the total-leaf Yule process at an independent
+rate-$\alpha$ exponential time. Its hitting time of $N$ is the sum
+of independent exponentials of rates $\ell,\ldots,N-1$.
+
+\subsection{The exact core-ring kernel}
+
+At a core ring with source $j$, every real core neighbour $i$ receives
+a leaf with probability $1/(M_j+c_j)$; an inert choice is null; and
+a promotion occurs with probability $M_j/(M_j+c_j)$. Define the rate
+operators
+\begin{align}
+ (A_Hf)(M)
+ &=\sum_j\left[
+   \sum_{i\sim_Hj}\frac{f(M+e_i)}{M_j+c_j}
+   +\frac{b_j^\partial f(M)}{M_j+c_j}\right],
+   \label{model:A}\\
+ (B_Hg)(M)
+ &=\sum_{j:M_j>0}\frac{M_j}{M_j+c_j}
+      g(H^{(j)},M^{(j)}).
+   \label{model:B}
+\end{align}
+Here $H^{(j)}$ adjoins a child at $j$; $M^{(j)}$ decreases $M_j$ by one
+and appends the new child's leaf count one. The stub counts are inherited.
+Their row masses sum to $k$. Hence
+\begin{equation}\label{model:Q}
+ Q_s=R_s(A+B),\qquad Q_s\mathbf1(y)=\frac{C(y)}{C(y)+s}
+\end{equation}
+is the exact discounted transition kernel between consecutive core
+rings. The notation $R_s$ denotes the appropriate $R_{H,s}$ in each
+state. Null stub choices are included and consume one ring.
+
+If desired, nonpromotion core rings can also be eliminated. With
+$W_{H,s}=R_{H,s}A_H$ and $V_{H,s}=R_{H,s}B_H$, the exact first-promotion
+kernel is
+\begin{equation}\label{model:first-promotion}
+ \mathcal J_{H,s}=\sum_{q\ge0}W_{H,s}^qV_{H,s}.
+\end{equation}
+Before the first promotion, the promotion intensity
+$b_H(M)=\sum_jM_j/(M_j+c_j)$ does not decrease. Thus on the upward
+cone above $L$,
+\[
+ W_{H,s}\mathbf1\le\frac{k-b_H(L)}{k+s}<1\qquad(s>0).
+\]
+The omitted mass after $q=0,\ldots,Q-1$ is at most
+$[(k-b_H(L))/(k+s)]^Q$. The separate total-leaf tail
+\eqref{cc:exact-tail} makes every finite calculation effective.
+We use the full ring kernel $Q_s$ when genealogical marks are required;
+its histories have explicit nonnegative rational weights at rational
+$s$. Section~\ref{calc:section} gives a complete coefficient calculator.

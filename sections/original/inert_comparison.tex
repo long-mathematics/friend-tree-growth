@@ -1,0 +1,198 @@
+\section{Uniform comparison with an inert parent}
+
+Let $\mathcal X$ be the class of finite newborn birth environments,
+allowing finitely many inert core-neighbour stubs. The tag $u$ has one
+leaf and one core neighbour, which is either a real parent or an inert
+stub. Write
+\[
+ A_m(s;x)=(\mathcal K_s^m\mathbf1)(x),\qquad
+ A_m^\infty(s)=A_m(s;x_\infty),
+\]
+where $x_\infty$ is the tag with its leaf and an inert parent stub.
+All generations count only future core descendants of the tag.
+The potential-genealogy construction in Section~\ref{model:section} gives
+$\|\mathcal K_s\|_\infty\le1/s$ and
+$A_m(s;x)\ge[2(s+2)]^{-m}$.
+
+\begin{theorem}[Uniform boundary removal]\label{growth:minorization}
+For every $s>0$, every $m\ge1$, and every $x\in\mathcal X$,
+\begin{equation}\label{growth:comparison}
+ \boxed{
+ A_m(s;x)\ge\gamma_s A_m^\infty(s),
+ \qquad \gamma_s=\frac1{12(s+3)}.
+ }
+\end{equation}
+The constant is independent of both the initial environment and the
+genealogical generation.
+\end{theorem}
+
+The point of the proof is to create a permanent no-return event using
+only exterior randomness. Merely conditioning on the absence of actual
+parent arrivals would generally bias the descendant process.
+
+\subsection{An exterior process with a positive permanent success probability}
+
+Consider a birth--death process $X$ on the nonnegative integers,
+absorbed at zero, with births $x\to x+1$ at rate $x$ and deaths at
+rate one while $x>0$. At every death-clock ring, attach an independent
+uniform mark $U$. Kill the construction if $U\le1/X(t-)$; otherwise
+carry out the death. A ring at $X=1$ always kills it. The generator of
+the surviving process, acting on functions with value zero at the
+cemetery state, is
+\begin{equation}\label{growth:killed-generator}
+ Gh(x)=x\bigl(h(x+1)-h(x)\bigr)
+ +(1-1/x)\bigl(h(x-1)-h(x)\bigr)-h(x)/x.
+\end{equation}
+
+\begin{lemma}\label{growth:survival}
+Starting from $X(0)=1$, the probability of never being killed is at least
+$1/6$.
+\end{lemma}
+\begin{proof}
+Use the bounded nonnegative function
+\[
+ h(0)=0,\qquad h(1)=\frac16,\qquad
+ h(x)=1-\frac4{3x}\quad(x\ge2).
+\]
+Direct substitution gives
+\[
+ Gh(1)=0,\qquad Gh(2)=\frac7{36},\qquad
+ Gh(x)=\frac{x-3}{3x(x+1)}\ge0\quad(x\ge3).
+\]
+The process is nonexplosive, being dominated by a linear pure-birth
+process. Dynkin's formula, or localization followed by bounded
+convergence, gives
+$\mathbb E[h(X(t));\,\text{not killed by }t]\ge h(1)=1/6$.
+Since $0\le h\le1$, survival to every finite $t$ has probability at least
+$1/6$. Let $t\to\infty$.
+\end{proof}
+
+\subsection{Proof of the uniform comparison}
+
+If the parent is already inert, the tagged component has exactly the
+inert-parent law, so~\eqref{growth:comparison} is immediate.
+Suppose the parent $p$ is real.
+
+First prepare a parent leaf without changing the tag. Wait for the first
+ring among the tag, its sole leaf, and its parent. These are three
+independent rate-one clocks. Declare preparation successful only when
+the first ring is the tag's ring and it chooses the parent, rather than
+the leaf. Until that ring the tag remains in its newborn state, even
+if the parent receives arrivals from elsewhere. If $T$ is this first
+ring time and $E_0$ the successful outcome, then
+\begin{equation}\label{growth:preparation}
+ \mathbb E[e^{-sT}\mathbf1_{E_0}]
+ =\int_0^\infty \tfrac12 e^{-(s+3)t}\,dt
+ =\frac1{2(s+3)}.
+\end{equation}
+On $E_0$ no tagged child has yet been born, the tag still has its one
+leaf and one parent, and the parent has gained a leaf.
+
+Restart the clocks at $T$. Lower-couple the parent's leaf count $L_p$
+with the exterior process $X$ of Lemma~\ref{growth:survival}, starting
+from one. Use a common parent-leaf birth Poisson random measure:
+marks below $X$ create births in $X$, and marks below $L_p$ create the
+actual parent-leaf births. This measure is independent of all future
+tag-descendant driving randomness. At \emph{every} parent core-clock
+ring, decrease $X$ by one while it is positive; the actual $L_p$
+decreases by at most one. All other arrivals at the parent only increase
+$L_p$. Therefore, up to killing,
+\[
+ L_p(t)\ge X(t),\qquad D_p(t)\ge X(t).
+\]
+
+At a parent core-clock ring, choose the tag as target precisely when
+$U\le1/D_p(t-)$. Otherwise choose uniformly among the remaining current
+neighbours. This is an exact uniform-neighbour construction. The
+reserved event $U\le1/X(t-)$ contains every possible parent-to-tag
+arrival. The process $X$ uses the parent ring times but not these marks.
+
+Let $E$ be the event that the exterior construction is never killed.
+It depends only on the parent-leaf birth measure, the parent core-clock
+times, and the reserved marks. In particular, conditional on the
+preparation history, it is independent of the future driving randomness
+inside the tag's descendant component. By the lemma, its conditional
+probability is at least $1/6$.
+
+On $E$, the parent never sends a leaf to the tag. The tag may still
+send leaves to the parent, but such outward events have no effect on
+its retained component and cannot create a return arrival on $E$.
+Its entire descendant history therefore has the inert-parent law,
+using the unchanged independent interior drivers. Positivity, the
+strong Markov property at $T$, and~\eqref{growth:preparation} give
+\[
+ A_m(s;x)
+ \ge
+ \mathbb E[e^{-sT}\mathbf1_{E_0}]\,
+ \frac16\,A_m^\infty(s)
+ =
+ \frac{A_m^\infty(s)}{12(s+3)}.
+\]
+This proves Theorem~\ref{growth:minorization}. The same argument applies
+when other exterior neighbours are inert stubs: it only uses a real
+parent's clock, its own leaf births, and nonnegative additional
+immigration.
+
+\section{An actual generation limit for the inert-parent process}
+
+Define the uniform lower and upper sequences
+\[
+ u_m(s)=\inf_{x\in\mathcal X}A_m(s;x),\qquad
+ v_m(s)=\sup_{x\in\mathcal X}A_m(s;x).
+\]
+The inert-parent state belongs to $\mathcal X$, so
+\begin{equation}\label{growth:inf-comparison}
+ \gamma_s A_m^\infty(s)\le u_m(s)\le A_m^\infty(s).
+\end{equation}
+
+\begin{theorem}\label{growth:inert-limit}
+The limit
+\[
+ r_\infty(s)=\lim_{m\to\infty}A_m^\infty(s)^{1/m}
+\]
+exists, is finite and positive, and equals
+$\lim_{m\to\infty}u_m(s)^{1/m}$. More precisely,
+\begin{equation}\label{growth:sup-formula}
+ \boxed{
+ r_\infty(s)
+ =\sup_{m\ge1}u_m(s)^{1/m}
+ =\sup_{m\ge1}\bigl(\gamma_s A_m^\infty(s)\bigr)^{1/m}.
+ }
+\end{equation}
+For every $m\ge1$,
+\begin{equation}\label{growth:uniform-inert-upper}
+ A_m^\infty(s)\le\gamma_s^{-1}r_\infty(s)^m.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Positivity of the kernel gives
+\[
+ u_{m+n}\ge u_m u_n.
+\]
+Also, applying~\eqref{growth:comparison} to the output birth environments
+of the first $m$ tagged transfers gives
+\[
+ A_{m+n}^\infty
+ =(\mathcal K_s^m A_n)(x_\infty)
+ \ge\gamma_s A_m^\infty A_n^\infty.
+\]
+Thus both $u_m$ and $\gamma_s A_m^\infty$ are supermultiplicative.
+Their logarithms have finite linear bounds, because
+$[2(s+2)]^{-m}\le A_m(s;x)\le s^{-m}$.
+Fekete's lemma and~\eqref{growth:inf-comparison} prove the common limit
+and both supremum formulae. The second supremum formula immediately
+gives~\eqref{growth:uniform-inert-upper}.
+\end{proof}
+
+The theorem supplies a complete scalar certificate criterion for
+$r_\infty(s)>1$:
+\[
+ r_\infty(s)>1
+ \quad\Longleftrightarrow\quad
+ \gamma_s A_m^\infty(s)>1
+ \quad\text{for some finite }m.
+\]
+At rational $s$, $\gamma_s$ is rational and the existing finite-history
+approximations of $A_m^\infty(s)$ can be used in exact lower certificates.
+The next section identifies the inert continuous-time growth with the original exponent.
+

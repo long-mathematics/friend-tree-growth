@@ -1,0 +1,73 @@
+--- cert_verify_gmp.c
++++ verify_with_slack.c
+@@ -59,6 +59,15 @@
+     }
+ }
+ 
++static mpq_t local_min_vertex_slack;
++static int local_slack_initialized=0;
++static void record_vertex_slack(const mpq_t rhs,const mpq_t lhs) {
++    mpq_t d; mpq_init(d); mpq_sub(d,rhs,lhs);
++    if (!local_slack_initialized) {mpq_init(local_min_vertex_slack);mpq_set(local_min_vertex_slack,d);local_slack_initialized=1;}
++    else if(mpq_cmp(d,local_min_vertex_slack)<0)mpq_set(local_min_vertex_slack,d);
++    mpq_clear(d);
++}
++
+ /* Exact rational eval_g(p -> w) for arbitrary (Lp, kp, hp, Lw, kw) */
+ static void eval_g_q(mpq_t out, const CertHeader *H, const CertLayout *C, const int64_t *g_q,
+                      int Lp, int kp, int hp, int Lw, int kw) {
+@@ -406,7 +415,7 @@
+                 for (int gi = 0; gi < 2; gi++) {
+                     if (bi == 0) mpq_set_ui(lhs, 0, 1);
+                     else { mpq_add(lhs, fnb, *g_ends[gi]); }
+-                    f_checks++;
++                    f_checks++; record_vertex_slack(rhs,lhs);
+                     int ok_c = (H.mode == 1) ? (mpq_cmp(lhs, rhs) <= 0) : (mpq_cmp(lhs, rhs) >= 0);
+                     if (!ok_c) {
+                         f_fails++;
+@@ -434,7 +443,7 @@
+                         mpq_sub(tmp, fub, fu); mpq_add(tmp, tmp, fnb); mpq_add(tmp, tmp, gnb);
+                         mpq_set_si(bq, L, (unsigned long)D); mpq_canonicalize(bq);
+                         mpq_mul(lhs, bq, tmp);
+-                        f_checks++;
++                        f_checks++; record_vertex_slack(rhs,lhs);
+                         int ok_c = (H.mode == 1) ? (mpq_cmp(lhs, rhs) <= 0) : (mpq_cmp(lhs, rhs) >= 0);
+                         if (!ok_c) { f_fails++; if (f_fails<=5) fprintf(stderr, "FAIL f(LF=%d,k=%d,h=%d) exact\n", L, k, hb); }
+ 
+@@ -450,7 +459,7 @@
+                             for (int gi = 0; gi < 2; gi++) {
+                                 mpq_sub(tmp, fub, fu); mpq_add(tmp, tmp, fnb); mpq_add(tmp, tmp, *g_ends[gi]);
+                                 mpq_mul(lhs, bq, tmp);
+-                                f_checks++;
++                                f_checks++; record_vertex_slack(rhs,lhs);
+                                 int ok2 = (H.mode == 1) ? (mpq_cmp(lhs, rhs) <= 0) : (mpq_cmp(lhs, rhs) >= 0);
+                                 if (!ok2) { f_fails++; if (f_fails<=5) fprintf(stderr, "FAIL f(tail LF,k=%d,h=%d) bi=%d gi=%d\n", k, hb, bi, gi); }
+                             }
+@@ -474,7 +483,7 @@
+                             long rnum = (long)L * H.S_r + (long)hb * rpar_q[gu] + (long)k * rch_q[gu];
+                             mpq_set_si(rq, rnum, (unsigned long)H.S_r); mpq_canonicalize(rq);
+                             mpq_sub(tmp, fup, fu); mpq_mul(lhs, rq, tmp); mpq_add(lhs, lhs, bud_term);
+-                            f_checks++;
++                            f_checks++; record_vertex_slack(rhs,lhs);
+                             int ok_c = (H.mode == 1) ? (mpq_cmp(lhs, rhs) <= 0) : (mpq_cmp(lhs, rhs) >= 0);
+                             if (!ok_c) { f_fails++; if (f_fails<=5) fprintf(stderr, "FAIL f_in(L=%d,k=%d,h=%d) lhs=%.10f rhs=%.10f\n", L, k, hb, mpq_get_d(lhs), mpq_get_d(rhs)); }
+                         } else {
+@@ -483,7 +492,7 @@
+                                 if (ri == 0) mpq_set_si(rq, L, 1);
+                                 else { mpq_set_si(rq, 2 * L + hb + k, 2); mpq_canonicalize(rq); }
+                                 mpq_sub(tmp, fup, fu); mpq_mul(lhs, rq, tmp); mpq_add(lhs, lhs, bud_term);
+-                                f_checks++;
++                                f_checks++; record_vertex_slack(rhs,lhs);
+                                 int ok_c = (H.mode == 1) ? (mpq_cmp(lhs, rhs) <= 0) : (mpq_cmp(lhs, rhs) >= 0);
+                                 if (!ok_c) { f_fails++; if (f_fails<=5) fprintf(stderr, "FAIL f_out(L=%d,k=%d,h=%d) ri=%d lhs=%.10f rhs=%.10f\n", L, k, hb, ri, mpq_get_d(lhs), mpq_get_d(rhs)); }
+                             }
+@@ -498,7 +507,8 @@
+     printf("  [1/5] f checks:  %10lld  fails: %lld  (%s)\n", f_checks, f_fails, f_fails==0?"PASS":"FAIL");
+     fflush(stdout);
+ 
+-    /* Precompute exact integer dLf_g_q[u] = f_q(L+1,k,h) - f_q(L,k,h) (scale S) */
++    gmp_printf("EXACT_MIN_VERTEX_SLACK=%Qd\n",local_min_vertex_slack); fflush(stdout);
++/* Precompute exact integer dLf_g_q[u] = f_q(L+1,k,h) - f_q(L,k,h) (scale S) */
+     int64_t *dLf_q = calloc(N, sizeof(int64_t));
+     for (int u = 0; u < C.INNER_N; u++)
+         dLf_q[u] = f_q[cl_vidx(&C, C.gL[u] + 1, C.gK[u], C.gH[u])] - f_q[cl_vidx(&C, C.gL[u], C.gK[u], C.gH[u])];

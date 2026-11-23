@@ -1,0 +1,166 @@
+\section{Every bounded predictable input has the same mean exponent}
+\label{bcl:section}
+
+Fix $Q<\infty$, and let $\mathcal Q_Q$ be the nonanticipating policies
+that add a leaf at the retained root with predictable intensity
+$0\le q_t\le Q$.  Apart from these arrivals the retained component
+has the inert generator.  Policies may depend on the observed component
+and additional nonanticipating randomness.  They do not anticipate
+the future Poisson driving measures.  The component starts from the
+inert newborn state $x_\infty$.  Put
+\[
+ F_q(t)=\mathbb E_q C(t),\qquad
+ F_Q^-(t)=\inf_{q\in\mathcal Q_Q}F_q(t),\qquad
+ F_Q^+(t)=\sup_{q\in\mathcal Q_Q}F_q(t).
+\]
+The resolvent estimate controls $F_Q^+$; a preparation and isolation argument gives the matching lower rate uniformly over the same class. No ordering of the tree laws under different input rates is required.
+
+\begin{lemma}[Uniform preparation and isolation of an inert descendant]
+\label{bcl:preparation}
+For every integer $M\ge2$, every $q\in\mathcal Q_Q$, and every $t\ge0$,
+\begin{equation}\label{bcl:uniform-lower}
+ \boxed{
+ F_q(t+2)\ge p_{M,Q}e^{-t/M}F_\infty(t),\qquad
+ p_{M,Q}=\frac{M-1}{M}\,e^{-2Q-5}
+                         (1-e^{-1})^{M-2}>0.
+ }
+\end{equation}
+Here $F_\infty$ is the inert newborn mean, already known to have
+exponent $\mu$.  Only a fixed preparation interval suppresses the
+external input.  No suppression of that input is imposed after time
+two.
+\end{lemma}
+\begin{proof}
+Write $u$ for the original retained root.  Realize the controlled
+arrivals by thinning an independent rate-$Q$ candidate process,
+accepting a candidate with conditional probability $q_t/Q$ when
+$Q>0$.  For $Q=0$ this channel is absent.  Suppress all candidates
+on $[0,2]$, at probability cost $e^{-2Q}$, independently of the
+internal driving clocks.  On this event the preparation is the same
+for every admissible policy.
+
+In the first unit interval keep $u$'s clock silent and require its
+initial one-leaf Yule family to have exactly $M-1$ leaves at time one.
+The root silence has probability $e^{-1}$, and the Yule probability is
+\[
+ e^{-1}(1-e^{-1})^{M-2}.
+\]
+The full degree of $u$ at time one is then $M$, counting its inert
+stub.  There are no other cores in this prepared component.
+
+In the second unit interval require exactly one ring of $u$'s clock.
+This has probability $e^{-1}$.  Before that ring all its real
+neighbours are leaves, whose number can only increase, so the
+probability of choosing a leaf is at least $(M-1)/M$.  This promotion
+creates a core child $v$ with one leaf.  Require $v$ and its new leaf
+to have no rings before time two.  Given the promotion time, this has
+probability at least $e^{-2}$.  Thus at time two $v$ is exactly a
+newborn retained core, attached to the real parent $u$ of degree at
+least $M$.  Multiplication of these conditional probability bounds
+gives the displayed $p_{M,Q}$.  Other leaves at $u$ are free to grow
+throughout the second interval; this cannot decrease its full degree.
+
+Condition on the whole preparation history at time two.  Split $u$'s
+future rate-one clock into a rate-$1/M$ candidate stream for the edge
+$u\to v$ and a rate-$(1-1/M)$ residual stream, with independent fresh
+increments.  At a candidate ring choose $v$ with probability
+$M/D_u$.  If the candidate is rejected, choose uniformly among the
+other $D_u-1$ neighbours; at a residual ring use the same uniform
+choice among those other neighbours.  This is a correct construction
+of the original source choices: the rate to $v$ is $1/D_u$, and the
+rate to any other neighbour is
+\[
+ \frac{(1/M)(1-M/D_u)+(1-1/M)}{D_u-1}
+ =\frac1{D_u}.
+\]
+It remains valid forever because degrees are nondecreasing and
+$D_u\ge M$.
+
+The probability that this candidate stream has no ring in the next
+$t$ units of time is exactly $e^{-t/M}$.  The stream is independent
+of the internal drivers of $v$ and its future descendants.  On its
+no-ring event there can be no arrival from $u$ into $v$.  The retained
+descendant component at $v$ consequently follows exactly the inert
+newborn process.  An outward choice $v\to u$ changes only the parent
+and is a null transition for this descendant component.  The external
+control, even if it reacts to the descendant history, also changes
+only $u$ and cannot send an arrival across the edge without a point
+of the reserved candidate stream.
+
+Conditional on the preparation history, the expected core reward of
+this descendant component multiplied by the no-candidate indicator is
+therefore $e^{-t/M}F_\infty(t)$.  Its cores are all counted in the
+original retained component.  Averaging over the preparation event
+proves~\eqref{bcl:uniform-lower}.
+\end{proof}
+
+\begin{theorem}[Matching upper and lower rates uniformly over controls]
+\label{bcl:matching}
+For every fixed finite $Q\ge0$,
+\begin{equation}\label{bcl:inf-sup}
+ \boxed{
+ \lim_{t\to\infty}\frac{\log F_Q^-(t)}t
+ =\lim_{t\to\infty}\frac{\log F_Q^+(t)}t
+ =\mu.
+ }
+\end{equation}
+In particular, every single admissible predictable policy has mean
+exponent $\mu$.  The conclusion also holds for horizon-dependent
+choices of policies with the same common bound $Q$.
+\end{theorem}
+\begin{proof}
+For fixed $M$, Lemma~\ref{bcl:preparation} and the inert exponent give
+\[
+ \liminf_{t\to\infty}\frac{\log F_Q^-(t)}t
+ \ge\mu-\frac1M.
+\]
+The fixed time shift and the positive preparation probability disappear
+at the exponential scale.  Let $M\to\infty$.
+
+For completeness, the upper bound uses the canonical resolvent
+$V_s$, not a monotonicity claim.  At any $s>\mu$, write
+$K_s=40W(s)/s$ and
+\[
+ U_s=V_s+\frac{QK_s}{s}.
+\]
+The established root increment bound and resolvent identity give
+\[
+ (s-\mathcal L_\infty-q\Delta_{\rm root})U_s\ge C
+ \qquad(0\le q\le Q),\qquad U_s\ge C/s.
+\]
+Stopped Dynkin and nonnegativity give
+\[
+ F_Q^+(t)\le sU_s(x_\infty)e^{st}.
+\]
+The controlled population is nonexplosive, since its birth rate is at
+most its real population plus $Q$.  Fatou's lemma removes the
+localization.  Let $s\downarrow\mu$.  Since
+$F_Q^-\le F_q\le F_Q^+$, both the uniform statement and the assertion
+for each policy follow.
+\end{proof}
+
+\begin{corollary}[A permanently fixed parent has exponent $\mu$]
+\label{bcl:fixed-parent}
+If the parent has permanently fixed degree $d\ge2$, supplying its
+newborn child with independent rate-$1/d$ arrivals, and $F_d(t)$ denotes
+the retained mean, then
+\[
+ \boxed{\lim_{t\to\infty}\frac1t\log F_d(t)=\mu.}
+\]
+\end{corollary}
+\begin{proof}
+Take the constant policy $q_t=1/d$ in
+Theorem~\ref{bcl:matching}.
+\end{proof}
+
+The argument extends to every fixed finite retained starting component
+with one inert parent stub and a core root.  Its upper constant is
+$sU_s(y)$.  For the lower bound, a finite positive-probability
+preparation first creates a root leaf if necessary, then builds a
+large root degree and a fresh child as above.  Such a root has at
+least one real neighbour, and prescribing a choice of the root by
+that neighbour has positive probability.  Suppressing rate-$Q$
+candidates during this finite preparation keeps its probability
+uniform in the policy.  The resulting constant may depend on the
+fixed initial component; the exponent remains $\mu$.
+

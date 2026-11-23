@@ -1,0 +1,32 @@
+{
+  "F": "16784520759/10000000000",
+  "G": "1312364901/5000000000",
+  "V": "1080087147/10000000000",
+  "H": "695307433/5000000000",
+  "c0": "2989767809/10000000000",
+  "c1": "20674280349/5000000000",
+  "J": "338409055893/5000000000",
+  "eta": "24776800469/2500000000000000",
+  "nu": "1133/2000",
+  "nu_star": "5855965132053781/10337140174500000",
+  "status": "PASS",
+  "original_exact_inequalities": 17329108,
+  "original_tree_checks": 37,
+  "measured_vertex_rows": 484138,
+  "binary_sha256": "3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe",
+  "parent_f1": "261553463/156250000",
+  "parent_f2": "16739563623/10000000000",
+  "f_newborn": "999925601/1000000000",
+  "g_inf_newborn": "-130024703/2500000000",
+  "parent_bud_limit": "9479299189/10000000000",
+  "chi_newborn": "4739578599/5000000000",
+  "boundary_remainder": "0",
+  "instrumented_source_sha256": "580d4fb0da973c92238f5d33f52bbc658fa0f6b30a29d9295cac0822e06eea3d",
+  "original_source_hashes": {
+    "cert_format.h": "7522710ab05fe79c6306711476a78f395476c66c720b10c0215d35fc2b48f701",
+    "cert_build.c": "beda03931551b6da514fd6f14218ec769ef73c982b2f483fa683fa0a3902b8c2",
+    "cert_verify_gmp.c": "0bea8e43d1b01f84ec39326b9b7d5d2a8f40f64a9bd9ad6e156ae52d6c011af0"
+  },
+  "scope": "Finite certificate and algebra; the jump-count proof is in the note.",
+  "nu_star_decimal": "0.566497603128133047839226628647280901782261112744476308349203"
+}

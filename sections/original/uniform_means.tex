@@ -1,0 +1,56 @@
+\section{The uniform newborn growth exponent}
+\label{uniform:section}
+
+For $x\in\mathcal X$ put
+\[
+ F_x(t)=\mathbb E_xC_{\rm tag}(t),\qquad
+ G(t)=\sup_xF_x(t),\qquad H(t)=1+\int_0^tG(r)\,dr.
+\]
+Every $F_x$ is nondecreasing, and $1\le F_x(t)\le e^t$. The same
+bounds hold for $G$. At a deterministic or stopping time, partition
+the future core genealogy into its currently existing cores and the
+families issued from future children of these cores. Each existing
+core creates children at intensity at most one, and each newborn
+child starts in $\mathcal X$. The compensator formula gives
+\begin{equation}\label{uniform:old-core}
+ \mathbb E[C(t+u)\mid\mathcal F_t]\le C(t)H(u).
+\end{equation}
+This holds for any old retained descendant component in an admissible
+environment, including the one-stub inert component. It does not
+require independence between child families.
+
+In particular, $G(t+u)\le G(t)H(u)$. Also $G(t)\le H(t)$ by the same
+decomposition from one newborn core. Exchanging time parameters gives
+$G(t+r)\le H(t)G(r)$, whence
+\[
+ H(t+u)\le H(t)+H(t)\int_0^uG(r)\,dr=H(t)H(u).
+\]
+Since $G$ is nondecreasing, $H(t)\le1+tG(t)$. These facts prove the
+following standard submultiplicative consequence.
+
+\begin{proposition}\label{uniform:lambda}
+There is a finite exponent
+\begin{equation}\label{uniform:lambda-equation}
+ \lambda=\lim_{t\to\infty}\frac{\log G(t)}t
+ =\lim_{t\to\infty}\frac{\log H(t)}t
+ =\inf_{T>0}\frac{\log H(T)}T,
+ \qquad \mu\le\lambda\le1.
+\end{equation}
+For each $\alpha>\lambda$, a finite constant $K_\alpha$ satisfies
+$H(t)\le K_\alpha e^{\alpha t}$ for all $t\ge0$.
+\end{proposition}
+\begin{proof}
+Apply continuous-time subadditivity to the locally bounded function
+$\log H$, and use $G\le H\le1+tG$ to identify the two limits. The
+inert newborn belongs to $\mathcal X$ and has exponent $\mu$ by
+Theorem~\ref{gs:inert-mu}, proving the lower inequality. The upper
+inequality follows from $H(t)\le e^t$. For the final assertion choose
+$T$ with $H(T)<e^{\alpha T}$, write $t=nT+r$ with $0\le r<T$, and
+use submultiplicativity and $H(r)\le e^T$.
+\end{proof}
+
+We will first use $\lambda$ without identifying it with $\mu$.
+The equality is proved in Section~\ref{erc:closure-section}. This
+order is essential: the controlled-moment estimates used in that
+proof depend on $\lambda$, and are established independently of the
+desired equality.

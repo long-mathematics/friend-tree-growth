@@ -1,0 +1,11 @@
+=== EXACT GMP VERIFIER ===
+File: .cache/motif-certificate/upper_5665.bin | Mode: UPPER | Target: 1133/2000 = 0.56650000 | S=10000000000 S_r=1000000
+Domains: f(800,150) D0=24(KT=12,NG=601) hV(16,8;act=84) hC(12,6;act=75)
+  [1/5] f checks:      484138  fails: 0  (PASS)
+EXACT_MIN_VERTEX_SLACK=24776800469/2500000000000000
+  [2/5] g checks:      160545  fails: 0  (PASS)
+  [3/5] hV checks:   13519800  fails: 0  (PASS)
+  [4/5] hC checks:    3164625  fails: 0  (PASS)
+  [5/5] Global comparison: Phi(T3)=14606753031/10000000000, min W(u)=2989767809/10000000000, exact prefactor A = 14606753031/2989767809 (4.88558108)  (PASS)
+  [6/6] Exact brute-force trees: 37 tested, fails: 0 (PASS)
+=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===

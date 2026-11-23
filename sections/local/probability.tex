@@ -1,0 +1,439 @@
+\section{Model and exact growth theorem}
+\label{van:section}
+
+The local redirection models of Hartle, Krapivsky, Redner, and Zhang
+redirect a core with positive leaf count to one of its leaves
+\cite{HRKZ2026}. The resulting independence of different core families
+is the basis of the proof below.
+
+Fix a finite parameter $\omega\ge0$.  A \emph{core} is a vertex of degree
+at least two, and its \emph{leaf count} is the number of its neighbours
+of degree one.  In continuous time the rules are:
+\begin{enumerate}
+\item Each leaf has a rate-one clock.  When it rings, attach a new vertex
+to that leaf's unique neighbour.
+\item Each core with positive leaf count has a rate-one clock.  When it
+rings, choose one of its leaves uniformly and attach a new vertex to
+that leaf.  The chosen leaf becomes a new core.
+\item Each core with zero leaves has a rate-$\omega$ clock.  When it
+rings, attach a new vertex directly to that core.
+\end{enumerate}
+The embedded tree at successive vertex births is precisely
+$\operatorname{VAN}(\omega)$: $\omega=0$ gives PAN, after deleting
+rejected selections, and $\omega=1$ gives DAN.  These rules are understood
+after the initial seed has at least three vertices.  A two-vertex seed
+reaches a three-vertex path after its first event and is included by
+this finite initial delay.
+
+Write $C(t)$, $L(t)$ and $C_0(t)$ for the numbers of cores, leaves and
+zero-leaf cores.  Then $N(t)=C(t)+L(t)$ and the total vertex-birth rate is
+\[
+ L(t)+C(t)-C_0(t)+\omega C_0(t)
+ =N(t)+(\omega-1)C_0(t)\le \max\{1,\omega\}N(t).
+\]
+In particular, the process is nonexplosive.  Let $C_n$ be the core count
+when the tree has $n$ vertices.
+
+\begin{theorem}[Exact modified-model exponent and almost-sure amplitude]
+\label{van:main}
+For every finite $\omega\ge0$, define, for $s>0$,
+\begin{align}
+ F(s)&=\int_0^1 x^s e^{x-1}\,dx,
+ \label{van:F}\\
+ m_\omega(s)&=
+ \frac{(s+\omega)(1-F(s))}
+ {s\bigl(s+\omega-\omega F(s)\bigr)}.
+ \label{van:m}
+\end{align}
+There is a unique $\alpha_\omega\in(0,1)$ satisfying
+$m_\omega(\alpha_\omega)=1$.  Equivalently,
+\begin{equation}
+ \boxed{\quad
+ F(\alpha_\omega)=
+ \frac{(1-\alpha_\omega)(\alpha_\omega+\omega)}
+ {\omega+(1-\omega)\alpha_\omega}.
+ \quad}
+ \label{van:root}
+\end{equation}
+For every finite tree seed with at least two vertices, there are random
+variables $A,V\in(0,\infty)$ such that, almost surely,
+\begin{equation}
+ e^{-\alpha_\omega t}C(t)\longrightarrow A,
+ \qquad e^{-t}N(t)\longrightarrow V,
+ \qquad
+ \frac{C_n}{n^{\alpha_\omega}}\longrightarrow A V^{-\alpha_\omega}.
+ \label{van:limits}
+\end{equation}
+The exponent $\alpha_\omega$ is effectively computable whenever
+$\omega$ is computable.  More quantitatively,
+\begin{equation}
+ -m_\omega'(s)\ge\frac1{(1+s)^2}\ge\frac14,
+ \qquad 0<s<1.
+ \label{van:slope}
+\end{equation}
+\end{theorem}
+
+The characteristic equation~\eqref{van:root} is the equation derived
+in \cite[Eq.~(25)]{HRKZ2026}. The theorem identifies its unique root
+with the almost-sure exponent and proves the positive-amplitude
+limit for every finite seed. The parameters $\alpha_0$ and $\alpha_1$
+consequently satisfy
+$F(\alpha_0)=1-\alpha_0$ and $F(\alpha_1)=1-\alpha_1^2$.
+Throughout the theorem, $\omega$ is finite.  Its assertion does not
+include the separate limiting model $\operatorname{VAN}(\infty)$.
+
+\subsection{The exact life process of a core}
+
+Regard a newly created core as an individual whose children are the
+cores it subsequently creates.  Every such newborn individual starts
+with one leaf.  Its own leaf count $X$ has transition rates
+\begin{equation}
+ \ell\longrightarrow\ell+1 \text{ at rate }\ell,\qquad
+ \ell\longrightarrow\ell-1 \text{ at rate }1
+ \quad(\ell\ge1),\qquad
+ 0\longrightarrow1 \text{ at rate }\omega.
+ \label{van:life}
+\end{equation}
+Each downward transition creates one child, itself starting at leaf
+count one.  The parent loses the promoted leaf and the child acquires
+the newly attached leaf.
+
+The life processes of different individuals can be constructed
+independently.  Their transition rates do not involve their core
+neighbours; fresh future clock increments at a promotion are
+independent of the past.  Thus this is a genuine single-type
+Crump--Mode--Jagers process.  The exterior core edge of a newborn
+individual does not affect its life process.  This observation also
+allows us to study one genealogical family in isolation.
+
+\begin{lemma}[An exact excursion transform]
+\label{van:excursion}
+For the chain \eqref{van:life} started at $\ell\ge1$, let $T_0$ be its
+first hit of zero, prior to any restart from zero.  For $s>0$,
+\begin{equation}
+ h_\ell(s):=\mathbb E_\ell[e^{-sT_0};T_0<\infty]
+ =\frac1{(\ell-1)!}\int_0^1
+ x^s(1-x)^{\ell-1}e^{x-1}\,dx.
+ \label{van:hitting}
+\end{equation}
+In particular, $h_1(s)=F(s)$.
+\end{lemma}
+
+\begin{proof}
+Set $h_0=1$ and define $h_\ell$ by the integral on the right.
+Integration of the derivative of
+$x^{s+1}(1-x)^{\ell-1}e^{x-1}$ gives
+\[
+ (s+\ell+1)h_\ell=\ell h_{\ell+1}+h_{\ell-1},
+ \qquad \ell\ge1.
+\]
+For $\ell=1$ the boundary value at $x=1$ is one and supplies the
+term $h_0$; for $\ell\ge2$ both boundary values vanish.
+Moreover $0\le h_\ell\le1/\ell!$.
+The displayed recurrence is the discounted backward equation.
+Apply its bounded stopped-martingale identity up to $T_0$, time $t$,
+and the first hit of level $R$.  The contribution at level $R$
+vanishes as $R\to\infty$, since $h_R\to0$; nonexplosion justifies
+removing this localization.  The remaining time-$t$ term is bounded
+by $e^{-st}$ and vanishes as $t\to\infty$.  This proves
+\eqref{van:hitting}.
+\end{proof}
+
+Let $\xi$ be the reproduction point process of an individual started
+at one, and let $\nu_\omega=\mathbb E\xi$ be its mean reproduction
+measure.  The downward-event intensity gives
+\begin{equation}
+ \widehat\nu_\omega(s)
+ =\mathbb E\int_0^\infty e^{-st}\xi(dt)
+ =\mathbb E_1\int_0^\infty e^{-st}\mathbf1_{\{X_t>0\}}\,dt.
+ \label{van:reproduction}
+\end{equation}
+Before $T_0$ this expected occupation is $(1-F(s))/s$.
+Upon hitting zero, the chain waits an independent
+$\operatorname{Exp}(\omega)$ time before restarting from one.
+For $\omega=0$ this waiting time is infinite, with discounted
+transform zero.  The strong Markov property therefore gives
+\[
+ \widehat\nu_\omega(s)
+ =\frac{1-F(s)}s+
+ F(s)\frac{\omega}{s+\omega}\widehat\nu_\omega(s).
+\]
+Solving proves $\widehat\nu_\omega(s)=m_\omega(s)$ as in
+\eqref{van:m}; all its displayed denominators are positive for $s>0$.
+
+The first child is born at age $B\sim\operatorname{Exp}(1)$.
+Indeed, before the first core-clock ring only upward leaf moves
+can occur, so the core remains active.  More generally, the entire
+reproduction process is obtained by accepting a subset of the points
+of a rate-one Poisson process $\Pi$, rejecting its points when $X=0$.
+Consequently
+\begin{align}
+ m_\omega(s)&\le \frac1s,
+ &
+ -m_\omega'(s)&\ge\mathbb E[B e^{-sB}]
+                  =\frac1{(1+s)^2},
+ \label{van:first-child}\\
+ \mathbb E\left[\left(\int_0^\infty e^{-\theta t}\xi(dt)\right)^2\right]
+ &\le \frac1{\theta^2}+\frac1{2\theta},
+ &&\theta>0.
+ \label{van:second-moment}
+\end{align}
+There is positive probability of reaching zero and spending positive
+time there, for every finite $\omega$.  Hence $m_\omega(1)<1$.
+Since $F(0)=1-e^{-1}$, formula \eqref{van:m} also shows
+$m_\omega(s)\to\infty$ as $s\downarrow0$.  Strict decrease and continuity
+now give the unique root in $(0,1)$.  Algebraic rearrangement gives
+\eqref{van:root}; its denominator
+$\omega+(1-\omega)s=s+\omega(1-s)$ is positive on that interval.
+
+\subsection{Branching growth and arbitrary finite seeds}
+
+\begin{lemma}[Ordinary-family growth and a continuous-time mean bound]
+\label{van:ordinary}
+Put $\alpha=\alpha_\omega$ and
+$\beta=-m_\omega'(\alpha)\in(0,\infty)$.
+For one ordinary family started with a core of leaf count one,
+\begin{equation}
+ e^{-\alpha t}C^{(1)}(t)\longrightarrow
+ A_1=\frac{W}{\alpha\beta}\in(0,\infty)
+ \quad\text{almost surely}.
+ \label{van:ordinary-limit}
+\end{equation}
+Here $W$ is the limiting intrinsic CMJ martingale.
+For every $\sigma>\alpha$,
+\begin{equation}
+ \mathbb E C^{(1)}(t)
+ \le \frac{e^{\sigma t}}{1-m_\omega(\sigma)}.
+ \label{van:mean-bound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We verify the conditions for the CMJ law of large numbers
+\cite[Section~2.2, equation~(2.13) and its almost-sure
+upgrade]{IKM2024}.
+Reproduction processes are independent copies by the exact
+construction above.  Their mean measure is nonlattice, since the
+first birth age is exponentially distributed.  The Malthusian
+equation is $m_\omega(\alpha)=1$, and
+\[
+ 0<\frac1{(1+\alpha)^2}\le\beta\le
+ \int_0^\infty t e^{-\alpha t}\,dt=\alpha^{-2}<\infty.
+\]
+The moment bound \eqref{van:second-moment} holds for every
+$\theta>0$, including a $\theta<\alpha/2$.
+It supplies both the discounted $x\log x$ condition
+(see \cite{Olofsson1998}) and the stronger
+moment hypothesis in \cite[Remark~2.1]{IKM2024}.  The counting
+characteristic $\phi(t)=\mathbf1_{\{t\ge0\}}$ is bounded and has the
+required exponentially weighted regularity and summability.
+For this characteristic, the weighted local suprema are bounded by
+a constant times $e^{-\alpha t}\mathbf1_{\{t\ge-1\}}$, so the
+characteristic condition in the almost-sure upgrade is satisfied.
+Nerman's theorem gives the limit
+$\beta^{-1}\int_0^\infty e^{-\alpha t}\,dt\;W
+=W/(\alpha\beta)$ almost surely.
+
+We give an explicit nondegeneracy check that also permits infinitely
+many lifetime offspring. Let $\sigma_v$ be the birth time of an
+individual $v$, and set
+\[
+ W_j=\sum_{|v|=j}e^{-\alpha\sigma_v},\qquad
+ Y=\int_0^\infty e^{-\alpha t}\xi(dt).
+\]
+The generation martingale $(W_j)$ has mean one and the same limit $W$
+as the intrinsic CMJ martingale
+\cite[Section~2.2, equation~(2.12)]{IKM2024}. Independence of the child
+families and monotone truncation of the discounted offspring sum give
+\[
+ \operatorname{Var}(W_{j+1})
+ =m_\omega(2\alpha)\operatorname{Var}(W_j)+\operatorname{Var}(Y).
+\]
+Here $m_\omega(2\alpha)<1$ and $Y$ has finite second moment by
+\eqref{van:second-moment}. Thus $W_j$ is bounded in $L^2$, so
+$\mathbb E W=1$. The branching identity for $W$ implies
+$q=\mathbb E[q^K]$, where $q=\mathbb P(W=0)$ and $K$ is the
+possibly infinite number of children of one individual. We have
+$K\ge1$ almost surely. Moreover $\mathbb P(K\ge2)\ge1/2$, since
+an upward first move (probability $1/2$) leaves the core active
+after its first child is born. As $q<1$, the identity forces $q=0$.
+This proves $W>0$ almost surely. Local finiteness holds because the
+total core-birth rate is at most the core count, giving a Yule upper
+coupling.
+
+For the mean bound, set $M(t)=\mathbb E C^{(1)}(t)$.
+The ordinary branching decomposition gives
+\[
+ M(t)=1+\int_0^t M(t-u)\nu_\omega(du).
+\]
+After multiplication by $e^{-\sigma t}$ the renewal kernel has
+total mass $m_\omega(\sigma)<1$, while the forcing is at most one.
+Its nonnegative renewal series is bounded by
+$\sum_{j\ge0}m_\omega(\sigma)^j$, which proves
+\eqref{van:mean-bound}.
+\end{proof}
+
+\begin{lemma}[Positive-event inheritance of the amplitude]
+\label{van:inheritance}
+Let $C^{(\ell)}(t)$ be the size of the family of one initial core
+whose leaf count is $\ell$.  For every integer $\ell\ge1$,
+$e^{-\alpha t}C^{(\ell)}(t)$ has a finite strictly positive limit
+almost surely.  The same holds for $\ell=0$ when $\omega>0$.
+For $\ell=0$ and $\omega=0$ the limit is zero.
+\end{lemma}
+
+\begin{proof}
+The case $\ell=1$ is Lemma~\ref{van:ordinary}.
+For $\ell\ge2$, start with one ordinary core and stop at
+\[
+ \tau=\min\{\text{first hit of leaf count }\ell,\,
+                  \text{first core birth}\}.
+\]
+The event $E$ that the hit occurs first has probability
+\[
+ \mathbb P(E)=\prod_{j=1}^{\ell-1}\frac{j}{j+1}=\frac1\ell>0.
+\]
+On $E$, there is still exactly one core, with leaf count $\ell$,
+and no descendants.  The strong Markov future, conditionally on
+the history up to $\tau$, is exactly the family started at $\ell$.
+The property that $e^{-\alpha t}C(t)$ has a finite strictly positive
+limit is preserved by every finite time shift.  It holds almost surely
+for the ordinary family, hence also conditionally on $E$.
+The Markov property therefore proves that it holds with probability
+one for a family started at $\ell$.
+
+If $\ell=0$ and $\omega>0$, an independent finite
+$\operatorname{Exp}(\omega)$ activation delay is followed by the
+ordinary family.  Its limiting amplitude is the ordinary amplitude
+multiplied by the strictly positive discount of this delay.
+For $\ell=0$ and $\omega=0$, the family consists of its one inert
+ancestor forever.
+\end{proof}
+
+For a finite tree with at least three vertices, assign each initial
+core its own genealogical family.  Pre-existing core edges do not enter
+any rate in \eqref{van:life}, so these are finitely many independent
+families with their respective initial leaf counts.  All new cores
+belong to exactly one such family.  At least one initial core has
+positive leaf count.  Lemma~\ref{van:inheritance} consequently gives
+\begin{equation}
+ e^{-\alpha t}C(t)\longrightarrow A\in(0,\infty)
+ \quad\text{almost surely}.
+ \label{van:seed-amplitude}
+\end{equation}
+
+We will also need a mean bound for this seed.  The reproduction
+intensity of each exceptional initial core is at most one.
+Every child begins an ordinary family, so \eqref{van:mean-bound}
+and a convolution with this initial reproduction measure show that,
+for every $\sigma>\alpha$,
+\begin{equation}
+ \mathbb E C(t)\le K_\sigma e^{\sigma t}
+ \label{van:seed-mean}
+\end{equation}
+for some finite constant depending on the seed.  For example, if
+there are $k$ initial cores, one may take
+$K_\sigma=k\bigl(1+[\sigma(1-m_\omega(\sigma))]^{-1}\bigr)$.
+This is an auxiliary continuous-time bound; no assertion about
+discrete-time mean asymptotics is being used.
+
+\subsection{The exact population clock}
+
+A core birth removes one leaf from its parent and supplies one leaf
+to the newborn core.  It leaves the \emph{total} leaf count unchanged.
+All other vertex births increase that count by one.  Hence
+\begin{equation}
+ L(t)\ \text{jumps by }+1\text{ at rate }\ L(t)+\omega C_0(t).
+ \label{van:leaf-rate}
+\end{equation}
+Choose $\alpha<\sigma<1$ in \eqref{van:seed-mean}.
+The compensated counting process yields
+\begin{equation}
+ e^{-t}L(t)=L(0)+\omega\int_0^t e^{-u}C_0(u)\,du+\mathcal M_t,
+ \label{van:leaf-martingale}
+\end{equation}
+where $\mathcal M$ is a square-integrable martingale on every finite
+interval.  The drift integral has finite expectation as $t\to\infty$.
+Moreover the mean version of \eqref{van:leaf-martingale} gives
+\[
+ \mathbb E L(t)
+ =e^t\left(L(0)+\omega\int_0^t e^{-u}\mathbb E C_0(u)\,du\right)
+ \le K e^t
+\]
+for a finite $K$.  It follows that
+\[
+ \mathbb E\langle\mathcal M\rangle_\infty
+ =\int_0^\infty e^{-2u}
+       \bigl(\mathbb E L(u)+\omega\mathbb E C_0(u)\bigr)\,du<\infty.
+\]
+Thus both terms on the right of \eqref{van:leaf-martingale} converge
+almost surely and $e^{-t}L(t)\to V<\infty$.
+From \eqref{van:leaf-rate}, $L$ admits a pathwise lower coupling
+with a rate-one Yule process started with $L(0)$ particles.
+Its $e^{-t}$-normalized limit is strictly positive almost surely.
+Therefore $V>0$.
+
+Since $\alpha<1$, \eqref{van:seed-amplitude} implies
+$e^{-t}C(t)\to0$, whence $e^{-t}N(t)\to V$.
+For the hitting time $\tau_n$ of population $n$, nonexplosion and
+the Yule lower bound imply $\tau_n\to\infty$.
+Consequently
+\[
+ \frac{C_n}{n^\alpha}
+ =\frac{e^{-\alpha\tau_n}C(\tau_n)}
+        {(e^{-\tau_n}N(\tau_n))^\alpha}
+ \longrightarrow A V^{-\alpha}\in(0,\infty)
+ \quad\text{almost surely}.
+\]
+A two-vertex seed is covered by applying the argument after its
+first event and absorbing the finite time shift into $A$ and $V$.
+
+\subsection{Effective computation of the root}
+
+The transform admits the explicit convergent series
+\begin{equation}
+ F(s)=e^{-1}\sum_{j=0}^\infty\frac1{j!(s+j+1)},
+ \qquad s>-1.
+ \label{van:series}
+\end{equation}
+For $0\le s\le1$, truncation after $j=J$ has error at most
+\[
+ \frac{2}{(J+2)(J+1)!}.
+\]
+This follows by bounding $s+j+1\ge J+2$ in the tail and using
+$\sum_{j\ge J+1}1/j!\le2/(J+1)!$.
+Rational enclosures of $e^{-1}$ and a computable $\omega$ therefore
+give certified enclosures of $m_\omega(s)$ at positive rational $s$.
+
+The endpoint limits proved above allow effective discovery of rational
+$a,b$ with $0<a<\alpha_\omega<b<1$ and
+$m_\omega(a)>1>m_\omega(b)$.
+Strict monotonicity gives certified root isolation.  To avoid relying
+on deciding equality at a trial point, use the slope bound
+\eqref{van:slope}: if a computed enclosure proves
+$|m_\omega(c)-1|\le\delta$ for $c\in(0,1)$, then
+$|\alpha_\omega-c|\le4\delta$.
+Interval evaluation and this estimate supply terminating rational
+enclosures of any requested width.
+
+\begin{proof}[Completion of the proof of Theorem~\ref{van:main}]
+The excursion calculation and renewal identity establish
+\eqref{van:m} and \eqref{van:root}.  The first-child and endpoint
+estimates prove uniqueness, the location $(0,1)$ and
+\eqref{van:slope}.  The CMJ theorem, positive-event inheritance,
+finite-family decomposition and leaf-clock argument give all
+almost-sure limits in \eqref{van:limits}.  The last subsection
+proves effectivity.
+\end{proof}
+
+\begin{remark}[Model distinction]
+\label{van:scope}
+For the original isotropic-redirection friend tree, a core may
+redirect to another core.  Neighbouring environments then influence
+its future leaf count, and the independent reproduction construction
+\eqref{van:life} no longer holds.  The theorem supplies an exact
+characterization for the modified VAN family only.  The original friend-tree exponent is not identified by this
+characteristic equation. We use no discrete-time $L^1$ or
+expected-amplitude conclusion.
+\end{remark}
+

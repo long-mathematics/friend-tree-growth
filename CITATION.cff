@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "Please cite the appropriate research draft when using these results or verification scripts."
+type: software
+title: "Friend-tree growth: exact characterization, effective computation, and local-model irrationality"
+version: 0.1.0
+date-released: 2026-11-23
+repository-code: "https://github.com/long-mathematics/friend-tree-growth"
+authors:
+  - family-names: Long
+    given-names: Christopher D.
+license: MIT
+keywords:
+  - random trees
+  - redirection networks
+  - growth exponents
+  - computable analysis
+  - Crump-Mode-Jagers processes
+  - E-functions
+  - irrationality
+abstract: >-
+  Research drafts and exact verification scripts for the random friend-tree
+  growth exponent and a related family of local redirection models. The
+  original-model draft develops an exact scalar pressure characterization,
+  effective two-sided computation, a uniform boundary-leaf resolvent bound,
+  robustness under bounded predictable boundary input, and an improved
+  rational upper certificate. The companion draft proves almost-sure growth
+  and irrationality of the local-model exponent for finite algebraic
+  activation parameters. Irrationality and transcendence of the original
+  random friend-tree exponent remain open.

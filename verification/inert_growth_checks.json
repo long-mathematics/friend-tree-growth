@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "ordered_event_comparisons": 180,
+  "checks": [
+    "burst BFS versus individual-clock recursion",
+    "null rings counted without consuming a real birth",
+    "potential generation-profile and exact ring-tail identities",
+    "one-ring scalar partial sums",
+    "one-birth null-chain identity for every tested ring budget",
+    "nested positive approximations and certified intervals"
+  ],
+  "scope": "Finite identities and tail bounds; no new numerical exponent bracket."
+}

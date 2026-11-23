@@ -1,0 +1,172 @@
+\section{A uniform freeze-or-grow bound for the external parent}
+\label{ps:section}
+
+The statement below applies to the original core process, also allowing
+inert boundary stubs.  A stub is counted in its incident core's degree,
+receives outward selections without changing state, and sends no arrivals.
+No monotonicity of expected descendant counts is used.
+
+\begin{lemma}[Reciprocal population under persistent immigration]
+\label{ps:reciprocal}
+Let $0<\rho\le1$, and let $X$ be the birth--death chain on
+$\mathbb Z_{\ge0}$ with birth rate $x+\rho$ at $x$ and death rate one
+at every $x\ge1$.  If $X(0)=0$, then
+\begin{equation}\label{ps:reciprocal-bound}
+ \mathbb E\frac1{X(t)+1}
+ \le \left(1+\frac3\rho\right)e^{-\rho t/3}
+ \qquad(t\ge0).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $q_x=\Pr\{\operatorname{Pois}(1)\ge x\}$ and
+\[
+ f(x)=\frac1{x+1},\qquad
+ h(x)=f(x)+\frac3\rho q_x.
+\]
+The generator $G_0$ with birth rate $x$ and unit death rate satisfies
+$G_0q_x=0$ for $x\ge1$, because
+\[
+ q_{x+1}-q_x=-\frac{e^{-1}}{x!}.
+\]
+At $x=0$, $G_0q_0=0$ as well.  For $x\ge1$,
+\[
+ G_0f(x)=-\frac{x-2}{x(x+2)}.
+\]
+Consequently, for the generator $G$ including immigration,
+\[
+ Gh(x)=G_0f(x)
+       -\frac{\rho}{(x+1)(x+2)}-\frac3{e\,x!}
+ \quad(x\ge1),
+\]
+whereas $Gh(0)=-\rho/2-3/e$.
+
+For $x\ge1$, summing the factorial tail gives
+$q_x\le2/(e\,x!)$.  For $x\ge4$ we also have
+$G_0f(x)\le-(5/12)f(x)$.  Since $\rho\le1$, these inequalities imply
+\[
+ Gh(x)+\frac\rho3 h(x)
+ \le-\frac1{12}f(x)-\frac1{e\,x!}<0
+ \qquad(x\ge4).
+\]
+At $x=0,1,2,3$, respectively, the exact expressions for
+$Gh(x)+(\rho/3)h(x)$ are
+\[
+ -\frac\rho6+1-\frac3e,\quad
+ \frac43-\frac4e,\quad
+ \frac\rho{36}+1-\frac7{2e},\quad
+ -\frac1{15}+\frac\rho{30}+1-\frac3e.
+\]
+They are all negative, using $e<3$ and $\rho\le1$.
+Thus $Gh\le-(\rho/3)h$ at every state.
+
+The chain is nonexplosive, and $h$ is bounded.  Localization and
+Dynkin's formula therefore yield
+$\mathbb E h(X(t))\le h(0)e^{-\rho t/3}$.
+Since $f\le h$ and $h(0)=1+3/\rho$, this proves the claim.
+\end{proof}
+
+Fix a real core vertex $p$ whose initial full degree is at most an
+integer $M\ge2$, and set
+\[
+ \tau_M=\inf\{t:D_p(t)>M\},\qquad
+ C_M=1+3M,\qquad \kappa_M=\frac1{3M}.
+\]
+For real neighbours $v$ of $p$, define
+\[
+ \lambda_p(t)=\sum_{v\sim p,\ v\text{ real}}\frac1{D_v(t)}.
+\]
+Thus $\lambda_p$ is the rate at which $p$ receives a new leaf and
+its full degree increases.  Its leaf-promotion rate is
+$b_p=L_p/D_p$.
+
+\begin{theorem}[Uniform local stabilization]
+\label{ps:stabilization}
+Uniformly over all finite initial environments and their boundary stubs,
+\begin{equation}\label{ps:rate-bound}
+ \mathbb E\bigl[\mathbf1_{\{t<\tau_M\}}\lambda_p(t)\bigr]
+ \le M C_M e^{-\kappa_Mt}
+       \sum_{j=0}^{M-1}\frac{(C_Mt)^j}{j!}.
+\end{equation}
+In particular, the probability that $p$ has a degree increase or a leaf
+promotion at some time in $(T,\tau_M]$ is at most
+\begin{align}
+ Q_M(T)
+ &=\min\left\{1,
+ 2M C_M\sum_{j=0}^{M-1}\frac{C_M^j}{j!}
+       \int_T^\infty e^{-\kappa_Mt}t^j\,dt\right\}
+ \label{ps:tail-integral}\\
+ &=\min\left\{1,
+ 2M C_M e^{-\kappa_MT}
+ \sum_{j=0}^{M-1}C_M^j
+       \sum_{i=0}^j\frac{T^i}{i!\,\kappa_M^{j-i+1}}
+ \right\}.
+ \label{ps:tail-explicit}
+\end{align}
+This bound tends to zero exponentially in $T$ for each fixed $M$.
+\end{theorem}
+\begin{proof}
+While $D_p\le M$, implement the rate-one clock at $p$ using $M$
+independent slots, each of rate $1/M$.  Give every neighbour a permanent
+distinct slot when that neighbour first appears.  At an occupied slot,
+choose its assigned neighbour.  At an empty slot, choose uniformly
+among the current $D_p$ neighbours.  Every particular neighbour is
+then chosen at rate
+\[
+ \frac1M+\frac{M-D_p}{M D_p}=\frac1{D_p},
+\]
+so the construction is exact until $\tau_M$.
+
+Let $v$ be a real neighbour present initially, or born as a new
+neighbour of $p$ at a stopping time $\sigma<\tau_M$.  Its occupied
+slot supplies arrivals at rate $1/M$.  Every such arrival creates a
+leaf at $v$; the first one also turns $v$ into a core if it was still
+a leaf.  The number of leaf neighbours of $v$ lower-dominates, until
+$\tau_M$, the chain of Lemma~\ref{ps:reciprocal} with $\rho=1/M$
+and initial state zero.  Use the same leaf-birth Poisson measure,
+the occupied slot for immigration, and a death at every ring of
+$v$'s own rate-one clock.  Actual leaf losses occur at most once at
+such a ring, and all additional arrivals only increase the actual
+leaf count.  These three driving processes are independent before
+stopping.  They can be continued after stopping to define the full
+comparison chain.
+
+The permanent edge $pv$ gives $D_v\ge X+1$ before stopping.  Therefore,
+conditionally on the history at $\sigma$, for every $a\ge0$,
+\begin{equation}\label{ps:conditional-kernel}
+ \mathbb E\left[
+   \frac{\mathbf1_{\{\sigma+a<\tau_M\}}}{D_v(\sigma+a)}
+   \,\middle|\,\mathcal F_\sigma\right]
+ \le C_Me^{-\kappa_Ma}.
+\end{equation}
+Initial neighbours use $\sigma=0$.  Stubs contribute zero and require
+no comparison chain.
+
+Give each new neighbour $w$ of $p$ a genealogical parent: the old
+neighbour $v$ whose clock selected $p$ and created $w$.
+This is a genealogy of neighbours, separate from the core genealogy.
+Its roots are the at most $M$ initial real neighbours.  Each individual's
+conditional mean birth intensity, as a function of its age before
+stopping, is bounded by the kernel
+$k_M(a)=C_Me^{-\kappa_Ma}$ in
+\eqref{ps:conditional-kernel}.
+Iterated conditional first moments, or the compensator formula followed
+by Tonelli's theorem, bound the expected birth intensity contributed
+by neighbour generation $j$ by
+\[
+ M k_M^{*(j+1)}(t)
+ =M C_M^{j+1}e^{-\kappa_Mt}\frac{t^j}{j!}.
+\]
+No independence between neighbours is asserted or needed.
+Before $\tau_M$ there are at most $M$ neighbours, so no contributing
+individual can have neighbour generation greater than $M-1$.
+Summing gives~\eqref{ps:rate-bound}.
+
+Finally, each leaf neighbour contributes one to $\lambda_p$, so
+$b_p=L_p/D_p\le L_p\le\lambda_p$.  The total intensity of changes
+to $(D_p,L_p,c_p)$ is thus at most $2\lambda_p$.
+The compensator bound for the number of such changes after $T$, counting
+also the degree increase at $\tau_M$, proves
+\eqref{ps:tail-integral}.  Integrating the integer powers gives
+\eqref{ps:tail-explicit}.
+\end{proof}
+

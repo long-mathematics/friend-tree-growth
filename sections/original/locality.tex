@@ -1,0 +1,233 @@
+\section{Uniform comparison of initial environments}
+
+Let $x=(T,u)$ be a finite initial tree with a tagged core vertex $u$.
+Only core children born after time zero, and their subsequent descendants,
+are assigned positive genealogical generations. Write
+\[
+ A_m(s;x)=
+ \mathbb E_x\sum_{\substack{v\text{ born after }0\\
+                          \mathrm{gen}_u(v)=m}}
+ e^{-s\tau_v},\qquad m\ge1,\quad s>0.
+\]
+This is the scalar reward represented by $\mathcal K_s^m\mathbf1$
+in Section~\ref{model:section}.
+It is not an arbitrary function of the entire ambient tree.
+
+A birth state means that the tag has just been promoted: $L_u=c_u=1$,
+so its full degree is two. The original core neighbours of any initial
+core vertex remain neighbours forever, and its full degree never
+decreases.
+
+\subsection{A common potential genealogy and the comparison identity}
+
+Use a rate-one clock for each actual core vertex. A newly promoted leaf
+can be given a fresh independent rate-one core clock, by the Markov
+property. Introduce a potential genealogy rooted at $u$ in which
+\emph{every} ring of a potential parent's clock creates a potential child,
+whether or not that ring creates an actual core child. Label children by
+their parent's ring index and run unused potential branches independently.
+The actual future core genealogy is a subset of this common potential
+genealogy. Its generation counts satisfy
+\[
+ \mathbb E\overline Z_j(t)=\frac{t^j}{j!}.
+\]
+
+Suppose two environments are coupled so that their descendant histories
+agree until an increasing event $\Gamma(t)$ occurs. Suppose also that
+$\Gamma$ depends only on clock streams of initial core vertices other
+than $u$. These streams can be chosen independently of the potential
+future genealogy. Each potential generation-$m$ birth has an inclusion
+indicator in each model. Their difference has modulus at most one, and
+is zero before $\Gamma$. The compensator of potential generation-$m$
+births is $\overline Z_{m-1}(t)\,dt$. Hence
+\begin{equation}\label{env:comparison}
+ \boxed{
+ |A_m(s;x)-A_m(s;x')|
+ \le
+ \int_0^\infty e^{-st}
+ \frac{t^{m-1}}{(m-1)!}\,
+ \mathbb P(\Gamma(t))\,dt .
+ }
+\end{equation}
+There is no factor two: both actual genealogies are subsets of the
+\emph{same} potential genealogy, and the difference of their two
+inclusion indicators is bounded by one. Independence is invoked for the
+potential event $\Gamma$, not for actual accepted arrows whose rates
+depend on the evolving tree.
+
+\subsection{Finite-radius comparison}
+
+Decorate the initial core by the full initial labels $(L_i,c_i)$,
+including the numbers of core neighbours outside any displayed ball.
+
+\begin{theorem}[Uniform spatial locality]\label{env:locality}
+Suppose two initial environments have isomorphic decorated radius-$R$
+balls around their tags, where $R\ge1$. Let $c_u$ be the common initial
+core degree of the tag. Then a coupling satisfies
+\[
+ \mathbb P(\Gamma_R(t))
+ \le\min\left\{1,\frac{c_u t^R}{R!}\right\},
+\]
+and therefore
+\begin{equation}\label{env:locality-integral}
+ |A_m(s;x)-A_m(s;x')|
+ \le
+ \int_0^\infty e^{-st}\frac{t^{m-1}}{(m-1)!}
+ \min\left\{1,\frac{c_u t^R}{R!}\right\}\,dt .
+\end{equation}
+For every $T>0$, a convenient explicit bound is
+\begin{equation}\label{env:locality-tail}
+ \frac{c_u T^{R+m}}{(R+m)R!(m-1)!}
+ +s^{-m}e^{-sT}\sum_{j=0}^{m-1}\frac{(sT)^j}{j!}.
+\end{equation}
+For fixed $m,s$ and a birth state, this tends to zero exponentially in
+$R$ on taking $T=aR$ with any fixed $0<a<1/e$.
+\end{theorem}
+\begin{proof}
+For an initial core vertex $i$ with $c_i\ge1$, split its rate-one clock
+by first selecting uniformly one of its $c_i$ initial core neighbours.
+With probability $c_i/D_i(t)$ attach to that selected neighbour;
+otherwise select uniformly among all other current neighbours.
+This gives probability $1/D_i(t)$ to every current neighbour and hence
+is an exact construction. The potential arrows along each directed
+initial core edge $i\to j$ have rate $1/c_i$.
+
+Allow arbitrary discrepancies at the radius-$R$ boundary from time zero.
+To affect the tag, any external discrepancy must traverse the unique
+initial-core path to the tag by inward arrows in chronological order.
+New branches cannot bypass an initial-tree cut edge. Let $\Gamma_R(t)$
+be the event that some such path has its required potential arrows
+by time $t$.
+
+For a path $u=v_0,v_1,\ldots,v_R$ directed outward from $u$, the expected
+number of inward ordered arrow tuples is
+\[
+ \frac{t^R}{R!}\prod_{j=1}^{R}\frac1{c_{v_j}}.
+\]
+If $p(\gamma)=\prod_{j=0}^{R-1}c_{v_j}^{-1}$ is the probability that
+simple random walk follows that outward path, then
+\[
+ \prod_{j=1}^{R}\frac1{c_{v_j}}
+ =\frac{c_u}{c_{v_R}}p(\gamma)\le c_u p(\gamma).
+\]
+The probabilities of these length-$R$ outward paths sum to at most one.
+A union bound proves the claimed estimate. All source clocks used by
+$\Gamma_R$ belong to initial vertices other than $u$, so
+\eqref{env:comparison} applies. Cutting the integral at $T$, bounding
+$e^{-st}\le1$ on its first part, and evaluating its gamma tail gives
+\eqref{env:locality-tail}.
+If $c_u=0$, the core is a singleton and there is no exterior to compare.
+\end{proof}
+
+The boundary labels are necessary for exact agreement of the interior
+initial states. The theorem is an approximation result; it does not say
+that the radius-$R$ state itself is Markov.
+
+\subsection{An exact limiting boundary for a high-degree parent}
+
+The absorbing-parent process starts with the tag, its one leaf, and an
+inert external core-neighbour stub. The stub contributes one to the tag's
+degree. A ring selecting the stub has no effect on the retained process;
+it does not kill that process. All remaining dynamics are unchanged.
+Denote its scalar generation rewards by $A_m^\infty(s)$.
+
+\begin{theorem}[Uniform parent-degree estimate]\label{env:parent}
+If $x=(T,u)$ is a birth state whose parent has initial full degree $d$,
+then
+\begin{equation}\label{env:parent-bound}
+ \boxed{
+ |A_m(s;x)-A_m^\infty(s)|
+ \le s^{-m}-(s+1/d)^{-m}
+ \le\frac{m}{d\,s^{m+1}}.
+ }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Reserve a potential arrow from the parent to $u$ at constant rate $1/d$.
+At such a ring, accept the arrow with probability $d/D_p(t)$.
+All rejected and other rings are routed uniformly among the remaining
+current neighbours. The accepted rate to $u$ is $1/D_p(t)$ and every
+other current neighbour has the same rate, so this construction is exact.
+The inequality $D_p(t)\ge d$ makes it valid at every time.
+
+Until the first potential parent arrow, the tag's descendant histories in
+the original and absorbing-parent processes agree. The potential arrow
+stream is independent of the potential descendant genealogy, and its
+probability of ringing by time $t$ is $1-e^{-t/d}$. Substitution in
+\eqref{env:comparison} gives the difference of the two gamma integrals
+in~\eqref{env:parent-bound}. The final inequality follows by integrating
+the derivative of $x^{-m}$ from $s$ to $s+1/d$.
+\end{proof}
+
+The limiting process still contains interactions among the tag and its
+new descendants. The theorem does not replace that process by independent
+families or by a scalar birth-rate model.
+
+\section{A finite approximation of the initial environment}
+
+Fix a birth state, a depth $R\ge1$, and an integer $M\ge3$.
+Traverse its initial core outward from the tag. Remove a component at
+the first vertex on a path whose initial full degree is at least $M$,
+or at depth $R$, whichever is encountered first. Replace each removed
+component by an inert core-neighbour stub attached to its retained parent.
+Retain all initial leaf counts and all core-neighbour counts of retained
+vertices, including their stub neighbours. Write $\pi_{R,M}x$ for this
+finite environment with boundary stubs.
+
+Every retained vertex has depth less than $R$ and full degree less than
+$M$. Thus, up to rooted isomorphism, the range of $\pi_{R,M}$ is a
+finite set of decorated initial environments. Its future evolution is
+still an infinite-state process.
+
+\begin{theorem}[Uniform finite initial-environment reduction]
+\label{env:finite-initial}
+For every birth state $x$, every $m\ge1$, $s>0$, and $T>0$,
+\begin{equation}\label{env:finite-bound}
+\begin{split}
+ |A_m(s;x)-A_m(s;\pi_{R,M}x)|
+ \le s^{-m}\left\{
+ \frac{T^R}{R!}+\frac{e^T-1}{M}
+ +e^{-sT}\sum_{j=0}^{m-1}\frac{(sT)^j}{j!}
+ \right\}.
+\end{split}
+\end{equation}
+In particular, for fixed $m,s$, first choosing $T$, then $R,M$,
+gives arbitrarily small uniform error over all finite initial environments.
+\end{theorem}
+\begin{proof}
+The depth boundary contributes the potential-event bound $t^R/R!$
+from Theorem~\ref{env:locality}, since a birth state has $c_u=1$.
+
+For a first high-degree cut vertex $v$ at distance $r$, reserve its
+parentward potential arrow at rate $1/D_v(0)$ and accept with probability
+$D_v(0)/D_v(t)$, as in Theorem~\ref{env:parent}.
+At intermediate vertices use the old-core potential arrows of rates
+$1/c_i$. Cut vertices never occur as intermediate vertices on another
+retained cut path, so these constructions are compatible.
+
+If $\gamma=(u=v_0,\ldots,v_r=v)$ is the path to the cut vertex, the
+product of inward potential rates is
+\[
+ \frac1{D_v(0)}\prod_{j=1}^{r-1}\frac1{c_{v_j}}
+ =\frac{c_u}{D_v(0)}p(\gamma)
+ \le\frac{p(\gamma)}{M}.
+\]
+First-cut paths are prefix-free, so their simple-random-walk cylinder
+probabilities sum to at most one, even when their lengths differ.
+The probability of some high-degree influence reaching $u$ by $t$ is
+therefore at most
+\[
+ \frac1M\sup_{r\ge1}\frac{t^r}{r!}
+ \le\frac{e^t-1}{M}.
+\]
+Combining the two kinds of boundary gives a potential event with
+probability at most
+$\min\{1,t^R/R!+(e^t-1)/M\}$.
+Use \eqref{env:comparison}; on $[0,T]$ take its increasing probability
+bound at $T$, and use $\int_0^\infty e^{-st}t^{m-1}/(m-1)!\,dt=s^{-m}$.
+On $(T,\infty)$ use the probability bound one and the exact gamma tail.
+This proves~\eqref{env:finite-bound}.
+\end{proof}
+
+The finite range concerns initial environments. Each retained profile still evolves on an infinite state space; the population truncation below supplies a finite calculation at every fixed time.
+

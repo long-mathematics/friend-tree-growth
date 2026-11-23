@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "exact_burst_entry_comparisons": 210,
+  "checks": [
+    "ordered leaf histories",
+    "P\u00f3lya allocation and exact tail",
+    "core-ring mass conservation including inert stubs",
+    "star law",
+    "positive promotion truncations",
+    "rational error bound",
+    "non-lumpability from original full-tree generator",
+    "finite-profile projection idempotence",
+    "tagged transfer rows including inert holding times"
+  ],
+  "scope": "Finite identities and bounds; no numerical exponent certificate."
+}

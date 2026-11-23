@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,array}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Growth and irrationality in local redirection trees},pdfauthor={Christopher D. Long}}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\title{Growth and irrationality in local redirection trees}
+\author{Christopher D. Long}
+\date{Research draft --- November 23, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We study the local redirection family $\operatorname{VAN}(\omega)$ for
+finite $\omega\ge0$, including the PAN and DAN models. An exact
+Crump--Mode--Jagers representation identifies the exponent
+$\alpha_\omega\in(0,1)$ as the unique root of an explicit Euler--Lotka
+equation. For every finite tree seed with at least two vertices, the
+number of nonleaf vertices divided by $n^{\alpha_\omega}$ converges
+almost surely to a finite strictly positive random variable. The root
+is effectively computable whenever $\omega$ is computable. We prove
+that the exponent is irrational for every finite algebraic
+$\omega\ge0$: at a rational candidate exponent the transform
+$\int_0^1 x^s e^{x-1}\,dx$ is transcendental by the
+Siegel--Shidlovskii theorem, whereas the characteristic equation
+requires an algebraic value. The equation itself was derived by
+Hartle, Krapivsky, Redner, and Zhang; the arguments here supply a
+branching-process proof and an arithmetic deduction. These local
+models differ from the original interacting random friend tree.
+\end{abstract}
+
+\noindent\textbf{Keywords.} Random trees; redirection; Crump--Mode--Jagers
+processes; Malthusian parameter; $E$-functions; irrationality.
+
+\medskip
+\noindent\textbf{MSC 2020.} 60J80, 05C80, 11J81.
+
+\section{Introduction}
+\label{intro:section}
+
+The random friend-tree rule attaches a new vertex to a uniformly chosen
+neighbour of a uniformly chosen existing vertex. A basic question is
+the growth of its \emph{core}, the set of vertices of degree at least
+two. Krapivsky and Redner studied this model in their work on emergent
+network modularity~\cite{KR2017}. Its transition rates couple the local
+environments of adjacent core vertices.
+
+Hartle, Krapivsky, Redner, and Zhang introduced local redirection models
+in which a core can redirect only to a leaf~\cite{HRKZ2026}. A parameter
+$\omega$ controls direct attachment to cores with no leaf neighbours.
+The two cases $\omega=0$ and $\omega=1$ are respectively prohibited
+attachment to the nucleus (PAN) and direct attachment to the nucleus
+(DAN); the full family is denoted $\operatorname{VAN}(\omega)$. Their
+analysis gives the characteristic equation
+\begin{equation}\label{intro:characteristic}
+ \int_0^1 x^s e^{x-1}\,dx
+ =\frac{(1-s)(s+\omega)}{\omega+(1-\omega)s},
+ \qquad 0<s<1.
+\end{equation}
+Equation~\eqref{intro:characteristic} is
+\cite[Eq.~(25)]{HRKZ2026}, with the PAN and DAN specializations in
+Eqs.~(22) and~(17) of that paper.
+
+We identify this root with the almost-sure core-growth exponent by an
+exact branching construction, and prove a finite strictly positive
+random amplitude for every finite seed. The proof eliminates the
+waiting time at zero in a core's leaf-count process, applies the CMJ
+law of large numbers, and controls the graph-size clock by a leaf-count
+martingale. Section~\ref{van:section} also gives a certified root
+algorithm.
+
+For the arithmetic conclusion, we prove that
+$F(r)=\int_0^1 x^r e^{x-1}\,dx$ is transcendental for every rational
+$r>-1$. An explicit common-denominator bound makes the relevant
+entire function an $E$-function, to which the classical
+Siegel--Shidlovskii theorem applies. Equation~\eqref{intro:characteristic}
+then implies irrationality of $\alpha_\omega$ for every finite
+algebraic $\omega\ge0$ (Theorem~\ref{vana:irrationality}).
+Section~\ref{vana:transfer-section} records the corresponding
+specialization nonvanishing criterion for more general reductions.
+
+Throughout the paper, $\alpha_\omega$ denotes the exponent of the
+local model. We reserve $\mu$ for the exponent of the original
+isotropic-redirection friend tree. The independent-family construction
+used here applies to $\alpha_\omega$ and supplies no arithmetic
+classification of $\mu$.
+
+\input{sections/local/probability}
+\input{sections/local/arithmetic}
+
+\section{Certified numerical examples}
+\label{comp:section}
+
+The factorial-tail bound in~\eqref{van:series} and rational alternating
+bounds for $e^{-1}$ permit root isolation entirely in rational
+arithmetic. For fixed $s>0$ and $\omega\ge0$, the expression
+\[
+ \frac{(s+\omega)(1-f)}{s(s+\omega-\omega f)}
+\]
+is strictly decreasing in $f$ wherever its denominator is positive.
+Thus an interval enclosure of $F(s)$ gives an enclosure of
+$m_\omega(s)$ with the endpoint order reversed. The two strict signs
+$m_\omega(a)>1>m_\omega(b)$ certify $a<\alpha_\omega<b$.
+
+The script \texttt{scripts/check\_van\_root.py} implements this
+calculation using Python's exact rational arithmetic. Its recorded
+intervals have width $2^{-90}$. Table~\ref{comp:table} displays coarser
+decimal intervals of width $10^{-24}$ containing those exact intervals.
+The full rational endpoints, series truncation order, and positive
+rational sign margins are recorded in
+\texttt{verification/van\_root\_checks.json}.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}ccl@{}}
+\toprule
+Model & $\omega$ & Certified enclosure of $\alpha_\omega$ \\
+\midrule
+PAN & $0$ & $(0.549734972504018815207626,\;0.549734972504018815207627)$ \\
+DAN & $1$ & $(0.771192302407000256316924,\;0.771192302407000256316925)$ \\
+VAN$(2)$ & $2$ & $(0.839188216788971794281543,\;0.839188216788971794281544)$ \\
+\bottomrule
+\end{tabular}
+\caption{Rationally certified examples for the local models.}
+\label{comp:table}
+\end{table}
+
+The script also checks the common-denominator divisibility in
+\eqref{vana:denominator} on a finite collection of rational parameters.
+Those checks support reproducibility of the algebra; the
+all-parameter denominator proof, the branching identification, and
+the irrationality theorem are established analytically in the text.
+
+\section*{Acknowledgments and preparation}
+The research questions arose from the study of the original random
+friend-tree exponent. AI tools assisted with literature searches,
+proof development, exact-arithmetic code, and manuscript preparation.
+The mathematical arguments and their stated scope are presented here
+for independent review.
+
+\begin{thebibliography}{9}
+
+\bibitem{Beukers2006}
+F.~Beukers,
+\emph{A refined version of the Siegel--Shidlovskii theorem},
+Annals of Mathematics \textbf{163} (2006), 369--379.
+\href{https://annals.math.princeton.edu/wp-content/uploads/annals-v163-n1-p08.pdf}{Publisher PDF}.
+
+\bibitem{HRKZ2026}
+H.~Hartle, P.~L.~Krapivsky, S.~Redner, and Y.~Zhang,
+\emph{Anomalous scaling in redirection networks},
+Physical Review E \textbf{114} (2026), 034314.
+\href{https://doi.org/10.1103/9lmp-pydp}{doi:10.1103/9lmp-pydp};
+\href{https://arxiv.org/abs/2604.01540}{arXiv:2604.01540}.
+
+\bibitem{IKM2024}
+A.~Iksanov, K.~Kolesko, and M.~Meiners,
+\emph{Asymptotic fluctuations in supercritical Crump--Mode--Jagers processes},
+\href{https://arxiv.org/abs/2109.00867v3}{arXiv:2109.00867v3} (2024).
+Section~2.2, especially Remark~2.1, equation~(2.13), and its
+almost-sure upgrade.
+
+\bibitem{KR2017}
+P.~L.~Krapivsky and S.~Redner,
+\emph{Emergent Network Modularity},
+Journal of Statistical Mechanics: Theory and Experiment (2017), 073405.
+\href{https://doi.org/10.1088/1742-5468/aa7a3f}{doi:10.1088/1742-5468/aa7a3f};
+\href{https://arxiv.org/abs/1706.01514}{arXiv:1706.01514}.
+
+\bibitem{Olofsson1998}
+P.~Olofsson,
+\emph{The $x\log x$ condition for general branching processes},
+Journal of Applied Probability \textbf{35} (1998), 537--544.
+\href{https://www.stat.rice.edu/~olofsson/xlogx.pdf}{Author PDF}.
+
+\end{thebibliography}
+\end{document}

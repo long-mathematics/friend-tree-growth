@@ -1,0 +1,57 @@
+\section{Computational scope and further questions}
+\label{discussion:section}
+
+The characterization $r_\infty(\mu)=1$ uses the original evolving
+environment. Its coefficients can be computed by exact positive
+histories, and the time-block upper certificates have explicit
+finite-time errors. These two features make $\mu$ a computable real.
+They do not imply that the resulting universal certificate search is
+an efficient numerical solver. The practical numerical assertion of
+this paper is the finite enclosure in Theorem~\ref{main:bound}.
+
+The arithmetic question remains separate. A computable unique root
+can be rational, algebraic irrational, or transcendental. Positivity
+of the eliminated kernel supplies no arithmetic classification by
+itself. To prove irrationality of the original $\mu$, one would need
+an arithmetic specialization or approximation theorem for its actual
+characteristic structure, with a nonvanishing statement and a
+sufficient denominator or height bound. No reduction of the present
+infinite evolving-environment pressure to a finite polynomial relation
+in one Mellin--exponential function is proved here.
+
+The companion local-model draft~\cite{Local} has an independent
+branching representation and an explicit scalar Mellin equation. Its
+arithmetic theorem applies to those modified models. It cannot be
+transferred to the original friend tree by numerical proximity of
+their exponents or similarity of their local transition formulas.
+
+The remaining probabilistic questions include sharp mean asymptotics,
+effective and practical high-precision evaluation, and the behaviour
+of critical eigenfunctions. In particular, a harmonic identity for
+a candidate critical first-promotion kernel can require ruling out
+escape without a future core promotion. That critical-kernel issue
+is not an assumption in the computability proof above: the upper
+certificates use submultiplicative finite-time means at discounts
+strictly above $\mu$.
+
+\paragraph{Verification.}
+The analytical results are mathematical proofs supported by exact
+finite certificates. The infection reproduction bound is checked by
+\texttt{scripts/verify\_infection\_kernel.py}; the beta burst and
+generation calculations are checked by
+\texttt{scripts/core\_clock\_kernel.py} and
+\texttt{scripts/inert\_growth\_kernel.py}. The numerical refinement
+has the separate full check described in Section~\ref{numerical:section}.
+These computations verify finite arithmetic claims and identities;
+they do not replace the infinite-state coupling and termination
+arguments. This research draft is not a proof-assistant formalization
+or a claim of external peer review.
+
+\paragraph{Acknowledgments and provenance.}
+The work builds on Krapivsky and Redner's model and Uzay's exponent
+existence and computer-assisted bounds. The motif tables and their
+original drift decomposition are attributed to the pinned upstream
+source. AI systems assisted with derivations, proof audits, and
+verification code during preparation; responsibility for the
+mathematical statements rests with the author. The repository records
+the imported inputs and reproducible finite checks.

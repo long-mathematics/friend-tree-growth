@@ -1,0 +1,382 @@
+\section{A summable disagreement exploration on the evolving old core}
+\label{erc:section}
+
+We couple two retained components whose roots differ by one leaf. The proof charges the future families born from affected cores and sums the resulting disagreements over the evolving core tree.
+
+Write
+\[
+ W_T(s)=\sup_x\mathbb E_x\int_0^T e^{-st}C_{\rm tag}(t)\,dt,
+ \qquad
+ V_{s,T}(y)=\int_0^T e^{-st}P_t^\infty C(y)\,dt.
+\]
+The first supremum is over the admissible newborn-environment
+class, including finite inert-boundary profiles.  A future child in a
+finite component with an inert ancestor belongs to this class.
+For finite $T$, core-count Yule domination gives
+$W_T(s)\le\int_0^T e^{(1-s)t}\,dt<\infty$.
+No finiteness of $W(s)=\sup_TW_T(s)$ will be assumed in the comparison.
+
+There is no enlargement of the supremum hidden in the use of a family
+inside a finite inert tree.  Replace its ancestor's inert stub by an
+edge to a genuine parent of degree $R$, completed by $R-1$ leaves.
+The full degree at the old stub endpoint is unchanged.  Couple all
+interior transitions, treating outward choices as null in the inert
+copy.  The interiors agree until a parent-to-interior arrival, whose
+rate is at most $1/R$ because parent degrees never decrease.  Thus the
+probability of disagreement through a fixed horizon $T$ is at most
+$T/R$.
+
+The tagged newborn core counts have Yule second moments bounded
+uniformly in $R$.  Cauchy--Schwarz therefore bounds the discrepancy in
+their expected finite-horizon discounted rewards by a constant
+depending only on $s,T$ times $\sqrt{T/R}$, which tends to zero.
+Each genuine finite exterior has reward at most $W_T(s)$, so the same
+holds in the inert limit.  This argument applies to the fixed finite
+state encountered at any charged birth.  It uses only an inert
+boundary: it does not identify a constant-rate controlled environment
+with an original finite exterior.
+If a finite exterior profile has several inert stubs, complete each
+one in this way.  For $b$ stubs the disagreement probability is at most
+$bT/R$, and the same fixed-profile limit applies.
+
+\subsection{The coupling uses aggregate transitions}
+
+For a core $u$, let $D_u$ be its full degree, $L_u$ its leaf count,
+and $c_u^\partial$ its number of inert stubs.  Here there is one inert
+stub at the retained root and no others.  The inert core generator has
+the following two transition types at $u$:
+\begin{align}
+ a_u&=L_u+\sum_{v\sim u,\ v\text{ core}}\frac1{D_v},
+ &&\text{add one leaf at }u,\label{erc:gain-rate}\\
+ b_u&=\frac{L_u}{D_u}\le1,
+ &&\text{promote a leaf of }u\text{ to a new core with one leaf}.
+ \label{erc:bud-rate}
+\end{align}
+The second transition changes $L_u$ and the number of core neighbours
+by opposite amounts and leaves $D_u$ unchanged.
+
+Couple two copies by maximal coupling of the aggregate leaf-gain
+channels at each paired core, and, separately, by maximal coupling of
+their promotion channels.  These are distinct continuous-time channels.
+A promotion at $u$ and a leaf gain at a neighbour therefore do not
+occur simultaneously in this coupling.  This construction has precisely
+the required generator in each marginal.  It does not impose a common
+source-clock ring between the copies; the source identity is absent
+from the core-state transition.  Leaves attached to a given core are
+exchangeable, so paired promotions may always be matched as new paired
+core children.
+
+Start the copies from $y$ and $y^+$, where $y^+$ has one additional
+leaf at the retained root.  Mark that root infected at time zero.
+The word ``infected'' is solely a coupling mark.  It never changes
+either marginal process.
+
+Orient the core tree away from the retained root.  Common cores born
+before their parent's first infection remain eligible for exploration;
+all cores present initially are eligible.
+When an eligible uninfected core first receives an unmatched leaf gain,
+mark it infected permanently.  At its infection, freeze its list of
+currently existing common core neighbours.  Every paired or unpaired
+new core child born from it \emph{after} its infection is instead
+charged as an entire newborn family, permanently excluded from the
+exploration.  The actual evolution and feedback of that family remain
+present in the coupling.
+Every later descendant of a charged family remains in that same
+charged family and is also excluded from the exploration.
+
+An eligible uninfected core has identical local state in both copies.
+Its only possible infected neighbour is its predecessor toward the
+root.  Indeed, the infected part of the eligible common tree is
+connected, and a charged family attaches to that tree only at its
+already infected parent.  Before an uninfected core is reached, its
+common promotions can grow arbitrary common fringes; those fringes
+are included when their attachment core is eventually infected.
+Thus no initial or subsequently grown common fringe is discarded.
+
+\subsection{A local reservoir controls all return influences}
+
+Fix an infected eligible core $u$ and reset its age to zero at infection.
+Let $d\ge2$ be its smaller full degree then.  The two degrees differ
+by exactly one at that time.  Define, at subsequent age $t$,
+\[
+ Z_u(t)=|D_u^+(t)-D_u^-(t)|,\qquad
+ R_u(t)=\#\{\text{union promotions at }u\text{ after infection}\},
+\]
+and let $B_u(t)$ count its frozen outward neighbours subsequently
+infected from $u$.  A simultaneous promotion in the two marginals
+counts once in $R_u$, even though two newborn families are charged.
+Initially $(Z_u,R_u,B_u)=(1,0,0)$.
+
+There are at most $d-1$ frozen outward candidates.  For the initial
+root this follows from its inert stub; for all later infected cores
+one neighbour is their infected predecessor.  This is the reason the
+estimate below is a root-boundary increment estimate.
+
+Put $h(D)=1-1/D$.  Rewriting \eqref{erc:gain-rate} gives
+\[
+ a_u=D_u-c_u^\partial-
+       \sum_{v\sim u,\ v\text{ core}} h(D_v).
+\]
+Every still-uninfected frozen neighbour makes equal contributions in
+the two copies.  The infected predecessor and $B_u$ infected outward
+neighbours make at most $(1+B_u)/2$ difference, because
+$h(D)\in[1/2,1)$ for a core.  For each union promotion after infection,
+a paired child contributes at most $1/2$ difference; a single child
+contributes $h(D)<1$.  Consequently, at every time,
+\begin{equation}\label{erc:local-discrepancy}
+ |a_u^+-a_u^-|
+ \le Z_u+R_u+\frac{1+B_u}{2}.
+\end{equation}
+This bound includes arbitrary repeated feedback through the predecessor
+and through all already infected or charged branches.
+
+An unpaired leaf gain changes $Z_u$ by one in absolute value; its total
+rate is $|a_u^+-a_u^-|$.  A union promotion increments $R_u$ by one
+at rate $\max(b_u^+,b_u^-)\le1$.  For an uninfected frozen outward
+neighbour $v$, the only unequal term in its aggregate leaf-gain rate
+is the contribution from $u$.  Its infection rate is therefore
+\begin{equation}\label{erc:edge-rate}
+ \left|\frac1{D_u^+}-\frac1{D_u^-}\right|
+ \le \frac{Z_u}{d(d+Z_u)}.
+\end{equation}
+Full degrees never decrease, which proves the inequality even if the
+sign of the degree difference changes.  In particular the birth rate
+of $B_u$ is at most $(d-1)Z_u/[d(d+Z_u)]\le1$.
+
+It follows that
+\[
+ Q_u=Z_u+R_u+B_u
+\]
+has unit upward jumps with total predictable rate at most
+\begin{equation}\label{erc:reservoir-rate}
+ Z_u+R_u+\frac{1+B_u}{2}+1+1
+ \le Q_u+\frac52.
+\end{equation}
+Downward jumps can only improve the comparison.  The absence of a
+simultaneous promotion and neighbour infection is important here:
+it follows from the aggregate-channel coupling, not from coupling
+the original source clocks.
+
+Conditionally at infection, $Q_u$ is thus dominated by a pure birth
+process $Y$ started at $1$, with transition rate
+\begin{equation}\label{erc:dominating-chain}
+ n\longrightarrow n+1\quad\text{at rate }n+\frac52.
+\end{equation}
+For example, a common Poisson measure constructs this domination,
+since the upward rate bound is increasing in the current state;
+downward jumps of $Q_u$ preserve the order.  The comparison is uniform
+in the whole prior history and all states of the attached branches.
+
+\subsection{An exact rational reproduction certificate}
+
+For $d\ge2$ and $s>0$ define
+\begin{equation}\label{erc:mass}
+ m_d(s)=\frac{d-1}{d}\,
+ \mathbb E\int_0^\infty e^{-st}\frac{Y(t)}{d+Y(t)}\,dt,
+ \qquad m(s)=\sup_{d\ge2}m_d(s).
+\end{equation}
+The compensator of the infections from $u$, together with
+\eqref{erc:edge-rate} and the increasing function $z/(d+z)$, gives
+\begin{equation}\label{erc:offspring}
+ \mathbb E\left[
+   \sum_{v:\,u\to v}e^{-s(\tau_v-\tau_u)}
+      \,\middle|\,\mathcal F_{\tau_u}\right]
+ \le m_d(s)\le m(s).
+\end{equation}
+No independence of different infected cores is asserted or needed.
+
+\begin{lemma}[A rational discount below the original exponent]
+\label{erc:certificate}
+For every $s\ge s_0:=11/20$,
+\begin{equation}\label{erc:subcritical-mass}
+ m(s)\le\frac{19}{20}<1.
+\end{equation}
+\end{lemma}
+\begin{proof}
+It suffices to use $s=s_0$, by monotonicity in the discount.
+Let $w_n$ be the expected discounted occupation time of state $n$ for
+\eqref{erc:dominating-chain}.  The exponential holding times give
+\[
+ w_1=\frac{20}{81},\qquad
+ w_{n+1}=w_n\frac{20n+50}{20n+81},\qquad
+ \sum_{n\ge1}w_n=\frac{20}{11}.
+\]
+Consequently, for every integer $N\ge1$,
+\begin{equation}\label{erc:rational-upper}
+ m_d(s_0)
+ =\frac{d-1}{d}\left(\frac{20}{11}
+                  -d\sum_{n\ge1}\frac{w_n}{d+n}\right)
+ \le\frac{d-1}{d}\left(\frac{20}{11}
+                  -d\sum_{n=1}^N\frac{w_n}{d+n}\right).
+\end{equation}
+With $N=16$, exact rational comparison for $2\le d\le63$ gives a
+maximum of the displayed upper bounds at $d=6$, equal to
+\[
+ \frac{1669075573443141901662377825}
+      {1772128093509182310390306279}
+ <\frac{19}{20}.
+\]
+The complete finite calculation, using only integer arithmetic and
+rational fractions, is in \texttt{scripts/verify\_infection\_kernel.py}.
+
+For the remaining degrees, the mean of $Y$ is
+$\mathbb EY(t)=(7/2)e^t-5/2\le(7/2)e^t$.  Hence, for $d\ge64$,
+\begin{align*}
+ m_d(s_0)
+ &\le\int_0^\infty e^{-t/2}
+            \min\{1,(7/(2d))e^t\}\,dt\\
+ &=4\sqrt{\frac7{2d}}-\frac7d
+ \le\sqrt{\frac78}<\frac{15}{16}<\frac{19}{20}.
+\end{align*}
+The first inequality uses $s_0\ge1/2$ and
+$Y/(d+Y)\le\min\{Y/d,1\}$; the expectation of this minimum is
+bounded by the minimum of the expectation and one.  The last radical
+comparison is equivalently the rational inequality
+$7/8<(15/16)^2$.  This covers every integer degree.
+\end{proof}
+
+Generation by generation in the infection tree, conditional expectation
+and \eqref{erc:offspring} now give
+\begin{equation}\label{erc:total-infections}
+ \mathbb E\sum_{u\text{ infected}}e^{-s\tau_u}
+ \le\sum_{k\ge0}m(s)^k\le20
+ \qquad(s\ge s_0).
+\end{equation}
+For a fully formal construction, first stop at finite population and
+infection generation, use the compensator identities there, and then
+pass to the limit by Tonelli and monotone convergence.  All finite
+horizons are nonexplosive by real-population Yule domination.
+
+\subsection{The old-state boundary gradient}
+
+\begin{theorem}[One boundary leaf has a uniform resolvent effect]
+\label{erc:gradient}
+For every finite retained inert state $y$, every finite $T$, and
+$s\ge11/20$, addition of one leaf at its root satisfies
+\begin{equation}\label{erc:gradient-bound}
+ \boxed{
+ |V_{s,T}(y^+)-V_{s,T}(y)|
+ \le\frac{2W_T(s)}{s(1-m(s))}
+ \le\frac{40}{s}W_T(s).
+ }
+\end{equation}
+The bound is uniform in the number of old cores, their degrees, and
+their attached finite fringes.
+\end{theorem}
+\begin{proof}
+Every eligible common core is present in both copies for all time
+after its paired birth.  Those cores contribute equally to the two
+core counts, whether or not they are eventually infected.  Every other
+core belongs to a unique charged family: take its first ancestor born
+from an eligible infected core after that core's infection.  These
+families are disjoint within each marginal.  This partitions all
+possible contributions to the absolute core-count difference.
+
+At each union promotion from an infected core, at most two newborn
+families are charged.  Conditionally on their birth time and the joint
+present, each marginal has the correct future generator, so each
+remaining discounted reward is bounded by $W_T(s)$.  This assertion
+does not require independence from the other family or from the
+infection exploration.  The birth time is a stopping time and every
+such family starts in an admissible newborn environment.
+
+The union-promotion rate at $u$ is at most one.  Its expected discounted
+charge is therefore at most
+\[
+ 2W_T(s)\,\mathbb E\int_{\tau_u}^T e^{-st}\,dt
+ \le\frac{2W_T(s)}s\,\mathbb E e^{-s\tau_u}.
+\]
+Sum over infected eligible cores and use
+\eqref{erc:total-infections}, or its sharper bound $1/(1-m(s))$.
+Pathwise domination of the absolute count difference by the charged
+family counts and Tonelli's theorem give \eqref{erc:gradient-bound}.
+Every occurrence of $W_T$ has finite horizon, so the argument is not
+assuming the uniform resolvent conclusion it will prove.
+\end{proof}
+
+\section{Closing the uniform-growth gap}
+\label{erc:closure-section}
+
+For an actual newborn environment, let $\tau_M$ be the first time its
+external parent degree exceeds $M$, taking $\tau_M=0$ if it is already
+larger or if the parent is an inert stub.  Let the hybrid agree with the actual process through
+$\tau_M$, and thereafter delete parent-to-root arrivals.  Write
+$A_M(t)$ for the supremum of its retained core mean.  Theorem~\ref{pup:hybrid} proves that if
+$\mu<\lambda$ and $\delta=1/(M+1)<\lambda-\mu$, then
+\begin{equation}\label{erc:hybrid-assumption}
+ \gamma_M:=\limsup_{t\to\infty}t^{-1}\log A_M(t)<\lambda.
+\end{equation}
+This theorem includes arbitrary old states at the
+crossing.  Only this strict gap for each sufficiently large fixed $M$
+is needed below; no bound on its size uniform in $M$ is required.
+
+\begin{proposition}[A return coefficient independent of the exit mass]
+\label{erc:absorb}
+For every $s\ge11/20$ and finite $T$,
+\begin{equation}\label{erc:absorb-finite}
+ W_T(s)\le\int_0^T e^{-st}A_M(t)\,dt
+                 +\frac{40}{s^2(M+1)}W_T(s).
+\end{equation}
+In particular, if $s>\gamma_M$ and $40/[s^2(M+1)]<1$, then
+\begin{equation}\label{erc:absorb-bound}
+ W(s)\le
+ \frac{\int_0^\infty e^{-st}A_M(t)\,dt}
+      {1-40/[s^2(M+1)]}<\infty,
+ \qquad\lambda\le s.
+\end{equation}
+\end{proposition}
+\begin{proof}
+After the crossing, the actual retained component has conditional
+generator $\mathcal L_\infty+q_t\Delta_{\rm root}$, where
+$0\le q_t\le\delta$.  For $f_r(y)=V_{s,r}(y)$, the finite-horizon
+resolvent identity is
+\[
+ \partial_rf_r=C+(\mathcal L_\infty-s)f_r,\qquad f_0=0.
+\]
+Apply the time-dependent discounted Dynkin identity to
+$e^{-st}f_{T-t}(Y_t)$ from $\tau_M\wedge T$ through $T$, with no
+post-crossing term on $\{\tau_M\ge T\}$.  The reward before
+$\tau_M$ and the inert continuation value at $\tau_M$ give exactly
+the hybrid reward through $T$.  The remaining term is
+\[
+ \mathbb E_x\int_{\tau_M}^T e^{-st}q_t
+             \Delta_{\rm root}V_{s,T-t}(Y_t)\,dt.
+\]
+The theorem above, $W_{T-t}(s)\le W_T(s)$, and
+$\int_0^T e^{-st}dt\le1/s$ bound this term from above by
+$40\delta W_T(s)/s^2$.  Localization is justified by finite-horizon
+population moments; the resulting boundary increment is already
+uniform in the old state.  Taking the supremum over initial newborn
+environments proves \eqref{erc:absorb-finite} without interchanging a
+supremum and an integral.
+
+The coefficient is strictly less than one, so division is legitimate
+at finite $T$.  Monotone convergence then proves finiteness of $W$.
+Finally each $F_x(t)$ is nondecreasing, and hence
+$F_x(t)\le se^{st}\int_0^\infty e^{-su}F_x(u)du\le se^{st}W(s)$.
+Taking the supremum over $x$ gives $\lambda\le s$.
+\end{proof}
+
+\begin{theorem}[Equality of the original and uniform exponents]
+\label{erc:equality}
+The original friend-tree mean exponent and the uniform newborn mean
+exponent agree:
+\begin{equation}\label{erc:lambda-mu}
+ \boxed{\lambda=\mu.}
+\end{equation}
+\end{theorem}
+\begin{proof}
+The existing comparison gives $\mu\le\lambda$, and the certified lower
+bound on the original exponent gives $\mu\ge0.565>11/20$.
+Suppose $\mu<\lambda$.  Choose a fixed integer $M\ge132$ large enough
+that $1/(M+1)<\lambda-\mu$.  Then \eqref{erc:hybrid-assumption} holds.
+Choose
+\[
+ \max\{11/20,\gamma_M\}<s<\lambda.
+\]
+The elementary rational inequality
+$40/[(11/20)^2\cdot133]=16000/16093<1$ ensures
+$40/[s^2(M+1)]<1$.  Proposition~\ref{erc:absorb} therefore yields
+$\lambda\le s$, contradicting $s<\lambda$.
+\end{proof}
+

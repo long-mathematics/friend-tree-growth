@@ -1,0 +1,22 @@
+[
+  {
+    "source": "friend_tree_growth.tex",
+    "pdf": "friend_tree_growth.pdf",
+    "pages": 45,
+    "bytes": 546148,
+    "sha256": "7db37e0453712d754ecb41ed9e7c8bfe32464ddad15367717b9360a677036233",
+    "passes": 3,
+    "unresolved_references": false,
+    "overfull_boxes": false
+  },
+  {
+    "source": "local_redirection_irrationality.tex",
+    "pdf": "local_redirection_irrationality.pdf",
+    "pages": 11,
+    "bytes": 372978,
+    "sha256": "79f52368b1e6b38942886699995f203c4689f71feaecc060eacd14dc572c26bc",
+    "passes": 3,
+    "unresolved_references": false,
+    "overfull_boxes": false
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "independent_phi_states": 20,
+  "independent_boundary_limit_states": 20,
+  "exact_generator_checks": 60,
+  "leaf_jump_checks": 103,
+  "promotion_jump_checks": 94,
+  "nested_kernel_intervals": 14
+}

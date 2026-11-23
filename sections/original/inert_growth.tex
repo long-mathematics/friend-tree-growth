@@ -1,0 +1,149 @@
+\section{The inert process has the original mean exponent}
+\label{gs:inert-exponent-section}
+
+Let $\mathcal X$ be the class of finite birth environments, allowing
+inert boundary stubs, with the tag initially satisfying $L_u=c_u=1$.
+For $x\in\mathcal X$, let $Z_m(t;x)$ count its future core descendants
+of genealogical generation $m$ born by time $t$, and put
+\[
+ F_x(t)=1+\sum_{m\ge1}\mathbb E_x Z_m(t;x).
+\]
+The initial tag contributes the term $1$; other initial core vertices
+are not counted. Write $x_\infty$ for the tag with one leaf and one
+inert parent stub, and $F_\infty=F_{x_\infty}$.
+
+The input from~\cite{Uzay} is the original free-tree mean exponent
+\[
+ F_2(t):=\mathbb E_{\mathrm{edge}} C(t)
+       =e^{\mu t+o(t)}.
+\]
+We also use the planted-branch comparison proved in its
+\texttt{proofs/existence.md} in Lemma 4.1(c), Corollary 5.3, and Lemma 6.1 of that source. We state precisely the portion used here.
+Fix $M\ge2$, sufficiently small $\epsilon>0$, and
+$k\ge6M/\epsilon$. Put
+\[
+ \eta=b(\epsilon)\log2+\frac9M,
+ \qquad b(\epsilon)=7/\log(1/\epsilon)\longrightarrow0
+       \quad(\epsilon\downarrow0).
+\]
+For all sufficiently large $t$, there is a rooted $k$-vertex free tree
+$(T,v)$ for which the following lower comparison holds. If $T$ is
+planted as a branch with its root $v$ attached to an exterior vertex
+of full degree at least $M$, its future expected internal core count
+is at least
+\begin{equation}\label{gs:planting-input}
+ \frac1k e^{-\eta t}
+       \bigl[F_2(t)-k-O(e^{-t})\bigr].
+\end{equation}
+The exterior may evolve freely. The constants are uniform over the
+finite collection of rooted $k$-vertex seeds. The seed and root can
+depend on $t$, but are selected from their laws before planting.
+
+For clarity, the comparison weights a free reference history by
+\[
+ e^{-t/M}\prod_{\tau\le t:\,\text{source }v}
+       \frac{d_v(\tau-)}{d_v(\tau-)+1},
+\]
+where $d_v$ is its internal reference degree. A high-degree original
+vertex in the reference history gives the factor $e^{-\eta t}$;
+averaging over its $k$ possible choices gives $1/k$. The inequality
+$F_2(t)\le k+\max_{|T|=k}\mathbb E C_T(t)$ supplies the displayed
+free-tree term. This is the cited comparison input, not a new
+independence assumption about the two sides of an edge.
+
+\begin{lemma}[Uniform finite preparation]\label{gs:uniform-preparation}
+For fixed $M,k$, there are $h<\infty$ and $p>0$ such that, from every
+$x\in\mathcal X$, any chosen rooted $k$-vertex seed $(T,v)$ can be
+planted by time $h$ with probability at least $p$. Every core vertex in
+the branch belongs to the original tag's future core genealogy, and its
+root is attached to that tag, whose full degree is then at least $M$.
+Both constants are uniform
+in the exterior environment and in the rooted seed.
+\end{lemma}
+
+\begin{proof}
+If the tag has a real parent, reserve potential parent-to-tag arrows
+at rate $1/2$ and accept each with probability $2/D_p(t)$. The parent's
+full degree is at least two and never decreases, so this is an exact
+construction. Suppressing these potential arrows during a fixed
+preparation interval costs only $e^{-h/2}$, independently of the
+retained component's clocks. For a stub parent the same suppression
+can be imposed on an independent unused stream. The preparation can
+therefore be performed in the inert-parent process.
+
+First keep the tag silent for one unit of time and let its one leaf
+produce enough Yule offspring that the tag's full degree is at least
+$M$. This has positive probability. In a second unit interval require
+exactly one tag ring, choosing a leaf, and keep the resulting two-vertex
+branch silent until that interval ends. The leaf-choice probability is
+at least $(M-1)/M$, since all growth before that promotion increases
+the number of leaves at the tag. Its full degree is unchanged by the
+promotion.
+
+Starting with that branch edge, build the specified rooted tree by
+adjoining its remaining vertices in an order in which each new vertex
+has an already present parent. During each unit interval keep the tag
+silent and prescribe one ring of an internal neighbour of the desired
+attachment vertex, its choice, and silence of all other internal clocks.
+Also require the newborn to remain silent until the interval ends.
+All relevant internal degrees are at most $k+1$, so every prescribed
+choice has probability at least $1/(k+1)$. Old leaves outside the branch
+can grow freely; they only increase the exterior tag's degree.
+
+There are finitely many prescribed clocks and choices and finitely many
+rooted seeds of size $k$. Taking their minimum probability gives
+$p>0$, with a common preparation time, for example $h=k$.
+\end{proof}
+
+\begin{theorem}[Uniform lower growth and the inert exponent]
+\label{gs:inert-mu}
+For every $\varepsilon>0$ there are $c_\varepsilon>0$ and
+$t_\varepsilon<\infty$ such that
+\begin{equation}\label{gs:uniform-lower-time}
+ \inf_{x\in\mathcal X}F_x(t)
+       \ge c_\varepsilon e^{(\mu-\varepsilon)t}
+       \qquad(t\ge t_\varepsilon).
+\end{equation}
+Moreover the inert process has the exact mean exponent
+\begin{equation}\label{gs:inert-mean-limit}
+ \lim_{t\to\infty}\frac{\log F_\infty(t)}t=\mu.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+After the uniform preparation, apply~\eqref{gs:planting-input} to its
+fresh branch. Every reference core counted by that comparison is an
+actual future descendant of the original tag. Thus, for all large $t$,
+\begin{equation}\label{gs:uniform-planted-bound}
+ \inf_{x\in\mathcal X}F_x(h+t)
+ \ge\frac pk e^{-\eta t}
+          \bigl[F_2(t)-k-O(e^{-t})\bigr].
+\end{equation}
+Uniformity of $p,h$ over the finite seed set permits the optimizing
+seed to vary with $t$. Fix the comparison parameters before taking
+$t\to\infty$, and then let $\eta\downarrow0$. This proves
+\eqref{gs:uniform-lower-time}, and in particular the required lower
+bound for the exponent of $F_\infty$.
+
+For the upper bound, embed the inert tag and its leaf in a finite real
+tree $T_M$ whose parent has full degree $M$: give the parent $M-1$
+additional leaves. Reserve its potential arrow to the tag at rate
+$1/M$, accepting with probability $M/D_p(t)$. Before the first
+potential arrow, the retained tag component follows exactly the inert
+law; a tag ring choosing the exterior affects only the parent and
+does not change the retained component. The potential-arrow stream is
+independent of the inert component's drivers. Therefore
+\begin{equation}\label{gs:inert-upper-embedding}
+ e^{-t/M}F_\infty(t)\le\mathbb E C_{T_M}(t).
+\end{equation}
+Every fixed finite tree is reachable from the original edge by a fixed
+time with positive probability. The Markov property consequently gives
+constants $a_M,b_M<\infty$ with
+\[
+ \mathbb E C_{T_M}(t)\le a_MF_2(t+b_M).
+\]
+For fixed $M$,~\eqref{gs:inert-upper-embedding} implies
+$\limsup t^{-1}\log F_\infty(t)\le\mu+1/M$. Letting $M\to\infty$
+finishes the proof.
+\end{proof}
+

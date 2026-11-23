@@ -1,0 +1,164 @@
+\section{Introduction and main results}
+\label{intro:section}
+
+The random friend tree grows by selecting a uniformly random existing
+vertex, selecting one of its neighbours uniformly, and attaching a new
+leaf to that neighbour. Krapivsky and Redner introduced the model in
+their study of emergent network modularity~\cite{KR}. Its number $C_n$
+of non-leaf vertices grows on a nontrivial power scale. We study the
+exponent $\mu$ characterized by
+\[
+ \mathbb E C_n=n^{\mu+o(1)}.
+\]
+The existence of this exponent and its identification with the
+almost-sure logarithmic exponent are inputs from Uzay's
+computer-assisted work~\cite{Uzay}. That work gives
+$0.5650\le\mu\le0.5665$, excluding $17/30$.
+The broader probabilistic structure of random friend trees is developed
+in~\cite{AB}.
+
+Our main questions concern exact characterization and effective
+approximation. An infinite operator equation can identify a real number
+without supplying a terminating algorithm for its approximation.
+Likewise, numerical evidence of agreement between two initial
+environments does not imply that their mean exponents agree uniformly
+over all environments. We address both issues by controlling the
+effect of a single boundary leaf on an arbitrary old component.
+
+We embed the tree process in continuous time by assigning a rate-one
+source clock to each real vertex. A \emph{core} is a vertex of full
+degree at least two. In a retained component, the root has one inert
+parent stub: it contributes one to the root's degree, supplies no
+incoming leaves, and produces a null transition when selected. The
+\emph{inert newborn} consists of a root core, one real leaf, and this
+stub. Write $F_\infty(t)$ for its expected number of cores.
+
+For a newborn core in a finite environment $x$, let $F_x(t)$ be the
+expected number of its future core descendants, including itself, and
+put
+\[
+ G(t)=\sup_xF_x(t),\qquad H(t)=1+\int_0^tG(u)\,du.
+\]
+The admissible class and its harmless finite inert-boundary completion
+are specified in Section~\ref{model:section}. In the inert newborn
+process, let $\sigma_v$ be the birth time of core $v$, and give the
+initial core genealogical depth zero. Define
+\[
+ A_m^\infty(s)=\mathbb E_\infty
+   \sum_{\operatorname{depth}(v)=m}e^{-s\sigma_v},\qquad s>0.
+\]
+
+\begin{theorem}[Exact characterization and effective computation]
+\label{main:computation}
+The limits
+\[
+ r_\infty(s)=\lim_{m\to\infty}A_m^\infty(s)^{1/m}
+ \quad(s>0)
+\]
+exist and define a positive, continuous, strictly decreasing function.
+Its unique crossing of one is the original friend-tree exponent:
+\[
+ r_\infty(\mu)=1.
+\]
+Moreover,
+\[
+ \lim_{t\to\infty}\frac{\log G(t)}t
+ =\mu
+ =\inf_{T\in\mathbb Q_{>0}}\frac{\log H(T)}T.
+\]
+Every fixed coefficient $A_m^\infty(s)$ at rational $s>0$, and every
+$H(T)$ at rational $T>0$, is effectively computable. There is an
+algorithm which, on input a positive rational $\varepsilon$, halts
+with rational $a<b$ satisfying
+\[
+ a<\mu<b,\qquad b-a<\varepsilon.
+\]
+\end{theorem}
+
+The proof combines Theorems~\ref{gc:root}, \ref{calc:calculator},
+\ref{erc:equality}, and \ref{ecc:computable}. The lower certificate is
+particularly explicit:
+\[
+ s<\mu\quad\Longleftrightarrow\quad
+ A_m^\infty(s)>12(s+3)\quad\hbox{for some finite }m.
+\]
+Finite positive rational-history sums eventually witness every strict
+lower inequality. The submultiplicative time-block formula supplies
+the complementary complete search for strict upper inequalities.
+The resulting algorithm has a proof of termination and a prescribed
+error, but no useful complexity bound is established here.
+
+For a retained state $y$, let $P_t^\infty$ be the inert semigroup and
+write
+\[
+ V_s(y)=\int_0^\infty e^{-st}P_t^\infty C(y)\,dt,
+ \qquad
+ W(s)=\sup_x\int_0^\infty e^{-st}F_x(t)\,dt.
+\]
+If $y^+$ is obtained by adding a leaf at the retained root, the main
+uniform estimate is as follows.
+
+\begin{theorem}[Boundary gradient and robustness]
+\label{main:boundary}
+For every $s>\mu$, the preceding quantities are finite, and
+\[
+ |V_s(y^+)-V_s(y)|\le\frac{40}{s}W(s)
+\]
+uniformly over all finite retained states $y$. A finite time-block
+certificate computes an explicit upper bound for the right side.
+Fix $Q<\infty$ and permit an arbitrary nonanticipating root-leaf input
+with predictable rate $0\le q_t\le Q$. Starting from the inert newborn,
+let $F_Q^-(t)$ and $F_Q^+(t)$ be the infimum and supremum of the expected
+core counts over these policies. Then
+\[
+ \lim_{t\to\infty}\frac{\log F_Q^-(t)}t
+ =\lim_{t\to\infty}\frac{\log F_Q^+(t)}t=\mu.
+\]
+The conclusion includes policies selected separately for each horizon,
+provided that the same bound $Q$ applies.
+\end{theorem}
+
+The finite-horizon gradient is proved before uniform resolvent
+finiteness is known. Its proof uses a disagreement exploration with
+discounted reproduction mass at most $19/20$ at $s=11/20$. This avoids
+assuming the conclusion in the comparison. Theorems~\ref{erc:gradient}
+and~\ref{bcl:matching} give the precise statements and proofs.
+
+We also refine the existing rational motif certificate.
+
+\begin{theorem}[A certified numerical refinement]
+\label{main:bound}
+The original exponent satisfies
+\[
+ \frac{113}{200}\le\mu\le
+ \frac{2832242711}{5000000000}=0.5664485422.
+\]
+The lower endpoint is imported from~\cite{Uzay}. The upper endpoint
+follows from an exact rational modification of its upper motif
+potential, with a positive reserve in every vertex row.
+\end{theorem}
+
+This is a refinement of an existing computer-assisted certificate.
+It reduces the interval width by approximately $3.43\%$; it does not
+give high-precision digits of $\mu$. Section~\ref{numerical:section}
+states the all-degree extension and the exact verification procedure.
+
+\paragraph{Scope of the results.}
+This paper proves mean exponential growth statements, exact
+characterizations, and computability, using the stated exponent
+existence input. It does not prove a sharp asymptotic
+$\mathbb E C_n\sim c n^\mu$, a positive almost-sure amplitude, or
+irrationality or transcendence of $\mu$. A separate companion draft
+studies independent branching representations and irrationality for
+modified local redirection models~\cite{Local}; those exponents are
+distinct from the original exponent studied here.
+
+\paragraph{Organization.}
+Sections~\ref{model:section}--\ref{calc:section} give the exact kernel,
+inert comparison, pressure equation, and finite coefficient calculator.
+The uniform mean and locality estimates are followed by finite-window
+supersolutions, controlled moments, and the bounded-parent likelihood
+argument. Section~\ref{erc:section} proves the boundary gradient;
+Section~\ref{erc:closure-section} identifies the uniform exponent.
+The final sections derive computability, construct the resolvent,
+prove boundary robustness, and give the numerical certificate.

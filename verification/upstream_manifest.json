@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/uzay-eth/friend-tree-exponent",
+  "commit": "ba2ec2e1935e0858e6bae2b40a9ee07c9b5665aa",
+  "purpose": "Immutable inputs for the corrected motif certificate; not the revision used to cite the current exponent-existence proof.",
+  "files": {
+    "LICENSE": "3bb54c2c2c4590d7b3e3b1c41fdb083d33049faae89a1f3f06fa515226646beb",
+    "verify/motif-bracket/cert_format.h": "7522710ab05fe79c6306711476a78f395476c66c720b10c0215d35fc2b48f701",
+    "verify/motif-bracket/cert_build.c": "beda03931551b6da514fd6f14218ec769ef73c982b2f483fa683fa0a3902b8c2",
+    "verify/motif-bracket/cert_verify_gmp.c": "0bea8e43d1b01f84ec39326b9b7d5d2a8f40f64a9bd9ad6e156ae52d6c011af0",
+    "verify/motif-bracket/verify_python_cross.py": "025f702f03aff9bf74074d8c07a0c7770fac95af46cfc0efdac1cd6914250aec"
+  },
+  "certificate": {
+    "name": "upper_5665.bin",
+    "sha256": "3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe",
+    "bytes": 138446792
+  },
+  "license": {
+    "verify_code": "MIT, copyright (c) 2026 Can Uzay",
+    "text_and_proofs": "CC BY 4.0; no upstream proof text is downloaded by the verification runner"
+  }
+}

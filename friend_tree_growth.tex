@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype,booktabs}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,citecolor=blue!50!black]{hyperref}
+\hypersetup{pdftitle={Effective computation and boundary robustness of the random friend-tree exponent},pdfauthor={Christopher D. Long}}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\title{Effective computation and boundary robustness\\
+of the random friend-tree exponent}
+\author{Christopher D. Long}
+\date{Research draft --- November 23, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The random friend tree selects a uniformly random existing vertex and
+attaches a new leaf to a uniformly random neighbour of that vertex.
+Using the established existence of its mean growth exponent $\mu$, we
+derive an exact characteristic equation and prove effective two-sided
+computability. Integrating all leaf-clock events gives an explicit
+beta kernel. The discounted genealogical coefficients of an inert
+newborn component have a genuine generation limit $r_\infty(s)$,
+which is continuous, strictly decreasing, and satisfies
+$r_\infty(\mu)=1$. A uniform estimate for the resolvent effect of one
+boundary leaf identifies the exponent of the supremum over all newborn
+environments with $\mu$. Finite-profile time-block calculations then
+provide complete upper certificates, complementing the exact positive
+lower certificates and giving a terminating approximation algorithm
+at every rational tolerance. The same resolvent estimate proves that
+every bounded predictable root-leaf input has mean exponent $\mu$,
+uniformly over the input policy. Finally, a rational correction of
+the existing motif potential improves the certified upper bound to
+$0.5664485422$. The analysis does not classify the arithmetic nature
+of the original exponent or assert an efficient high-precision solver.
+\end{abstract}
+\clearpage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+
+\input{sections/original/introduction}
+\input{sections/original/model_kernel}
+\input{sections/original/inert_comparison}
+\input{sections/original/inert_growth}
+\input{sections/original/pressure}
+\input{sections/original/coefficient_computation}
+\input{sections/original/uniform_means}
+\input{sections/original/locality}
+\input{sections/original/finite_time_computation}
+\input{sections/original/finite_window}
+\input{sections/original/controlled_moments}
+\input{sections/original/parent_stabilization}
+\input{sections/original/likelihood}
+\input{sections/original/hybrid_gap}
+\input{sections/original/boundary_gradient}
+\input{sections/original/computability}
+\input{sections/original/canonical_resolvent}
+\input{sections/original/boundary_robustness}
+\input{sections/original/numerical_certificate}
+\input{sections/original/discussion}
+
+\begin{thebibliography}{9}
+
+\bibitem{KR}
+P. L. Krapivsky and S. Redner,
+\emph{Emergent Network Modularity},
+Journal of Statistical Mechanics: Theory and Experiment (2017), 073405.
+\href{https://doi.org/10.1088/1742-5468/aa7a3f}{doi:10.1088/1742-5468/aa7a3f}.
+\href{https://arxiv.org/abs/1706.01514}{arXiv:1706.01514}.
+
+\bibitem{AB}
+L. Addario-Berry, S. Briend, L. Devroye, S. Donderwinkel,
+C. Kerriou, and G. Lugosi,
+\emph{Random Friend Trees}, Random Structures \& Algorithms
+\textbf{69} (2026), e70082.
+\href{https://doi.org/10.1002/rsa.70082}{doi:10.1002/rsa.70082}.
+\href{https://arxiv.org/abs/2403.20185}{arXiv:2403.20185}.
+
+\bibitem{Uzay}
+Can Uzay,
+\emph{The random friend tree exponent is not 17/30},
+proofs and exact-arithmetic verification repository, 2026.
+Existence and planted-branch input: \texttt{proofs/existence.md},
+especially Lemma 4.1(c), Corollary 5.3, and Lemma 6.1;
+almost-sure identification: \texttt{proofs/almost-sure-exponent.md}.
+Revision
+\href{https://github.com/uzay-eth/friend-tree-exponent/tree/88f2f9c8c3ebc1b4e0c980db6afd97d29f3df176}{\texttt{88f2f9c8c3ebc1b4e0c980db6afd97d29f3df176}}.
+
+\bibitem{UzayTables}
+Can Uzay, upper motif certificate in
+\emph{The random friend tree exponent is not 17/30}, 2026,
+\texttt{verify/motif-bracket/}.
+Numerical inputs pinned at revision
+\href{https://github.com/uzay-eth/friend-tree-exponent/tree/ba2ec2e1935e0858e6bae2b40a9ee07c9b5665aa}{\texttt{ba2ec2e1935e0858e6bae2b40a9ee07c9b5665aa}}.
+The exact source and binary hashes are recorded in the companion
+repository's upstream manifest.
+
+\bibitem{Local}
+C. D. Long,
+\emph{Growth and irrationality in local redirection trees},
+companion research draft, November 23, 2026.
+Source and PDF: \texttt{local\_redirection\_irrationality.tex} and
+\texttt{local\_redirection\_irrationality.pdf} in the same repository.
+
+\end{thebibliography}
+\end{document}

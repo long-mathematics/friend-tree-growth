@@ -1,0 +1,50 @@
+\subsection{Effective computation at each fixed time}
+\label{profile:time}
+
+For rational $T>0$, the preceding pruning construction computes both
+$G(T)$ and $H(T)$ with any prescribed rational accuracy. Its exterior
+potential event is independent of the future tagged potential
+genealogy, and both actual genealogies are subsets of that genealogy.
+The potential total core count has mean $e^t$. Consequently, uniformly
+for $0\le t\le T$,
+\begin{equation}\label{profile:time-error}
+ |F_x(t)-F_{\pi_{R,M}x}(t)|
+ \le \varepsilon_{R,M}(T)
+ :=e^T\left(\frac{T^R}{R!}+\frac{e^T-1}{M}\right).
+\end{equation}
+If $\mathcal P_{R,M}$ is the finite set of pruned profiles, then
+\begin{equation}\label{profile:time-max}
+ \max_{P\in\mathcal P_{R,M}}F_P(t)
+ \le G(t)\le
+ \max_{P\in\mathcal P_{R,M}}F_P(t)+\varepsilon_{R,M}(T).
+\end{equation}
+The first inequality uses the admissibility of each profile, proved
+by finite inert-boundary completion in Section~\ref{model:section}.
+Choose $R,M$ effectively to make the displayed error arbitrarily small.
+
+For a fixed profile with $n$ real vertices, enumerate the finite state
+space with real population at most $N$, including genealogical marks,
+and kill on the next birth. All transition rates are rational. If
+$Y_n(t)$ is a Yule process started at $n$, the omitted mean is at most
+\begin{equation}\label{profile:population-error}
+ \mathbb E[Y_n(t);Y_n(t)>N]
+ \le\frac{\mathbb EY_n(t)^2}{N}
+ =\frac{n(n+1)e^{2t}-ne^t}{N}.
+\end{equation}
+Indeed, the real birth rate is at most the population; inert choices
+are null. Couple with $Y_n$ so that a crossing of the retained cutoff
+forces $Y_n(t)>N$, and use $C_{\rm tag}(t)\le Y_n(t)$.
+
+A rational uniformization rate exceeding every finite-state exit rate
+expresses its matrix exponential as a Poisson-weighted series of
+powers of a rational substochastic matrix. Its partial sums and a
+certified Poisson tail give rational enclosures. Elementary rational
+enclosures for exponentials make \eqref{profile:population-error}
+effective as well.
+
+Finally every $F_x$ is $e^T$-Lipschitz on $[0,T]$: its core-birth
+intensity is at most $F_x(t)\le e^t$. The supremum $G$ has the same
+Lipschitz constant. Rational-grid quadrature, combined with
+\eqref{profile:time-max} and the population cutoff, computes
+$H(T)=1+\int_0^TG(t)\,dt$. This argument concerns a fixed time and
+uses no convergence rate for $t^{-1}\log G(t)$.

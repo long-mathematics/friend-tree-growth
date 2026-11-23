@@ -1,0 +1,236 @@
+\section{Irrationality by arithmetic specialization}
+\label{vana:section}
+
+The modified VAN models admit an arithmetic specialization argument
+that is not presently available for the original isotropic-redirection
+model.  The key distinction is that their exact characteristic equation
+uses a single explicitly controlled transform,
+\begin{equation}\label{vana:F}
+ F(s)=\int_0^1 x^s e^{x-1}\,dx,\qquad s>-1.
+\end{equation}
+We first prove the required specialization theorem directly from the
+classical Siegel--Shidlovskii theorem.
+
+\begin{theorem}[Transcendence of rational specializations]
+\label{vana:rational-specialization}
+For every rational number $r>-1$, the number $F(r)$ is transcendental.
+\end{theorem}
+
+\begin{proof}
+Put $\lambda=r+1>0$ and define
+\begin{equation}\label{vana:f}
+ f_\lambda(z)=\sum_{n=0}^\infty\frac{z^n}{(\lambda+1)_n}
+             =\sum_{n=0}^\infty c_n\frac{z^n}{n!},
+ \qquad c_n=\frac{n!}{(\lambda+1)_n},
+\end{equation}
+where $(u)_0=1$ and $(u)_n=u(u+1)\cdots(u+n-1)$.
+The ratio of successive terms proves that $f_\lambda$ is entire.
+Substituting $u=1-x$ in~\eqref{vana:F} and integrating the exponential
+series gives
+\begin{align}
+ F(r)
+ &=\sum_{n=0}^\infty\frac{(-1)^n}{n!}
+      \int_0^1u^n(1-u)^{\lambda-1}\,du\notag\\
+ &=\frac1\lambda
+      \sum_{n=0}^\infty\frac{(-1)^n}{(\lambda+1)_n}
+  =\frac{f_\lambda(-1)}{\lambda}.
+ \label{vana:beta-identity}
+\end{align}
+The interchange is justified by the uniformly absolutely convergent
+exponential series and the integrable weight
+$(1-u)^{\lambda-1}$.
+
+We verify the arithmetic conditions for $f_\lambda$ to be an
+$E$-function.  Write $\lambda=a/b$ with relatively prime positive
+integers $a,b$.  Then
+\begin{equation}\label{vana:coefficients}
+ c_k=\frac{b^k k!}{\prod_{j=1}^k(a+bj)}.
+\end{equation}
+We claim that the reduced denominators of all $c_0,\ldots,c_n$ divide
+the single integer
+\begin{equation}\label{vana:denominator}
+ D_n=\operatorname{lcm}(1,2,\ldots,a+bn).
+\end{equation}
+Indeed, if a prime $p$ divides $b$, it divides none of the factors
+$a+bj$, so it contributes no denominator.  If $p\nmid b$, the
+congruence $a+bj\equiv0\pmod{p^h}$ specifies one residue class
+modulo $p^h$.  Hence, for every $k\le n$,
+\[
+ \#\{1\le j\le k:p^h\mid a+bj\}
+ \le \left\lfloor\frac{k}{p^h}\right\rfloor+1.
+\]
+There are no such factors when $p^h>a+bk$.  Comparing the valuation
+of the denominator in~\eqref{vana:coefficients} with Legendre's
+formula for $v_p(k!)$ gives
+\[
+ \max\{0,-v_p(c_k)\}
+ \le \left\lfloor\log_p(a+bk)\right\rfloor
+ \le \left\lfloor\log_p(a+bn)\right\rfloor
+ =v_p(D_n).
+\]
+This proves the common-denominator assertion.
+The elementary bound
+$\log\operatorname{lcm}(1,\ldots,M)=O(M)$ therefore yields
+$\log D_n=O_\lambda(n+1)$.  Also
+\[
+ 0<c_k=\prod_{j=1}^k\frac{j}{\lambda+j}\le1.
+\]
+The coefficients are rational, so the same bound holds for all their
+algebraic conjugates.  Thus the logarithmic height of
+$(c_0,\ldots,c_n)$ is $O_\lambda(n+1)$, as required in the
+$E$-function definition.
+
+The coefficient recurrence yields
+\begin{equation}\label{vana:first-order}
+ z f_\lambda'(z)=(z-\lambda)f_\lambda(z)+\lambda.
+\end{equation}
+In particular, differentiation gives the homogeneous equation
+\[
+ z f_\lambda''(z)+(\lambda+1-z)f_\lambda'(z)-f_\lambda(z)=0,
+\]
+with coefficients in $\mathbb Q[z]$.  This completes the verification
+that $f_\lambda$ is an $E$-function.
+
+Every coefficient in~\eqref{vana:f} is nonzero, so $f_\lambda$ is
+not a polynomial.  An entire function algebraic over $\mathbb C(z)$
+must be a polynomial: a polynomial relation and the usual bound for
+roots of a polynomial give polynomial growth outside a disk, after
+which Cauchy's estimates force all sufficiently high Taylor
+coefficients to vanish.  Consequently $f_\lambda$ is transcendental
+over $\mathbb C(z)$.
+
+The two $E$-functions $1,f_\lambda$ satisfy the homogeneous system
+\begin{equation}\label{vana:system}
+ \frac{d}{dz}
+ \begin{pmatrix}1\\f_\lambda(z)\end{pmatrix}
+ =
+ \begin{pmatrix}
+  0&0\\
+  \lambda/z&1-\lambda/z
+ \end{pmatrix}
+ \begin{pmatrix}1\\f_\lambda(z)\end{pmatrix}.
+\end{equation}
+Its coefficient matrix has common denominator $T(z)=z$.
+The Siegel--Shidlovskii theorem in the form of
+\cite[Theorem~1.1]{Beukers2006} applies at the nonzero algebraic
+point $\xi=-1$, since $\xi T(\xi)=1$.  It gives
+\[
+ \operatorname{trdeg}_{\overline{\mathbb Q}}
+    \overline{\mathbb Q}\bigl(1,f_\lambda(-1)\bigr)
+ =
+ \operatorname{trdeg}_{\overline{\mathbb Q}(z)}
+    \overline{\mathbb Q}(z)\bigl(1,f_\lambda(z)\bigr)
+ =1.
+\]
+Thus $f_\lambda(-1)$ is transcendental.  Equation
+\eqref{vana:beta-identity} proves the assertion because
+$\lambda$ is a nonzero rational number.
+\end{proof}
+
+\begin{theorem}[Irrationality of finite algebraic-parameter VAN roots]
+\label{vana:irrationality}
+Let $\omega\in\overline{\mathbb Q}\cap[0,\infty)$ be finite.
+The unique root $\alpha_\omega\in(0,1)$ of
+\begin{equation}\label{vana:root}
+ F(\alpha_\omega)
+ =\frac{(1-\alpha_\omega)(\alpha_\omega+\omega)}
+        {\omega+(1-\omega)\alpha_\omega}
+\end{equation}
+is irrational.  By Theorem~\ref{van:main}, this is the almost-sure core-growth
+exponent of $\operatorname{VAN}(\omega)$.  In
+particular, the PAN and DAN exponents are irrational.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{van:main} supplies the existence and uniqueness of
+this root in $(0,1)$.  The arithmetic assertion needs
+only the root equation.  If $\alpha_\omega$ were rational, its
+right-hand side would be algebraic: its denominator satisfies
+\[
+ \omega+(1-\omega)\alpha_\omega
+ =\alpha_\omega+\omega(1-\alpha_\omega)>0.
+\]
+But Theorem~\ref{vana:rational-specialization} makes its left-hand
+side transcendental.  This is a contradiction.  The cases
+$\omega=0$ and $\omega=1$ give PAN and DAN, respectively.
+\end{proof}
+
+\paragraph{Connection with polynomial exponential integrals.}
+For a rational candidate $r=p/q\in(0,1)$ in lowest terms, integration
+by parts followed by $x=t^q$ gives the useful normal form
+\begin{equation}\label{vana:EIT-form}
+ F(p/q)
+ =1-\frac pq e^{-1}\int_0^1 x^{p/q-1}e^x\,dx
+ =1-p e^{-1}\int_0^1 t^{p-1}e^{t^q}\,dt.
+\end{equation}
+Thus rational specialization places the problem in the polynomial
+exponential-integral setting.  The polynomial amplitude
+$p t^{p-1}$ already has degree at most $q-2$.  It is a nonzero
+reduced amplitude for the twisted derivative
+\[
+ \mathcal D_q R=R'+q t^{q-1}R,
+ \qquad
+ \frac{d}{dt}\bigl(R(t)e^{t^q}\bigr)
+       =(\mathcal D_qR)(t)e^{t^q}.
+\]
+Indeed, for a nonzero polynomial $R$, the highest-degree term of
+$\mathcal D_qR$ has degree $\deg R+q-1$, so no nonzero polynomial
+of degree at most $q-2$ can be of this form.  Allowing rational $R$
+does not create an exception: a finite pole of $R$ gives an
+uncancelled pole of one higher order in $R'$, whereas
+$q t^{q-1}R$ has no pole of that higher order.  A rational
+$R$ with polynomial $\mathcal D_qR$ is therefore polynomial.
+This supplies a concrete reduced exponential-integral class to
+which an arithmetic specialization theorem can be applied.
+For this family, Theorem~\ref{vana:rational-specialization} supplies
+that theorem through classical $E$-function theory.
+
+\paragraph{Limits of the conclusion.}
+The argument uses rationality of the candidate exponent to obtain an
+$E$-function with controlled arithmetic coefficients.  It does not
+exclude algebraic irrational roots and therefore does not prove that
+$\alpha_\omega$ is transcendental.  The singular model
+$\omega=\infty$, whose limiting exponent is $1$, is outside the
+theorem.  These are modified local redirection models: no equation
+\eqref{vana:root}, and no irrationality or transcendence conclusion,
+is asserted for the original isotropic-redirection exponent $\mu$.
+
+\section{A transfer criterion and its scope}
+\label{vana:transfer-section}
+
+\begin{proposition}[Transfer with specialization nonvanishing]
+\label{vana:transfer}
+Let $I\subset(-1,\infty)$ be a real interval.  Suppose an exact
+characterization of a target number $\alpha\in I$ gives
+\begin{equation}\label{vana:determinant-form}
+ D(\alpha)=0,\qquad
+ D(s)=\frac{P(s,F(s))}{Q(s,F(s))},
+ \qquad P,Q\in\overline{\mathbb Q}[s,X],
+\end{equation}
+where the denominator is nonzero on $I$.  If
+\begin{equation}\label{vana:specialization-nonzero}
+ P(r,X)\not\equiv0
+ \quad\text{for every }r\in I\cap\mathbb Q,
+\end{equation}
+then $\alpha$ is irrational.
+\end{proposition}
+
+\begin{proof}
+If $\alpha=r\in\mathbb Q$, then
+\eqref{vana:determinant-form} gives $P(r,F(r))=0$.
+Condition~\eqref{vana:specialization-nonzero} makes this a nonzero
+polynomial relation over $\overline{\mathbb Q}$ for $F(r)$,
+contradicting Theorem~\ref{vana:rational-specialization}.
+\end{proof}
+
+The proposition applies, for example, when an exact finite system
+has a characteristic determinant of the displayed form.  It is a
+criterion to verify, not a claim that the original friend-tree
+kernel has such a reduction.  The specialization condition is
+essential.  A nonzero bivariate polynomial can vanish identically
+as a polynomial in $X$ at a rational parameter: for example,
+$P(s,X)=(s-r_0)(X+1)$ vanishes at $s=r_0$ for every value of
+$F(r_0)$.  If $P(s,X)=\sum_jP_j(s)X^j$, the needed condition is
+precisely that the coefficient polynomials $P_j$ have no common
+rational zero in $I$.  This is the nonvanishing step that an exact
+elimination must preserve.

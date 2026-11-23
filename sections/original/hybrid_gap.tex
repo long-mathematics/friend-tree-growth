@@ -1,0 +1,241 @@
+\section{The bounded-parent survival gap}
+\label{pup:section}
+
+By Theorem~\ref{cm:all-moments}, for every $\alpha>\lambda$ and every fixed $r>1$,
+\begin{equation}\label{pup:controlled-second}
+ \sup_{q\in\mathcal Q}\mathbb E_q C(t)^r\le K_{r,\alpha}e^{r\alpha t}.
+\end{equation}
+The constants are uniform in the newborn exterior. This estimate does not use $\lambda=\mu$.
+
+\subsection{Uniform control while the actual parent remains bounded}
+
+Fix $M\ge2$ and, for a newborn tag whose parent starts at degree
+$d\le M$, let $\tau_M=\inf\{t:D_p(t)=M+1\}$.  Define
+\[
+ L_M(t)=\sup_{x:\,D_p(0)\le M}
+       \mathbb E_x[C_{\rm tag}(t)\mathbf1_{\{t<\tau_M\}}].
+\]
+The supremum is over the actual finite exteriors, with the same permitted
+inert stubs as in the earlier profile construction.
+
+\begin{lemma}[A stopped inverse-likelihood moment]\label{pup:stopped-I}
+Under the reference law replacing parent degree gains by
+$h(t)=(1+t)^{-2}$, stopped at $\tau_M$, put
+\[
+ I_M=\int_0^{\tau_M}\lambda_p(t)\,dt,
+ \qquad B_M=3M^2(1+3M).
+\]
+Then, for $aB_M<1$,
+\begin{equation}\label{pup:stopped-moment}
+ \mathbb E e^{aI_M}\le(1-aB_M)^{-1}.
+\end{equation}
+The expected remaining occupation is at most $B_M$ conditionally after
+every stopping time before $\tau_M$.
+\end{lemma}
+\begin{proof}
+Before stopping there are at most $M$ neighbour labels of $p$ in total.
+Each real neighbour, from its time of birth, receives immigration at
+rate at least $1/M$, by the permanent-slot construction.  The reciprocal
+population bound gives a conditional expected remaining contribution
+of at most
+\[
+ \int_0^\infty(1+3M)e^{-t/(3M)}dt=3M(1+3M)
+\]
+to the integral of its reciprocal degree.  The estimate is valid
+also for a neighbour initially of degree one and for stopped integrals.
+Summing over at most $M$ present or future neighbour labels gives $B_M$.
+The same estimate restarts conditionally from any stopping time; the
+number of remaining possible neighbour labels is still at most $M$.
+Iterated ordered-time integration gives
+$\mathbb E I_M^r\le r!B_M^r$, and summation proves
+\eqref{pup:stopped-moment}.
+\end{proof}
+
+\begin{theorem}[The bounded-parent survival gap]\label{pup:low-survival}
+If $\mu<\lambda$, then for every fixed integer $M\ge2$ there is
+$\gamma_M<\lambda$ such that
+\begin{equation}\label{pup:low-survival-bound}
+ \limsup_{t\to\infty}\frac1t\log L_M(t)\le\gamma_M.
+\end{equation}
+Thus an exponent gap cannot be supported by newborn histories whose
+parent remains below a fixed degree threshold throughout observation.
+\end{theorem}
+\begin{proof}
+Fix $\varepsilon\in(0,1)$ and split the event $t<\tau_M$ according
+to whether a parent degree gain occurs after time $\varepsilon t$.
+Theorem~\ref{ps:stabilization} gives
+\begin{gather*}
+ \Pr\{\text{such a late gain before or at }\tau_M\}
+ \le Q_M(\varepsilon t),\\
+ Q_M(r)=O_M(\operatorname{poly}(r)e^{-\kappa_M r}),
+ \qquad \kappa_M=1/(3M).
+\end{gather*}
+By \eqref{pup:controlled-second}, the contribution of these histories
+has upper exponent at most $\alpha-\kappa_M\varepsilon/2$ for every
+$\alpha>\lambda$.
+
+Let $A_t$ be the other event: $t<\tau_M$ and all parent degree gains
+through time $t$ occur by $\varepsilon t$.  Theorem~\ref{plc:theorem} bounds the actual expectation on $A_t$ by a fixed polynomial
+in $t$ times the reference expectation, uniformly in the initial
+exterior.  Only the finitely many starting degrees $d=2,\ldots,M$
+need be considered.
+
+Realize each reference marginal by modifying a fixed genuine finite
+star completion of the newborn tag.  Let $Z_t$ be its actual-to-reference
+likelihood, and let $N(r)$ be its full reference real population, stopped
+at $\tau_M$.  Before stopping,
+\[
+ \lambda_p(r)\ge1/D_u(r)\ge1/N(r),\qquad h(r)\le1.
+\]
+There are at most $M$ parent degree gains.  Hence on $A_t$,
+\[
+ Z_t^{-1}
+ =\exp\!\left(\int_0^t(\lambda_p-h)dr\right)
+       \prod_{\sigma_j\le t}\frac{h(\sigma_j)}{\lambda_p(\sigma_j-)}
+ \le e^{I_M}N(\varepsilon t)^M.
+\]
+Choose $a>0$ with $2aB_M<1$.  By Cauchy--Schwarz and
+Lemma~\ref{pup:stopped-I},
+\begin{equation}\label{pup:prefix-inverse}
+ \mathbb E_{\rm ref}[Z_t^{-a}\mathbf1_{A_t}]
+ \le K_{a,M}e^{aM\varepsilon t}.
+\end{equation}
+Indeed, the reference total birth rate is at most $N+1$; a shifted Yule
+domination gives $\mathbb E N(r)^v\le K_{M,v}e^{vr}$ for every fixed
+$v>0$.
+
+Put $\theta=a/(a+2)$, so $a=2\theta/(1-\theta)$.  Three-factor
+H\"older now gives
+\begin{align*}
+ \mathbb E_{\rm ref}[C(t)\mathbf1_{A_t}]
+ &\le
+ \bigl(\mathbb E_{\rm ref}[Z_tC(t)\mathbf1_{A_t}]\bigr)^\theta
+ \bigl(\mathbb E_{\rm ref}C(t)^2\bigr)^{(1-\theta)/2}\\
+ &\qquad\times
+ \bigl(\mathbb E_{\rm ref}[Z_t^{-a}\mathbf1_{A_t}]\bigr)^{(1-\theta)/2}.
+\end{align*}
+The first expectation is at most the total core mean from the fixed
+genuine star completion, and therefore has upper exponent $\mu$.
+The second has upper exponent $2\alpha$ by the controlled-moment
+bound; stopping only decreases its core count.  Formula
+\eqref{pup:prefix-inverse} bounds the third.  After the polynomial
+forward likelihood factor, the good contribution consequently has
+upper exponent
+\[
+ \theta\mu+(1-\theta)\alpha+\theta M\varepsilon.
+\]
+Take $a=1/(4B_M)$, so $\theta=1/(8B_M+1)$, and write
+$g=\lambda-\mu>0$.  Choose $\varepsilon=g/(4M)$ and then
+$\alpha=\lambda+\delta$ with
+\[
+ 0<\delta<
+ \min\left\{\frac{\theta g}{4(1-\theta)},
+              \frac{\kappa_M\varepsilon}{4}\right\}.
+\]
+Both displayed contribution exponents are strictly less than $\lambda$:
+the good one is below $\lambda-\theta g/2$, and the bad one below
+$\lambda-\kappa_M\varepsilon/4$.  The finite maximum over $d$ changes
+only constants.  This proves \eqref{pup:low-survival-bound}.
+\end{proof}
+
+\begin{corollary}[A bounded retained root is also subcritical]
+\label{pup:root-stay}
+Under $\mu<\lambda$, for every fixed integer $H\ge2$,
+\[
+ \limsup_{t\to\infty}\frac1t\log\sup_x
+ \mathbb E_x[C_{\rm tag}(t)\mathbf1_{\{D_u(t)\le H\}}]<\lambda.
+\]
+\end{corollary}
+\begin{proof}
+Partition the tagged core genealogy into the root and the descendant
+components of its future children. On $D_u(t)\le H$, each child's
+parent has stayed at degree at most $H$ since its birth, because degree
+is nondecreasing. Conditional on the child's birth, its weighted
+remaining mean is therefore at most $L_H$ at the remaining horizon.
+The root produces children at intensity at most one. The compensator
+formula and positivity give
+\[
+ \sup_x\mathbb E_x[C_{\rm tag}(t)\mathbf1_{\{D_u(t)\le H\}}]
+ \le1+\int_0^tL_H(v)\,dv.
+\]
+Theorem~\ref{pup:low-survival} bounds the right side with an exponent
+strictly below $\lambda$.
+\end{proof}
+
+\subsection{Removing arrivals after a high-degree crossing}
+
+For an initially low-degree parent, define the hybrid process to agree
+with the actual process up to $\tau_M$, and thereafter delete all
+parent-to-tag arrivals.  Outward tag selections and all other exterior
+transitions may continue; the retained component after $\tau_M$ follows
+the inert law.  For an initially high real parent, delete its incoming
+channel from time zero.  For an initially inert parent stub, set
+$\tau_M=0$ and use inert evolution from the start.  Let $B_M^0(t)$ be the supremum of the hybrid
+retained means over all newborn environments.
+
+\begin{theorem}[A subcritical crossing truncation]\label{pup:hybrid}
+Suppose $g=\lambda-\mu>0$.  If $M\ge2$ is fixed and
+$\delta=1/(M+1)<g$, then
+\begin{equation}\label{pup:hybrid-gap}
+ \limsup_{t\to\infty}\frac1t\log B_M^0(t)<\lambda.
+\end{equation}
+\end{theorem}
+\begin{proof}
+An initially high or inert parent gives the inert newborn mean, with exponent
+$\mu$.  For an initially low parent, histories that have not crossed by
+$t$ are covered by Theorem~\ref{pup:low-survival}.  Choose
+$\gamma<\lambda$ and $K<\infty$ such that $L_M(r)\le Ke^{\gamma r}$.
+
+Split the crossing histories at $\tau_M=\varepsilon t$, where
+$\varepsilon>0$ will be small.  The expected core count carried by
+crossings in $dr$ is at most $M L_M(r)\,dr$: the pre-crossing parent
+degree-gain intensity is at most $M$, and the crossing leaf is added
+outside the retained component.  After the crossing the conditional
+mean is at most $C(\tau_M)H(t-\tau_M)$.  Thus the late-crossing part
+is at most
+\[
+ M\int_{\varepsilon t}^t L_M(r)H(t-r)\,dr.
+\]
+For every $\alpha>\lambda$, $H(v)\le K_\alpha e^{\alpha v}$.
+The last display has upper exponent at most
+$\alpha-(\alpha-\gamma)\varepsilon$, which is below $\lambda$ when
+$\alpha$ is sufficiently close to $\lambda$.
+
+For early crossings, use the same finite reference completion and
+polynomial forward likelihood reduction as before.  Change parent
+degree gains to $h(t)$ only until $\tau_M$; thereafter restore all
+genuine transition rates except the deleted parent-to-tag channel.
+The retained-and-crossing-time marginal is autonomous: it is the
+previous reference law before crossing, then inert evolution.
+Its full reference population has birth rate at most $N+1$.
+
+Relative to the fixed genuine finite-tree law, the reference-path
+likelihood includes an additional survival factor for the deleted
+channel after crossing.  Since the parent's degree is then at least
+$M+1$, its missing intensity is at most $\delta$.  On
+$\tau_M\le\varepsilon t$, the inverse likelihood therefore obeys
+\[
+ Z_t^{-1}\le e^{I_M+\delta t}N(\varepsilon t)^M.
+\]
+With the same $a>0$ and $\theta=a/(a+2)$ as in the preceding proof,
+\[
+ \mathbb E_{\rm ref}
+ [Z_t^{-a};\tau_M\le\varepsilon t]
+ \le K e^{a(\delta+M\varepsilon)t}.
+\]
+Here the density is for the actual law restricted to having no arrivals
+in the deleted channel after crossing; its weighted core expectation
+is consequently bounded by the unrestricted genuine finite-tree core
+mean.  The same three-factor H\"older argument shows that the early
+crossing contribution has upper exponent at most
+\[
+ \theta\mu+(1-\theta)\alpha+
+       \theta(\delta+M\varepsilon).
+\]
+Choose $\varepsilon>0$ with $\delta+M\varepsilon<g$, and then
+$\alpha>\lambda$ sufficiently close to $\lambda$ for this exponent
+and the late-crossing exponent both to be below $\lambda$.
+All forward likelihood factors are polynomial in $t$ and there are
+only finitely many starting parent degrees.  This proves the claim.
+\end{proof}
+

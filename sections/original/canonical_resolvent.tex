@@ -1,0 +1,81 @@
+\section{The canonical resolvent and its exact kernel series}
+\label{canonical:section}
+
+Theorem~\ref{erc:equality} gives $W(s)<\infty$ for every $s>\mu$.
+Pass to the limit $T\to\infty$ in Theorem~\ref{erc:gradient} to obtain
+\begin{equation}\label{erc:infinite-gradient}
+ |V_s(y^+)-V_s(y)|\le\frac{40}{s}W(s),\qquad s>\mu.
+\end{equation}
+A certified block $e^{-sT}H(T)\le q<1$ supplies the explicit bound
+\begin{equation}\label{canonical:W-bound}
+ W(s)\le\int_0^\infty e^{-st}H(t)\,dt
+ \le\frac1{1-q}\int_0^T e^{(1-s)t}\,dt.
+\end{equation}
+Such a block can be found by the complete search after
+Theorem~\ref{sc:window}, now with $\lambda=\mu$.
+
+The old-core decomposition gives
+\begin{equation}\label{canonical:linear}
+ \frac{C(y)}s\le V_s(y)
+ \le\frac{C(y)}s(1+W(s)).
+\end{equation}
+For the upper inequality, partition the future population by the
+currently existing cores and their future newborn families, whose
+birth intensities are at most one. Integrating their discounted
+rewards gives the right side. The lower inequality uses monotonicity
+of the core count. These estimates, finite-horizon population moments,
+and localization justify the resolvent generator equation
+\begin{equation}\label{canonical:generator}
+ (s-\mathcal L_\infty)V_s=C.
+\end{equation}
+
+The block also controls the remaining time integral effectively:
+\begin{equation}\label{canonical:time-tail}
+ \int_{nT}^\infty e^{-st}P_t^\infty C(y)\,dt
+ \le\frac{C(y)q^n}{1-q}\int_0^T e^{(1-s)r}\,dr.
+\end{equation}
+Together with a finite-state calculation on $[0,nT]$, this computes
+$V_s(y)$ at every finite state, once a block with $e^{-sT}H(T)<1$ has been certified.
+
+\begin{proposition}[Exact eliminated-kernel representation]
+\label{canonical:series}
+For $s>\mu$, let $Q_s$ be the exact core-ring kernel in
+\eqref{model:Q}, and let
+\[
+ g_s(y)=\frac{C(y)}{C(y)+s}.
+\]
+Then
+\begin{equation}\label{canonical:kernel-series}
+ V_s(y)=\sum_{j=0}^\infty(Q_s^jg_s)(y).
+\end{equation}
+This is a nonnegative convergent series with explicitly given beta
+kernel entries. Its value is effectively computable at every finite
+state and rational $s>\mu$. In particular $V_s$ is the canonical
+positive supersolution for the eliminated kernel, with the uniform
+root-leaf increment \eqref{erc:infinite-gradient}.
+\end{proposition}
+\begin{proof}
+Let $\tau_j$ be the successive core-ring times, with $\tau_0=0$.
+Between core rings $C$ is constant. The expected discounted reward
+before the first ring is $R_sC=g_s$, and the discounted law of the
+post-ring state is $Q_s$. The Markov property identifies the expected
+reward over $[\tau_j,\tau_{j+1})$ with $Q_s^jg_s$. The original
+root's rate-one clock ensures infinitely many rings over an infinite
+time interval; nonexplosion ensures $\tau_j\to\infty$. Tonelli's
+theorem partitions the total reward into these intervals and proves
+\eqref{canonical:kernel-series}. Finiteness follows from
+\eqref{canonical:linear}; effective evaluation follows from
+\eqref{canonical:time-tail} and finite-state uniformization. The
+first-step equation is $V_s=g_s+Q_sV_s$, and
+\eqref{erc:infinite-gradient} gives the boundary increment.
+\end{proof}
+
+The finite-window construction also gives a computable supersolution
+with bounded increments at \emph{every} ordinary birth, rather than
+only at a root-leaf addition. At every rational $s>\mu$, a complete
+search finds $T,q$ with $e^{-sT}H(T)\le q<1$, and
+Theorem~\ref{sc:window} gives $U_{s,T}$ and its explicit increment
+constant. The canonical and finite-window constructions are both
+useful: the former solves the exact resolvent equation, while the
+latter has a direct finite-time formula and controls all ordinary
+birth increments.

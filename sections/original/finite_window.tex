@@ -1,0 +1,136 @@
+\section{Finite-window supersolutions with bounded increments}
+\label{sc:section}
+
+Let $P_t$ denote the inert-boundary semigroup.  An ordinary vertex
+addition means a single leaf birth, which changes the core count by
+either zero or one.
+Write $G(t)$ for the supremum of newborn retained means over finite
+environments and $H(t)=1+\int_0^tG(r)\,dr$.  By Section~\ref{uniform:section},
+\[
+ H(t+u)\le H(t)H(u),\qquad
+ \lambda=\lim_{t\to\infty}\frac{\log H(t)}t,
+ \qquad \mathbb E_y^\infty C(t)\le C(y)H(t).
+\]
+Each $H(T)$ for rational $T>0$ is effectively computable by the certified
+finite-profile and finite-population reductions.
+
+\begin{lemma}[Finite-time sensitivity]
+\label{sc:sensitivity}
+Let $\psi$ be any function with ordinary-birth increments bounded in
+absolute value by $J$.  Assuming the expectations below exist, for every
+ordinary vertex addition $y\mapsto y'$ and every $t\ge0$,
+\begin{equation}\label{sc:sensitivity-bound}
+ |P_t\psi(y')-P_t\psi(y)|\le J e^{2t}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Couple the two full vertex processes using common rate-one clocks at
+common vertices and maximal couplings of their neighbour choices.
+Initially all vertices of $y$ are common, and the added vertex is
+unmatched.  Match newly born vertices only when their source event and
+target agree in both copies; otherwise use distinct new labels.
+The common vertices consequently induce a connected tree containing the
+whole initial $y$.  Each component of unmatched vertices attaches to
+this common tree through exactly one edge.
+
+Let $Z(t)$ be the total number of unmatched vertices across both copies.
+An unmatched vertex clock rings at rate one and creates at most one
+new unmatched vertex.  At a common vertex, the probability of a
+neighbour-choice mismatch is
+\[
+ \frac{\max(a,b)}{d_0+\max(a,b)}\le\frac{a+b}{2},
+\]
+where $d_0\ge1$ is the number of shared neighbours (counting the shared
+inert stub at the root) and $a,b$ are the two counts of unmatched
+neighbours.  The inequality follows directly for the integer cases
+$a+b=1$ and $a+b\ge2$, and is trivial when $a+b=0$.
+Summing over common vertices bounds the mismatch rate by half the
+number of common--unmatched edges, and hence by $Z(t)/2$.
+Each such mismatch creates at most two unmatched vertices.  Inert-stub
+selections can only reduce these increments.  Hence
+\[
+ \frac{d}{dt}\mathbb EZ(t)\le2\mathbb EZ(t),
+ \qquad Z(0)=1,
+\]
+so $\mathbb EZ(t)\le e^{2t}$.
+
+At any time the two trees can each be built from their common connected
+tree by ordinary leaf additions, with total number of additions $Z(t)$.
+The common tree still contains the initial rooted core and inert stub,
+so all those intermediate states are legal.  Telescoping the jump bound
+gives $|\psi(X_t')-\psi(X_t)|\le JZ(t)$.  Taking expectations proves
+\eqref{sc:sensitivity-bound}.
+\end{proof}
+
+\begin{theorem}[A finite time-window supersolution]
+\label{sc:window}
+Let $s,T>0$, and suppose a certified rational $q<1$ satisfies
+\begin{equation}\label{sc:time-test}
+ e^{-sT}H(T)\le q.
+\end{equation}
+Define
+\begin{equation}\label{sc:window-U}
+ \boxed{U_{s,T}(y)=\frac1{1-q}
+                \int_0^T e^{-st}\mathbb E_y^\infty C(t)\,dt.}
+\end{equation}
+Then $U_{s,T}$ is nonnegative and, for computable $s,T$, effectively
+computable at every finite state.  It satisfies
+\begin{equation}\label{sc:window-properties}
+ (s-\mathcal L_\infty)U_{s,T}\ge C,
+ \qquad
+ |U_{s,T}(y')-U_{s,T}(y)|
+ \le B_{s,T}:=\frac1{1-q}\int_0^T e^{(2-s)t}\,dt
+\end{equation}
+for every ordinary vertex addition.  The final integral equals
+$(e^{(2-s)T}-1)/(2-s)$ when $s\ne2$, and $T$ when $s=2$.
+Moreover
+\begin{equation}\label{sc:window-linear}
+ 0\le U_{s,T}(y)\le a_{s,T}C(y),\qquad
+ a_{s,T}:=\frac1{1-q}\int_0^T e^{-st}H(t)\,dt.
+\end{equation}
+The elementary bound $H(t)\le e^t$ permits the explicit replacement
+$a_{s,T}\le\int_0^T e^{(1-s)t}dt/(1-q)$ whenever only an upper
+constant is needed.
+\end{theorem}
+\begin{proof}
+The finite-horizon resolvent identity gives
+\[
+ (s-\mathcal L_\infty)
+      \int_0^T e^{-st}P_tC\,dt
+ =C-e^{-sT}P_TC.
+\]
+It is justified pointwise by finite state localization and Yule
+domination.  The conditional old-core mean bound gives
+$P_TC(y)\le C(y)H(T)$.
+The right side of the resolvent identity is consequently at least
+$(1-q)C$, proving the supersolution inequality.
+Lemma~\ref{sc:sensitivity} applied to $\psi=C$, $J=1$ proves the
+increment estimate after integration.  The old-core mean bound also
+gives \eqref{sc:window-linear}.
+
+At a fixed finite initial state, rational finite-state generator
+truncations compute $P_tC$ uniformly over $[0,T]$: the real population
+is dominated by a Yule process, and $C\le N$ gives an explicit
+discarded-population error.  Uniformization supplies rational intervals
+for the matrix-exponential entries.  Time quadrature is effective as
+well, since $0\le\mathcal L_\infty C\le N$ and
+$\mathbb E N(t)\le N(0)e^t$ bound its finite-horizon derivative.
+Thus the integral defining $U_{s,T}$ is computable with certified error.
+\end{proof}
+
+\begin{corollary}[Completeness above $\lambda$]
+\label{sc:complete-lambda}
+For every rational $s>\lambda$, a search over positive integer $T$ and
+certified upper approximations of $H(T)$ eventually verifies
+\eqref{sc:time-test} with $q=1/2$, and hence constructs a supersolution
+with a uniform
+ordinary-birth increment at $s$.
+\end{corollary}
+\begin{proof}
+Since $s>\lambda$, $e^{-sT}H(T)\to0$.  Thus the strict inequality in
+\eqref{sc:time-test} holds for sufficiently large integer $T$ with
+$q=1/2$.  Dovetailing the positive integers $T$ and approximation
+precisions eventually certifies that strict inequality.  The preceding
+theorem then supplies the explicit function and increment bound.
+\end{proof}
+

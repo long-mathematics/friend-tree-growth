@@ -1,0 +1,123 @@
+\section{Predictable boundary inputs preserve the uniform moment exponents}
+\label{cm:section}
+
+Let $\mathcal Q$ be the class of nonanticipating input policies which add
+a leaf at the retained root at predictable intensity $q_t\in[0,1/2]$.
+Apart from these additions, the component follows the inert generator.
+The root starts in the newborn state $x_\infty$, with two real vertices.
+The policies may use the observed component history and additional
+randomness. An actual exterior supplies a policy in this class.
+
+Theorem~\ref{sc:window} implies that,
+for every $\alpha>\lambda$, there is a function $U$ and finite positive
+constants $m,A,J$ such that
+\begin{equation}\label{cm:window-input}
+ mC\le U\le AC,\qquad
+ (\alpha-\mathcal L_\infty)U\ge C,\qquad
+ |U(y')-U(y)|\le J
+\end{equation}
+for every ordinary leaf addition $y\to y'$. In particular, one may use
+$U_{\alpha,T}$ from that construction, with
+$m=(1-e^{-\alpha T})/[\alpha(1-q)]$ and its already stated $A,J$.
+Here the scalar $q<1$ is the finite-window contraction parameter.
+
+\begin{theorem}[All controlled moments have the same normalized rate]
+\label{cm:all-moments}
+For every real $p\ge1$ and every $a>\lambda$, there is a finite constant
+$K_{p,a}$, independent of the input policy, such that
+\begin{equation}\label{cm:bound}
+ \sup_{q\in\mathcal Q}\mathbb E_q C(t)^p
+ \le K_{p,a}e^{pa t}\qquad(t\ge0).
+\end{equation}
+Consequently,
+\begin{equation}\label{cm:exponent}
+ \boxed{\lim_{t\to\infty}\frac1t
+ \log\sup_{q\in\mathcal Q}\mathbb E_q C(t)^p=p\lambda.}
+\end{equation}
+For computable parameters and certified positive slack, the constants
+are effective once a finite-window certificate at any
+$\alpha\in(\lambda,a)$ has been supplied. More generally, the same
+moment upper bound holds from any fixed finite initial component, with
+constants depending on that component.
+\end{theorem}
+\begin{proof}
+Choose $\lambda<\alpha<a$. The established lower bound on $\mu$ gives
+$\alpha>\lambda\ge\mu\ge0.565>1/2$. Set
+\[
+ W=U+\frac{J}{2\alpha}.
+\]
+For every admissible policy, its conditional generator satisfies
+\begin{equation}\label{cm:linear-drift}
+ (\mathcal L_\infty+q_t\Delta_{\rm root})W
+ \le\alpha U-C+J/2\le\alpha W.
+\end{equation}
+The jumps of $W$ have absolute size at most $J$, and $W\ge mC\ge m$.
+
+Let $N_t$ be the real vertex count and put $Y_t=N_t+1/2$. Its birth
+intensity is at most $Y_t$. For each integer $r\ge1$, the rising
+factorial $y^{\overline r}=y(y+1)\cdots(y+r-1)$ satisfies
+\[
+ y\bigl[(y+1)^{\overline r}-y^{\overline r}\bigr]
+ =r y^{\overline r}.
+\]
+It follows by localization that
+\begin{equation}\label{cm:population}
+ \mathbb E Y_t^r\le
+ \mathbb E Y_t^{\overline r}
+ \le Y_0^{\overline r}e^{rt}.
+\end{equation}
+
+First take an even integer $p=2r\ge2$. Taylor's formula and
+$|\Delta W|\le J$ give, at every transition,
+\[
+ (W+\Delta W)^p-W^p-pW^{p-1}\Delta W
+ \le\frac{p(p-1)}2J^2(W+J)^{p-2}.
+\]
+Since $W\ge m$, set
+$K_p=\tfrac12p(p-1)J^2(1+J/m)^{p-2}$. Summing over transitions and
+using \eqref{cm:linear-drift} yields
+\[
+ (\mathcal L_\infty+q_t\Delta_{\rm root})W^p
+ \le p\alpha W^p+K_p W^{p-2}Y.
+\]
+For $p>2$, Young's inequality, or maximization in $W$, gives for every
+$\eta>0$ a finite explicit $B_{p,\eta}$ with
+\[
+ K_p W^{p-2}Y\le\eta W^p+B_{p,\eta}Y^{p/2}.
+\]
+For example, one may take
+\[
+ B_{p,\eta}=\frac2p K_p
+ \left(\frac{(p-2)K_p}{p\eta}\right)^{(p-2)/2}.
+\]
+For $p=2$, the corresponding remainder is simply $J^2Y$.
+Choose $\eta=p(a-\alpha)$ when $p>2$; in the $p=2$ case increase
+the drift coefficient $2\alpha$ harmlessly to $2a$. Thus
+\[
+ \frac d{dt}\mathbb E W_t^p
+ \le pa\mathbb E W_t^p+B\,Y_0^{\overline {p/2}}e^{pt/2},
+\]
+with $B=B_{p,\eta}$ for $p>2$ and $B=J^2$ for $p=2$.
+Because $a>1/2$, integration gives
+\begin{equation}\label{cm:explicit-even}
+ \mathbb E W_t^p
+ \le e^{pa t}\left[
+ W_0^p+\frac{B\,Y_0^{\overline {p/2}}}{p(a-1/2)}\right].
+\end{equation}
+Divide by $m^p$. All localization limits are justified by
+$W\le AC+J/(2\alpha)\le AN+J/(2\alpha)$ and the finite-horizon
+population moments. These estimates hold uniformly for every policy.
+
+For a general real $p\ge1$, choose an even integer $k\ge p$ and use
+$\mathbb E C^p\le(\mathbb E C^k)^{p/k}$. This proves
+\eqref{cm:bound}. Conversely the controlled class contains every admissible
+newborn process, including inert exterior profiles. Jensen's inequality gives
+\[
+ \sup_{q\in\mathcal Q}\mathbb E_q C(t)^p
+ \ge \left(\sup_x\mathbb E_x C_{\rm tag}(t)\right)^p=G(t)^p.
+\]
+The established limit $t^{-1}\log G(t)\to\lambda$, followed by
+$a\downarrow\lambda$ in the upper bound, proves
+\eqref{cm:exponent}.
+\end{proof}
+
