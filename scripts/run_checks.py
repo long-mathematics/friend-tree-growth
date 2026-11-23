@@ -41,6 +41,9 @@ def main() -> None:
         ("core_clock_kernel.py", ["--check"], "core_kernel_checks.json"),
         ("inert_growth_kernel.py", ["--check"], "inert_growth_checks.json"),
         ("verify_infection_kernel.py", [], "infection_kernel_checks.json"),
+        ("check_critical_root_forms.py", ["--check"], "critical_root_form_checks.json"),
+        ("rapid_root_tools.py", [], "rapid_root_tool_checks.json"),
+        ("full_tree_recurrence.py", ["--check"], "full_tree_recurrence_checks.json"),
     ]
     for script, arguments, filename in checks:
         report = run_json(script, arguments)
@@ -60,7 +63,9 @@ def main() -> None:
         "source_sha256": {name: hashlib.sha256((SCRIPTS / name).read_bytes()).hexdigest()
                           for name in names},
         "scope": "Finite kernel identities, bounds, first-promotion reductions and "
-                 "prime valuations, and modified-model root brackets. "
+                 "prime valuations, full-model certificate polynomials, exact "
+                 "Yule tails, generic bracket updates, the full-tree coefficient "
+                 "recurrence, and modified-model root brackets. "
                  "Analytic proofs are in the manuscripts. The general original-model "
                  "computability algorithm is not implemented by these scripts.",
     }

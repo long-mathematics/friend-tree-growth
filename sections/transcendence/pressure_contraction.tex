@@ -1,0 +1,76 @@
+% Geometric root iteration from the established pressure theorem.
+\section{An explicit geometric iteration for the exact pressure root}
+\label{pci:section}
+
+Let $r_\infty(s)$ be the exact inert-newborn generation pressure, and put
+$g(s)=\log r_\infty(s)$. The established pressure theorem states that
+$g$ is finite, convex, strictly decreasing, has its unique zero at
+$\mu$, and satisfies $g(s)\le-\log s$ for every $s>0$.
+Write
+\[
+ a=\frac{113}{200},\qquad
+ b=\frac{2832242711}{5000000000},\qquad I=[a,b].
+\]
+The following result concerns evaluations of the exact infinite pressure.
+It does not turn a finite generation truncation into a certified pressure
+evaluation.
+
+\begin{theorem}[Exact-pressure contraction]
+\label{pci:contraction}
+For every $s\in I$, define
+\[
+ T(s)=s+\frac{63}{400\log2}\log r_\infty(s).
+\]
+Then $T(s)$ lies between $s$ and $\mu$, and
+\[
+ |T(s)-\mu|\le\frac{73}{82}|s-\mu|.
+\]
+Thus $s_{n+1}=T(s_n)$ converges monotonically to $\mu$ for every
+$s_0\in I$, with explicit error
+\[
+ |s_N-\mu|\le\left(\frac{73}{82}\right)^N|s_0-\mu|.
+\]
+Iterating both endpoints gives nested enclosing intervals of width at
+most $(b-a)(73/82)^N$. There is also the exact convergent series
+\[
+ \mu=s_0+\frac{63}{400\log2}
+               \sum_{n=0}^\infty\log r_\infty(s_n),
+\]
+whose remainder after $N$ summands is $\mu-s_N$ and obeys the same bound.
+\end{theorem}
+\begin{proof}
+Set
+\[
+ L=\frac{\log4}{a-1/4}=\frac{400\log2}{63},\qquad
+ c=\frac{\log2}{2-a}=\frac{200\log2}{287}.
+\]
+Because $a\le\mu$, $g(a)\ge0$; and the universal upper bound gives
+$g(1/4)\le\log4$. Convexity implies that every secant slope on $I$
+is at least the secant slope from $1/4$ to $a$, which is at least
+$-L$. Since $g$ is decreasing, comparison to its zero yields
+$|g(s)|\le L|s-\mu|$.
+
+The same convexity, now using $g(\mu)=0$ and $g(2)\le-\log2$, gives
+\[
+ g(s)\ge\frac{\log2}{2-\mu}(\mu-s)\quad(s\le\mu),
+ \qquad
+ g(s)\le-\frac{\log2}{2-\mu}(s-\mu)\quad(\mu\le s\le2).
+\]
+Since $\mu\ge a$, both imply $|g(s)|\ge c|s-\mu|$ on $I$.
+The update $T(s)=s+g(s)/L$ therefore moves toward $\mu$ without
+overshooting, and removes at least the fraction $c/L=9/82$ of the
+distance. Iteration and telescoping prove the assertions.
+\end{proof}
+
+The contraction gives a rigorous analytic rate for the iteration using
+the exact pressure. It is not yet a practical numerical algorithm:
+$r_\infty(s)$ is itself an infinite-environment, infinite-generation
+limit, and the current results do not give a finite-generation outer
+error bound for evaluating it. Inexact iterations require certified
+pressure errors. For example, replacing $g(s_n)$ by a value with error
+at most $\eta_n$ gives the one-step bound
+\[
+ |s_{n+1}-\mu|\le\frac{73}{82}|s_n-\mu|+\frac{\eta_n}{L}
+\]
+as long as the iterates remain in $I$; projection to $I$ preserves this
+bound and ensures that condition.

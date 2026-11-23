@@ -1,0 +1,992 @@
+{
+  "status": "PASS",
+  "arithmetic": "Exact Python integers and fractions.Fraction for every decision; Decimal only for outward display bounds.",
+  "scope": "Finite full-environment certificate polynomials, independent ordered-event evaluations, explicit omitted histories, and potential-ring cost bounds.",
+  "configuration": {
+    "generations": [
+      1,
+      2,
+      3
+    ],
+    "core_ring_budgets": [
+      1,
+      2,
+      3
+    ],
+    "real_birth_budgets": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "polynomial_cases": 45,
+    "fresh_rational_discounts": [
+      "1/2",
+      "2/3",
+      "113/200",
+      "3/2"
+    ]
+  },
+  "checks": {
+    "D_at_one_factorial_identity": 45,
+    "P_degree_bound": 45,
+    "P_height_bound": 45,
+    "Q_at_one_bound": 45,
+    "Q_degree_bound": 45,
+    "Q_integral_nonnegative_coefficients": 186,
+    "burst_BFS_vs_ordered_events": 180,
+    "explicit_omitted_history_in_larger_budget": 180,
+    "finite_ring_reward_bound_at_zero": 45,
+    "independent_zero_discount_extension": 45,
+    "interpolation_at_new_rational_points": 180,
+    "large_ring_closed_form_after": 1,
+    "large_ring_closed_form_before": 1,
+    "literal_diagonal_form_lower_growth": 40,
+    "minimum_ring_threshold_crossing": 1,
+    "outward_display_lower_bounds": 2,
+    "outward_display_upper_bounds": 2,
+    "potential_core_ring_envelope": 180,
+    "potential_ring_closed_form": 84,
+    "root_isolator_exact_width": 1,
+    "root_isolator_known_algebraic_root": 1,
+    "root_isolator_known_exact_root": 1,
+    "root_isolator_known_rational_root": 1,
+    "signed_residual_at_new_rational_points": 180,
+    "small_budget_zero_root_convention": 45
+  },
+  "total_checks": 1581,
+  "coefficient_order": "constant term first",
+  "cases": [
+    {
+      "m": 1,
+      "R": 1,
+      "N": 0,
+      "D_degree": 1,
+      "Q_degree": -1,
+      "P_degree": 2,
+      "P_height": "144",
+      "P_coefficient_sha256": "70d29647906723014e154d4d9f3837da28495c6689993218aa1e39c0e19c9414",
+      "analytic_nonvanishing_lower_bound_from_proof": "3562500000000000000/18296272554890292169",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 1,
+      "N": 0,
+      "D_degree": 1,
+      "Q_degree": -1,
+      "P_degree": 2,
+      "P_height": "144",
+      "P_coefficient_sha256": "70d29647906723014e154d4d9f3837da28495c6689993218aa1e39c0e19c9414",
+      "analytic_nonvanishing_lower_bound_from_proof": "8906250000000000000000000000/326263572905411759935310630159",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 1,
+      "N": 0,
+      "D_degree": 1,
+      "Q_degree": -1,
+      "P_degree": 2,
+      "P_height": "144",
+      "P_coefficient_sha256": "70d29647906723014e154d4d9f3837da28495c6689993218aa1e39c0e19c9414",
+      "analytic_nonvanishing_lower_bound_from_proof": "22265625000000000000000000000000000000/7449329084334404748236677966968644521049",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 1,
+      "N": 1,
+      "D_degree": 2,
+      "Q_degree": 1,
+      "P_degree": 3,
+      "P_height": "1509",
+      "P_coefficient_sha256": "51bb5c332f6f1b76b6e273356c34fb26d604dd568092671c35933a6e403db01c",
+      "analytic_nonvanishing_lower_bound_from_proof": "38100937500000000000/18296272554890292169",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 1,
+      "N": 1,
+      "D_degree": 2,
+      "Q_degree": -1,
+      "P_degree": 3,
+      "P_height": "1512",
+      "P_coefficient_sha256": "2e804f26a1d0e625f0749015b228a30cf6901e75679212b25bdada9213c7efcf",
+      "analytic_nonvanishing_lower_bound_from_proof": "95252343750000000000000000000/326263572905411759935310630159",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 1,
+      "N": 1,
+      "D_degree": 2,
+      "Q_degree": -1,
+      "P_degree": 3,
+      "P_height": "1512",
+      "P_coefficient_sha256": "2e804f26a1d0e625f0749015b228a30cf6901e75679212b25bdada9213c7efcf",
+      "analytic_nonvanishing_lower_bound_from_proof": "238130859375000000000000000000000000000/7449329084334404748236677966968644521049",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 1,
+      "N": 2,
+      "D_degree": 3,
+      "Q_degree": 2,
+      "P_degree": 4,
+      "P_height": "14638",
+      "P_coefficient_sha256": "3828e4416bfbdfc270962e6417158fba02366b802cbd6b2b08fb347782af8f1c",
+      "analytic_nonvanishing_lower_bound_from_proof": "347861559375000000000/18296272554890292169",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 1,
+      "N": 2,
+      "D_degree": 3,
+      "Q_degree": -1,
+      "P_degree": 4,
+      "P_height": "14688",
+      "P_coefficient_sha256": "9a8b352d273b1e1bb449cf6689c64c21bff77df62efdbe18f3487a5de90d4a82",
+      "analytic_nonvanishing_lower_bound_from_proof": "869653898437500000000000000000/326263572905411759935310630159",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 1,
+      "N": 2,
+      "D_degree": 3,
+      "Q_degree": -1,
+      "P_degree": 4,
+      "P_height": "14688",
+      "P_coefficient_sha256": "9a8b352d273b1e1bb449cf6689c64c21bff77df62efdbe18f3487a5de90d4a82",
+      "analytic_nonvanishing_lower_bound_from_proof": "2174134746093750000000000000000000000000/7449329084334404748236677966968644521049",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 1,
+      "N": 3,
+      "D_degree": 4,
+      "Q_degree": 3,
+      "P_degree": 5,
+      "P_height": "417180",
+      "P_coefficient_sha256": "bd7ce9f5d93f2a6fb3f94a03701f01b71c8f888b3c76e2f598897ff6fa4b8026",
+      "analytic_nonvanishing_lower_bound_from_proof": "182627318671875000000/345212689714911173",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 1,
+      "N": 3,
+      "D_degree": 4,
+      "Q_degree": -1,
+      "P_degree": 5,
+      "P_height": "419040",
+      "P_coefficient_sha256": "9bcd371b2ec6bfece476e3e787ed05d0267b9b59985882342e06bb177f4b8bd7",
+      "analytic_nonvanishing_lower_bound_from_proof": "456568296679687500000000000000/6155916469913429432741710003",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 1,
+      "N": 3,
+      "D_degree": 4,
+      "Q_degree": -1,
+      "P_degree": 5,
+      "P_height": "419040",
+      "P_coefficient_sha256": "9bcd371b2ec6bfece476e3e787ed05d0267b9b59985882342e06bb177f4b8bd7",
+      "analytic_nonvanishing_lower_bound_from_proof": "1141420741699218750000000000000000000000/140553378949705749966729772961672538133",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 1,
+      "N": 4,
+      "D_degree": 5,
+      "Q_degree": 4,
+      "P_degree": 6,
+      "P_height": "2758942",
+      "P_coefficient_sha256": "3c150214500a5533f5e2fedb9d62cc022313fb6680ce4e22f12440442cd85c8c",
+      "analytic_nonvanishing_lower_bound_from_proof": "1198948347080859375000/345212689714911173",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 1,
+      "N": 4,
+      "D_degree": 5,
+      "Q_degree": -1,
+      "P_degree": 6,
+      "P_height": "2773440",
+      "P_coefficient_sha256": "fe45354d9282a14996d30c11ee8cd4e4089618f150658dadf164ab567ea2344a",
+      "analytic_nonvanishing_lower_bound_from_proof": "2997370867702148437500000000000/6155916469913429432741710003",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 1,
+      "N": 4,
+      "D_degree": 5,
+      "Q_degree": -1,
+      "P_degree": 6,
+      "P_height": "2773440",
+      "P_coefficient_sha256": "fe45354d9282a14996d30c11ee8cd4e4089618f150658dadf164ab567ea2344a",
+      "analytic_nonvanishing_lower_bound_from_proof": "7493427169255371093750000000000000000000/140553378949705749966729772961672538133",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 2,
+      "N": 0,
+      "D_degree": 2,
+      "Q_degree": -1,
+      "P_degree": 3,
+      "P_height": "768",
+      "P_coefficient_sha256": "dc7c585422c15425e07ae36dd9bc8fc7ef5815055cc84a1e44cdd7cb868712d9",
+      "analytic_nonvanishing_lower_bound_from_proof": "15229687500000000000000000000/78260736710320099696770210053",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 2,
+      "N": 0,
+      "D_degree": 2,
+      "Q_degree": -1,
+      "P_degree": 3,
+      "P_height": "768",
+      "P_coefficient_sha256": "dc7c585422c15425e07ae36dd9bc8fc7ef5815055cc84a1e44cdd7cb868712d9",
+      "analytic_nonvanishing_lower_bound_from_proof": "38074218750000000000000000000000000000/1395564451760095716294523888459548173683",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 2,
+      "N": 0,
+      "D_degree": 2,
+      "Q_degree": -1,
+      "P_degree": 3,
+      "P_height": "768",
+      "P_coefficient_sha256": "dc7c585422c15425e07ae36dd9bc8fc7ef5815055cc84a1e44cdd7cb868712d9",
+      "analytic_nonvanishing_lower_bound_from_proof": "95185546875000000000000000000000000000000000000/31863866281430156539027966981495895806927038774613",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 2,
+      "N": 1,
+      "D_degree": 4,
+      "Q_degree": 3,
+      "P_degree": 5,
+      "P_height": "92880",
+      "P_coefficient_sha256": "75c973a7773c85ba558a2d03788e7bdb17f0dccd9a63c30e9f4e678371a65ab2",
+      "analytic_nonvanishing_lower_bound_from_proof": "1742017726054687500000000000000/78260736710320099696770210053",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 2,
+      "N": 1,
+      "D_degree": 4,
+      "Q_degree": -1,
+      "P_degree": 5,
+      "P_height": "93312",
+      "P_coefficient_sha256": "4b6858a964f6726fdb13a5c1c0820eb8f48abd14c23be23788c7688aeb5abd4a",
+      "analytic_nonvanishing_lower_bound_from_proof": "4355044315136718750000000000000000000000/1395564451760095716294523888459548173683",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 2,
+      "N": 1,
+      "D_degree": 4,
+      "Q_degree": -1,
+      "P_degree": 5,
+      "P_height": "93312",
+      "P_coefficient_sha256": "4b6858a964f6726fdb13a5c1c0820eb8f48abd14c23be23788c7688aeb5abd4a",
+      "analytic_nonvanishing_lower_bound_from_proof": "10887610787841796875000000000000000000000000000000/31863866281430156539027966981495895806927038774613",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 2,
+      "N": 2,
+      "D_degree": 6,
+      "Q_degree": 5,
+      "P_degree": 7,
+      "P_height": "7868380",
+      "P_coefficient_sha256": "9d6d78e0164a28fedf8790c142e39de7584e54ad346ce4ad75a0ce0f3c974dbf",
+      "analytic_nonvanishing_lower_bound_from_proof": "145209197388967980468750000000000/78260736710320099696770210053",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 2,
+      "N": 2,
+      "D_degree": 6,
+      "Q_degree": 4,
+      "P_degree": 7,
+      "P_height": "7898184",
+      "P_coefficient_sha256": "b4a91f7bbb8442c1a3a8be4801e6d7c8e66bb00e817c362654b9ab333790ea40",
+      "analytic_nonvanishing_lower_bound_from_proof": "363022993472419951171875000000000000000000/1395564451760095716294523888459548173683",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 2,
+      "N": 2,
+      "D_degree": 6,
+      "Q_degree": -1,
+      "P_degree": 7,
+      "P_height": "7900416",
+      "P_coefficient_sha256": "8028630c465eb298c7771daf494326435054dfd6ae16f6cd8c83863dead52ff0",
+      "analytic_nonvanishing_lower_bound_from_proof": "907557483681049877929687500000000000000000000000000/31863866281430156539027966981495895806927038774613",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 2,
+      "N": 3,
+      "D_degree": 8,
+      "Q_degree": 7,
+      "P_degree": 9,
+      "P_height": "6839984050",
+      "P_coefficient_sha256": "30bc3796cf4cf92b2ba910d90ca1481e0fad4d483ce674c67822324039df96cc",
+      "analytic_nonvanishing_lower_bound_from_proof": "40023285030334299616699218750000/27860710826030651369444717",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 2,
+      "N": 3,
+      "D_degree": 8,
+      "Q_degree": 6,
+      "P_degree": 9,
+      "P_height": "6874794600",
+      "P_coefficient_sha256": "416a4923a621854a3441ad87ca6ae728bc18429092a91c6feaa75370e8bf0211",
+      "analytic_nonvanishing_lower_bound_from_proof": "100058212575835749041748046875000000000000/496818957550763871945362722840707787",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 2,
+      "N": 3,
+      "D_degree": 8,
+      "Q_degree": -1,
+      "P_degree": 9,
+      "P_height": "6878649600",
+      "P_coefficient_sha256": "aac02d2a581d2cbd7291ad16d0c1e6d351f1502504aee49c008a84643b8d9cc6",
+      "analytic_nonvanishing_lower_bound_from_proof": "250145531439589372604370117187500000000000000000000/11343491022225046827706645418830863583811690557",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 2,
+      "N": 4,
+      "D_degree": 10,
+      "Q_degree": 9,
+      "P_degree": 11,
+      "P_height": "312284482220",
+      "P_coefficient_sha256": "13d30852803a1d531a856a28dfe6f66499e424d4d2cd84120d341bf99251dcd0",
+      "analytic_nonvanishing_lower_bound_from_proof": "6899890267046039217590133544921875/111442843304122605477778868",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 2,
+      "N": 4,
+      "D_degree": 10,
+      "Q_degree": 8,
+      "P_degree": 11,
+      "P_height": "314192740800",
+      "P_coefficient_sha256": "354828ee1f7c2432abf0bbc9d234e99f68a5ac6e3242ef74b4ece794f040aff1",
+      "analytic_nonvanishing_lower_bound_from_proof": "4312431416903774510993833465576171875000000/496818957550763871945362722840707787",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 2,
+      "N": 4,
+      "D_degree": 10,
+      "Q_degree": -1,
+      "P_degree": 11,
+      "P_height": "314442777600",
+      "P_coefficient_sha256": "938d434690c6c9169571380e40d4cf2f6a5907a84c27ca0fdb29a7d667464f32",
+      "analytic_nonvanishing_lower_bound_from_proof": "10781078542259436277484583663940429687500000000000000/11343491022225046827706645418830863583811690557",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 3,
+      "N": 0,
+      "D_degree": 3,
+      "Q_degree": -1,
+      "P_degree": 4,
+      "P_height": "4224",
+      "P_coefficient_sha256": "de7d834d70173c626b9d327d6da7aba381ea6d8f9939f0f02af46c46b706891f",
+      "analytic_nonvanishing_lower_bound_from_proof": "65106914062500000000000000000000000000/334753589402831739270224279398182724561",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 3,
+      "N": 0,
+      "D_degree": 3,
+      "Q_degree": -1,
+      "P_degree": 4,
+      "P_height": "4224",
+      "P_coefficient_sha256": "de7d834d70173c626b9d327d6da7aba381ea6d8f9939f0f02af46c46b706891f",
+      "analytic_nonvanishing_lower_bound_from_proof": "162767285156250000000000000000000000000000000000/5969407254609733125360909365633471356699012924871",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 3,
+      "N": 0,
+      "D_degree": 3,
+      "Q_degree": -1,
+      "P_degree": 4,
+      "P_height": "4224",
+      "P_coefficient_sha256": "de7d834d70173c626b9d327d6da7aba381ea6d8f9939f0f02af46c46b706891f",
+      "analytic_nonvanishing_lower_bound_from_proof": "406918212890625000000000000000000000000000000000000000000/136294955278053600301176872107816460281618318874780680365281",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 3,
+      "N": 1,
+      "D_degree": 6,
+      "Q_degree": 5,
+      "P_degree": 7,
+      "P_height": "5717547",
+      "P_coefficient_sha256": "8ab464029ccb6ac8de83f8bf9e375f945399ca4a7c853c805ddbe836b16bc0a6",
+      "analytic_nonvanishing_lower_bound_from_proof": "79647010205162124023437500000000000000000/334753589402831739270224279398182724561",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 3,
+      "N": 1,
+      "D_degree": 6,
+      "Q_degree": -1,
+      "P_degree": 7,
+      "P_height": "5738688",
+      "P_coefficient_sha256": "ec2f588d482cd2f604a9bc9c0b23ef4cb73447dc237c3c61d5921f8a0c357a1b",
+      "analytic_nonvanishing_lower_bound_from_proof": "199117525512905310058593750000000000000000000000000/5969407254609733125360909365633471356699012924871",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 3,
+      "N": 1,
+      "D_degree": 6,
+      "Q_degree": -1,
+      "P_degree": 7,
+      "P_height": "5738688",
+      "P_coefficient_sha256": "ec2f588d482cd2f604a9bc9c0b23ef4cb73447dc237c3c61d5921f8a0c357a1b",
+      "analytic_nonvanishing_lower_bound_from_proof": "497793813782263275146484375000000000000000000000000000000000/136294955278053600301176872107816460281618318874780680365281",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 3,
+      "N": 2,
+      "D_degree": 9,
+      "Q_degree": 8,
+      "P_degree": 10,
+      "P_height": "4895353120",
+      "P_coefficient_sha256": "af16a0288e3d2e47994d176b0de938006397887bfdbe9548ee9063814dcd50f8",
+      "analytic_nonvanishing_lower_bound_from_proof": "60615237407182296129364702148437500000000000/334753589402831739270224279398182724561",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 3,
+      "N": 2,
+      "D_degree": 9,
+      "Q_degree": 7,
+      "P_degree": 10,
+      "P_height": "4923751104",
+      "P_coefficient_sha256": "57fc9b8d5af0ff1896714d76a96f193de36771d031f1806b0d111f9bcf9a6959",
+      "analytic_nonvanishing_lower_bound_from_proof": "151538093517955740323411755371093750000000000000000000/5969407254609733125360909365633471356699012924871",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 3,
+      "N": 2,
+      "D_degree": 9,
+      "Q_degree": -1,
+      "P_degree": 10,
+      "P_height": "4926873600",
+      "P_coefficient_sha256": "c5300e8ca3c738731772c5ea4879517fd7a1355dfe8e3a0cabb5dc79a2389b06",
+      "analytic_nonvanishing_lower_bound_from_proof": "378845233794889350808529388427734375000000000000000000000000000/136294955278053600301176872107816460281618318874780680365281",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 3,
+      "N": 3,
+      "D_degree": 12,
+      "Q_degree": 11,
+      "P_degree": 13,
+      "P_height": "123662705225250",
+      "P_coefficient_sha256": "ad1e64bd447ef03d24654863ab2e465322af65eb7e02af7f972f980cea2290b1",
+      "analytic_nonvanishing_lower_bound_from_proof": "8771214275436175694594476665573120117187500/2248524549815161101246158099627093",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 3,
+      "N": 3,
+      "D_degree": 12,
+      "Q_degree": 10,
+      "P_degree": 13,
+      "P_height": "124296431670000",
+      "P_coefficient_sha256": "82754670c01cd1f679ea645fd60194d98cf1c5e9e249aa3c6654e478074ffbec",
+      "analytic_nonvanishing_lower_bound_from_proof": "21928035688590439236486191663932800292968750000000000/40096235513945962944987535788828840967369123",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 3,
+      "N": 3,
+      "D_degree": 12,
+      "Q_degree": 9,
+      "P_degree": 13,
+      "P_height": "124394884272000",
+      "P_coefficient_sha256": "dcb8c91ffaa6796b1398af7dc50215c096e75db82d3074f9b4333e9121d0eae9",
+      "analytic_nonvanishing_lower_bound_from_proof": "54820089221476098091215479159832000732421875000000000000000000/915486981051832051298567758000338939403791847463212453",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 1,
+      "R": 3,
+      "N": 4,
+      "D_degree": 15,
+      "Q_degree": 14,
+      "P_degree": 16,
+      "P_height": "39213626450087440",
+      "P_coefficient_sha256": "c83da5ef17df0d8cff4cde0b44251f3491f5cc9427e64129337f50afc8446c22",
+      "analytic_nonvanishing_lower_bound_from_proof": "317668301979423671323729526958841324031982421875/287811142376340620959508236752267904",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 2,
+      "R": 3,
+      "N": 4,
+      "D_degree": 15,
+      "Q_degree": 13,
+      "P_degree": 16,
+      "P_height": "39453208249080000",
+      "P_coefficient_sha256": "6abe98535ed18a76a2f3c81ebb68faa581d0846e190e2910db3e2972a79a7343",
+      "analytic_nonvanishing_lower_bound_from_proof": "6204459023035618580541592323414869609999656677246093750/40096235513945962944987535788828840967369123",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "m": 3,
+      "R": 3,
+      "N": 4,
+      "D_degree": 15,
+      "Q_degree": 12,
+      "P_degree": 16,
+      "P_height": "39500891022384000",
+      "P_coefficient_sha256": "8b321d40f7570206cff1dcb5ead145ec85bac9547827bfb85f6cb03cb972ba6f",
+      "analytic_nonvanishing_lower_bound_from_proof": "15511147557589046451353980808537174024999141693115234375000000000/915486981051832051298567758000338939403791847463212453",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    }
+  ],
+  "sample_polynomials": [
+    {
+      "status": "COMPUTED",
+      "parameters": {
+        "generation": 1,
+        "core_rings": 1,
+        "max_births": 1
+      },
+      "coefficient_order": "constant term first",
+      "integer_clearer": "6",
+      "D_coefficients": [
+        "36",
+        "30",
+        "6"
+      ],
+      "Q_coefficients": [
+        "9",
+        "3"
+      ],
+      "P_coefficients": [
+        "1287",
+        "1509",
+        "576",
+        "72"
+      ],
+      "degree_P": 3,
+      "height_P": "1509",
+      "degree_bound_P": 3,
+      "height_bound_P": "3528",
+      "scope": "A finite full-kernel threshold polynomial; its nonvanishing at mu requires the written omitted-history proof.",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "status": "COMPUTED",
+      "parameters": {
+        "generation": 1,
+        "core_rings": 2,
+        "max_births": 2
+      },
+      "coefficient_order": "constant term first",
+      "integer_clearer": "12",
+      "D_coefficients": [
+        "82944",
+        "179712",
+        "159552",
+        "74304",
+        "19152",
+        "2592",
+        "144"
+      ],
+      "Q_coefficients": [
+        "38464",
+        "55840",
+        "32036",
+        "9104",
+        "1284",
+        "72"
+      ],
+      "P_coefficients": [
+        "2947520",
+        "7409120",
+        "7868380",
+        "4580464",
+        "1579836",
+        "323064",
+        "36288",
+        "1728"
+      ],
+      "degree_P": 7,
+      "height_P": "7868380",
+      "degree_bound_P": 7,
+      "height_bound_P": "25401600",
+      "scope": "A finite full-kernel threshold polynomial; its nonvanishing at mu requires the written omitted-history proof.",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "status": "COMPUTED",
+      "parameters": {
+        "generation": 2,
+        "core_rings": 2,
+        "max_births": 2
+      },
+      "coefficient_order": "constant term first",
+      "integer_clearer": "12",
+      "D_coefficients": [
+        "82944",
+        "179712",
+        "159552",
+        "74304",
+        "19152",
+        "2592",
+        "144"
+      ],
+      "Q_coefficients": [
+        "3456",
+        "4608",
+        "2232",
+        "468",
+        "36"
+      ],
+      "P_coefficients": [
+        "2982528",
+        "7460352",
+        "7898184",
+        "4589100",
+        "1581084",
+        "323136",
+        "36288",
+        "1728"
+      ],
+      "degree_P": 7,
+      "height_P": "7898184",
+      "degree_bound_P": 7,
+      "height_bound_P": "25401600",
+      "scope": "A finite full-kernel threshold polynomial; its nonvanishing at mu requires the written omitted-history proof.",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    },
+    {
+      "status": "COMPUTED",
+      "parameters": {
+        "generation": 3,
+        "core_rings": 3,
+        "max_births": 3
+      },
+      "coefficient_order": "constant term first",
+      "integer_clearer": "60",
+      "D_coefficients": [
+        "373248000000",
+        "1437004800000",
+        "2506671360000",
+        "2619981504000",
+        "1827746208000",
+        "896739984000",
+        "317346120000",
+        "81638928000",
+        "15156072000",
+        "1980720000",
+        "173016000",
+        "9072000",
+        "216000"
+      ],
+      "Q_coefficients": [
+        "1944000000",
+        "5378400000",
+        "6499980000",
+        "4506192000",
+        "1976211000",
+        "568971000",
+        "107622000",
+        "12906000",
+        "891000",
+        "27000"
+      ],
+      "P_coefficients": [
+        "13434984000000",
+        "56205770400000",
+        "107477726580000",
+        "124394884272000",
+        "97236665325000",
+        "54215024949000",
+        "22185232506000",
+        "6747141942000",
+        "1525284837000",
+        "253178757000",
+        "29997216000",
+        "2402784000",
+        "116640000",
+        "2592000"
+      ],
+      "degree_P": 13,
+      "height_P": "124394884272000",
+      "degree_bound_P": 13,
+      "height_bound_P": "493807104000000",
+      "scope": "A finite full-kernel threshold polynomial; its nonvanishing at mu requires the written omitted-history proof.",
+      "positive_root": {
+        "kind": "zero_convention",
+        "value": "0",
+        "reason": "There is no positive threshold root because L(0)<=36."
+      }
+    }
+  ],
+  "minimum_ring_budget_diagnostic": {
+    "test_discount": "113/200",
+    "threshold": "2139/50",
+    "S_1221_lower_decimal": "42.766941615124306506",
+    "S_1221_upper_decimal": "42.766941615124306507",
+    "S_1222_lower_decimal": "42.782976443213266254",
+    "S_1222_upper_decimal": "42.782976443213266255",
+    "necessary_core_ring_budget_for_root_in_current_enclosure": 1222,
+    "meaning": "The universal potential-ring envelope lies below the required threshold through R=1221. This is a necessary cost condition, not a sufficient certificate or a new estimate of mu."
+  },
+  "not_proved_by_this_program": [
+    "The full critical pressure characterization and the infinite-model noncancellation theorem require their written proofs.",
+    "Interpolation uses the proved degree bound; extra finite evaluations do not establish the general polynomial theorem.",
+    "The default small budgets have no positive lower threshold root and yield no new bound for mu.",
+    "No rapid root-convergence rate, efficient arbitrary-precision solver, irrationality, or transcendence assertion is established.",
+    "The literal polynomial growth diagnostic is not a claim about optimal or primitive denominator clearers."
+  ]
+}

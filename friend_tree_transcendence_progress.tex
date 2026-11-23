@@ -42,10 +42,17 @@ prime-ideal calculation gives an exact coefficient-height asymptotic at
 every positive algebraic discount. These statements identify the arithmetic
 class of this genuine first-promotion kernel. We also record the scope of
 Sprind\v zuk's applicable $E^*$-function theorem and an exact equivalence
-for the local-model transcendence problem. Neither irrationality nor
-transcendence of the original exponent is proved. The remaining step is
-the construction of a nonzero signed critical witness with an arithmetic
-error estimate strong enough to beat algebraic separation.
+for the local-model transcendence problem. For the full original kernel,
+we construct signed integer-polynomial certificates with strictly positive
+critical values and algebraic roots increasing to the actual exponent.
+We give a geometrically convergent iteration using exact pressure values,
+an equality-safe rational series, and explicit subcritical generation
+tails. A scalar beta series retains all free-tree dependence in its
+rational coefficients; an exact generator hierarchy supplies difference
+and differential equations, together with an operator rising-factorial
+formula for those coefficients. Neither irrationality nor transcendence of the
+original exponent is proved: sufficiently small critical values relative
+to degree and height remain missing.
 \end{abstract}
 
 \section{Scope and the critical arithmetic question}
@@ -66,12 +73,17 @@ equation is asserted for this process. The bounds, existence theorem,
 and exact pressure characterization are contextual inputs, not results
 reproved in this note.
 
-The new computations below concern the actual \emph{first proper
+The first part concerns the actual \emph{first proper
 promotion} from the inert newborn. This state has one real core, one
 real leaf, and one inert parent stub. The stub counts toward degree but
 has no source clock. It differs from a free star, whose first core ring
 always promotes a leaf. A first-promotion transform is an exact kernel
 component; its evaluation is not a new equation for $\mu$.
+Sections~\ref{scp:section}--\ref{rr:section} then use the established
+full pressure and certificate theorems to obtain global arithmetic
+noncancellation and precise root representations. Analytic convergence
+rates for exact pressure queries and error bounds per completed
+certificate stage are distinguished from running-time bounds.
 
 \section{The exact first-promotion transform}
 
@@ -609,14 +621,24 @@ Removing the possible exceptional value at $-1$ is a precise arithmetic
 target for the local model. No implication for the original $\mu$ is
 available without a separate exact transfer.
 
-\section{The next critical witness and a dependency audit}
+\input{sections/transcendence/signed_certificate_polynomials}
+\input{sections/transcendence/pressure_contraction}
+\input{sections/transcendence/full_kernel_special_functions}
+\input{sections/transcendence/rapid_root_fragment}
+
+\section{The remaining small-value problem and a dependency audit}
 
 The new reduction proves that a complete first-promotion phase contains
 a nonzero rational summation class throughout $I$. The denominator
 theorems explain why positive truncation and fixed-order acceleration
 are insufficient for the intended small-integer argument. They do not
 rule out an improved signed construction or cancellations across the
-global kernel.
+global kernel. Section~\ref{scp:section} supplies a concrete full-model
+family with proved noncancellation, but its literal cleared values grow.
+The geometric root iteration in Section~\ref{pci:section} counts exact
+pressure queries, and the rational series in Section~\ref{rr:section}
+counts completed certificate searches. Neither yields the arithmetic
+small values required below.
 
 One precise transcendence target is to construct integer polynomials
 $P_N$ from the actual critical equation such that, infinitely often,
@@ -625,7 +647,9 @@ $P_N(\mu)\ne0$, and
  \frac{-\log|P_N(\mu)|}
  {\log(2H(P_N))+\deg P_N+\log(\deg P_N+2)}\longrightarrow\infty.
 \end{equation}
-Both nonvanishing and the quantitative estimate are unproved here.
+The certificate family proves nonvanishing for one natural construction,
+but does not satisfy this quantitative target. A construction satisfying
+both requirements is not established here.
 This is a sufficient criterion, not a claim that every transcendence
 proof must have this form. To see why it suffices, suppose $\mu$ were
 algebraic of degree $d$, with primitive minimal polynomial of leading
@@ -639,11 +663,13 @@ integer resultant gives, for $m=\deg P$,
 This contradicts \eqref{eq:target}. For a fixed proposed algebraic
 number, a sufficiently strong fixed rate would already suffice.
 
-The substantive missing construction is a \emph{signed critical
-boundary functional} that both detects $r_\infty(s)-1$ and preserves a
-nonzero arithmetic class after the full environment is incorporated.
-The identity for $\Phi$ does not construct that functional. In
-particular $\Phi(\mu)=1$ is false: $\Phi(s)<1$ for every $s>0$.
+The finite signed certificate family detects the lower side of the
+full critical equation and stays strictly positive at criticality.
+What is still missing is a signed critical boundary construction whose
+nonzero values become sufficiently small after arithmetic normalization.
+No single finite special-function equation for $\mu$ is supplied by
+these results. In particular $\Phi(\mu)=1$ is false:
+$\Phi(s)<1$ for every $s>0$.
 
 \begin{center}\small
 \begin{tabular}{p{0.27\textwidth}p{0.62\textwidth}}
@@ -656,8 +682,12 @@ Rational nonsummability & Pole-orbit argument and polynomial degree comparison; 
 Primitive rational denominators & Exact prime valuations and classical quadratic Mertens estimates; proved here.\\
 Algebraic coefficient heights & Exact prime-ideal valuations, number-field Mertens, and conjugate bounds; proved here.\\
 Numerical intervals & Exact finite arithmetic using the analytic tail theorem; reproducible.\\
-Global critical transfer & Not constructed.\\
-Arithmetic small forms & No suitable signed critical forms or required height/error balance constructed.\\
+Full-critical polynomial certificates & Full pressure theorem, explicit omitted histories, and a positive denominator clearer; proved here.\\
+Algebraic-root representation & Completeness of finite lower certificates; proved without a cutoff-to-error rate.\\
+Geometric pressure iteration & Convexity and the known enclosure; proved for exact pressure queries.\\
+Rational series and resolvent tails & Complete strict searches and H\"older interpolation; explicit bounds with the stated computational scope.\\
+Full-tree recurrence hierarchy & Exact attachment probabilities and generator iteration; no finite scalar closure is asserted.\\
+Arithmetic small forms & Noncancellation is available for the certificate family; sufficiently small values relative to height are not.\\
 Transcendence of $\mu$ & Unresolved. The local-family transcendence assertion is also unresolved.\\
 \bottomrule
 \end{tabular}
@@ -673,6 +703,18 @@ exploratory. Finite checks do not replace the infinite proofs, establish
 asymptotics experimentally, or certify transcendence. The source and exact
 reference report are included in the repository, alongside the
 original-model and local-model manuscripts.
+The additional program \texttt{scripts/check\_critical\_root\_forms.py}
+constructs small certificate polynomials and checks them against
+independent ordered-event recursions, including explicit omitted paths.
+The helper \texttt{scripts/rapid\_root\_tools.py} checks rational Yule-tail
+formulas and equality-safe bracket updates using demonstration roots.
+It does not implement the full friend-tree upper-certificate search or
+an evaluator of the exact pressure.
+The program \texttt{scripts/full\_tree\_recurrence.py} enumerates small
+unlabelled free trees with exact transition multiplicities, computes the
+rational coefficients, and checks the first two generator identities
+against direct two-stage friend choices. These are finite checks of
+the recurrence hierarchy, not an arbitrary-precision solver for $\mu$.
 
 \paragraph{Acknowledgment.}
 AI tools assisted with proof exploration, independent arithmetic audits,
@@ -692,8 +734,9 @@ drafts, November 23, 2026, repository revision
 \texttt{6ee9d6e6402699e02860eb02dde319d28a6df385}.
 \url{https://github.com/long-mathematics/friend-tree-growth}.
 \bibitem{DLMF} NIST Digital Library of Mathematical Functions,
-Section 16.2, generalized hypergeometric series.
-\url{https://dlmf.nist.gov/16.2}.
+Sections 16.2 and 8.17, generalized hypergeometric series and incomplete
+beta functions.
+\url{https://dlmf.nist.gov/16.2}; \url{https://dlmf.nist.gov/8.17}.
 \bibitem{Zhao} T. Zhao, \emph{On the mean values of the error terms in
 Mertens' theorems}, Research in Number Theory 11 (2025), article 62.
 \url{https://doi.org/10.1007/s40993-025-00640-y}.

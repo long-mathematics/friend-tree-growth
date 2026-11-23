@@ -3,9 +3,10 @@
 The main draft's completed theorem is effective computation of the original
 exponent, using an exact characteristic pressure and a uniform boundary
 comparison. The local-model companion supplies a concrete irrationality
-theorem. The first-promotion continuation proves exact reductions and sharp
-coefficient-height asymptotics for one component of the original kernel.
-The following targets concern additional results.
+theorem. The arithmetic continuation proves first-promotion reductions and
+coefficient-height asymptotics, full-critical certificate-polynomial
+noncancellation, and several exact root representations. The following
+targets concern the remaining analytic, arithmetic, and computational gaps.
 
 ## 1. Make computation practical
 
@@ -19,6 +20,41 @@ A successful reduction must preserve the evolving environment and justify
 its tail bound uniformly. A good fit to simulations or a convergent sequence
 without an effective outer error does not supply such a solver. The existing
 boundary-leaf estimate is an analytic tool for controlling that error.
+
+### What the new convergence statements provide
+
+The exact-pressure iteration
+`s_(n+1) = s_n + 63*log(r_infty(s_n))/(400*log(2))` contracts the distance
+to `mu` by at least the factor `73/82` on the current enclosure. Its
+remaining computational requirement is an efficient certified evaluation
+of the pressure; the iteration does not supply an outer error bound for
+the finite-generation approximation defining that pressure.
+
+Equality-safe trisection gives a rational series with a geometric error
+after each completed certificate stage, with endpoint denominators dividing
+`Q*3^n` and width at most the initial width times `(2/3)^n`. A stage
+dovetails strict lower and upper searches at two interior points, so it
+does not need to decide equality with `mu`. This supplies no runtime bound
+for obtaining the certificates. The implemented driver tests this scheduling
+interface on exact demonstration roots; it does not implement the full
+friend-tree upper search.
+
+The generation series has an explicit geometric tail above any certified
+upper bound `b >= mu`: for `b < s <= S`, `S > 1`, put
+`theta = (S-s)/(S-b)` and `rho = S^(-(1-theta))`. Then
+
+$$
+A_m^\infty(s)\le[12(b+3)]^\theta\rho^m.
+$$
+
+This gives a stopping rule for the generation sum, with finite-history
+errors handled separately. The rate deteriorates as `s` approaches `b`.
+It does not prove divergence or a pole at the critical point.
+
+The exact Yule population-tail helper also improves fixed-time finite-state
+calculations to a geometric population cutoff bound. This identity is
+restored from earlier project work. Spatial-profile and quadrature errors,
+and the cost of the long-time critical limit, remain separate.
 
 ## 2. Identify a usable arithmetic characteristic
 
@@ -71,13 +107,45 @@ rational square are dense, including examples inside the enclosure.
 
 These statements identify the arithmetic cost of the natural series; they
 do not classify the arithmetic nature of its evaluated sum. The positive
-residual and rational nonsummability do not prove that a nonzero arithmetic
-class survives after all environments enter the global critical equation.
-The next target is a signed critical boundary functional detecting
-`r_infty(s)-1`, with both global noncancellation and a height/error balance
-strong enough for algebraic separation. No such functional is constructed
-in the continuation. Its accelerated rational enclosures concern the
+residual and rational nonsummability do not themselves transfer that class
+through all environments. Its accelerated rational enclosures concern the
 first-promotion transform, not improved bounds for `mu`.
+
+### Full-critical noncancellation is now available for certificate polynomials
+
+For the actual finite-history lower sums `L_(m,R,N)(s)`, the continuation
+clears the signed residual `12(s+3)-L_(m,R,N)(s)` to an integer polynomial.
+An explicitly omitted history gives a strictly positive value at `mu`,
+with explicit degree, height, and nonzero root-gap bounds. The increasing
+largest nonnegative roots of the resulting product polynomials converge
+to `mu`. Normalizing the finite lower sums also gives continuous residuals
+decreasing to `1-r_infty(s)`, strictly positive at `mu` before tending to
+zero. Their convergence is uniform on compact positive intervals, but
+no effective rate in the history budget is proved.
+
+Thus noncancellation for this full-model certificate construction is
+established. The arithmetic target is now a sufficiently small value
+relative to degree and height. For the literal clearers used in the note,
+the critical values grow rather than tend to zero. This does not rule out
+primitive normalization, different signed constructions, or an exact
+analytic characteristic with stronger arithmetic properties.
+
+The restored full-tree beta/Mellin representation is another exact
+organization: its rational coefficients are `a_n=E C_n`, and its convergence
+abscissa is `mu`. It does not yet provide a finite special-function equation,
+a fixed-order recurrence for `a_n`, or a rapidly computable critical root.
+
+There is now an explicit full-model recurrence hierarchy. For the generator
+`L`, put `u_(r,n)=E[(L^r C)(T_n)]`; then
+`u_(r,n+1)=u_(r,n)+u_(r+1,n)/n`. Its first two levels expose the
+inverse-degree and neighbour correlations needed beyond `a_n` itself.
+The corresponding generating functions satisfy
+`(1-z)G_r'(z)-2G_r(z)=G_(r+1)(z)`, and each `a_n` has a finite
+operator rising-factorial expression. This is an exact countable system.
+The core count alone is not an autonomous state, but this does not rule
+out a more useful finite recurrence for the edge-start expectations.
+A characteristic relation in the discount parameter and a fixed-order
+ODE for the population generating function are distinct reduction targets.
 
 The [dependency audit](transcendence_proof_dependencies.md) records the
 proved components, the classical arithmetic inputs, and the remaining

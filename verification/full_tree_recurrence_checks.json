@@ -1,0 +1,788 @@
+{
+  "status": "PASS",
+  "model": "Original free friend tree grown from an edge, with no inert stub.",
+  "arithmetic": "Python standard-library integers and fractions.Fraction; no floating-point decisions.",
+  "configuration": {
+    "initial_population": 2,
+    "max_population": 10,
+    "canonicalization": "minimum nested rooted tuple over all roots; target multiplicities retained"
+  },
+  "identities": {
+    "h_T(w)": "sum(1/d_T(u), u adjacent to w)",
+    "attachment_probability": "h_T(w)/n",
+    "Lambda(T)": "sum(h_T(w), w a leaf); Lambda(edge)=2",
+    "K(T)": "sum(ell_T(w)/d_T(w)^2, w a nonleaf)",
+    "J(T)": "sum(h_T(w)*(d_T(w)-ell_T(w))/(d_T(w)*(d_T(w)+1)), w a nonleaf)",
+    "core_recurrence": "n*(a_(n+1)-a_n)=b_n for n>=2",
+    "Lambda_drift": "n*E[Lambda(T_(n+1))-Lambda(T_n) | T_n=T]=Lambda(T)/2-K(T)+J(T) for n>=3"
+  },
+  "checks": {
+    "Lambda_leaf_neighbor_identity": 199,
+    "aggregated_transition_normalization": 200,
+    "aggregated_vs_two_stage_transitions": 200,
+    "attachment_rate_normalization": 200,
+    "direct_transition_normalization": 200,
+    "distribution_normalization": 9,
+    "double_star_distinct_core_drift": 1,
+    "double_star_same_core_count": 1,
+    "double_star_same_population": 1,
+    "edge_Lambda_drift_exception": 1,
+    "edge_Lambda_exception": 1,
+    "expected_Lambda_recurrence": 7,
+    "expected_core_recurrence": 8,
+    "five_vertex_star_probability": 1,
+    "four_vertex_star_probability": 1,
+    "hand_computed_initial_core_means": 5,
+    "one_vertex_per_transition": 200,
+    "per_state_Lambda_drift": 199,
+    "per_state_core_drift": 200,
+    "positive_tree_weights": 9
+  },
+  "total_checks": 1643,
+  "per_state_drift_audits": 200,
+  "coefficients": [
+    {
+      "population": 2,
+      "unlabelled_tree_states": 1,
+      "a_n_expected_cores": "0",
+      "b_n_expected_Lambda": "2",
+      "expected_K": "0",
+      "expected_J": "0"
+    },
+    {
+      "population": 3,
+      "unlabelled_tree_states": 1,
+      "a_n_expected_cores": "1",
+      "b_n_expected_Lambda": "1",
+      "expected_K": "1/2",
+      "expected_J": "0"
+    },
+    {
+      "population": 4,
+      "unlabelled_tree_states": 2,
+      "a_n_expected_cores": "4/3",
+      "b_n_expected_Lambda": "1",
+      "expected_K": "7/18",
+      "expected_J": "1/6"
+    },
+    {
+      "population": 5,
+      "unlabelled_tree_states": 3,
+      "a_n_expected_cores": "19/12",
+      "b_n_expected_Lambda": "77/72",
+      "expected_K": "157/432",
+      "expected_J": "215/864"
+    },
+    {
+      "population": 6,
+      "unlabelled_tree_states": 6,
+      "a_n_expected_cores": "647/360",
+      "b_n_expected_Lambda": "1661/1440",
+      "expected_K": "10369/28800",
+      "expected_J": "39463/129600"
+    },
+    {
+      "population": 7,
+      "unlabelled_tree_states": 11,
+      "a_n_expected_cores": "17189/8640",
+      "b_n_expected_Lambda": "77159/62208",
+      "expected_K": "6813653/18662400",
+      "expected_J": "6494759/18662400"
+    },
+    {
+      "population": 8,
+      "unlabelled_tree_states": 23,
+      "a_n_expected_cores": "4717423/2177280",
+      "b_n_expected_Lambda": "7220369/5443200",
+      "expected_K": "3420728989/9144576000",
+      "expected_J": "4221620371/10973491200"
+    },
+    {
+      "population": 9,
+      "unlabelled_tree_states": 47,
+      "a_n_expected_cores": "101568829/43545600",
+      "b_n_expected_Lambda": "88460706263/62705664000",
+      "expected_K": "10140370707017/26336378880000",
+      "expected_J": "10983792837589/26336378880000"
+    },
+    {
+      "population": 10,
+      "unlabelled_tree_states": 106,
+      "a_n_expected_cores": "200684675729/80621568000",
+      "b_n_expected_Lambda": "25271545722853/16930529280000",
+      "expected_K": "44815649950129/112870195200000",
+      "expected_J": "793524396628309/1777705574400000"
+    }
+  ],
+  "nonclosure_witness": {
+    "trees": [
+      {
+        "leaf_allocation": [
+          3,
+          1
+        ],
+        "canonical_tree_code": "(()()()(()))",
+        "population": 6,
+        "core_count": 2,
+        "Lambda": "5/4",
+        "conditional_expected_core_increment": "5/24"
+      },
+      {
+        "leaf_allocation": [
+          2,
+          2
+        ],
+        "canonical_tree_code": "(()()(()()))",
+        "population": 6,
+        "core_count": 2,
+        "Lambda": "4/3",
+        "conditional_expected_core_increment": "2/9"
+      }
+    ],
+    "conclusion": "Population and core count alone do not determine the next core-growth drift. This does not prove the absence of every scalar recurrence for the averaged sequence."
+  },
+  "final_population_distribution": [
+    {
+      "canonical_tree_code": "(()()()()()()()()())",
+      "probability": "2/9",
+      "core_count": 1,
+      "Lambda": "1"
+    },
+    {
+      "canonical_tree_code": "(()()()()()()()(()))",
+      "probability": "8621/55296",
+      "core_count": 2,
+      "Lambda": "11/8"
+    },
+    {
+      "canonical_tree_code": "(()()()()()()(()()))",
+      "probability": "6783923/88179840",
+      "core_count": 2,
+      "Lambda": "32/21"
+    },
+    {
+      "canonical_tree_code": "(()()()()()()((())))",
+      "probability": "9611/276480",
+      "core_count": 3,
+      "Lambda": "19/14"
+    },
+    {
+      "canonical_tree_code": "(()()()()()(())(()))",
+      "probability": "25607/580608",
+      "core_count": 3,
+      "Lambda": "12/7"
+    },
+    {
+      "canonical_tree_code": "(()()()()()(()()()))",
+      "probability": "3131369611/56435097600",
+      "core_count": 2,
+      "Lambda": "19/12"
+    },
+    {
+      "canonical_tree_code": "(()()()()()(()(())))",
+      "probability": "89527919/3527193600",
+      "core_count": 3,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()()()()((()())))",
+      "probability": "11621/645120",
+      "core_count": 3,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()()()()(((()))))",
+      "probability": "5863/967680",
+      "core_count": 4,
+      "Lambda": "4/3"
+    },
+    {
+      "canonical_tree_code": "(()()()()(())(()()))",
+      "probability": "167843567/4031078400",
+      "core_count": 3,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()()()(())((())))",
+      "probability": "8359/453600",
+      "core_count": 4,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()()()(()()()()))",
+      "probability": "12314027/489888000",
+      "core_count": 2,
+      "Lambda": "8/5"
+    },
+    {
+      "canonical_tree_code": "(()()()()(()()(())))",
+      "probability": "4616403941/188116992000",
+      "core_count": 3,
+      "Lambda": "9/5"
+    },
+    {
+      "canonical_tree_code": "(()()()()(()(()())))",
+      "probability": "22929337/1763596800",
+      "core_count": 3,
+      "Lambda": "9/5"
+    },
+    {
+      "canonical_tree_code": "(()()()()(()((()))))",
+      "probability": "147559/29030400",
+      "core_count": 4,
+      "Lambda": "49/30"
+    },
+    {
+      "canonical_tree_code": "(()()()()((())(())))",
+      "probability": "2924171/1175731200",
+      "core_count": 4,
+      "Lambda": "9/5"
+    },
+    {
+      "canonical_tree_code": "(()()()()((()()())))",
+      "probability": "1747/129024",
+      "core_count": 3,
+      "Lambda": "31/20"
+    },
+    {
+      "canonical_tree_code": "(()()()()((()(()))))",
+      "probability": "1333/241920",
+      "core_count": 4,
+      "Lambda": "49/30"
+    },
+    {
+      "canonical_tree_code": "(()()()()(((()()))))",
+      "probability": "5507/1935360",
+      "core_count": 4,
+      "Lambda": "22/15"
+    },
+    {
+      "canonical_tree_code": "(()()()()((((())))))",
+      "probability": "2771/2903040",
+      "core_count": 5,
+      "Lambda": "13/10"
+    },
+    {
+      "canonical_tree_code": "(()()()(())(())(()))",
+      "probability": "1024223/174182400",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()()(())(()()()))",
+      "probability": "5385476921/188116992000",
+      "core_count": 3,
+      "Lambda": "37/20"
+    },
+    {
+      "canonical_tree_code": "(()()()(())(()(())))",
+      "probability": "914966693/70543872000",
+      "core_count": 4,
+      "Lambda": "29/15"
+    },
+    {
+      "canonical_tree_code": "(()()()(())((()())))",
+      "probability": "1349/151200",
+      "core_count": 4,
+      "Lambda": "53/30"
+    },
+    {
+      "canonical_tree_code": "(()()()(())(((()))))",
+      "probability": "29027/9676800",
+      "core_count": 5,
+      "Lambda": "8/5"
+    },
+    {
+      "canonical_tree_code": "(()()()(()())(()()))",
+      "probability": "351881597/35271936000",
+      "core_count": 3,
+      "Lambda": "29/15"
+    },
+    {
+      "canonical_tree_code": "(()()()(()())((())))",
+      "probability": "138541/16128000",
+      "core_count": 4,
+      "Lambda": "53/30"
+    },
+    {
+      "canonical_tree_code": "(()()()(()()(()())))",
+      "probability": "63799703/4514807808",
+      "core_count": 3,
+      "Lambda": "23/12"
+    },
+    {
+      "canonical_tree_code": "(()()()(()()((()))))",
+      "probability": "917881/156764160",
+      "core_count": 4,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()()()(()(())(())))",
+      "probability": "15643721/3762339840",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()()(()(()()())))",
+      "probability": "376703/70543872",
+      "core_count": 3,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()()(()(()(()))))",
+      "probability": "1466249/313528320",
+      "core_count": 4,
+      "Lambda": "23/12"
+    },
+    {
+      "canonical_tree_code": "(()()()(()((()()))))",
+      "probability": "1787/622080",
+      "core_count": 4,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()()()(()(((())))))",
+      "probability": "20159/20901888",
+      "core_count": 5,
+      "Lambda": "19/12"
+    },
+    {
+      "canonical_tree_code": "(()()()((()))((())))",
+      "probability": "26771/14515200",
+      "core_count": 5,
+      "Lambda": "8/5"
+    },
+    {
+      "canonical_tree_code": "(()()()((())(()())))",
+      "probability": "304549/100776960",
+      "core_count": 4,
+      "Lambda": "23/12"
+    },
+    {
+      "canonical_tree_code": "(()()()((())((()))))",
+      "probability": "60523/52254720",
+      "core_count": 5,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()()()((()()(()))))",
+      "probability": "17929/2903040",
+      "core_count": 4,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()()()((()(()()))))",
+      "probability": "51131/17418240",
+      "core_count": 4,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()()()((()((())))))",
+      "probability": "1639/1451520",
+      "core_count": 5,
+      "Lambda": "19/12"
+    },
+    {
+      "canonical_tree_code": "(()()()(((())(()))))",
+      "probability": "11/20160",
+      "core_count": 5,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()()()(((()()()))))",
+      "probability": "437/387072",
+      "core_count": 4,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()()(((()(())))))",
+      "probability": "887/967680",
+      "core_count": 5,
+      "Lambda": "19/12"
+    },
+    {
+      "canonical_tree_code": "(()()()((((()())))))",
+      "probability": "19/40320",
+      "core_count": 5,
+      "Lambda": "17/12"
+    },
+    {
+      "canonical_tree_code": "(()()()(((((()))))))",
+      "probability": "131/829440",
+      "core_count": 6,
+      "Lambda": "5/4"
+    },
+    {
+      "canonical_tree_code": "(()()(())(())(()()))",
+      "probability": "516748081/70543872000",
+      "core_count": 4,
+      "Lambda": "31/15"
+    },
+    {
+      "canonical_tree_code": "(()()(())(())((())))",
+      "probability": "342989/108864000",
+      "core_count": 5,
+      "Lambda": "19/10"
+    },
+    {
+      "canonical_tree_code": "(()()(())(()()(())))",
+      "probability": "14898007/2508226560",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()(())(()(()())))",
+      "probability": "3506611/564350976",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()(())(()((()))))",
+      "probability": "84361/34836480",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()(())((())(())))",
+      "probability": "37003/31352832",
+      "core_count": 5,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()(())((()(()))))",
+      "probability": "2917/1161216",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()(())(((()()))))",
+      "probability": "215/165888",
+      "core_count": 5,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()(())((((())))))",
+      "probability": "15143/34836480",
+      "core_count": 6,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()(()())(()(())))",
+      "probability": "23771507/3762339840",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()(()())((()())))",
+      "probability": "173785/41803776",
+      "core_count": 4,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()(()())(((()))))",
+      "probability": "62563/44789760",
+      "core_count": 5,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()(()(()))((())))",
+      "probability": "2456231/940584960",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()(()(())(()())))",
+      "probability": "1577267/537477120",
+      "core_count": 4,
+      "Lambda": "25/12"
+    },
+    {
+      "canonical_tree_code": "(()()(()(())((()))))",
+      "probability": "4557929/1881169920",
+      "core_count": 5,
+      "Lambda": "23/12"
+    },
+    {
+      "canonical_tree_code": "(()()(()(()(()()))))",
+      "probability": "140341/88179840",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()(()(()((())))))",
+      "probability": "580523/470292480",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()(()((())(()))))",
+      "probability": "210997/352719360",
+      "core_count": 5,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()(()((()(())))))",
+      "probability": "1039/870912",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()(()(((()())))))",
+      "probability": "2141/3483648",
+      "core_count": 5,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()(()((((()))))))",
+      "probability": "673/3265920",
+      "core_count": 6,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()((()))((()())))",
+      "probability": "709/414720",
+      "core_count": 5,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()((()))(((()))))",
+      "probability": "20009/34836480",
+      "core_count": 6,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()((())(())(())))",
+      "probability": "538781/1881169920",
+      "core_count": 5,
+      "Lambda": "13/6"
+    },
+    {
+      "canonical_tree_code": "(()()((())(()(()))))",
+      "probability": "92093/70543872",
+      "core_count": 5,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()((())((()()))))",
+      "probability": "2573/3265920",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()((())(((())))))",
+      "probability": "20743/78382080",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()((()())(()())))",
+      "probability": "911/2449440",
+      "core_count": 4,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()()((()())((()))))",
+      "probability": "2783/6531840",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()((()(())(()))))",
+      "probability": "2825/2322432",
+      "core_count": 5,
+      "Lambda": "23/12"
+    },
+    {
+      "canonical_tree_code": "(()()((()(()(())))))",
+      "probability": "32587/26127360",
+      "core_count": 5,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()()((()((()())))))",
+      "probability": "73/193536",
+      "core_count": 5,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()((()(((()))))))",
+      "probability": "7/27648",
+      "core_count": 6,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()(((()))((()))))",
+      "probability": "59/362880",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()(((())((())))))",
+      "probability": "131/435456",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()(((()((()))))))",
+      "probability": "49/207360",
+      "core_count": 6,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()((((())(())))))",
+      "probability": "83/725760",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()()((((()(()))))))",
+      "probability": "37/193536",
+      "core_count": 6,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()()(((((()()))))))",
+      "probability": "19/387072",
+      "core_count": 6,
+      "Lambda": "4/3"
+    },
+    {
+      "canonical_tree_code": "(()()((((((())))))))",
+      "probability": "191/5806080",
+      "core_count": 7,
+      "Lambda": "7/6"
+    },
+    {
+      "canonical_tree_code": "(()(())(())(())(()))",
+      "probability": "1583/5376000",
+      "core_count": 5,
+      "Lambda": "11/5"
+    },
+    {
+      "canonical_tree_code": "(()(())(())(()(())))",
+      "probability": "298835/161243136",
+      "core_count": 5,
+      "Lambda": "25/12"
+    },
+    {
+      "canonical_tree_code": "(()(())(())(((()))))",
+      "probability": "7121/17418240",
+      "core_count": 6,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()(())(()(()(()))))",
+      "probability": "360071/352719360",
+      "core_count": 5,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()(())(()(((())))))",
+      "probability": "16409/39191040",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()(())((()))((())))",
+      "probability": "181/362880",
+      "core_count": 6,
+      "Lambda": "7/4"
+    },
+    {
+      "canonical_tree_code": "(()(())((())((()))))",
+      "probability": "17/34020",
+      "core_count": 6,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()(())((()((())))))",
+      "probability": "37/80640",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()(())(((())(()))))",
+      "probability": "23/103680",
+      "core_count": 6,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()(())(((()(())))))",
+      "probability": "1/5376",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()(())(((((()))))))",
+      "probability": "31/483840",
+      "core_count": 7,
+      "Lambda": "4/3"
+    },
+    {
+      "canonical_tree_code": "(()(()((())))((())))",
+      "probability": "521/2177280",
+      "core_count": 6,
+      "Lambda": "5/3"
+    },
+    {
+      "canonical_tree_code": "(()((()))((())(())))",
+      "probability": "65/279936",
+      "core_count": 6,
+      "Lambda": "11/6"
+    },
+    {
+      "canonical_tree_code": "(()((()))((((())))))",
+      "probability": "23/290304",
+      "core_count": 7,
+      "Lambda": "4/3"
+    },
+    {
+      "canonical_tree_code": "(()((())(())((()))))",
+      "probability": "8177/69672960",
+      "core_count": 6,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()((())((())(()))))",
+      "probability": "3313/58786560",
+      "core_count": 6,
+      "Lambda": "2"
+    },
+    {
+      "canonical_tree_code": "(()((())((((()))))))",
+      "probability": "167/4354560",
+      "core_count": 7,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()(((())))(((()))))",
+      "probability": "37/870912",
+      "core_count": 7,
+      "Lambda": "4/3"
+    },
+    {
+      "canonical_tree_code": "(()(((()))(((())))))",
+      "probability": "11/108864",
+      "core_count": 7,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()((((()))((())))))",
+      "probability": "1/48384",
+      "core_count": 7,
+      "Lambda": "3/2"
+    },
+    {
+      "canonical_tree_code": "(()(((((((()))))))))",
+      "probability": "1/181440",
+      "core_count": 8,
+      "Lambda": "1"
+    }
+  ],
+  "scope": "Exploratory exact finite coefficient calculator and drift audit, not an efficient solver for mu or a closed finite scalar recurrence.",
+  "not_proved_by_this_program": [
+    "No finite recurrence closure, scalar differential equation, or hypergeometric formula for mu is established.",
+    "Finite coefficients and state-wise identities do not establish an asymptotic error bound for recovering mu.",
+    "No irrationality or transcendence assertion follows from these finite computations."
+  ]
+}

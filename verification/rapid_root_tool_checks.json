@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "exact_checks": 1735,
+  "scope": "Exact Yule and scalar-series tails, rational generation majorants, and generic equality-safe root-driver checks; not a friend-tree root calculation or pressure evaluation.",
+  "trisection_examples": [
+    {
+      "root": "1/3",
+      "rounds": 24,
+      "lower": "10460347762/31381059609",
+      "upper": "94143260930/282429536481"
+    },
+    {
+      "root": "2/3",
+      "rounds": 24,
+      "lower": "188286101479/282429536481",
+      "upper": "62762208589/94143178827"
+    },
+    {
+      "root": "1/7",
+      "rounds": 24,
+      "lower": "166037348/1162261467",
+      "upper": "40347079660/282429536481"
+    },
+    {
+      "root": "13/23",
+      "rounds": 24,
+      "lower": "53211224894/94143178827",
+      "upper": "159634198970/282429536481"
+    },
+    {
+      "root": "8/9",
+      "rounds": 24,
+      "lower": "251048437765/282429536481",
+      "upper": "83682856279/94143178827"
+    }
+  ],
+  "example_yule_cutoff": 302,
+  "generation_tail_example": {
+    "certified_mu_upper_bound": "2832242711/5000000000",
+    "discount": "3/5",
+    "tolerance": "1/10000000000",
+    "generation_terms_required_by_majorant": 2653,
+    "scope": "Truncation bound only; the generation coefficients have not been computed in this example."
+  }
+}

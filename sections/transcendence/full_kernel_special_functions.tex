@@ -1,0 +1,221 @@
+% Scalar representations and an exact hierarchy for the full free tree.
+% The beta-Mellin identity is restored from the earlier archived derivation
+% discrete_eit_transfer_target.tex, not asserted as a new discovery.
+% The explicit finite-z tail below is supplied here for convenient use.
+\section{A scalar beta series retaining the full free tree}
+\label{hfk:section}
+
+Start the original free friend tree from an edge, with no inert stub.
+Let $C_n$ be its number of nonleaves at population $n$, and put
+$a_n=\mathbb E C_n$. Thus $a_2=0$, $a_3=1$, and $a_4=4/3$.
+Every $a_n$ is rational. More explicitly, if $\nu_n(T)$ is the law on
+labelled trees grown from the initial edge, then
+\[
+ \nu_{n+1}(T+w)\mathrel{+}=\nu_n(T)\frac1n
+       \sum_{u\sim_Tw}\frac1{d_T(u)},\qquad
+ a_n=\sum_T\nu_n(T)C(T).
+\]
+Here $T+w$ denotes attaching the new labelled vertex $n+1$ to the
+existing vertex $w$.
+One may instead merge isomorphic trees, retaining all transition
+multiplicities. This is a finite exact recurrence at every population;
+it is not a closed recurrence of fixed order for $a_n$.
+
+Define the ordinary scalar series
+\[
+ G(z)=\sum_{n\ge2}(n-1)a_nz^{n-2},\qquad |z|<1.
+\]
+This free-tree generating function is distinct from the uniform
+newborn envelope used to define $H(T)$ in the computation theorem.
+The Yule population process is independent of the embedded tree chain,
+because its holding times at population $n$ are independent exponentials
+of rate $n$. With $z=1-e^{-t}$ this gives
+\begin{equation}\label{hfk:yule}
+ F_2(t):=\mathbb E_{\rm edge}C(t)
+   =(1-z)^2G(z).
+\end{equation}
+Indeed $\Pr(N(t)=n)=(n-1)e^{-2t}(1-e^{-t})^{n-2}$.
+Consequently, by Tonelli, for real $s>0$ including divergent values,
+\begin{equation}\label{hfk:mellin}
+ \mathcal M(s):=\int_0^\infty e^{-st}F_2(t)\,dt
+  =\sum_{n\ge2}(n-1)a_n\,\mathrm B(s+2,n-1)
+  =\Gamma(s+2)\sum_{n\ge2}
+       a_n\frac{\Gamma(n)}{\Gamma(n+s+1)}.
+\end{equation}
+The established mean exponents\cite{Long,Uzay},
+$F_2(t)=\exp(\mu t+o(t))$ and $a_n=n^{\mu+o(1)}$, therefore give
+\begin{equation}\label{hfk:abscissa}
+ \mu=\inf\{s>0:\mathcal M(s)<\infty\}.
+\end{equation}
+The series converges absolutely and defines a holomorphic function on
+$\Re s>\mu$, and diverges for real $0<s<\mu$. No claim about convergence
+at $s=\mu$ is needed or made. Equivalently,
+\[
+ \mu=\lim_{z\uparrow1}
+       \frac{\log G(z)}{-\log(1-z)}-2.
+\]
+
+The exact scalar organization \eqref{hfk:mellin} was already derived in
+the project's earlier exploratory work. It is recorded here to connect
+that representation to the current pressure theorem. It is a full-model
+series with universal beta factors, but its coefficients retain all tree
+dependence. No hypergeometric term ratio, holonomic recurrence, or finite
+special-function equation for these coefficients has been proved.
+In particular \eqref{hfk:abscissa} is an abscissa characterization, not an
+equation obtained by setting $\mathcal M(\mu)$ to a finite constant.
+
+\begin{proposition}[Explicit geometric tail at a fixed interior argument]
+\label{hfk:fixed-z}
+Let $0<z<1$, let $N\ge2$, and put $M=N-1$. If
+\[
+ G_N(z)=\sum_{n=2}^{N}(n-1)a_nz^{n-2},
+\]
+then
+\begin{align*}
+ 0\le G(z)-G_N(z)
+ \le z^M\left[
+  \frac{M(M+1)}{1-z}
+  +\frac{(2M+1)z}{(1-z)^2}
+  +\frac{z(1+z)}{(1-z)^3}
+ \right].
+\end{align*}
+Multiplying the same interval by $(1-z)^2$ encloses
+$F_2(-\log(1-z))$. At rational $z$, the partial sum and both error
+endpoints are rational.
+\end{proposition}
+\begin{proof}
+Every finite tree has at least two leaves, so $0\le a_n\le n-2$.
+Writing $m=n-2$, the omitted sum is bounded by
+$\sum_{m\ge M}m(m+1)z^m$. Substitute $m=M+j$ and use
+$\sum z^j=(1-z)^{-1}$,
+$\sum jz^j=z(1-z)^{-2}$, and
+$\sum j^2z^j=z(1+z)(1-z)^{-3}$.
+\end{proof}
+
+For fixed $z<1$ the tail is $O_z(N^2z^N)$, a geometric convergence
+bound. Its deterioration as $z\uparrow1$ is essential: this estimate
+does not provide a convergence rate for the limiting logarithmic
+singularity that defines $\mu$. Similarly, the beta-series summand is
+$n^{\mu-s-1+o(1)}$, so its unaccelerated convergence can be arbitrarily
+slow as $s\downarrow\mu$.
+
+\subsection{An exact difference and differential hierarchy}
+
+The scalar coefficients admit a useful hierarchy beyond the full-state
+probability recurrence. For a finite free tree $T$, put
+\[
+ h_T(w)=\sum_{u\sim_Tw}\frac1{d_T(u)},\qquad
+ (\mathcal L f)(T)=\sum_{w\in T}h_T(w)[f(T+w)-f(T)].
+\]
+Here $\sum_wh_T(w)=|T|$, and $C(T)$ counts vertices of degree at
+least two. Let $f_r=\mathcal L^r C$ and
+$u_{r,n}=\mathbb E f_r(T_n)$, so $u_{0,n}=a_n$.
+
+\begin{proposition}[Full-model recurrence hierarchy]
+\label{hfk:hierarchy}
+For every $r\ge0$ and $n\ge2$,
+\begin{equation}\label{hfk:moment-recurrence}
+ u_{r,n+1}=u_{r,n}+\frac1n u_{r+1,n}.
+\end{equation}
+All its coefficients and initial values $u_{r,2}$ are rational and
+are computable from finitely many tree states. If
+\[
+ G_r(z)=\sum_{n\ge2}(n-1)u_{r,n}z^{n-2},
+\]
+then these series converge for $|z|<1$ and satisfy
+\begin{equation}\label{hfk:differential-hierarchy}
+ (1-z)G_r'(z)-2G_r(z)=G_{r+1}(z),\qquad r\ge0.
+\end{equation}
+In particular $G_0=G$ is the full-tree series above. There is also
+the exact finite operator-polynomial formula
+\begin{equation}\label{hfk:operator-factorial}
+ a_n=\frac{[(\mathcal L+2)_{n-2}C](T_2)}{(n-1)!},
+ \qquad
+ G(z)=\sum_{m\ge0}\frac{[(\mathcal L+2)_mC](T_2)}{m!}z^m.
+\end{equation}
+The rising factorial in this formula is a finite polynomial in the
+full-tree generator, not a scalar hypergeometric parameter.
+\end{proposition}
+\begin{proof}
+Conditional on $T_n=T$, the next attachment has probability
+$h_T(w)/n$ at $w$. Thus for every observable $f$,
+\[
+ \mathbb E[f(T_{n+1})\mid T_n]
+ =f(T_n)+\frac1n(\mathcal Lf)(T_n).
+\]
+Apply this to $f_r$ and average. Each $f_r$ at a fixed finite tree
+uses at most $r$ further births, hence only finitely many rational
+transitions. Induction also gives the coarse bound
+$|f_r(T)|\le2^r(|T|)_{r+1}$. Therefore $G_r$ and its derivative
+converge absolutely inside the unit disc. Comparing coefficients
+using~\eqref{hfk:moment-recurrence} proves
+\eqref{hfk:differential-hierarchy}.
+
+On states of population $k$, the operator $I+\mathcal L/k$ is the
+one-step transition operator. Composing these operators for
+$k=2,\ldots,n-1$ and evaluating at the edge gives $a_n$.
+They are polynomials in the same generator and commute algebraically;
+their product is $(\mathcal L+2)_{n-2}/(n-1)!$. Every finite
+composition is well defined on the finitely many states it visits.
+This proves~\eqref{hfk:operator-factorial} without assuming a
+bounded-operator functional calculus or an entire semigroup expansion.
+\end{proof}
+
+The first two levels make the environmental dependence explicit.
+Write $\ell_v$ for the number of leaf neighbours of a nonleaf vertex
+$v$, and set $\Lambda=\mathcal LC$. At the initial edge,
+$\Lambda(T_2)=2$. At every tree with at least three vertices,
+\[
+ \Lambda(T)=\sum_{v\text{ nonleaf}}\frac{\ell_v}{d_v},\qquad
+ K(T)=\sum_{v\text{ nonleaf}}\frac{\ell_v}{d_v^2},\qquad
+ J(T)=\sum_{v\text{ nonleaf}}
+          \frac{h_T(v)(d_v-\ell_v)}{d_v(d_v+1)}.
+\]
+An exact calculation gives
+\begin{equation}\label{hfk:second-level}
+ (\mathcal L\Lambda)(T)=\tfrac12\Lambda(T)-K(T)+J(T).
+\end{equation}
+Indeed, attachment to a nonleaf $v$ changes its contribution to
+$\Lambda$ by $(d_v-\ell_v)/[d_v(d_v+1)]$ and occurs at rate
+$h_T(v)$. Promotion of a leaf whose neighbour is $v$ changes
+$\Lambda$ by $1/2-1/d_v$ and has aggregate rate $\ell_v/d_v$.
+Adding these changes proves~\eqref{hfk:second-level}.
+
+Consequently, if $b_n=\mathbb E\Lambda(T_n)$, then
+\[
+ n(a_{n+1}-a_n)=b_n\quad(n\ge2),\qquad
+ n(b_{n+1}-b_n)=\tfrac12b_n-\mathbb EK(T_n)+\mathbb EJ(T_n)
+ \quad(n\ge3).
+\]
+The edge requires the separate value
+$(\mathcal L\Lambda)(T_2)=-2$; the displayed nonleaf formula is
+not applied to it. These recurrences give
+\[
+ a_2=0,\quad a_3=1,\quad a_4=\frac43,\quad
+ a_5=\frac{19}{12},\quad a_6=\frac{647}{360}.
+\]
+
+There is no closure in the core count alone. For example, take two
+adjacent nonleaf vertices with four attached leaves. Allocations
+$(3,1)$ and $(2,2)$ both give six-vertex trees with $C=2$, but their
+$\Lambda$ values are $5/4$ and $4/3$, respectively. Their next-step
+core-increase probabilities are therefore $5/24$ and $2/9$.
+This rules out a statewise transition law determined by $C$ alone.
+It does not rule out a different finite recurrence for edge-start
+expectations. The hierarchy above is exact; no finite scalar closure
+has been established.
+
+Finally, for $n\ge3$ put $\beta_n=b_n/a_n$. Since
+$0\le\Lambda(T)\le C(T)$ in these states, $0\le\beta_n\le1$.
+The first recurrence and $a_3=1$ give
+\begin{equation}\label{hfk:logarithmic-average}
+ a_n=\prod_{k=3}^{n-1}\left(1+\frac{\beta_k}{k}\right),
+ \qquad
+ \mu=\lim_{n\to\infty}\frac1{\log n}
+                  \sum_{k=3}^{n-1}\frac{\beta_k}{k}.
+\end{equation}
+For the limit, use the established $a_n=n^{\mu+o(1)}$ and
+$0\le x-\log(1+x)\le x^2/2$ for $x\ge0$; the accumulated
+logarithmic error is bounded by $\tfrac12\sum_{k\ge3}k^{-2}$.
+No pointwise limit $\beta_n\to\mu$, or rate for this logarithmic
+average, is asserted.

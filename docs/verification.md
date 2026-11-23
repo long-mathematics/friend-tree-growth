@@ -28,6 +28,9 @@ successful run, with source hashes in `quick_check_run.json`.
 | `verify_infection_kernel.py` | 16 exact occupation terms at each degree 2 through 63; the large-degree numerical inequality; absorption constant | Supplies the finite arithmetic part of the boundary-disagreement estimate |
 | `check_van_root.py` | Rational root brackets for PAN, DAN, and VAN with parameter 2; 1,100 coefficient denominator checks | Supports the companion paper's root computation and examples; the irrationality proof is analytic |
 | `check_first_promotion.py --check` | 106,865 exact finite checks of null-event elimination, independent backward recursion, reduction boundaries, tail signs and widths, and good-prime valuations | Supports the original inert newborn's first-promotion formulas; the infinite tails and height asymptotics require the written proofs |
+| `check_critical_root_forms.py` | Finite signed certificate-polynomial construction and exact arithmetic checks | Supports the full-critical noncancellation and algebraic-root construction; the infinite limit and arithmetic scope require the written proofs |
+| `rapid_root_tools.py` | Exact Yule-tail identities, cutoff selection, and equality-safe trisection on demonstration roots | Implements computational helpers; it does not implement the full friend-tree certificate search or produce new digits of `mu` |
+| `full_tree_recurrence.py --check` | Exact free-tree coefficients and two independent transition calculations; core and promotion-rate drift identities; the six-vertex closure diagnostic | Checks the first two levels of the full-model recurrence hierarchy; it does not prove a finite scalar closure or an asymptotic error bound |
 
 The root checker produces intervals of width `2**-90` using rational enclosures
 for the exponential-integral series. Floating-point values printed elsewhere
@@ -42,6 +45,29 @@ floating denominator-growth diagnostics as exploratory; they establish no
 asymptotic or arithmetic classification. These intervals evaluate the
 first-promotion transform and are not new estimates of `mu`.
 
+The critical-root and rapid-root reports distinguish finite checks from
+the limiting theorems. In particular, the exact-pressure iteration's
+factor `73/82` is an analytic result that assumes exact or certified
+pressure evaluations. The trisection scheduler's geometric rate counts
+completed certificate stages, and its demonstration roots do not replace
+the missing full-model strict-certificate search implementation.
+
+The full-tree recurrence calculator starts from the edge, with `a_2=0`
+and promotion rate `Lambda(edge)=2`. Its reference report
+[`full_tree_recurrence_checks.json`](../verification/full_tree_recurrence_checks.json)
+records exact coefficients through population 10 and retains every target
+multiplicity when merging isomorphic trees. The written countable
+recurrence, differential hierarchy, and operator-factorial representation
+remain analytic statements; finite coefficient checks do not classify
+the growth exponent or establish convergence of normalized promotion rates.
+
+The Yule helper evaluates an exact finite binomial-tail expression at a
+rational survival parameter. Using a rational lower bound for `exp(-T)`
+gives a rigorous upper bound on the population-discard error at time `T`.
+Spatial-profile and quadrature errors must still be controlled separately.
+The written generation-tail theorem similarly gives a geometric bound
+only above a certified upper bound on `mu`, not at the critical point.
+
 Individual commands are also available:
 
 ```sh
@@ -50,7 +76,16 @@ python3 scripts/inert_growth_kernel.py --check
 python3 scripts/verify_infection_kernel.py
 python3 scripts/check_van_root.py --output build/verification/van_root_checks.json
 python3 scripts/check_first_promotion.py --check --output build/verification/first_promotion_checks.json
+python3 scripts/check_critical_root_forms.py
+python3 scripts/rapid_root_tools.py
+python3 scripts/full_tree_recurrence.py --check --output build/verification/full_tree_recurrence_checks.json
 ```
+
+To compute a different finite prefix of the full-tree coefficients, use
+`python3 scripts/full_tree_recurrence.py --max-population N`. Its JSON output
+includes the rational means and the final unlabelled-tree distribution.
+The number of states grows quickly; this coefficient enumeration is not a
+critical-exponent solver.
 
 ## Manuscripts
 
