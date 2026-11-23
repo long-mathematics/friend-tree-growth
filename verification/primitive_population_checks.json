@@ -1,0 +1,277 @@
+{
+  "status": "PASS",
+  "total_checks": 1340,
+  "checks": {
+    "all_large_budget_lower_bound_above_one": 1,
+    "content_coprime_to_kappa": 15,
+    "content_divides_twelve_leading_denominator": 15,
+    "discount_normalization_keeps_exact_results": 4,
+    "empty_or_unreachable_generation_is_exact_zero": 4,
+    "exact_nth_root_rounding": 24,
+    "exact_pole_degree": 15,
+    "forward_vs_individual_choice_recursion": 75,
+    "invalid_coefficient_inputs_rejected": 12,
+    "minimal_chain_diagonal": 5,
+    "minimal_integer_clearer_divides_source_clearer": 15,
+    "necessary_population_budget_488": 1,
+    "no_polynomial_gcd_remains": 101,
+    "null_resummation_vs_finite_ring_prefix": 60,
+    "omitted_path_present_at_next_population": 75,
+    "population_error_vs_larger_finite_cutoff": 12,
+    "potential_second_moment_recursion": 20,
+    "primitive_degree": 15,
+    "primitive_integer_content": 15,
+    "primitive_lower_bound_increasing": 27,
+    "primitive_signed_identity": 75,
+    "proper_birth_Yule_envelope_closed_form": 488,
+    "reduced_numerator_nonnegative": 15,
+    "reduced_rational_identity": 75,
+    "simple_pole_residue_sign": 101,
+    "universal_omitted_path_bound": 75
+  },
+  "max_births": 5,
+  "polynomial_examples": [
+    {
+      "m": 1,
+      "N": 1,
+      "pole_pairs": [
+        [
+          2,
+          2
+        ]
+      ],
+      "B": [
+        "3",
+        "2"
+      ],
+      "kappa": 1,
+      "Q": [
+        "1"
+      ],
+      "content": 1,
+      "primitive_P": [
+        "107",
+        "108",
+        "24"
+      ]
+    },
+    {
+      "m": 1,
+      "N": 2,
+      "pole_pairs": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "B": [
+        "24",
+        "25",
+        "6"
+      ],
+      "kappa": 1,
+      "Q": [
+        "12",
+        "3"
+      ],
+      "content": 3,
+      "primitive_P": [
+        "284",
+        "395",
+        "172",
+        "24"
+      ]
+    },
+    {
+      "m": 2,
+      "N": 2,
+      "pole_pairs": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "B": [
+        "15",
+        "16",
+        "4"
+      ],
+      "kappa": 1,
+      "Q": [
+        "1"
+      ],
+      "content": 1,
+      "primitive_P": [
+        "539",
+        "756",
+        "336",
+        "48"
+      ]
+    },
+    {
+      "m": 1,
+      "N": 3,
+      "pole_pairs": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "B": [
+        "19800",
+        "39225",
+        "30037",
+        "11176",
+        "2028",
+        "144"
+      ],
+      "kappa": 1,
+      "Q": [
+        "12300",
+        "13384",
+        "5441",
+        "1002",
+        "72"
+      ],
+      "content": 1,
+      "primitive_P": [
+        "700500",
+        "1636316",
+        "1546591",
+        "761778",
+        "207048",
+        "29520",
+        "1728"
+      ]
+    },
+    {
+      "m": 2,
+      "N": 3,
+      "pole_pairs": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "B": [
+        "9240",
+        "18481",
+        "14319",
+        "5402",
+        "996",
+        "72"
+      ],
+      "kappa": 2,
+      "Q": [
+        "2524",
+        "2005",
+        "492",
+        "36"
+      ],
+      "content": 1,
+      "primitive_P": [
+        "662756",
+        "1550387",
+        "1474020",
+        "732564",
+        "201360",
+        "29088",
+        "1728"
+      ]
+    },
+    {
+      "m": 3,
+      "N": 3,
+      "pole_pairs": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "B": [
+        "105",
+        "142",
+        "60",
+        "8"
+      ],
+      "kappa": 1,
+      "Q": [
+        "1"
+      ],
+      "content": 1,
+      "primitive_P": [
+        "3779",
+        "6372",
+        "3864",
+        "1008",
+        "96"
+      ]
+    }
+  ],
+  "states_through_default_cutoff": [
+    1,
+    2,
+    4,
+    9,
+    20,
+    48
+  ],
+  "necessary_population_budget": {
+    "at_discount": "113/200",
+    "threshold": "2139/50",
+    "N_min": 488,
+    "U_487_lower": "42.761044675975962399",
+    "U_487_upper": "42.761044675975962400",
+    "U_488_lower": "42.803125001232158295",
+    "U_488_upper": "42.803125001232158296"
+  },
+  "scope": "Finite arithmetic audit for population-only full-kernel coefficients and primitive pole/numerator formulas. No new mu bracket or irrationality proof."
+}

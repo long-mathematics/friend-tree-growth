@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "exact_checks": 29,
+  "edge_generator_derivatives": [
+    "2",
+    "-2",
+    "4",
+    "-19/3",
+    "133/12",
+    "-8189/432",
+    "70753/2160"
+  ],
+  "hankel_determinant_4": "-43427/3732480",
+  "negative_square_polynomial_ascending": [
+    -437,
+    19,
+    969,
+    468
+  ],
+  "negative_square_value": "-564551/40",
+  "cancellation_example": {
+    "four_birth_star_prefix_contribution_to_c6": "72/5",
+    "complete_c6": "-8189/432",
+    "cancelled_prime": 5
+  },
+  "scope": "Finite exact checks. The all-orders pole theorem is analytic; no irrationality or transcendence assertion follows."
+}

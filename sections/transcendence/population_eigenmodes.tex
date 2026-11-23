@@ -1,0 +1,218 @@
+\section{Population eigenfunctions and the required core-growth class}
+\label{pm:section}
+
+An eigenfunction equation requires a growth class to characterize the
+core exponent.  The following explicit family shows why this condition
+cannot be omitted, even if the full eliminated kernel and its stopping
+boundary are handled exactly.
+
+Write $P_t^\infty$ and $\mathcal L_\infty$ for the semigroup and
+proper-birth generator of the actual one-stub inert process.  If $T$ is
+the first core-clock ring, with a null choice of the stub retained as
+a ring, its discounted eliminated kernel is
+\[
+ (Q_sf)(y)=\mathbb E_y[e^{-sT}f(Y_T)].
+\]
+Core rings and leaf-clock rings retain their original source marks.
+
+\begin{theorem}[Positive population modes at every discount]
+\label{pm:all-discounts}
+Consider the actual one-stub inert process.  Write $N(y)=n$ for its
+real population and $D_0(y)$ for its root degree including the stub.
+For every real $s>0$ there is a strictly positive function $h_s$ with
+\[
+ \mathcal L_\infty h_s=s h_s,
+ \qquad P_t^\infty h_s=e^{st}h_s,
+ \qquad Q_s h_s=h_s.
+\]
+Here $Q_s$ is the actual discounted first-core-ring kernel, including
+the root's null stub choice.  The functions satisfy
+\begin{equation}\label{pm:gamma-bounds}
+ \frac{\Gamma(n-\tfrac12+s)}{\Gamma(n-\tfrac12)}
+ \le h_s(y)\le
+ \frac{\Gamma(n+s)}{\Gamma(n)}.
+\end{equation}
+In fact $h_s(z)>h_s(y)$ at every proper birth $y\to z$.  Under the
+corresponding Doob transform, if $T$ is the first core ring and
+$k=C(y)$, then
+\[
+ \Pr_y^{h_s}(T>t)\le e^{-kt}.
+\]
+Thus these modes have no core-ring escape at any positive discount.
+\end{theorem}
+\begin{proof}
+After removing null rings, the proper total birth rate is
+\[
+ \lambda(y)=n-\frac1{D_0(y)},\qquad n-\tfrac12\le\lambda(y)\le n.
+\]
+The process $e^{-t}N(Y_t)$ is a nonnegative supermartingale: its
+compensator drift is $-e^{-t}/D_0(Y_t)$.  It therefore has an almost-sure
+limit $W_y$.
+
+Use common independent unit exponentials for the holding times at each
+population.  This sandwiches $N(Y_t)$ between pure-birth chains with
+rates $n-1/2$ and $n$, started from the same population.  For a chain
+with rate $a+j$ after $j$ jumps, the jump count at time $t$ has
+negative-binomial generating function
+\[
+ \left[\frac{e^{-t}}{1-(1-e^{-t})z}\right]^a.
+\]
+Consequently its rescaled population converges to a gamma random
+variable of shape $a$ and rate one.  This also follows from the
+positive martingale $e^{-t}(a+j(t))$; its moments of every fixed
+positive order are bounded.  In the above coupling this gives
+\[
+ 0<W_y^-\le W_y\le W_y^+\quad\hbox{almost surely},
+ \qquad W_y^-\sim\Gamma(n-\tfrac12,1),\quad
+ W_y^+\sim\Gamma(n,1).
+\]
+No independence between these coupled variables is asserted.
+The upper comparison also gives uniform integrability of every fixed
+power of $e^{-t}N(Y_t)$, by taking a larger moment.
+
+Define $h_s(y)=\mathbb E_y W_y^s$.  The gamma moment formula proves
+\eqref{pm:gamma-bounds}.  The Markov property and the rescaling of the
+future population limit give
+$h_s(y)=e^{-st}\mathbb E_y h_s(Y_t)$, proving the semigroup equation.
+Alternatively, conditioning on the first proper birth gives the finite
+identity
+\[
+ h_s(y)=\frac1{s+\lambda(y)}\sum_z b(y,z)h_s(z),
+\]
+which is the generator equation.
+
+The function $x\mapsto\Gamma(x+s)/\Gamma(x)$ is strictly increasing
+for $s>0$: couple independent gamma variables of shapes $x$ and a
+positive increment, and use strict increase of their $s$th powers.
+A successor has population $n+1$, so its lower bound in
+\eqref{pm:gamma-bounds} is strictly larger than the upper bound for
+its predecessor.  Thus $h_s(z)>h_s(y)$ at every proper birth.
+
+Keep the original source-clock marks in the Doob process.  Every
+proper marked rate is multiplied by $h_s(z)/h_s(y)>1$, while a null
+stub choice retains its rate.  The transformed proper total rate is
+$\lambda(y)+s\le N(y)+s$, so the process is nonexplosive.  Its
+core-ring hazard is at least its original value $k$.  Until the first
+core ring, $k$ is constant, proving the displayed survival bound.
+The finite-time density ratio is $e^{-st}h_s(Y_t)/h_s(y)$.
+Stopping this martingale at $T\wedge t$ and letting $t\to\infty$
+therefore gives $Q_s h_s=h_s$.  More precisely the omitted stopping
+boundary is at most $h_s(y)e^{-kt}$.
+\end{proof}
+
+There is an especially transparent version in the original free-tree
+generator $\mathcal L$, whose total birth rate is exactly $n$:
+\[
+ H_s(T)=\frac{(s+2)_{N(T)-2}}{(N(T)-1)!}
+       =\prod_{j=2}^{N(T)-1}\left(1+\frac{s}{j}\right).
+\]
+It satisfies $\mathcal L H_s=sH_s$ for every $s>0$, since
+$H_s(n+1)/H_s(n)=(n+s)/n$.  At rational $s$, every state value is
+rational; at algebraic $s$, every state value is algebraic.  These
+are population modes of the actual full model.  Neither positivity,
+algebraic state values, nor an exact generator eigenfunction equation
+alone forces $s$ to be the core-growth exponent.
+
+The new modes do not resolve the stopping boundary of the previously
+constructed core-reward-normalized critical eigenfunction.  They are
+a different family, constructed from the population limit.  Moreover
+they are excluded from uniform comparability with $C$: reachable
+one-core stars have $C=1$ and arbitrarily large population, whereas
+\eqref{pm:gamma-bounds} grows as $n^s$.
+
+\subsection{An exact variational equation in the core-growth class}
+
+For a finite inert state $y$, define
+\[
+ V_s(y)=\int_0^\infty e^{-st}(P_t^\infty C)(y)\,dt.
+\]
+For the uniform newborn resolvent, let $x$ range over the finite
+admissible newborn-core environments of the original manuscript,
+including their permitted inert-boundary completions.  Let $F_x(t)$
+be the expected number of cores in the tagged newborn's descendant
+family, including the newborn itself, and put
+\[
+ W(s)=\sup_x\int_0^\infty e^{-st}F_x(t)\,dt.
+\]
+We use the canonical-resolvent theorem of the original
+manuscript\cite{Long}: for $s>\mu$, $W(s)<\infty$ and
+\[
+ C/s\le V_s\le(1+W(s))C/s,
+ \qquad (s-\mathcal L_\infty)V_s=C.
+\]
+The supremum in $W(s)$ remains outside the integral.
+
+Let $\mathcal A_C$ consist of functions on the reachable inert states
+for which $C\le f\le K_f C$ with one finite constant $K_f$ valid
+at every state.  All generator sums below are finite pointwise.
+
+\begin{theorem}[Core-growth variational characterization]
+\label{pm:variational}
+The original exponent satisfies
+\[
+ \boxed{\displaystyle
+ \mu=\inf_{f\in\mathcal A_C}\sup_y
+                  \frac{(\mathcal L_\infty f)(y)}{f(y)}.}
+\]
+The infimum is not asserted to be attained.  If a positive eigenfunction
+in this comparability class exists at a positive parameter $s$, then
+$s=\mu$.
+\end{theorem}
+\begin{proof}
+If $\mathcal L_\infty f\le\alpha f$ and $f\ge C$, localization
+at a finite population and Fatou's lemma give
+$P_t^\infty f\le e^{\alpha t}f$.  Nonexplosion removes the stopping
+time.  Thus $F_\infty(t)\le e^{\alpha t}f(y_0)$, and the established
+mean exponent gives $\mu\le\alpha$.
+
+Conversely, for any $s>\mu$, the existing canonical resolvent theorem
+gives
+\[
+ \frac{C}{s}\le V_s\le\frac{1+W(s)}s C,
+ \qquad (s-\mathcal L_\infty)V_s=C.
+\]
+Thus $f=sV_s$ belongs to $\mathcal A_C$ and
+$\mathcal L_\infty f=sf-sC\le sf$.  Taking $s\downarrow\mu$
+proves the formula.  For an eigenfunction in this class, stopping at
+population $M$ and using $f(Y_{t\wedge\tau_M})\le K_fN(Y_t)$
+give uniform integrability at each fixed time.  Thus localization
+justifies the semigroup equality $P_t^\infty f=e^{st}f$;
+equivalently its Doob total rate
+is $\lambda+s$, so the transform is conservative.  Comparability
+with $C$ then identifies its growth exponent with $s=\mu$.
+\end{proof}
+
+\begin{corollary}[Uniform resolvent blow-up at the critical point]
+\label{pm:uniform-pole}
+For $s>\mu$, put
+\[
+ K(s)=\sup_y\frac{V_s(y)}{C(y)}<\infty.
+\]
+Then
+\[
+ \boxed{\displaystyle
+ K(s)\ge\frac1{s-\mu},\qquad
+ W(s)\ge\frac{\mu}{s-\mu}.}
+\]
+In particular $K(\mu)=W(\mu)=\infty$, in the extended-value sense,
+and $W(s)<\infty$ holds exactly for $s>\mu$.
+\end{corollary}
+\begin{proof}
+Since $V_s\le K(s)C$,
+\[
+ \mathcal L_\infty V_s=sV_s-C
+ \le\left(s-\frac1{K(s)}\right)V_s.
+\]
+The same growth comparison gives $\mu\le s-1/K(s)$.
+Combine this with $K(s)\le(1+W(s))/s$ to obtain both bounds.
+Monotonicity in the discount gives divergence of the suprema at
+$s=\mu$; below $\mu$ the initial inert resolvent already diverges.
+\end{proof}
+
+This is a pole-type lower bound for a \emph{uniform supremum} of
+resolvents.  It does not show that the resolvent at any specified finite
+initial state diverges at $\mu$, and it does not establish a pole of
+the scalar free-tree transform $\mathcal M$.  No interchange of the
+state supremum with a time integral is used.  Given a certified lower
+bound $a\le\mu$ and $s>\mu$, it also gives the rational lower bounds
+$K(s)\ge1/(s-a)$ and $W(s)\ge a/(s-a)$ when $s,a$ are rational.

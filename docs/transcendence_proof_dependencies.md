@@ -63,6 +63,17 @@ The theorem numbers below refer to the continuation.
 | Equality-safe rational series | Certificate-series section, `rr:trisection` | Complete strict searches at two distinct trisection points, fair scheduling, and a strict starting bracket; counts completed stages rather than runtime |
 | Explicit geometric generation tail above a certified upper bound | Certificate-series section, `rr:generation-tail` | The critical coefficient bound, potential genealogy at `S>1`, and Hölder interpolation |
 | Exact Yule population-tail helper | Certificate-series section, `rr:yule-tail` | Negative-binomial size bias and its finite binomial-tail identity; earlier project identity applied to fixed-time cutoff computation |
+| Exact reduced poles for the population-only hierarchy | Population section, `pop:poles` | Elimination of every null ring, strict ordering of holding-rate pole intervals by population, same-sign residues, and an explicit reachability classification |
+| Primitive numerators never small at criticality | Population section, `pop:primitive-growth` | Minimal scalar clearer, integer-content divisibility, an omitted proper-birth history, and Stirling; all `p_(m,N)(mu)>1`, with minimum logarithm `N log N+O(N)` after all polynomial and content cancellation |
+| Stronger algebraic-root hierarchy | Population section, `pop:roots` | Domination of the earlier lower sums and completeness; exact product degree, but no effective root-error rate |
+| Explicit fixed-generation population error | Population section, `pop:tail` | Rate-one potential genealogy, exact second moment, Yule two-founder hitting probability, and Cauchy–Schwarz without independence; rate `O_(s,m)(N^(-s)(log N)^(s+m-1))` for fixed `s,m` |
+| Fixed-discount Laplace derivative-ratio limit | Derivative section, `tl:ratio` | The established free-tree mean exponent and gamma concentration, with a separate first-moment tail argument; requires no limiting amplitude or generation-ratio limit |
+| Rational derivative series and finite tails | Derivative section, `tl:beta-jet` and `tl:rational-tail` | Positive beta-product coefficients, complete homogeneous polynomials, and an exactly telescoping dominant tail for `s>1`; finite-index ratio enclosures do not enclose `mu` |
+| Positive population modes at every discount | Population-eigenfunction section, `pm:all-discounts` | Proper-birth coupling between rates `n-1/2` and `n`, positive gamma-bounded population limits, Markov scaling, finite first-step equations, and a conservative Doob transform; marked core hazard proves no escape |
+| Core-growth variational characterization | Population-eigenfunction section, `pm:variational` | Uniform comparability with `C`, localized Dynkin/Fatou, and the inherited canonical resolvent; no attainment of the infimum is asserted |
+| Uniform critical resolvent divergence | Population-eigenfunction section, `pm:uniform-pole` | Variational growth comparison and the original bound `V_s <= (1+W(s))C/s`; no exchange of supremum and integral and no claim of a pointwise critical pole |
+| No finite invariant linear closure containing the core count | Generator section, `fgo:star-pole` and `fgo:independence` | Finite history patterns on stars, increasing pole orders, and two elementary seed comparisons; does not exclude an edge-start scalar equation or a nonlinear closure |
+| Failure of a positive scalar spectral representation | Generator section | Exact edge-start generator derivatives, negative Hankel determinant, and an explicit negative-square certificate; specific to `F_2'/2` and positive measures with exponential moments near zero |
 | Sufficient polynomial small-value criterion | Final arithmetic audit | The nonzero integer resultant for an algebraic candidate; signed nonzero polynomials are now available, but the required small-value estimate relative to height remains unproved |
 
 The height theorem uses absolute logarithmic Weil height. If
@@ -113,10 +124,15 @@ construction from transferring the first-promotion rational-summation
 class. Its coarse height bound is explicit, but its literal cleared
 critical values grow: on the diagonal budgets,
 `P_(m,h,h)(mu) > (3/2)^h` for `1 <= m <= h`. They therefore do not supply
-the small values required for the stated resultant criterion. Dividing
-out content or common positive polynomial factors may change their sizes;
-the result is not an impossibility theorem for primitive normalization or
-another signed construction.
+the small values required for the stated resultant criterion. That
+coarse-clearer observation alone did not settle primitive normalization.
+The stronger population-only family `L*_(m,N)` now does: every reachable
+pole survives, its residual is put in reduced polynomial form, and all
+integer content is divided out. The resulting `p_(m,N)` always satisfies
+`p_(m,N)(mu)>1`, with uniform minimum logarithmic growth `N log N+O(N)`.
+This closes the primitive-normalization loophole for this precise family.
+It does not rule out linear combinations, other signed characteristics,
+or arithmetic cancellations after a fixed rational specialization.
 
 The exact-pressure iteration has a proved rate only for exact or certified
 pressure queries. An effective outer error for finite-generation pressure
@@ -131,15 +147,36 @@ generic scheduling helper.
 The full-tree beta/Mellin formula identifies a convergence abscissa, not a
 finite special-function equation. The recurrence and differential hierarchy
 is countable; its first drift already needs observables beyond the core
-count. The stated six-vertex example rules out closure in that state
-variable alone, not every possible finite scalar equation for expectations.
+count. The growing star-pole theorem now rules out every finite-dimensional
+invariant linear observable space containing `C`, a stronger statement
+than the earlier six-vertex example. It still does not rule out every
+possible finite scalar equation for the edge-start expectations.
 The operator-factorial representation uses finite polynomial operations
 on the generator and assumes no bounded-operator functional calculus.
 The explicit generation-resolvent tail
 applies above a certified upper bound and deteriorates toward it. Bounded
 critical coefficients and pressure one do not establish divergence of the
-critical generation sum, so no reciprocal-resolvent zero or critical pole
-is asserted.
+critical generation sum, so no reciprocal-resolvent zero or pointwise
+critical pole is asserted. Uniform resolvent suprema do diverge at least
+as `1/(s-mu)`; this does not imply divergence at any prescribed finite seed.
+
+The derivative-ratio formula provides a genuine stronger limit relation
+at one fixed rational discount, and every fixed derivative has certified
+rational series enclosures. The proof uses only a qualitative mean
+exponent, however, and supplies no effective rate in derivative order.
+Moment positivity concerns the unnormalized time-tilted integrals `Z_m`;
+their values are not known to be rational. It therefore does not supply
+a rational continued-fraction proof of irrationality. The negative
+generator-moment Hankel certificate concerns a different sequence.
+
+The all-discount population eigenfunctions show that exact positivity and
+even no-escape harmonicity for the full kernel do not identify the critical
+parameter. Uniform comparability with the core count does identify it.
+These population modes do not resolve the escape term of the separately
+constructed core-reward-normalized critical eigenfunction. Likewise the
+statewise star-pole theorem does not prove edge-start numerical denominator
+noncancellation: the explicit fifth-prime cancellation in the sixth
+generator derivative demonstrates the missing transfer.
 
 The arithmetic function classification concerns the two specific natural
 generating functions. A Borel transform changes the evaluation: the actual
@@ -166,6 +203,9 @@ python3 scripts/check_first_promotion.py --check --output build/verification/fir
 python3 scripts/check_critical_root_forms.py
 python3 scripts/rapid_root_tools.py
 python3 scripts/full_tree_recurrence.py --check --output build/verification/full_tree_recurrence_checks.json
+python3 scripts/primitive_population_tools.py --check
+python3 scripts/laplace_derivative_tools.py --check
+python3 scripts/check_generator_obstructions.py --check
 ```
 
 The committed reference report is
@@ -189,6 +229,17 @@ uses the original edge-start free tree, records the edge exception, and
 includes the six-vertex diagnostic for closure in the core count alone.
 It does not test every level of the countable hierarchy or supply an
 asymptotic error estimate for recovering `mu` from the finite coefficients.
+
+The new population checker records 1,340 exact checks through five proper
+births, using independent source-choice and aggregate-state recursions,
+reduced polynomial arithmetic, content bounds, omitted histories, and
+rational tail comparisons. Its `N=487,488` envelope comparison proves a
+necessary birth budget only, not that a witness at budget 488 exists.
+The derivative helper records 3,686 exact checks of the complete homogeneous
+recurrence, independent Newton identities, and tail telescoping. The
+generator-obstruction checker records 29 exact checks of star formulas,
+the seven derivatives, the two negative-moment certificates, and the
+explicit cancellation example. Reports are committed in `verification/`.
 
 The finite checks do not establish an infinite tail limit, prime-density
 estimate, denominator asymptotic, or transcendence assertion. Those limits

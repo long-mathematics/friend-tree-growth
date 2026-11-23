@@ -2,7 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools,microtype,booktabs}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype,booktabs,longtable}
 \usepackage{xcolor,xurl}
 \usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
 \hypersetup{pdftitle={Transcendence targets for the friend-tree exponent},pdfauthor={Christopher D. Long}}
@@ -50,9 +50,16 @@ an equality-safe rational series, and explicit subcritical generation
 tails. A scalar beta series retains all free-tree dependence in its
 rational coefficients; an exact generator hierarchy supplies difference
 and differential equations, together with an operator rising-factorial
-formula for those coefficients. Neither irrationality nor transcendence of the
-original exponent is proved: sufficiently small critical values relative
-to degree and height remain missing.
+formula for those coefficients. A fixed-discount ratio of Laplace
+derivatives recovers the exponent and admits rational finite-population
+enclosures. Removing every null event yields a stronger critical hierarchy:
+all reachable poles survive, yet even its fully reduced primitive
+numerators exceed one at the critical point and have minimum logarithmic
+growth $N\log N+O(N)$. We also give a core-comparable variational equation,
+uniform critical resolvent divergence, and obstructions to finite linear
+and positive scalar spectral closures. Neither irrationality nor
+transcendence of the original exponent is proved: sufficiently small
+critical values relative to degree and height remain missing.
 \end{abstract}
 
 \section{Scope and the critical arithmetic question}
@@ -79,11 +86,16 @@ real leaf, and one inert parent stub. The stub counts toward degree but
 has no source clock. It differs from a free star, whose first core ring
 always promotes a leaf. A first-promotion transform is an exact kernel
 component; its evaluation is not a new equation for $\mu$.
-Sections~\ref{scp:section}--\ref{rr:section} then use the established
+Sections~\ref{scp:section}--\ref{fgo:section} then use the established
 full pressure and certificate theorems to obtain global arithmetic
 noncancellation and precise root representations. Analytic convergence
 rates for exact pressure queries and error bounds per completed
-certificate stage are distinguished from running-time bounds.
+certificate stage are distinguished from running-time bounds. The new
+fixed-discount derivative ratio needs neither an exact-pressure oracle
+nor a limiting growth amplitude, but has no established effective rate
+in derivative order. The primitive certificate obstruction concerns one
+precise family, and the variational equation requires a specified growth
+class for its eigenfunctions.
 
 \section{The exact first-promotion transform}
 
@@ -625,6 +637,10 @@ available without a separate exact transfer.
 \input{sections/transcendence/pressure_contraction}
 \input{sections/transcendence/full_kernel_special_functions}
 \input{sections/transcendence/rapid_root_fragment}
+\input{sections/transcendence/primitive_population_relations}
+\input{sections/transcendence/tilted_laplace_relations}
+\input{sections/transcendence/population_eigenmodes}
+\input{sections/transcendence/generator_obstructions}
 
 \section{The remaining small-value problem and a dependency audit}
 
@@ -635,10 +651,17 @@ are insufficient for the intended small-integer argument. They do not
 rule out an improved signed construction or cancellations across the
 global kernel. Section~\ref{scp:section} supplies a concrete full-model
 family with proved noncancellation, but its literal cleared values grow.
+Section~\ref{pop:section} settles the primitive-normalization question
+for the stronger population-only family: after all polynomial factors
+and integer content are removed, every numerator still exceeds one at
+$\mu$, and even the minimum logarithm is $N\log N+O(N)$.
 The geometric root iteration in Section~\ref{pci:section} counts exact
 pressure queries, and the rational series in Section~\ref{rr:section}
 counts completed certificate searches. Neither yields the arithmetic
-small values required below.
+small values required below. The new derivative-ratio relation of
+Section~\ref{tl:section} instead uses rationally enclosable derivatives
+at a fixed discount. It supplies neither an effective derivative-order
+error nor an arithmetic classification of their limiting ratio.
 
 One precise transcendence target is to construct integer polynomials
 $P_N$ from the actual critical equation such that, infinitely often,
@@ -667,15 +690,30 @@ The finite signed certificate family detects the lower side of the
 full critical equation and stays strictly positive at criticality.
 What is still missing is a signed critical boundary construction whose
 nonzero values become sufficiently small after arithmetic normalization.
+The population eigenfunctions in Section~\ref{pm:section} show that
+bare positive kernel harmonicity cannot supply this construction:
+it holds at every positive discount. The core-comparable variational
+equation does characterize $\mu$, but its optimizing class is infinite
+and the infimum is not proved to be attained. The growing star poles
+in Section~\ref{fgo:section} rule out a finite invariant linear
+observable space containing $C$; their noncancellation does not persist
+automatically after edge-start averaging. These are specific obstructions,
+not an impossibility theorem for other arithmetic reductions.
+
 No single finite special-function equation for $\mu$ is supplied by
 these results. In particular $\Phi(\mu)=1$ is false:
 $\Phi(s)<1$ for every $s>0$.
 
-\begin{center}\small
-\begin{tabular}{p{0.27\textwidth}p{0.62\textwidth}}
+{\small
+\begin{longtable}{p{0.27\textwidth}p{0.62\textwidth}}
 \toprule
 Statement & Dependency and status\\
 \midrule
+\endfirsthead
+\toprule
+Statement & Dependency and status\\
+\midrule
+\endhead
 Exact first-promotion law & Original clock rates and exact null elimination; proved here.\\
 Positive reduction and tails & Rational identities plus explicit vanishing boundaries; proved here.\\
 Rational nonsummability & Pole-orbit argument and polynomial degree comparison; proved here.\\
@@ -687,11 +725,15 @@ Algebraic-root representation & Completeness of finite lower certificates; prove
 Geometric pressure iteration & Convexity and the known enclosure; proved for exact pressure queries.\\
 Rational series and resolvent tails & Complete strict searches and H\"older interpolation; explicit bounds with the stated computational scope.\\
 Full-tree recurrence hierarchy & Exact attachment probabilities and generator iteration; no finite scalar closure is asserted.\\
+Primitive population certificates & Same-sign residues at each reachable pole, a minimal scalar clearer, and an explicit omitted history; primitive critical values exceed one.\\
+Fixed-generation population tail & Potential-genealogy second moments and a Yule hitting bound; explicit error, with generation held fixed.\\
+Fixed-discount derivative ratio & Gamma concentration including first moments, and exact rational beta-derivative tails; no derivative-order rate.\\
+Core-growth variational equation & Uniform core comparability and the canonical resolvent; uniform critical divergence, not a pointwise pole.\\
+Closure obstructions & Increasing star poles and an exact negative Hankel certificate; the specified linear and positive spectral closures fail.\\
 Arithmetic small forms & Noncancellation is available for the certificate family; sufficiently small values relative to height are not.\\
 Transcendence of $\mu$ & Unresolved. The local-family transcendence assertion is also unresolved.\\
 \bottomrule
-\end{tabular}
-\end{center}
+\end{longtable}}
 
 \paragraph{Verification.}
 The standard-library program \texttt{scripts/check\_first\_promotion.py}
@@ -715,6 +757,14 @@ unlabelled free trees with exact transition multiplicities, computes the
 rational coefficients, and checks the first two generator identities
 against direct two-stage friend choices. These are finite checks of
 the recurrence hierarchy, not an arbitrary-precision solver for $\mu$.
+The new programs \texttt{scripts/primitive\_population\_tools.py},
+\texttt{scripts/laplace\_derivative\_tools.py}, and
+\texttt{scripts/check\_generator\_obstructions.py} check reduced
+polynomial arithmetic, exact finite tails, and the stated generator
+and Hankel identities. Their reference reports record respectively
+$1{,}340$, $3{,}686$, and $29$ exact checks. These checks do not replace
+the all-budget pole theorem, the concentration proof, or the
+localization and nonescape arguments.
 
 \paragraph{Acknowledgment.}
 AI tools assisted with proof exploration, independent arithmetic audits,

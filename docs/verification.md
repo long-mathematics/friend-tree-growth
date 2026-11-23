@@ -31,6 +31,9 @@ successful run, with source hashes in `quick_check_run.json`.
 | `check_critical_root_forms.py` | Finite signed certificate-polynomial construction and exact arithmetic checks | Supports the full-critical noncancellation and algebraic-root construction; the infinite limit and arithmetic scope require the written proofs |
 | `rapid_root_tools.py` | Exact Yule-tail identities, cutoff selection, and equality-safe trisection on demonstration roots | Implements computational helpers; it does not implement the full friend-tree certificate search or produce new digits of `mu` |
 | `full_tree_recurrence.py --check` | Exact free-tree coefficients and two independent transition calculations; core and promotion-rate drift identities; the six-vertex closure diagnostic | Checks the first two levels of the full-model recurrence hierarchy; it does not prove a finite scalar closure or an asymptotic error bound |
+| `primitive_population_tools.py --check` | 1,340 exact checks of proper-birth sums, all reachable poles through five births, primitive numerator/content arithmetic, independent recursions, omitted histories, and rational population tails | Supports the population-only hierarchy; the all-budget residue signs, primitive-growth asymptotic, and infinite error theorem require their written proofs |
+| `laplace_derivative_tools.py --check` | 3,686 exact checks of complete homogeneous polynomials, independent Newton identities, and beta-derivative tail telescoping | Gives rational enclosures for fixed derivatives; no effective derivative-order rate or certified bracket for `mu` |
+| `check_generator_obstructions.py --check` | 29 exact checks of star formulas, edge-start derivatives, a negative Hankel determinant, a negative-square certificate, and a prime-cancellation example | Supports the stated generator and spectral obstructions; the all-order star-pole theorem is analytic |
 
 The root checker produces intervals of width `2**-90` using rational enclosures
 for the exponential-integral series. Floating-point values printed elsewhere
@@ -61,6 +64,27 @@ recurrence, differential hierarchy, and operator-factorial representation
 remain analytic statements; finite coefficient checks do not classify
 the growth exponent or establish convergence of normalized promotion rates.
 
+The population-only checker removes all null rings before applying its
+proper-birth cutoff. The resulting rational functions are reduced in
+`Q(s)`, and their integer numerators are divided by content. Its reference
+report is
+[`primitive_population_checks.json`](../verification/primitive_population_checks.json).
+The exact `487/488` comparison is a necessary budget for reaching the
+current exponent enclosure, not an assertion that 488 births suffice.
+Its public tail helper uses rational upper root bounds, so returned
+outer errors make no floating-point proof decisions.
+
+The derivative helper's
+[reference report](../verification/laplace_derivative_tool_checks.json)
+encloses derivatives at a fixed discount using exact full-tree coefficients.
+The caller must supply the actual coefficients; elementary size-bound
+validation alone does not prove their provenance. These intervals enclose
+the fixed-index ratios, while the limit in derivative order has no
+certified rate. The
+[generator obstruction report](../verification/generator_obstruction_checks.json)
+records exact identities; its negative generator-moment Hankel matrix is
+different from the positive time-tilted moment matrices in the manuscript.
+
 The Yule helper evaluates an exact finite binomial-tail expression at a
 rational survival parameter. Using a rational lower bound for `exp(-T)`
 gives a rigorous upper bound on the population-discard error at time `T`.
@@ -79,6 +103,9 @@ python3 scripts/check_first_promotion.py --check --output build/verification/fir
 python3 scripts/check_critical_root_forms.py
 python3 scripts/rapid_root_tools.py
 python3 scripts/full_tree_recurrence.py --check --output build/verification/full_tree_recurrence_checks.json
+python3 scripts/primitive_population_tools.py --check --output build/verification/primitive_population_checks.json
+python3 scripts/laplace_derivative_tools.py --check --output build/verification/laplace_derivative_tool_checks.json
+python3 scripts/check_generator_obstructions.py --check --output build/verification/generator_obstruction_checks.json
 ```
 
 To compute a different finite prefix of the full-tree coefficients, use
@@ -86,6 +113,19 @@ To compute a different finite prefix of the full-tree coefficients, use
 includes the rational means and the final unlabelled-tree distribution.
 The number of states grows quickly; this coefficient enumeration is not a
 critical-exponent solver.
+
+To compute a proper-birth lower coefficient and its primitive polynomial,
+for example, run:
+
+```sh
+python3 scripts/primitive_population_tools.py --generation 2 --s 1/2 --max-births 3 --polynomial
+```
+
+The module also provides a rational fixed-generation population-tail
+helper. The derivative module provides `beta_derivative_weights`,
+`derivative_tail`, and `enclose_derivatives` for use with the full-tree
+calculator's exact coefficients. Enumeration remains costly, and these
+helpers do not implement the missing outer critical-limit error.
 
 ## Manuscripts
 

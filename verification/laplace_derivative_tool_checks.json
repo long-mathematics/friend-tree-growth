@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "exact_checks": 3686,
+  "scope": "Positive beta-derivative weights and fixed-order tails only; no mu bracket or derivative-order convergence rate.",
+  "example": {
+    "discount": "2",
+    "population_cutoff": 6,
+    "B_m_intervals": [
+      [
+        "4919/20160",
+        "17879/20160"
+      ],
+      [
+        "2520817/16934400",
+        "23943697/16934400"
+      ],
+      [
+        "909662381/14224896000",
+        "24297654221/14224896000"
+      ],
+      [
+        "278442159133/11948912640000",
+        "22206902088253/11948912640000"
+      ]
+    ]
+  }
+}
