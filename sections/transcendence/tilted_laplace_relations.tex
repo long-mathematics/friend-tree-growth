@@ -1,0 +1,155 @@
+\section{A fixed-discount derivative ratio recovering the exponent}
+\label{tl:section}
+
+Let $F_2(t)=\mathbb E_{\rm edge}C(t)$, and retain the established
+$F_2(t)=\exp(\mu t+o(t))$.  For any fixed real $s>\mu$, define
+\[
+ Z_m(s)=\int_0^\infty t^m e^{-st}F_2(t)\,dt,
+ \qquad B_m(s)=\frac{Z_m(s)}{m!}\qquad(m\ge0).
+\]
+These quantities are finite and strictly positive.  They are the
+derivatives of the full-tree transform:
+$Z_m(s)=(-1)^m\mathcal M^{(m)}(s)$.
+
+\begin{theorem}[A ratio limit at a fixed subcritical discount]
+\label{tl:ratio}
+For every fixed $s>\mu$,
+\[
+ \boxed{\displaystyle
+ \frac{B_m(s)}{B_{m+1}(s)}\longrightarrow s-\mu,
+ \qquad
+ \mu=s-\lim_{m\to\infty}\frac{B_m(s)}{B_{m+1}(s)}.}
+\]
+In particular this is a ratio limit for derivatives at one fixed
+discount, without assuming convergence of the generation-coefficient
+ratios or a power-law amplitude for the core count.
+\end{theorem}
+\begin{proof}
+Put $d=s-\mu>0$, and let $\nu_m$ have density
+$t^m e^{-st}F_2(t)/Z_m(s)$ on $(0,\infty)$.  We show
+\[
+ \int\frac{t}{m}\,d\nu_m(t)\longrightarrow\frac1d.
+\]
+For every $0<\epsilon<d/3$ there are $T_\epsilon<\infty$ and
+$A_\epsilon<\infty$ such that
+\[
+ F_2(t)\ge e^{(\mu-\epsilon)t}\quad(t\ge T_\epsilon),
+ \qquad F_2(t)\le A_\epsilon e^{(\mu+\epsilon)t}
+ \quad(t\ge0).
+\]
+The upper bound extends to all $t$ by continuity and the finite-time
+Yule bound.  Thus $Z_m(s)$ is at least
+\[
+ \int_{T_\epsilon}^\infty t^m e^{-(d+\epsilon)t}\,dt
+ =\frac{m!}{(d+\epsilon)^{m+1}}(1-o(1)).
+\]
+
+Fix $0<a<1/d<b$.  The upper estimates for the integrals over
+$t\le am$ and $t\ge bm$ are gamma-tail estimates with rate
+$d-\epsilon$ and shape $m+1$.  Their exponential rate, relative to
+the full gamma integral, is $-I((d-\epsilon)a)$ or
+$-I((d-\epsilon)b)$, respectively, where
+$I(x)=x-1-\log x>0$ for $x\ne1$.
+These estimates follow directly by applying the exponential Markov
+inequality to a gamma variable, whose moment generating function is
+$(1-\theta)^{-m-1}$, and optimizing $\theta$.
+For sufficiently small $\epsilon$, both rates dominate the factor
+$((d+\epsilon)/(d-\epsilon))^{m+1}$ arising from the lower bound
+for $Z_m(s)$.  Consequently
+\[
+ \nu_m\{t/m\notin[a,b]\}\longrightarrow0
+\]
+exponentially in $m$ for these fixed $a,b$.
+
+The same argument bounds the first moment of the upper tail: inserting
+$t/m$ replaces the upper gamma integral by one of shape $m+2$, with
+prefactor $(m+1)/(m(d-\epsilon))$ and the same limiting exponential
+rate.  Thus
+$\int_{t\ge bm}(t/m)\,d\nu_m\to0$.  The lower tail contribution
+is bounded by $a\nu_m(t\le am)$.  On the remaining interval the
+variable $t/m$ lies in $[a,b]$.  Letting $a\uparrow1/d$ and
+$b\downarrow1/d$ proves the asserted first-moment limit.  Finally,
+\[
+ \frac{B_m}{B_{m+1}}=
+ \frac{(m+1)Z_m}{Z_{m+1}}=
+ \frac{1+1/m}{\int(t/m)\,d\nu_m}\longrightarrow d.
+\]
+\end{proof}
+
+The constants in this concentration argument depend on the error in
+$\log F_2(t)=\mu t+o(t)$.  No effective error bound in $m$, monotonicity
+of the displayed ratios, or one-sided enclosure of $\mu$ by an individual
+ratio is asserted.
+
+\subsection{Positive rational coefficient formulas and explicit finite tails}
+
+Write $a_n=\mathbb E C_n$, and put
+\[
+ w_n(s)=\frac{(n-1)!}{\prod_{j=2}^n(s+j)},\qquad
+ \mathbf x_n(s)=\left(\frac1{s+2},\ldots,\frac1{s+n}\right).
+\]
+For a finite vector $\mathbf x$, let $H_m(\mathbf x)$ be its complete
+homogeneous polynomial, with $H_0=1$.  Equivalently,
+$\prod_{x\in\mathbf x}(1-xz)^{-1}=\sum_{m\ge0}H_m(\mathbf x)z^m$.
+The full beta series gives
+\begin{equation}\label{tl:beta-jet}
+ \boxed{\displaystyle
+ B_m(s)=\sum_{n\ge2}a_nw_n(s)H_m(\mathbf x_n(s)).}
+\end{equation}
+Every summand is nonnegative and is rational when $s$ is rational.
+Indeed, expand the finite product $w_n(s-z)$ in powers of $z$;
+equivalently differentiate its beta integral.  Tonelli identifies its
+$m$th coefficient with the nonnegative integral $Z_m/m!$ above.
+The coefficient computation needs only
+\[
+ H_m(x_1,\ldots,x_j)
+ =H_m(x_1,\ldots,x_{j-1})+x_jH_{m-1}(x_1,\ldots,x_j),
+ \qquad w_{n+1}=\frac{n}{s+n+1}w_n.
+\]
+
+For a completely explicit finite error bound, take $s>1$, for example
+the fixed rational discount $s=2$.  The elementary $a_n\le n-2$
+is then sufficient.  If the sum in~\eqref{tl:beta-jet} is stopped at
+$n=N\ge2$, its omitted part is at most
+\begin{align}
+ U_{m,N}(s)=Nw_N(s)\bigg[&
+ \frac{N-1}{s-1}
+ H_m\!\left(\mathbf x_N(s),\frac1{s-1}\right)\notag\\
+ &+\frac{2}{s(s-1)}
+ H_m\!\left(\mathbf x_N(s),\frac1s,\frac1{s-1}\right)
+ \bigg].\label{tl:rational-tail}
+\end{align}
+This is a positive rational bound at rational $s>1$, and for each
+fixed $s,m$ it tends to zero as
+$O_{s,m}(N^{1-s}(\log N)^m)$.
+
+To prove it, first telescope
+\[
+ T_N(s):=\sum_{n>N}(n-2)w_n(s)
+ =Nw_N(s)\left[\frac{N-1}{s-1}+\frac2{s(s-1)}\right].
+\]
+For example the difference of the right sides at $N$ and $N+1$ is
+$(N-1)w_{N+1}$, and the right side tends to zero.  The coefficient
+of $z^m$ in $T_N(s-z)$ is exactly~\eqref{tl:rational-tail}.
+All underlying terms are positive; coefficientwise domination by
+$a_n\le n-2$ proves the bound.  Finally $w_N(s)=O_s(N^{-s-1})$
+and $H_m(\mathbf x)\le(\sum x)^m$ prove the stated tail order.
+
+Thus every fixed derivative ratio can be enclosed by rational finite
+calculations at $s=2$, with no exact-pressure oracle.  These enclosures
+are enclosures of the finite-index ratio itself, not certified brackets
+for $\mu$: the remaining limit in $m$ has no established effective
+rate.  This is an analytic characterization, not an irrationality test.
+
+\paragraph{Which moment positivity is available.}
+The unnormalized moments $Z_m(s)$ have strictly positive Hankel matrices:
+for every nonzero real polynomial $p$,
+\[
+ \sum_{i,j}p_ip_j Z_{i+j}(s)
+ =\int_0^\infty p(t)^2e^{-st}F_2(t)\,dt>0.
+\]
+Here $F_2(t)>0$ for $t>0$.  This assertion concerns the time-tilted
+moments $Z_m$, not the factorially normalized $B_m$, not the generator
+moments $(\mathcal L^mC)(T_2)$, and not a spectral measure for $F_2'$.
+The integral values are not known to be rational, so their positivity
+does not produce a rational continued-fraction irrationality proof.

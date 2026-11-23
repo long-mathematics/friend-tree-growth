@@ -44,6 +44,9 @@ def main() -> None:
         ("check_critical_root_forms.py", ["--check"], "critical_root_form_checks.json"),
         ("rapid_root_tools.py", [], "rapid_root_tool_checks.json"),
         ("full_tree_recurrence.py", ["--check"], "full_tree_recurrence_checks.json"),
+        ("primitive_population_tools.py", ["--check"], "primitive_population_checks.json"),
+        ("laplace_derivative_tools.py", ["--check"], "laplace_derivative_tool_checks.json"),
+        ("check_generator_obstructions.py", ["--check"], "generator_obstruction_checks.json"),
     ]
     for script, arguments, filename in checks:
         report = run_json(script, arguments)
@@ -65,7 +68,9 @@ def main() -> None:
         "scope": "Finite kernel identities, bounds, first-promotion reductions and "
                  "prime valuations, full-model certificate polynomials, exact "
                  "Yule tails, generic bracket updates, the full-tree coefficient "
-                 "recurrence, and modified-model root brackets. "
+                 "recurrence, reduced population-certificate arithmetic, fixed-order "
+                 "Laplace derivative tails, generator and Hankel obstructions, "
+                 "and modified-model root brackets. "
                  "Analytic proofs are in the manuscripts. The general original-model "
                  "computability algorithm is not implemented by these scripts.",
     }

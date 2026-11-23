@@ -1,0 +1,425 @@
+% Full-population reduction and primitive-numerator obstruction.
+% Independently audited analytic proofs; original mu remains unclassified.
+\section{A population-only critical hierarchy and its primitive arithmetic}
+\label{pop:section}
+
+We use the original inert newborn with one real core, one real leaf,
+and one inert parent stub. Let $n$ denote the real population and $d$
+the retained root's full degree, including its stub. Every reachable
+state satisfies $2\le d\le n$. Its only null event is the root choosing
+the stub, of rate $1/d$. Thus the total proper-birth rate is
+\[
+ \lambda(T)=n-1/d.
+\]
+If a specified proper outcome has rate $b(T,T')$, its discounted
+transition weight after all null events are summed is
+\[
+ \frac{b(T,T')}{s+\lambda(T)}.
+\]
+For an individual source-neighbour choice with source degree $d_u$,
+this is $d/[d_u(ds+dn-1)]$. This is the same exact null-event
+elimination already used by the finite profile-row calculator; here
+it is applied to complete generation coefficients with a population
+cutoff.
+
+Let $L^*_{m,N}(s)$ count all depth-$m$ core-birth rewards whose prefix
+has at most $N$ proper births, with no cutoff on null rings. It is a
+finite rational function: each proper birth raises population by one.
+For $s>0$,
+\[
+ L_{m,R,N}(s)\le L^*_{m,N}(s)\uparrow A_m^\infty(s)
+ \quad(N\to\infty).
+\]
+The limit follows from monotone convergence, since every fixed birth
+prefix has finite population and finitely many null events almost
+surely. The root-preserving state recursion is explicit. If a core
+$v$ has $\ell_v$ real leaves and full degree $d_v$, the rate of adding
+a leaf at it is
+\[
+ \ell_v+\sum_{u\sim_Hv}\frac1{d_u},
+\]
+and its promotion rate is $\ell_v/d_v$. Divide each rate by
+$s+n-1/d$, add the generation reward at a promotion, and iterate
+through populations $2,\ldots,N+1$.
+
+\subsection{Exact reduced pole denominators}
+
+For $1\le m\le N$, define a set $\mathcal S_{m,N}$ of pairs $(n,d)$.
+For $m\ge2$, put
+\[
+ \mathcal S_{m,N}
+ =\{(n,d):2\le n\le N+1,\quad
+                 2\le d\le\min(n,N-m+2)\}.
+\]
+For $m=1,N\ge2$, take all $2\le n\le N+1$, $2\le d\le n$,
+except $(N+1,2)$. Finally $\mathcal S_{1,1}=\{(2,2)\}$. Set
+\[
+ B_{m,N}(s)=\prod_{(n,d)\in\mathcal S_{m,N}}(ds+dn-1),
+ \qquad D_{m,N}=|\mathcal S_{m,N}|.
+\]
+Every displayed linear factor is primitive, since $\gcd(d,dn-1)=1$.
+
+\begin{theorem}[No cancellation of any reachable pole]
+\label{pop:poles}
+The rational function $L^*_{m,N}$ has exactly the simple poles
+\[
+ s=-(n-1/d),\qquad(n,d)\in\mathcal S_{m,N}.
+\]
+At such a pole the residue has sign $(-1)^{n-2}$ and is nonzero.
+Consequently $B_{m,N}$ is its primitive polynomial denominator,
+up to an overall rational scalar, and it is also the primitive
+polynomial denominator of $12(s+3)-L^*_{m,N}(s)$. Its degree is
+\[
+ D_{m,N}=
+ \begin{cases}
+ 1,&m=N=1,\\
+ N(N+1)/2-1,&m=1,\ N\ge2,\\
+ [N(N+1)-m(m-1)]/2,&2\le m\le N.
+ \end{cases}
+\]
+\end{theorem}
+\begin{proof}
+Expand the finite sum over proper-birth histories, keeping different
+source choices separate. A reward prefix traverses successive
+populations $2,3,\ldots,q$ and has a positive rational numerator
+divided by $\prod_{j=2}^{q}(s+j-1/d_j)$. Different populations
+have disjoint possible pole intervals $[-j,-j+1/2]$, and different
+degrees at the same population give different poles. Each term
+therefore has only simple poles.
+
+At $s=-(n-1/d)$, all denominator factors from earlier populations
+are negative, while all factors from later populations are positive.
+There are exactly $n-2$ earlier factors. Thus every history using
+this pole has residue of sign $(-1)^{n-2}$. The other histories are
+analytic there. There can be no cancellation among its nonzero
+residues. This argument evaluates the rational continuations of the
+finite history weights, not divergent negative-discount expectations.
+
+It remains to determine which poles occur. A depth-$m$ birth uses
+at least $m$ promotions. Reaching root degree $d$ uses $d-2$ births
+attached directly to the root, disjoint from those promotions.
+Hence a retained reward history requires $m+d-2\le N$, and a
+holding state before the reward requires $n\le N+1$.
+
+For $m\ge2$ these conditions suffice. First grow the root's degree
+to $d$. If $n\le d+m-1$, promote a chain for $n-d$ steps to reach
+population $n$, then finish the chain to depth $m$. If
+$n>d+m-1$, first build a depth-$(m-1)$ chain, then add the required
+extra leaves at its last nonroot core, preserving a leaf there, and
+finally promote a depth-$m$ child. The required birth count is at
+most $N$ in both cases.
+
+For $m=1$, a degree-$2$ root at population $n>2$ has only a core
+neighbour and no real leaf. Its next depth-$1$ birth requires first
+adding a root leaf and then promoting it, so it requires two more
+births. This excludes precisely $(N+1,2)$ when $N\ge2$. Every
+other pair is possible: for $d\ge3$, retain a root leaf while
+growing a nonroot branch as necessary; for $d=2,n\le N$, grow
+that branch and then add and promote a root leaf. The initial
+$(2,2)$ state always occurs. Counting the stated pairs proves the
+degree formulas. Subtracting $L^*_{m,N}$ from the polynomial
+$12(s+3)$ reverses its nonzero residues and therefore leaves the
+same reduced pole denominator.
+\end{proof}
+
+This is a denominator statement in $\mathbb Q(s)$. It does not
+assert a lower bound on the reduced numerical denominator after
+specializing $s$ to a rational number; further integer cancellation
+at a specialization is a separate question.
+
+\subsection{Integer forms after all polynomial cancellation}
+
+Write $B=B_{m,N}$, and let $\kappa=\kappa_{m,N}$ be the least
+positive integer such that
+\[
+ Q(s)=\kappa B(s)L^*_{m,N}(s)\in\mathbb Z[s].
+\]
+The integer exists, and
+\[
+ \kappa\mid K_N:=\prod_{n=2}^{N+1}\operatorname{lcm}(1,\ldots,n).
+\]
+Indeed, each source degree at population $n$ divides the corresponding
+least common multiple, while the factor $d$ from null-event elimination
+is a numerator. Multiplying a history by $K_NB$ leaves a polynomial
+with nonnegative integer coefficients. Therefore $Q$ also has
+nonnegative integer coefficients, $\deg Q\le D_{m,N}-m$, and
+$Q(1)\le\kappa B(1)$.
+
+Set
+\[
+ P(s)=12(s+3)\kappa B(s)-Q(s),\qquad
+ g=\operatorname{content}(P),\qquad p_{m,N}=P/g.
+\]
+Here the content is positive, so $p_{m,N}$ is the primitive integer
+numerator with positive leading coefficient. By Theorem~\ref{pop:poles},
+no polynomial factor shared with $B$ remains. We have
+\[
+ \deg p_{m,N}=D_{m,N}+1,\qquad
+ H(p_{m,N})\le49\kappa B(1)\le49K_NB(1).
+\]
+The height estimate follows as for the earlier certificates from the
+nonnegative coefficients of $B,Q$ and $Q(1)\le\kappa B(1)$.
+
+There is a useful bound on the possible integer content:
+\begin{equation}\label{pop:content}
+ \gcd(g,\kappa)=1,
+ \qquad g\mid12\operatorname{lc}(B).
+\end{equation}
+For a prime dividing $\kappa$, its minimality ensures that some
+coefficient of $Q$ is not divisible by that prime. Since
+$P\equiv-Q$ modulo that prime, it does not divide $g$. On the
+other hand the leading coefficient of $P$ is
+$12\kappa\operatorname{lc}(B)$, proving the second assertion.
+
+\subsection{A uniform obstruction even after primitive normalization}
+
+\begin{theorem}[Primitive certificate values are never small]
+\label{pop:primitive-growth}
+For the original critical exponent $0<\mu<1$, every fully reduced
+primitive numerator above satisfies
+\[
+ \boxed{p_{m,N}(\mu)>1\qquad(1\le m\le N).}
+\]
+More precisely, uniformly over $1\le m\le N$,
+\[
+ \log p_{m,N}(\mu)\ge N\log N-O(N),
+\]
+and the diagonal $m=N$ gives the matching upper order. Hence
+\[
+ \boxed{\min_{1\le m\le N}\log p_{m,N}(\mu)
+             =N\log N+O(N).}
+\]
+These assertions concern this precise finite-population certificate
+family; they do not exclude other signed arithmetic constructions.
+\end{theorem}
+\begin{proof}
+Put $k=N+1-m$. Grow $k$ extra root leaves, then promote any root
+leaf and make $m-1$ successive promotions along that new chain.
+Its final depth-$m$ reward is at proper birth $N+1$, so it is omitted.
+Each selected outcome class has rate at least $1/2$ (the first
+promotion aggregates all root leaves), and at population $j$ its proper holding
+rate is at most $j$. Its discounted mass is at least
+\[
+ \eta_{m,N}(s)\ge\frac{2^{-N-1}}{(s+2)_{N+1}}.
+\]
+An exact expression, if desired, is obtained with $d=k+2$:
+\[
+ \eta_{m,N}(s)=
+ \left[\prod_{j=2}^{k+1}
+       \frac{j(j-1)}{j(s+j)-1}\right]
+ \frac{d-1}{d(s+d)-1}
+ \prod_{r=1}^{m-1}\frac{d}{2[d(s+d+r)-1]}.
+\]
+At criticality, $A_m^\infty(\mu)\le12(\mu+3)$, so
+$12(\mu+3)-L^*_{m,N}(\mu)\ge\eta_{m,N}(\mu)>0$.
+Using~\eqref{pop:content},
+\begin{equation}\label{pop:primitive-lower}
+ p_{m,N}(\mu)
+ \ge\frac{B(\mu)}{12\operatorname{lc}(B)}
+          \frac{2^{-N-1}}{(\mu+2)_{N+1}}.
+\end{equation}
+
+Suppose first that $N\ge3$ and $m\le N-1$. For $m\ge2$,
+the pole set includes $d=2$ at every population $2,\ldots,N+1$
+and $d=3$ at every population $3,\ldots,N+1$. For $m=1$ the
+same lower bound follows by replacing the missing final $d=2$
+factor with the final $d=4$ factor; $N\ge3$ ensures its presence.
+All other monic factors exceed one. Consequently
+\[
+ \frac{B(\mu)}{\operatorname{lc}(B)}
+ \ge\frac32\prod_{n=3}^{N+1}(n-\tfrac12)^2.
+\]
+Since $\mu<1$, equation~\eqref{pop:primitive-lower} gives
+\begin{equation}\label{pop:explicit-growth}
+ p_{m,N}(\mu)\ge U_N:=
+ \frac{(3/2)\prod_{n=3}^{N+1}(n-1/2)^2}
+      {12\,2^{N+1}(3)_{N+1}}.
+\end{equation}
+Stirling's formula gives $\log U_N=N\log N-O(N)$.
+Moreover
+\[
+ U_{10}=\frac{3454132356675}{2199023255552}>1,
+ \qquad
+ \frac{U_{N+1}}{U_N}=\frac{(N+3/2)^2}{2(N+4)}>1
+ \quad(N\ge3).
+\]
+
+For $N\le9$, each history earns at most $N$ rewards and hence
+$L^*_{m,N}(\mu)\le N$. The content bound directly gives
+\[
+ p_{m,N}(\mu)
+ \ge\frac{B(\mu)}{12\operatorname{lc}(B)}(36-N)
+ \ge\frac{27}{8}>1.
+\]
+Here the pole set is nonempty and every monic factor exceeds $3/2$.
+
+Finally, when $m=N$, every retained depth-$N$ reward requires
+exactly $N$ consecutive chain promotions and no other proper births.
+The root degree stays two, so
+\[
+ L^*_{N,N}(s)=\frac1{\prod_{n=2}^{N+1}(2s+2n-1)},\qquad
+ p_{N,N}(s)=12(s+3)\prod_{n=2}^{N+1}(2s+2n-1)-1.
+\]
+This numerator is primitive: its leading coefficient is $12\,2^N$,
+whereas its constant coefficient is coprime to both two and three.
+It exceeds one at every positive $s$, and
+$\log p_{N,N}(\mu)=N\log N+O(N)$. This handles every diagonal
+case and supplies the matching upper order for the minimum.
+\end{proof}
+
+\begin{corollary}[A stronger algebraic-root hierarchy]
+\label{pop:roots}
+Let $\zeta_{m,N}=0$ when $L^*_{m,N}(0)\le36$; otherwise let it
+be the unique positive root of $L^*_{m,N}(s)=12(s+3)$. Then
+\[
+ \zeta_N=\max_{1\le m\le N}\zeta_{m,N}
+ \quad\hbox{satisfies}\quad
+ 0\le\zeta_N\le\zeta_{N+1}<\mu,\qquad
+ \zeta_N\longrightarrow\mu.
+\]
+It dominates the earlier diagonal-budget root $\xi_N$.
+For $N\ge2$, it is the largest nonnegative real root of
+\[
+ s\prod_{m=1}^N p_{m,N}(s),
+ \qquad
+ \deg\left(s\prod_{m=1}^N p_{m,N}\right)
+ =\frac{N(N+1)(2N+1)}6+N.
+\]
+For $N=1$ the degree is three. No effective convergence rate in $N$
+for these critical roots is asserted.
+\end{corollary}
+\begin{proof}
+Each lower sum is a finite positive Laplace transform and decreases
+to zero with $s$. Its threshold residual is strictly increasing, and
+is positive at $\mu$ by the omitted-history proof. Increasing $N$
+retains every old reward, proving monotonicity. For every $s<\mu$,
+the complete lower-certificate theorem supplies some $m,R,N$ with
+$L_{m,R,N}(s)>12(s+3)$; domination by $L^*_{m,N}$ then proves
+convergence to $\mu$. The same domination at equal diagonal budgets
+gives $\zeta_N\ge\xi_N$. The primitive polynomials have the same
+nonnegative roots as their threshold residuals. Summing their exact
+degrees from Theorem~\ref{pop:poles} gives the product degree.
+\end{proof}
+
+The theorem shows that cancelling all spurious polynomial factors and
+then dividing all integer content does not produce small primitive
+critical values for this family. A different signed construction is
+required for the stated small-value route to irrationality or transcendence.
+
+\subsection{An explicit population-only error bound}
+\label{pop:tail-section}
+
+The proper-birth calculation also admits an outer error that depends
+only on its population cutoff. Let $Y_m(s)$ be the total discounted
+depth-$m$ reward in the potential genealogy in which every individual
+has children at rate one forever. The actual core genealogy embeds
+in this process by keeping every source clock but retaining only the
+actual promotions. All assertions below use fixed $m$.
+
+\begin{proposition}[Population-only error with an explicit rate]
+\label{pop:tail}
+For $s>0$, $m\ge1$, $N\ge1$, and $t>0$, put
+\[
+ M_m(s)=s^{-2m}\sum_{j=0}^{m}(s/2)^j.
+\]
+Then
+\begin{align*}
+0\le A_m^\infty(s)-L^*_{m,N}(s)
+&\le s^{-m}e^{-st}\sum_{j=0}^{m-1}\frac{(st)^j}{j!}\\
+&\quad+
+\sqrt{M_m(s)(1-e^{-t})^N(1+Ne^{-t})}.
+\end{align*}
+In particular, for each fixed $s,m$,
+\[
+ A_m^\infty(s)-L^*_{m,N}(s)
+ =O_{s,m}\bigl(N^{-s}(\log N)^{s+m-1}\bigr).
+\]
+This is an effective fixed-generation approximation. It supplies no
+outer error for letting the generation index tend to infinity in the
+definition of the pressure.
+\end{proposition}
+\begin{proof}
+Let $\tau_N$ be the time of the $N$th actual proper birth. Every
+omitted depth-$m$ reward is after $\tau_N$. Under the potential
+genealogy coupling, its sum is bounded by
+\[
+ Y_m^{>t}(s)+Y_m(s)\mathbf1_{\{\tau_N<t\}},
+\]
+where $Y_m^{>t}$ counts potential births after time $t$.
+The expected generation-$m$ birth intensity is
+$u^{m-1}/(m-1)!$, so integration gives
+\[
+ \mathbb E Y_m^{>t}(s)
+ =s^{-m}e^{-st}\sum_{j=0}^{m-1}\frac{(st)^j}{j!}.
+\]
+Poisson offspring decomposition gives
+\[
+ \mathbb E Y_m(s)=s^{-m},\qquad
+ \mathbb E Y_m(s)^2
+ =s^{-2m}+\frac{\mathbb E Y_{m-1}(s)^2}{2s}.
+\]
+Starting from $Y_0=1$, this solves to $M_m(s)$. These identities
+follow first for finite time and generation truncations, with the
+nonnegative limit justified by monotone convergence.
+
+The actual proper-birth rate at population $n$ is at most $n$.
+Therefore its real population is dominated by the Yule process from
+two founders, and
+\[
+ \Pr(\tau_N<t)
+ \le\Pr(Y_2(t)\ge N+2)
+ =(1-e^{-t})^N(1+Ne^{-t}).
+\]
+Cauchy--Schwarz proves the displayed error bound; it requires no
+independence between $\tau_N$ and the potential reward.
+
+For the rate, choose $c=2s+2$ and
+$e^{-t}=c\log N/N$ whenever this lies below one. The first term is
+$O_{s,m}(N^{-s}(\log N)^{s+m-1})$, while
+$(1-e^{-t})^N\le N^{-c}$ makes the second term
+$O_{s,m}(N^{-s-1}\sqrt{\log N})$.
+\end{proof}
+
+At a rational discount $s=a/b$, the bound can be made entirely
+rational. Choose $t=k\log2$, so $e^{-t}=2^{-k}$. Enclose
+$2^{-ks}$ above by rational bisection of its $b$th-power equation,
+use $st\le sk$ in the finite polynomial, and enclose the remaining
+square root above by an integer square comparison. Thus no
+floating-point inequality is needed for the outer error. The
+implemented helper follows exactly this prescription.
+
+\subsection{The remaining population cost}
+
+Let
+\[
+ q_i(s)=\prod_{j=2}^{i+1}\frac{j}{j+s},\qquad
+ V_N(s)=\sum_{i=1}^{N}q_i(s).
+\]
+The proper-birth waiting times can be coupled as
+$E_i/\lambda_i\ge E_i/(i+1)$ with fresh independent unit
+exponentials. There is at most one generation reward at each proper
+birth, so
+\[
+ L^*_{m,N}(s)\le V_N(s).
+\]
+The same finite telescoping calculation as for the core-ring envelope
+gives
+\[
+ V_N(s)=
+ \begin{cases}
+ \displaystyle\frac{(N+2)q_N(s)-2}{1-s},&s\ne1,\\[5pt]
+ 2H_{N+2}-3,&s=1.
+ \end{cases}
+\]
+At $a=113/200$, exact rational arithmetic gives
+\[
+ 42.761044675975962399<V_{487}(a)<42.761044675975962400,
+\]
+\[
+ 42.803125001232158295<V_{488}(a)<42.803125001232158296.
+\]
+Since $12(a+3)=42.78$, any threshold root from this population-only
+family in the current enclosure requires $N\ge488$. This is only
+necessary. Eliminating the core-ring budget does not make enumeration
+at that population practical, and no new numerical bracket for $\mu$
+is claimed.

@@ -1,0 +1,149 @@
+\section{Two obstructions to finite and positive spectral closures}
+\label{fgo:section}
+
+These statements concern the actual free friend-tree generator
+\[
+ (\mathcal L f)(T)=\sum_{w\in T}h_T(w)[f(T+w)-f(T)],
+ \qquad h_T(w)=\sum_{u\sim_Tw}\frac1{d_T(u)},
+\]
+and the nonleaf count $C(T)$. They do not assert irrationality of the
+growth exponent. The first result strengthens the failure of a closure
+in the core count alone to the failure of every finite-dimensional
+constant-coefficient linear observable closure containing that count.
+
+\begin{lemma}[A pole of increasing order on stars]
+\label{fgo:star-pole}
+Let $S_d$ be the star with $d$ leaves, for an integer $d\ge2$. For each
+$r\ge0$, the values $(\mathcal L^r C)(S_d)$ are the restrictions of a
+rational function $f_r(d)$. For $r\ge2$, this function has the Laurent
+expansion
+\[
+ f_r(d)=(-1)^{r-1}d^{1-r}+O(d^{2-r})\qquad(d\to0).
+\]
+In particular its pole at zero has exact order $r-1$.
+\end{lemma}
+\begin{proof}
+Write the generator as the sum of its off-diagonal birth operator and
+its diagonal term $-|T|I$. Expand $\mathcal L^r C$ as a sum over words
+of $r$ operations. An off-diagonal operation specifies its source vertex,
+then its chosen neighbour, and contributes the reciprocal source degree.
+A diagonal operation contributes minus the current population. For fixed
+$r$, there are only finitely many history patterns after identifying
+histories that differ by a permutation of the original star leaves.
+
+Suppose such a pattern mentions $k$ distinct original leaves. Assigning
+them distinct labels gives the falling-factorial multiplicity
+$(d)^{\underline{k}}$. Degrees of vertices other than the original centre
+are positive integers determined by the finite pattern. The centre has
+degree $d+j$, where $j\ge0$ is the number of births attached to it.
+Diagonal population factors are polynomials in $d$. Thus each pattern
+has a rational weight in $d$, proving the first assertion.
+
+Every pattern containing a birth mentions at least one original leaf:
+the first birth either has the centre as source and an original leaf as
+target, or has an original leaf as source and the centre as target.
+Its falling-factorial multiplicity therefore has a factor $d$. The only
+possible poles at $d=0$ come from centre-source choices made before any
+birth has attached to that centre. If a word has at most $r-1$ such
+choices, its pole order is at most $r-2$. A word with no births is
+polynomial in $d$.
+
+It remains to collect words having $r$ such choices. These are exactly
+the histories consisting of $r$ successive centre-source births, with
+no diagonal operations. The centre keeps degree $d$, and each event
+chooses uniformly one of its $d$ original neighbours. A neighbour
+becomes a nonleaf exactly when first selected. Consequently the combined
+contribution of these histories is
+\[
+ 1+d\left[1-\left(1-\frac1d\right)^r\right].
+\]
+Its coefficient of $d^{1-r}$ is $(-1)^{r+1}=(-1)^{r-1}$.
+Every other word has smaller pole order, so this coefficient survives
+in $f_r$.
+\end{proof}
+
+For example,
+\[
+ f_0(d)=f_1(d)=1,\qquad
+ f_2(d)=\frac12-\frac1d,\qquad
+ f_3(d)=\frac{d^3+11d^2+d+6}{6d^2(d+1)}.
+\]
+
+\begin{theorem}[No finite linear generator closure]
+\label{fgo:independence}
+The functions
+\[
+ C,\mathcal LC,\mathcal L^2C,\ldots
+\]
+are linearly independent over $\mathbb C$ on the class of finite free
+trees with at least three vertices. Hence there is no finite-dimensional
+vector space of observables containing $C$ and invariant under
+$\mathcal L$.
+\end{theorem}
+\begin{proof}
+If $\sum_{j=0}^R c_j\mathcal L^jC=0$, restrict to stars $S_d$ with
+integer $d\ge2$. The resulting rational function vanishes at infinitely
+many points and hence is identically zero. If the largest index with
+nonzero coefficient were $R\ge2$, Lemma~\ref{fgo:star-pole} would give
+an uncancelled pole of order $R-1$, a contradiction. Thus only
+$c_0C+c_1\mathcal LC$ remains. Stars give $c_0+c_1=0$, whereas the
+four-vertex path has $C=2$ and $\mathcal LC=1$, giving $2c_0+c_1=0$.
+Both coefficients vanish. A finite invariant space containing $C$
+would contain every generator iterate and contradict this independence.
+\end{proof}
+
+The theorem rules out a finite constant-matrix linear differential system
+of observables containing $C$ that is valid from every finite seed.
+It does not rule out population-dependent recurrences, nonlinear
+reductions, special-function equations in the discount parameter, or
+an accidental scalar relation for the edge-start mean alone.
+
+\subsection{An exact obstruction to a positive exponential mixture}
+
+Let $F_2(t)=\mathbb E_{\rm edge}C(t)$ and
+$c_r=(\mathcal L^rC)(\mathrm{edge})$. The Yule generating-function
+representation makes $F_2$ analytic in a neighbourhood of zero, and
+the generator hierarchy gives $F_2^{(r)}(0)=c_r$. Direct finite exact
+recursion yields
+\[
+ c_1=2,\quad c_2=-2,\quad c_3=4,\quad c_4=-\frac{19}{3},
+ \quad c_5=\frac{133}{12},\quad c_6=-\frac{8189}{432},
+ \quad c_7=\frac{70753}{2160}.
+\]
+Put $m_j=c_{j+1}/2$. These cannot be the moments of a positive measure
+on the real line: their Hankel determinant is
+\[
+ \det(m_{i+j})_{0\le i,j\le3}=-\frac{43427}{3732480}<0.
+\]
+An equivalent certificate uses the integer polynomial
+\[
+ q(x)=468x^3+969x^2+19x-437.
+\]
+If $\mathfrak m(x^j)=m_j$, then exact rational arithmetic gives
+\[
+ \mathfrak m(q^2)=-\frac{564551}{40}<0.
+\]
+Therefore there is no positive real measure $\nu$, with finite
+exponential moments in a neighbourhood of zero, for which
+\[
+ \frac{F_2'(t)}2=\int_{\mathbb R}e^{\lambda t}\,d\nu(\lambda)
+\]
+holds near zero. Such a representation would imply
+$\mathfrak m(q^2)=\int q(\lambda)^2\,d\nu(\lambda)\ge0$.
+The conclusion is specific to this proposed scalar positive spectral
+representation; it does not rule out signed measures, non-self-adjoint
+operators, or other observables.
+
+\paragraph{A failed arithmetic transfer.}
+The increasing star poles do not by themselves prove a denominator
+lower bound for the edge-start derivatives. For example, a hub of
+degree $5$ followed by repeated centre-source events suggests a
+$5$-denominator contribution, but
+$c_6=-8189/432$ has no factor $5$ in its denominator. Near-star histories
+attain the same valuation and can cancel. More concretely, the
+generator words whose first four operations are births ending at
+$S_5$ have total prefix weight $2\cdot4!=48$; their remaining
+two-generator contribution is $48f_2(5)=72/5$. Its factor $5$
+disappears in the complete value of $c_6$. Thus the statewise pole
+noncancellation theorem must not be used as an unproved noncancellation
+claim after averaging over the full edge-start distribution.

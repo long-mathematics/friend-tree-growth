@@ -5,7 +5,8 @@ exponent, using an exact characteristic pressure and a uniform boundary
 comparison. The local-model companion supplies a concrete irrationality
 theorem. The arithmetic continuation proves first-promotion reductions and
 coefficient-height asymptotics, full-critical certificate-polynomial
-noncancellation, and several exact root representations. The following
+noncancellation, primitive-numerator growth, and several exact root and
+derivative-ratio representations. The following
 targets concern the remaining analytic, arithmetic, and computational gaps.
 
 ## 1. Make computation practical
@@ -55,6 +56,29 @@ The exact Yule population-tail helper also improves fixed-time finite-state
 calculations to a geometric population cutoff bound. This identity is
 restored from earlier project work. Spatial-profile and quadrature errors,
 and the cost of the long-time critical limit, remain separate.
+
+Eliminating every null ring now gives population-only lower sums
+`L*_(m,N)`, with a proved error
+`O_(s,m)(N^(-s)(log N)^(s+m-1))` for each fixed generation `m`.
+The implemented bound uses rational root comparisons and a potential
+genealogy second moment. This supplies an effective finite-population
+approximation to each coefficient, but still leaves the outer generation
+error for the pressure unresolved. An elementary envelope shows that any
+threshold root of this family inside the current enclosure requires at
+least 488 proper births; this is a necessary cost, not a sufficient budget.
+
+The new fixed-discount formula
+
+$$
+\mu=2-\lim_{m\to\infty}\frac{B_m(2)}{B_{m+1}(2)},\qquad
+B_m(s)=\frac1{m!}\int_0^\infty t^m e^{-st}F_2(t)\,dt,
+$$
+
+has positive rational coefficient expansions and explicit finite-population
+tails for every fixed derivative. It uses no exact-pressure oracle. Its
+remaining analytic target is a quantitative rate in derivative order.
+The current proof only assumes `F_2(t)=exp(mu*t+o(t))`, so the implemented
+finite-index ratio intervals do not give error bars for `mu`.
 
 ## 2. Identify a usable arithmetic characteristic
 
@@ -126,9 +150,23 @@ no effective rate in the history budget is proved.
 Thus noncancellation for this full-model certificate construction is
 established. The arithmetic target is now a sufficiently small value
 relative to degree and height. For the literal clearers used in the note,
-the critical values grow rather than tend to zero. This does not rule out
-primitive normalization, different signed constructions, or an exact
-analytic characteristic with stronger arithmetic properties.
+the critical values grow rather than tend to zero.
+
+The stronger population-only hierarchy now resolves the primitive
+normalization question for its entire family. All reachable poles have
+nonzero residues of known sign. After removing every common polynomial
+factor and dividing all integer content, its primitive numerators obey
+
+$$
+p_{m,N}(\mu)>1,\qquad
+\min_{1\le m\le N}\log p_{m,N}(\mu)=N\log N+O(N).
+$$
+
+Simply reducing this family therefore cannot produce small arithmetic
+forms. A remaining concrete target is a controlled signed combination or
+another characteristic that cancels enough of the now-explicit poles,
+while retaining a proof of nonvanishing and a usable height/error bound.
+The theorem does not rule out such constructions.
 
 The restored full-tree beta/Mellin representation is another exact
 organization: its rational coefficients are `a_n=E C_n`, and its convergence
@@ -142,10 +180,20 @@ inverse-degree and neighbour correlations needed beyond `a_n` itself.
 The corresponding generating functions satisfy
 `(1-z)G_r'(z)-2G_r(z)=G_(r+1)(z)`, and each `a_n` has a finite
 operator rising-factorial expression. This is an exact countable system.
-The core count alone is not an autonomous state, but this does not rule
-out a more useful finite recurrence for the edge-start expectations.
+The new star-pole theorem shows that `C, LC, L^2 C, ...` are linearly
+independent on finite trees: no finite-dimensional invariant linear
+observable space containing `C` exists. This still does not rule out
+a more useful finite recurrence for the edge-start expectations or a
+nonlinear reduction. A negative Hankel determinant also excludes a
+positive real exponential-mixture representation for `F_2'/2`.
 A characteristic relation in the discount parameter and a fixed-order
 ODE for the population generating function are distinct reduction targets.
+
+Statewise pole noncancellation must not be transferred to arithmetic of
+the averaged coefficients without proof. The sixth edge-start generator
+derivative has denominator 432, even though a natural star-history
+subcollection contributes 72/5. This explicit cancellation identifies a
+specific obstacle to deriving denominator lower bounds from stars alone.
 
 The [dependency audit](transcendence_proof_dependencies.md) records the
 proved components, the classical arithmetic inputs, and the remaining
@@ -164,6 +212,23 @@ This is a route toward a sharper critical operator description. It is not
 an unresolved prerequisite of the effective computability theorem in the
 main draft, which uses finite-time upper certificates and the uniform
 growth equality.
+
+The new population modes sharpen the necessary formulation. Positive
+eigenfunctions of the actual inert generator and the full core-ring kernel
+exist at every `s>0`, and their transformed processes have no core-ring
+escape. They do not solve the previous critical-eigenfunction problem:
+they are different functions and grow as a power of total population.
+
+Requiring uniform core comparability gives an exact variational equation,
+
+$$
+\mu=\inf_{C\le f\le K_f C}\sup_y\frac{L_\infty f(y)}{f(y)}.
+$$
+
+Attainment of this infimum remains open here. Uniform resolvent suprema
+diverge at least as `1/(s-mu)`, but divergence at a prescribed finite seed,
+a scalar critical pole, and a critical limiting amplitude remain distinct
+unproved targets.
 
 ## 4. Strengthen growth asymptotics
 

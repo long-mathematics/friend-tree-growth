@@ -12,7 +12,7 @@ trees. It contains three manuscripts with different scopes.
 | --- | --- | --- |
 | **Effective computation and boundary robustness of the random friend-tree exponent** | An exact pressure characterization, a terminating two-sided computation theorem, a uniform boundary-leaf resolvent estimate, robustness under bounded predictable boundary input, and a sharper rational upper bound for the original exponent. | [PDF](friend_tree_growth.pdf) · [LaTeX](friend_tree_growth.tex) |
 | **Growth and irrationality in local redirection trees** | An exact CMJ representation, almost-sure power-law growth from every finite tree seed, effective root isolation, and irrationality for every finite algebraic activation parameter. | [PDF](local_redirection_irrationality.pdf) · [LaTeX](local_redirection_irrationality.tex) |
-| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | Exact first-promotion arithmetic, sharp coefficient heights, full-critical signed certificate polynomials with noncancellation, and exact root and series representations with explicit convergence qualifications. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
+| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | Exact first-promotion arithmetic, sharp coefficient heights, primitive critical-certificate noncancellation and growth, a fixed-discount derivative-ratio formula, a core-growth variational equation, and explicit closure obstructions. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
 
 These are research drafts dated November 23, 2026. The repository includes
 written proofs, internal dependency audits, and reproducible finite
@@ -123,8 +123,22 @@ The corresponding normalized finite pressure residuals decrease to
 `1-r_infty(s)` and remain strictly positive at `mu` before tending to zero.
 Their compact convergence is qualitative; no error rate in `h` is proved.
 The literal cleared polynomial values grow rather
-than become small arithmetic forms, so the needed height/error estimate
-for transcendence remains missing.
+than become small arithmetic forms. A stronger population-only construction
+now settles the normalization issue for its entire family: eliminate all
+null rings, remove every common polynomial factor, and divide out all
+integer content. The resulting primitive numerators satisfy
+
+$$
+p_{m,N}(\mu)>1,\qquad
+\min_{1\le m\le N}\log p_{m,N}(\mu)=N\log N+O(N).
+$$
+
+Every reachable simple pole has a nonzero residue of prescribed sign.
+Thus this is an exact reduced-denominator result, not an artifact of a
+coarse denominator clearer. The stronger algebraic-root hierarchy still
+converges to `mu`, and each fixed generation coefficient has an explicit
+population error `O_(s,m)(N^(-s)(log N)^(s+m-1))`. This error does not
+control the subsequent infinite-generation limit defining the pressure.
 
 For the exact pressure, a different iteration has a proved geometric rate:
 
@@ -149,6 +163,49 @@ scalar recurrence or finite hypergeometric equation is claimed.
 Explicit geometric tails are proved for its
 fixed-time generating series and for the full generation resolvent above
 a certified upper bound on `mu`. Neither is a critical-pole theorem.
+
+### Stronger relations at a fixed discount and in the core-growth class
+
+For the edge-start mean `F_2(t)` and its Laplace transform `M(s)`, define
+
+$$
+B_m(s)=\frac1{m!}\int_0^\infty t^m e^{-st}F_2(t)\,dt
+       =\frac{(-1)^m}{m!}M^{(m)}(s).
+$$
+
+The continuation proves the actual ratio limit
+
+$$
+\mu=s-\lim_{m\to\infty}\frac{B_m(s)}{B_{m+1}(s)}
+\quad(s>\mu).
+$$
+
+At the single rational discount `s=2`, each `B_m` has a positive rational
+coefficient series and an explicit rational finite-population tail.
+This makes each fixed-index ratio computably enclosable. There is no
+proved effective rate as `m` tends to infinity, so the individual
+ratio intervals are not certified brackets for `mu`.
+
+For the inert generator `L_infty`, let `A_C` consist of functions with
+`C <= f <= K_f C` uniformly over all reachable states. Then
+
+$$
+\mu=\inf_{f\in\mathcal A_C}\sup_y
+       \frac{L_\infty f(y)}{f(y)}.
+$$
+
+The uniform resolvent supremum diverges at least as `1/(s-mu)`.
+This is distinct from a pole of the transform at one initial state.
+The growth class is essential: strictly positive eigenfunctions of the
+actual full kernel exist at **every** `s>0`, with no core-ring escape.
+
+Two further exact obstructions delimit proposed reductions. The functions
+`C, LC, L^2 C, ...` are linearly independent on finite free trees, ruling
+out a finite invariant linear observable space containing `C`. A negative
+Hankel determinant rules out a positive real exponential-mixture
+representation for `F_2'(t)/2`. These results do not exclude a special
+edge-start scalar equation, nonlinear reductions, or other arithmetic
+constructions.
 
 **Irrationality and transcendence of `mu`, and transcendence of the local
 exponents, remain unproved.** The transform `Phi` remains just the

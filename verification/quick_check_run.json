@@ -9,8 +9,11 @@
     "check_critical_root_forms.py": "6fa9436b129ac0e4a99f45ec590335c5251f848003e02fb71c172641926765f0",
     "rapid_root_tools.py": "4d6f6e92f8a751ed659b905b479cc364b1c9292fd2f03e2e609c98ba478581e1",
     "full_tree_recurrence.py": "0355da94bc0104d849f1c49049b5aa1de903c70304fb14422b79aecfba5157da",
+    "primitive_population_tools.py": "4c92bd71c6468e8a1d087fb5cf791e4e20c5444c97e9c72baeb370e0ffee829c",
+    "laplace_derivative_tools.py": "8aa48a601cd3d6cedd591a608e7b2a5b5b30247eba0ca29e588e6f96a0354d1e",
+    "check_generator_obstructions.py": "ceb7dc01aa0a67c6ae32913ac603b1ad22eab1ec695734d62d9a878f56a6431c",
     "check_van_root.py": "bf4dd269a3ec24152b201bf81d323bb69ac34f04747a14badc8626d761af0b94",
     "check_first_promotion.py": "1fdaea886bd98638982edc4d451e9ec2fb5299ba03c6d2134a6533244e9ef2b1"
   },
-  "scope": "Finite kernel identities, bounds, first-promotion reductions and prime valuations, full-model certificate polynomials, exact Yule tails, generic bracket updates, the full-tree coefficient recurrence, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
+  "scope": "Finite kernel identities, bounds, first-promotion reductions and prime valuations, full-model certificate polynomials, exact Yule tails, generic bracket updates, the full-tree coefficient recurrence, reduced population-certificate arithmetic, fixed-order Laplace derivative tails, generator and Hankel obstructions, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
 }
