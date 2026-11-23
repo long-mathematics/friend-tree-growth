@@ -46,7 +46,7 @@ relevant proof-dependency document before changing a theorem or a checker.
 - Run `python3 scripts/run_checks.py` after changing exact checkers or constants.
 - Run `python3 scripts/verify_bound.py` after changing the original upper-bound
   certificate or its imported dependencies.
-- Run `python3 scripts/build_papers.py` after editing either manuscript, then
+- Run `python3 scripts/build_papers.py` after editing a manuscript, then
   inspect the affected rendered pages. Resolve undefined references and
   overfull boxes before treating the PDFs as final outputs.
 - Record which checks actually ran; do not describe unexecuted remote CI as

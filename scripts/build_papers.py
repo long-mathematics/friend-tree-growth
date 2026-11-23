@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the two research drafts with a standard LaTeX installation.
+"""Build the research drafts with a standard LaTeX installation.
 
 Only the Python standard library is needed. Install a TeX distribution with
 amsmath, amsthm, mathtools, lmodern, microtype, booktabs, and hyperref.
@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = {
     "original": "friend_tree_growth",
     "local": "local_redirection_irrationality",
+    "transcendence": "friend_tree_transcendence_progress",
 }
 
 

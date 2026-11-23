@@ -27,10 +27,20 @@ successful run, with source hashes in `quick_check_run.json`.
 | `inert_growth_kernel.py --check` | 180 comparisons with individual-clock recursion; null-ring accounting; generation-profile and reward tails | Checks finite approximations to the inert generation coefficients |
 | `verify_infection_kernel.py` | 16 exact occupation terms at each degree 2 through 63; the large-degree numerical inequality; absorption constant | Supplies the finite arithmetic part of the boundary-disagreement estimate |
 | `check_van_root.py` | Rational root brackets for PAN, DAN, and VAN with parameter 2; 1,100 coefficient denominator checks | Supports the companion paper's root computation and examples; the irrationality proof is analytic |
+| `check_first_promotion.py --check` | 106,865 exact finite checks of null-event elimination, independent backward recursion, reduction boundaries, tail signs and widths, and good-prime valuations | Supports the original inert newborn's first-promotion formulas; the infinite tails and height asymptotics require the written proofs |
 
 The root checker produces intervals of width `2**-90` using rational enclosures
 for the exponential-integral series. Floating-point values printed elsewhere
 are display conveniences; they are not used to certify inequalities.
+
+The first-promotion checker records its reference results in
+[`first_promotion_checks.json`](../verification/first_promotion_checks.json).
+Its default finite grid has 14 rational parameters, indices through 80,
+and primes through 251. Transform intervals use exact rational endpoints
+with decimal endpoints rounded outwards. The report separately labels
+floating denominator-growth diagnostics as exploratory; they establish no
+asymptotic or arithmetic classification. These intervals evaluate the
+first-promotion transform and are not new estimates of `mu`.
 
 Individual commands are also available:
 
@@ -39,7 +49,24 @@ python3 scripts/core_clock_kernel.py --check
 python3 scripts/inert_growth_kernel.py --check
 python3 scripts/verify_infection_kernel.py
 python3 scripts/check_van_root.py --output build/verification/van_root_checks.json
+python3 scripts/check_first_promotion.py --check --output build/verification/first_promotion_checks.json
 ```
+
+## Manuscripts
+
+Build all three research drafts with a standard LaTeX installation:
+
+```sh
+python3 scripts/build_papers.py
+```
+
+The individual selectors are `--paper original`, `--paper local`, and
+`--paper transcendence`. PDFs are written at the repository root; logs and
+the build report go to ignored `build/papers/`. The build rejects unresolved
+references and overfull boxes. Inspect affected page renders after changes
+to manuscript content. The
+[transcendence audit](transcendence_proof_dependencies.md) separates finite
+checks from the analytic and number-theoretic arguments they support.
 
 ## Full corrected motif certificate
 

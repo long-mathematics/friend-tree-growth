@@ -1,0 +1,713 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype,booktabs}
+\usepackage{xcolor,xurl}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Transcendence targets for the friend-tree exponent},pdfauthor={Christopher D. Long}}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\OO}{\mathcal O}
+\DeclareMathOperator{\den}{den}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Norm}{N}
+\title{Transcendence targets for the friend-tree exponent:\\
+exact first-promotion reduction and arithmetic obstructions}
+\author{Christopher D. Long}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We investigate the arithmetic of the original friend-tree growth exponent
+through an exact component of its inert-parent kernel. Eliminating all
+null rings before the first promotion produces an explicit ${}_3F_2$
+transform. We reduce the whole waiting phase to a positive residual with
+a coefficient that is nonzero at every positive discount, classify its
+rational telescopes, and give accelerated rational enclosures. For rational
+discount $s=p/q>0$, the primitive coefficient denominators and their least
+common denominator have logarithm $n\log n+O_s(n)$ when $p^2+4q^2$ is
+nonsquare; the square case has exponential common denominators. A
+prime-ideal calculation gives an exact coefficient-height asymptotic at
+every positive algebraic discount. These statements identify the arithmetic
+class of this genuine first-promotion kernel. We also record the scope of
+Sprind\v zuk's applicable $E^*$-function theorem and an exact equivalence
+for the local-model transcendence problem. Neither irrationality nor
+transcendence of the original exponent is proved. The remaining step is
+the construction of a nonzero signed critical witness with an arithmetic
+error estimate strong enough to beat algebraic separation.
+\end{abstract}
+
+\section{Scope and the critical arithmetic question}
+
+The original random friend tree selects a uniformly random existing
+vertex, selects one of its neighbours uniformly, and attaches a new
+vertex to that neighbour\cite{KR}. Let $\mu$ denote its core-growth
+exponent. The present project\cite{Long}, using the upstream existence
+theorem and certificates\cite{Uzay}, has the exact characterization
+\[
+ r_\infty(\mu)=1,\qquad
+ I:=\left[\frac{113}{200},\frac{2832242711}{5000000000}\right]
+ \ni\mu.
+\]
+Here $r_\infty$ is the inert-newborn generation pressure. It retains the
+evolving environment; no finite independent-family characteristic
+equation is asserted for this process. The bounds, existence theorem,
+and exact pressure characterization are contextual inputs, not results
+reproved in this note.
+
+The new computations below concern the actual \emph{first proper
+promotion} from the inert newborn. This state has one real core, one
+real leaf, and one inert parent stub. The stub counts toward degree but
+has no source clock. It differs from a free star, whose first core ring
+always promotes a leaf. A first-promotion transform is an exact kernel
+component; its evaluation is not a new equation for $\mu$.
+
+\section{The exact first-promotion transform}
+
+Let $\tau$ be the first promotion time from this inert newborn, and let
+$J$ be the number of leaves immediately before that promotion. Define
+\[
+ \Phi(s)=\E e^{-s\tau},\qquad s>0.
+\]
+At leaf count $j\ge1$, leaf addition has rate $j$, promotion has rate
+$j/(j+1)$, and the root's choice of its stub is a null event of rate
+$1/(j+1)$. The promotion hazard is at least $1/2$, so $\tau$ is finite
+almost surely. Exact geometric elimination of null events gives proper
+holding rate $j+j/(j+1)$.
+
+\begin{theorem}[Whole first-promotion kernel]\label{thm:kernel}
+Put
+\[
+ a=\frac{s+2+\sqrt{s^2+4}}2,\qquad
+ b=\frac{s+2-\sqrt{s^2+4}}2.
+\]
+Then $a>2$, $0<b<1$, $a+b=s+2$, and $ab=s$. With $t_0(s)=1$, set
+\begin{equation}\label{eq:tn}
+ t_n(s)=\prod_{j=1}^n\frac{j^2}{j^2+(s+2)j+s}
+       =\frac{(n!)^2}{(a+1)_n(b+1)_n}.
+\end{equation}
+For $n\ge1$,
+\begin{equation}\label{eq:joint}
+ t_n(s)=\E[e^{-s\tau};J=n],\qquad
+ \Phi(s)=\sum_{n\ge1}t_n(s)
+ ={}_3F_2\!\left(\begin{matrix}1,1,1\\a+1,b+1\end{matrix};1\right)-1.
+\end{equation}
+Moreover
+\begin{equation}\label{eq:asymp}
+ t_n(s)\sim\Gamma(a+1)\Gamma(b+1)n^{-s-2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+At leaf count $j$, the discounted continuation and promotion factors are
+respectively
+\[
+ \frac{j(j+1)}{j^2+(s+2)j+s},\qquad
+ \frac{j}{j^2+(s+2)j+s}.
+\]
+Multiply the continuation factors for $1\le j<n$ and the final
+promotion factor at $n$. Their numerator is $(n!)^2$, giving
+\eqref{eq:joint}. Summing disjoint promotion outcomes gives $\Phi$.
+The hypergeometric notation follows directly from its defining
+series\cite{DLMF}; the excess of denominator parameters over numerator
+parameters is $s+1>0$. Formula \eqref{eq:asymp} follows from the
+gamma-ratio expression for the rising factorials.
+\end{proof}
+
+At $s=0$, the limiting formula is $t_n(0)=2/[(n+1)(n+2)]$, with
+$\Phi(0)=1$. For positive $s$ there is also the positive double-integral
+representation
+\begin{equation}\label{eq:double}
+ \Phi(s)=s\int_0^1\int_0^1
+ \frac{xy}{1-xy}(1-x)^{a-1}(1-y)^{b-1}\,dx\,dy.
+\end{equation}
+Indeed each factor $n!/(a+1)_n$ is $a\,B(n+1,a)$; Tonelli's theorem
+then sums the geometric series. Thus $(t_n)_{n\ge0}$ is exactly the
+Hausdorff moment sequence of the product of independent
+$\operatorname{Beta}(1,a)$ and $\operatorname{Beta}(1,b)$ variables.
+No moment representation for the full friend-tree mean sequence is
+inferred from this statement.
+
+\section{Reduction, nonvanishing, and boundary terms}
+
+Put
+\[
+ D_s(z)=(z+a+1)(z+b+1)=z^2+(s+4)z+2s+3,
+\]
+and define the rational difference operator
+\begin{equation}\label{eq:delta}
+ (\delta_sR)(z)=R(z)-\frac{(z+1)^2}{D_s(z)}R(z+1).
+\end{equation}
+It is the summation operator associated with $t_{n+1}/t_n$.
+
+\begin{theorem}[Exact positive residual]\label{thm:reduction}
+For every $s>0$,
+\begin{equation}\label{eq:reduction}
+ \boxed{\displaystyle
+ \Phi(s)=\frac{2}{(s+1)(s+2)}+
+ \frac{s^2}{(s+1)(s+2)}\sum_{n\ge1}\frac{t_n(s)}{n^2}.}
+\end{equation}
+The residual is strictly positive and its displayed coefficient does
+not vanish at any positive specialization.
+\end{theorem}
+\begin{proof}
+Let
+\[
+ R_s(z)=\frac{z}{s+1}+\frac{s^2+3s+4}{(s+1)(s+2)},
+ \qquad c_s=\frac{s^2}{(s+1)(s+2)}.
+\]
+Direct polynomial multiplication gives
+$\delta_sR_s=1-c_s/D_s$. Since
+$t_n/D_s(n)=t_{n+1}/(n+1)^2$, summing the identity gives the exact finite
+formula
+\begin{equation}\label{eq:finite-boundary}
+ \sum_{n=1}^N t_n
+ =\frac{2}{(s+1)(s+2)}+c_s\sum_{n=1}^N\frac{t_n}{n^2}
+  -t_N\bigl(R_s(N)-1\bigr).
+\end{equation}
+The final term tends to zero by \eqref{eq:asymp}. This proves the
+identity and positivity.
+\end{proof}
+
+\begin{theorem}[Classification of rational telescopes]\label{thm:nosum}
+For $s>0$,
+\[
+ 1\in\delta_s\C(z)\quad\Longleftrightarrow\quad s\in\Z_{>0}.
+\]
+Consequently no rational telescope exists for any $s\in I$, whether
+that parameter is rational, algebraic irrational, or transcendental.
+\end{theorem}
+\begin{proof}
+A rational solution would satisfy
+\begin{equation}\label{eq:poly-telescope}
+ D_s(z)R(z)-(z+1)^2R(z+1)=D_s(z).
+\end{equation}
+If $R$ had finite poles, consider one of their orbits under integer
+translation. At one step to the left of its leftmost pole, the second
+term alone can have a pole. Its multiplier forces that leftmost pole
+to be $0$. The rightmost pole in the same orbit is then a nonnegative
+integer. At that point only the first term can have a pole, whereas
+$D_s$ has both roots strictly negative. This is impossible. Hence $R$
+is polynomial.
+
+If its degree is $m$ and leading coefficient is $c$, the coefficient of
+$z^{m+1}$ on the left of \eqref{eq:poly-telescope} is $c(s+2-m)$.
+For $m\ge2$ it must vanish, so $m=s+2$. For $m\le1$, write $R=Az+B$.
+Matching the quadratic and linear terms gives
+\[
+ A=\frac1{s+1},\qquad
+ B=\frac{s^2+3s+4}{(s+1)(s+2)}.
+\]
+The remaining constant equation is $s^2=0$, excluded here. Thus any
+positive parameter permitting a telescope is an integer.
+
+Conversely, let $s=k$ be a positive integer. The operator
+$R\mapsto D_kR-(z+1)^2R(z+1)$ maps polynomials of degree at most
+$k+2$ to the same space, because the highest coefficient cancels.
+It has trivial kernel: a homogeneous solution satisfies $R(-1)=0$,
+then $R(-2)=R(-3)=\cdots=0$. In this induction $D_k$ is nonzero at
+every integer, since $\sqrt{k^2+4}$ is irrational for $k\ge1$.
+Hence the operator is invertible on this finite-dimensional space,
+and \eqref{eq:poly-telescope} has a unique polynomial solution.
+\end{proof}
+
+\paragraph{Formal nonvanishing has a precise scope.}
+The theorem excludes a rational antidifference. It does not show that
+the evaluated sum is irrational, and it does not show that this class
+survives a signed reduction of the global critical equation.
+
+\begin{proposition}[A nonzero boundary at an exceptional parameter]
+At $s=1$,
+\begin{equation}\label{eq:s1}
+ \Phi(1)=\Gamma\!\left(\frac{5+\sqrt5}{2}\right)
+              \Gamma\!\left(\frac{5-\sqrt5}{2}\right)-3
+        =-\frac{\pi}{\cos(\pi\sqrt5/2)}-3.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The polynomial $R(z)=-z^3-5z^2-7z-2$ satisfies $\delta_1R=1$.
+Since $t_n\sim\Gamma(a+1)\Gamma(b+1)n^{-3}$, its telescoping boundary
+is $-\Gamma(a+1)\Gamma(b+1)$ rather than zero. Thus
+$\sum_{n\ge0}t_n=\Gamma(a+1)\Gamma(b+1)-2$.
+Now $a+b=3$, $ab=1$, and $(a-1)(a-2)=1$; the gamma reflection
+formula gives the last equality in \eqref{eq:s1}.
+\end{proof}
+This is an exact evaluation, not an arithmetic classification. The
+transcendence of an individual factor does not classify its quotient
+with $\pi$.
+
+\section{Accelerated rational enclosures}
+
+The positive reduction also yields a practical finite calculator for
+this kernel component. Define
+\[
+ u_n=t_n/n^2,\quad A=s+4,\quad B=2s+3,\quad \kappa=s+3.
+\]
+Then $u_{n+1}/u_n=n^2/(n^2+An+B)$.
+
+\begin{theorem}[Two rational tail bounds]\label{thm:tail}
+For an integer $M\ge1$, put
+\[
+ c_-=\kappa-B/A,\qquad
+ c_+(M)=\kappa-\frac{BM}{AM+B}.
+\]
+Then
+\begin{equation}\label{eq:tail}
+ L_M:=\frac{u_M(M+c_-)}{\kappa}
+ <\sum_{n\ge M}u_n<
+ U_M:=\frac{u_M(M+c_+(M))}{\kappa},
+\end{equation}
+and
+\begin{equation}\label{eq:tail-width}
+ U_M-L_M=\frac{u_MB^2}{\kappa A(AM+B)}.
+\end{equation}
+All endpoints are rational at rational $s>0$.
+\end{theorem}
+\begin{proof}
+For $R_c(n)=(n+c)/\kappa$ the residual is
+\[
+ R_c(n)-\frac{n^2R_c(n+1)}{n^2+An+B}-1
+ =\frac{[A(c-\kappa)+B]n+B(c-\kappa)}
+        {\kappa(n^2+An+B)}.
+\]
+For $c=c_-$ its numerator is $-B^2/A<0$. For $c=c_+(M)$ its
+numerator is $B^2(n-M)/(AM+B)\ge0$ for $n\ge M$, strictly positive
+when $n>M$. Multiplying by $u_n$, summing, and using $u_nR_c(n)\to0$
+proves \eqref{eq:tail}. Subtracting gives \eqref{eq:tail-width}.
+\end{proof}
+
+Insert these endpoints into \eqref{eq:reduction} after summing
+$u_1,\ldots,u_{M-1}$. The resulting interval for $\Phi(s)$ has exact
+width
+\begin{equation}\label{eq:phi-width}
+ \frac{s^2}{(s+1)(s+2)}\frac{t_M}{M^2}
+ \frac{(2s+3)^2}{(s+3)(s+4)((s+4)M+2s+3)}
+ =O_s(M^{-s-5}).
+\end{equation}
+The unaccelerated omitted sum is instead of order $M^{-s-1}$.
+For example, the included exact checker with $M=51$ gives
+\[
+ 0.520122548676957758785996459558
+ <\Phi(13/23)<
+ 0.520122548689960716256732865482.
+\]
+These decimal endpoints are rounded outwards from exact fractions.
+They are not new estimates of $\mu$.
+
+\section{Primitive denominator growth at rational discounts}
+
+Let $s=p/q>0$ be reduced, with $p,q$ positive integers. Set
+\begin{equation}\label{eq:quadratic}
+ Q_s(j)=qj^2+(p+2q)j+p,\qquad \Delta=p^2+4q^2.
+\end{equation}
+Then
+\[
+ t_n=\frac{q^n(n!)^2}{\prod_{j=1}^n Q_s(j)}.
+\]
+Write $t_n=A_n/B_n$ in lowest positive terms and
+$\mathcal D_n=\lcm(B_0,\ldots,B_n)$.
+
+\begin{theorem}[Exact denominator dichotomy]\label{thm:den}
+If $\Delta$ is nonsquare, then
+\begin{equation}\label{eq:den-asymp}
+ \log A_n=n\log n+O_s(n),\qquad
+ \log B_n=n\log n+O_s(n),\qquad
+ \log\mathcal D_n=n\log n+O_s(n).
+\end{equation}
+If $\Delta$ is square, then
+\begin{equation}\label{eq:square-den}
+ \log\mathcal D_n=O_s(n).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Call a prime $\ell$ good if $\ell\nmid2q\Delta$. At an inert good
+prime, the quadratic $Q_s$ has no root modulo $\ell$, so
+\[
+ v_\ell(A_n)=2v_\ell(n!).
+\]
+At a split good prime, $Q_s$ has exactly two simple roots modulo every
+$\ell^h$. Every complete block of length $\ell^h$ contains both
+roots. Therefore
+\[
+ v_\ell\left(\prod_{j=1}^n Q_s(j)\right)
+ \ge2\sum_{h\ge1}\left\lfloor n/\ell^h\right\rfloor
+ =2v_\ell(n!),
+\]
+so $v_\ell(A_n)=0$. The contribution of all bad primes to
+$\log A_n$ is $O_s(n)$, since $A_n$ divides $q^n(n!)^2$.
+
+For the nontrivial quadratic character attached to
+$\Q(\sqrt\Delta)$, the classical weighted Mertens estimate gives
+\[
+ \sum_{\substack{\ell\le n\\\ell\text{ good inert}}}
+      \frac{\log\ell}{\ell-1}
+ =\tfrac12\log n+O_s(1).
+\]
+This uses only the usual prime distribution in a fixed quadratic
+field, with no RH assumption; see the unconditional character-sum
+form recorded in\cite[Section 1.2]{Zhao}. Legendre's formula and the
+bound $\pi(n)=O(n/\log n)$ now give
+\[
+ \log A_n=2\sum_{\ell\text{ good inert}}v_\ell(n!)\log\ell+O_s(n)
+ =n\log n+O_s(n).
+\]
+Since $\log t_n=-(s+2)\log n+O_s(1)$, the same leading asymptotic
+holds for $B_n$.
+
+To control the least common denominator, first consider a good split
+prime $\ell\le n$. For each $h$, the excess root count over
+$2\lfloor k/\ell^h\rfloor$ belongs to $\{0,1,2\}$. Since
+$Q_s(j)\le C_s n^2$ for $j\le n$, it follows that
+\[
+ v_\ell(B_k)\le2\log_\ell(C_s n^2)\qquad(k\le n).
+\]
+Summing this bound over primes at most $n$ costs $O_s(n)$ in the
+logarithm. Good inert primes contribute no denominators. For a fixed
+bad prime, let $\widetilde A_k=q^k(k!)^2$ and
+$\widetilde B_k=\prod_{j\le k}Q_s(j)$. The latter products are
+nested, so the excess of $\max_{k\le n}v_\ell(B_k)$ over
+$v_\ell(B_n)$ is at most $v_\ell(\widetilde A_n)=O_s(n)$.
+For primes $\ell>n$, once $n$ exceeds the fixed bad primes, the
+numerator has no $\ell$ factor and denominator valuations increase
+with $k$. Hence $B_n$ already attains their maxima. Altogether
+$0\le\log\mathcal D_n-\log B_n=O_s(n)$.
+
+If $\Delta$ is square, $a,b$ are positive rational numbers. For
+$a=u/v$ in lowest terms, the common denominator of
+$k!/(a+1)_k$, $0\le k\le n$, divides
+$\lcm(1,2,\ldots,u+vn)$. Indeed, comparison with Legendre's formula
+leaves at most one extra valuation for each prime power. This lcm has
+logarithm $O_a(n)$. Apply the same argument to $b$ and multiply the
+two clearing factors.
+\end{proof}
+
+The exceptional rational parameters are dense: writing
+\[
+ s=t-t^{-1},\qquad t\in\Q,\quad t>1,
+\]
+gives $\sqrt{s^2+4}=t+t^{-1}$. They cannot be excluded using the
+current enclosure. For example
+\[
+ \frac{2603}{4602}\in I,\qquad
+ \sqrt{(2603/4602)^2+4}=\frac{9565}{4602}.
+\]
+The nonsummability theorem nevertheless applies at these parameters,
+since none in $I$ is an integer.
+
+\section{An exact height law at every algebraic discount}
+
+The primitive arithmetic admits a stronger all-degree formulation.
+We use the absolute logarithmic Weil height $h$.
+
+\begin{theorem}[Exact height of the first-promotion coefficients]
+\label{thm:alg-den}
+Let $s>0$ be algebraic, and define
+\[
+ \vartheta=\frac{s+\sqrt{s^2+4}}2>1,\qquad
+ K=\Q(s),\quad L=\Q(\vartheta),\quad
+ d=[K:\Q],\quad e=[L:K]\in\{1,2\},\quad D=ed.
+\]
+Then $s=\vartheta-\vartheta^{-1}$, and
+\begin{equation}\label{eq:alg-den}
+ \boxed{\displaystyle
+ h(t_n(s))=\left(2-\frac2D\right)n\log n+O_s(n).}
+\end{equation}
+More precisely, writing $(t_n)=\mathfrak a_n\mathfrak b_n^{-1}$
+with coprime integral ideals of $K$, both
+$\log\Norm\mathfrak a_n$ and $\log\Norm\mathfrak b_n$ equal
+\[
+ \left(2d-\frac2e\right)n\log n+O_s(n),
+\]
+and their difference is $O_s(\log n)$.
+The leading height coefficient vanishes exactly when $\vartheta$
+is rational, equivalently when $s$ is rational and $s^2+4$ is a
+rational square.
+\end{theorem}
+\begin{proof}
+Write $q_s(j)=j(j+2)+(j+1)s$. Exclude a fixed finite set of rational
+primes containing the coefficient denominators, the relevant order
+indices and ramified primes, and primes dividing the relative
+quadratic discriminant. At a remaining prime $p$, reduction of $s$
+generates the residue field at each prime $\mathfrak p\mid p$ of $K$.
+If $q_s(j)$ vanishes there, then $j\not\equiv-1\pmod p$ and
+\[
+ s\equiv-\frac{j(j+2)}{j+1}\in\mathbb F_p.
+\]
+Thus $\mathfrak p$ has residue degree one. At a degree-one prime
+the quadratic has either zero or two distinct roots. In the two-root
+case, Hensel lifting and complete residue blocks show that
+\[
+ v_{\mathfrak p}\!\left(\prod_{j=1}^nq_s(j)\right)
+ \ge2v_p(n!),
+\]
+so there is no numerator-ideal contribution. At every other prime
+of $K$ above $p$, the numerator valuation is exactly $2v_p(n!)$.
+
+Let $F_p$ be the number of degree-one primes of $L$ over $p$.
+The number of degree-one primes of $K$ where the quadratic splits
+is $F_p/e$. For $e=2$ each splitting prime gives two such primes
+of $L$; for $e=1$ the roots already lie in $K=L$. Since
+\[
+ a=1+\vartheta,\qquad b=1-\vartheta^{-1},
+\]
+the quadratic splitting field over $K$ is precisely $L$. Taking
+ideal norms gives the exact good-prime identity
+\begin{equation}\label{eq:ideal-valuations}
+ v_p(\Norm\mathfrak a_n)
+ =2\left(d-\frac{F_p}{e}\right)v_p(n!).
+\end{equation}
+At a fixed excluded prime, the bound
+$v_{\mathfrak p}(q_s(j))\ge\min(0,v_{\mathfrak p}(s))$
+shows that the positive valuation of $t_n$ is $O_s(n)$.
+Consequently all excluded primes contribute only $O_s(n)$ to the
+logarithm of the numerator norm.
+
+The unconditional number-field Mertens estimate\cite[Theorem 1,
+\textnormal{(A1)--(A2)}]{GarciaLee} is
+\[
+ \sum_{\Norm\mathfrak P\le x}
+ \frac{\log\Norm\mathfrak P}{\Norm\mathfrak P}
+ =\log x+O_L(1).
+\]
+For $L=\Q$ use classical Mertens. Prime ideals of residue degree
+at least two have bounded total contribution to this sum. Replacing
+$1/p$ by $1/(p-1)$ also changes it by a bounded amount, so
+\[
+ \sum_{p\le x}F_p\frac{\log p}{p-1}=\log x+O_L(1).
+\]
+Since $F_p\le D$ and
+$v_p(n!)=n/(p-1)+O(\log n/\log p)$, it follows that
+\[
+ \sum_{p\le n}F_pv_p(n!)\log p=n\log n+O_L(n).
+\]
+Summing \eqref{eq:ideal-valuations} therefore yields
+\[
+ \log\Norm\mathfrak a_n
+ =2d\log(n!)-\frac2e n\log n+O_s(n)
+ =\left(2d-\frac2e\right)n\log n+O_s(n).
+\]
+
+For each embedding $\sigma:K\hookrightarrow\C$, no factor
+$q_{\sigma(s)}(j)$ vanishes: such vanishing would make $\sigma(s)$
+rational, impossible if $s$ is irrational, and contradict positivity
+if $s$ is rational. The elementary expansion
+\[
+ \log|q_{\sigma(s)}(j)|
+ =2\log j+\frac{\Re(\sigma(s)+2)}j+O_s(j^{-2})
+\]
+gives $\log|\sigma(t_n)|=O_s(\log n)$. Hence
+$\log|\Norm(t_n)|=O_s(\log n)$, proving the same main term for
+the denominator ideal. Finally
+\[
+ h(t_n)=\frac1d\left(\log\Norm\mathfrak b_n+
+       \sum_{\sigma:K\hookrightarrow\C}\log\max(1,|\sigma(t_n)|)\right)
+\]
+proves \eqref{eq:alg-den}, since the archimedean sum is $O_s(\log n)$.
+\end{proof}
+
+\begin{corollary}[The arithmetic function class is exactly determined]
+\label{cor:classes}
+For positive algebraic $s$, put
+\[
+ H_s(z)=\sum_{n\ge0}t_n(s)z^n,\qquad
+ E_s(z)=\sum_{n\ge0}t_n(s)z^n/n!.
+\]
+Then $H_s$ is a $G$-function, and $E_s$ an $E$-function, if and only
+if $s$ is rational and $s^2+4$ is a rational square.
+\end{corollary}
+\begin{proof}
+With $\theta=z\,d/dz$, the coefficient recurrence gives
+\begin{align*}
+ [\theta^2+(s+2)\theta+s-z(\theta+1)^2]H_s&=s,\\
+ [\theta^2+(s+2)\theta+s-z(\theta+1)]E_s&=s.
+\end{align*}
+Differentiation homogenizes these equations, so both functions are
+$D$-finite. Their coefficient conjugates have polynomial size. The
+square rational case therefore satisfies all the usual exponential
+arithmetic conditions. In every other algebraic case,
+Theorem~\ref{thm:den} or \ref{thm:alg-den} rules those conditions out,
+even for an individual coefficient. In particular the obstruction also
+violates Siegel's weaker subfactorial condition\cite{Beukers}.
+\end{proof}
+
+This classification concerns these specific generating functions, not
+every possible representation of $\Phi(s)$. Moreover
+$\Phi(s)=H_s(1)-1$; even in the exceptional $G$-function case, the
+$E$-function $E_s$ has not been substituted for this value. A Borel
+transform does not preserve the evaluation required by the tree.
+
+\section{The local-model specialization problem and existing theory}
+
+The companion local models have a different, simpler exact transform
+\[
+ F(x)=\int_0^1u^x e^{u-1}\,du.
+\]
+Their root equation is
+\begin{equation}\label{eq:van}
+ F(\alpha_\omega)=
+ \frac{(1-\alpha_\omega)(\alpha_\omega+\omega)}
+      {\alpha_\omega+(1-\alpha_\omega)\omega}.
+\end{equation}
+The project proves irrationality for every finite algebraic
+$\omega\ge0$ via rational specialization and Siegel--Shidlovskii
+theory\cite{Long,Beukers}. That argument does not already prove
+transcendence.
+
+\begin{proposition}[An exact equivalence for the entire local family]
+Let $\alpha_0$ be the PAN root. The following assertions are equivalent:
+\begin{enumerate}
+\item $\alpha_\omega$ is transcendental for every finite algebraic
+      $\omega\ge0$.
+\item $F(x)$ is transcendental for every algebraic real
+      $x\in[\alpha_0,1)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Solving \eqref{eq:van} for the activation parameter gives
+\[
+ \Omega(x)=\frac{x(F(x)+x-1)}{(1-x)(1-F(x))},\qquad
+ \Q(x,F(x))=\Q(x,\Omega(x)).
+\]
+Here $0<F(x)<1$ for $0<x<1$. The function $F(x)+x-1$ is strictly
+increasing since its derivative is at least $1-(x+1)^{-2}>0$.
+It vanishes at $\alpha_0$, so $\Omega(x)\ge0$ on the stated interval.
+Uniqueness of the local root gives $\alpha_{\Omega(x)}=x$.
+Thus an algebraic value $F(x)$ at an algebraic $x$ gives an admissible
+algebraic $\Omega(x)$ with algebraic exponent. Conversely every
+algebraic local exponent gives an algebraic $F$-value through
+\eqref{eq:van}. The same rearrangement shows every $\alpha_\omega$
+with $\omega\ge0$ lies in $[\alpha_0,1)$.
+\end{proof}
+
+There is relevant arithmetic theory beyond ordinary $E$-functions.
+Sprind\v zuk\cite[Theorems 1 and 3]{Sprindzuk} considers precisely
+\[
+ f_\lambda(z)=\sum_{n\ge0}\frac{z^n}{(\lambda+1)_n},\qquad
+ zf_\lambda'(z)=(z-\lambda)f_\lambda(z)+\lambda.
+\]
+For fixed algebraic irrational $\lambda$ and positive integers $D,t$,
+only finitely many algebraic $z$ of degree at most $t$ have
+$f_\lambda(z)$ algebraic of degree at most $D$. His theorem applies
+to this function through the broader $E^*$ class. Since
+\[
+ F(x)=f_{x+1}(-1)/(x+1),
+\]
+it addresses the correct family. It does not exclude the particular
+point $-1$, and its finite exceptional set changes with $\lambda$.
+It therefore gives no finite exceptional list of candidate exponents.
+Removing the possible exceptional value at $-1$ is a precise arithmetic
+target for the local model. No implication for the original $\mu$ is
+available without a separate exact transfer.
+
+\section{The next critical witness and a dependency audit}
+
+The new reduction proves that a complete first-promotion phase contains
+a nonzero rational summation class throughout $I$. The denominator
+theorems explain why positive truncation and fixed-order acceleration
+are insufficient for the intended small-integer argument. They do not
+rule out an improved signed construction or cancellations across the
+global kernel.
+
+One precise transcendence target is to construct integer polynomials
+$P_N$ from the actual critical equation such that, infinitely often,
+$P_N(\mu)\ne0$, and
+\begin{equation}\label{eq:target}
+ \frac{-\log|P_N(\mu)|}
+ {\log(2H(P_N))+\deg P_N+\log(\deg P_N+2)}\longrightarrow\infty.
+\end{equation}
+Both nonvanishing and the quantitative estimate are unproved here.
+This is a sufficient criterion, not a claim that every transcendence
+proof must have this form. To see why it suffices, suppose $\mu$ were
+algebraic of degree $d$, with primitive minimal polynomial of leading
+coefficient $c$ and conjugates $\mu_1=\mu,\ldots,\mu_d$. The nonzero
+integer resultant gives, for $m=\deg P$,
+\[
+ 1\le |c|^m|P(\mu)|\prod_{j=2}^d|P(\mu_j)|
+ \le |P(\mu)|[(m+1)H(P)]^{d-1}
+       \left(|c|\prod_{j=2}^d\max(1,|\mu_j|)\right)^m.
+\]
+This contradicts \eqref{eq:target}. For a fixed proposed algebraic
+number, a sufficiently strong fixed rate would already suffice.
+
+The substantive missing construction is a \emph{signed critical
+boundary functional} that both detects $r_\infty(s)-1$ and preserves a
+nonzero arithmetic class after the full environment is incorporated.
+The identity for $\Phi$ does not construct that functional. In
+particular $\Phi(\mu)=1$ is false: $\Phi(s)<1$ for every $s>0$.
+
+\begin{center}\small
+\begin{tabular}{p{0.27\textwidth}p{0.62\textwidth}}
+\toprule
+Statement & Dependency and status\\
+\midrule
+Exact first-promotion law & Original clock rates and exact null elimination; proved here.\\
+Positive reduction and tails & Rational identities plus explicit vanishing boundaries; proved here.\\
+Rational nonsummability & Pole-orbit argument and polynomial degree comparison; proved here.\\
+Primitive rational denominators & Exact prime valuations and classical quadratic Mertens estimates; proved here.\\
+Algebraic coefficient heights & Exact prime-ideal valuations, number-field Mertens, and conjugate bounds; proved here.\\
+Numerical intervals & Exact finite arithmetic using the analytic tail theorem; reproducible.\\
+Global critical transfer & Not constructed.\\
+Arithmetic small forms & No suitable signed critical forms or required height/error balance constructed.\\
+Transcendence of $\mu$ & Unresolved. The local-family transcendence assertion is also unresolved.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Verification.}
+The standard-library program \texttt{scripts/check\_first\_promotion.py}
+checks independent null-eliminated clock recursions, the finite boundary
+identity, tail signs and widths, and good-prime numerator valuations.
+Its reference run contains $106{,}865$ exact finite checks.
+The JSON report labels floating-point denominator diagnostics as
+exploratory. Finite checks do not replace the infinite proofs, establish
+asymptotics experimentally, or certify transcendence. The source and exact
+reference report are included in the repository, alongside the
+original-model and local-model manuscripts.
+
+\paragraph{Acknowledgment.}
+AI tools assisted with proof exploration, independent arithmetic audits,
+literature retrieval, and preparation of reproducible calculations.
+
+\begin{thebibliography}{9}
+\bibitem{KR} P. L. Krapivsky and S. Redner,
+\emph{Emergent Network Modularity}, J. Stat. Mech. (2017), 073405.
+\url{https://arxiv.org/abs/1706.01514}.
+\bibitem{Uzay} C. Uzay, \emph{friend-tree-exponent}, proof revision
+\texttt{88f2f9c8c3ebc1b4e0c980db6afd97d29f3df176}.
+\url{https://github.com/uzay-eth/friend-tree-exponent}.
+\bibitem{Long} C. D. Long, \emph{Effective computation and boundary
+robustness of the random friend-tree exponent}, and
+\emph{Growth and irrationality in local redirection trees}, research
+drafts, November 23, 2026, repository revision
+\texttt{6ee9d6e6402699e02860eb02dde319d28a6df385}.
+\url{https://github.com/long-mathematics/friend-tree-growth}.
+\bibitem{DLMF} NIST Digital Library of Mathematical Functions,
+Section 16.2, generalized hypergeometric series.
+\url{https://dlmf.nist.gov/16.2}.
+\bibitem{Zhao} T. Zhao, \emph{On the mean values of the error terms in
+Mertens' theorems}, Research in Number Theory 11 (2025), article 62.
+\url{https://doi.org/10.1007/s40993-025-00640-y}.
+\bibitem{GarciaLee} S. R. Garcia and E. S. Lee,
+\emph{Unconditional explicit Mertens' theorems for number fields and
+Dedekind zeta residue bounds}, Ramanujan J. 57 (2022), 1169--1191,
+Theorem 1, (A1)--(A2).
+\url{https://arxiv.org/abs/2007.10313v4}.
+\bibitem{Beukers} F. Beukers, \emph{A refined version of the
+Siegel--Shidlovskii theorem}, Ann. Math. 163 (2006), 369--379.
+\url{https://annals.math.princeton.edu/wp-content/uploads/annals-v163-n1-p08.pdf}.
+\bibitem{Sprindzuk} V. G. Sprind\v zuk,
+\emph{The irrationality of the values of certain transcendental
+functions}, Math. USSR-Izv. 2 (1968), 89--104, Theorems 1 and 3.
+\url{https://doi.org/10.1070/IM1968v002n01ABEH000632}.
+\end{thebibliography}
+\end{document}

@@ -18,5 +18,16 @@
     "passes": 3,
     "unresolved_references": false,
     "overfull_boxes": false
+  },
+  {
+    "source": "friend_tree_transcendence_progress.tex",
+    "pdf": "friend_tree_transcendence_progress.pdf",
+    "pages": 11,
+    "bytes": 348432,
+    "sha256": "e9104096bc0093cd0ae3f394a9edf520a5c86a36cb9985a42de85013286c456b",
+    "passes": 3,
+    "unresolved_references": false,
+    "overfull_boxes": false,
+    "visual_review": "All 11 pages inspected in the research note; page 10 repository-integration edit inspected after rebuild."
   }
 ]

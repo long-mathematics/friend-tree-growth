@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the fast exact checks supporting the two manuscripts.
+"""Run the fast exact checks supporting the research manuscripts.
 
 This does not run the full motif certificate, prove an analytic theorem, or
 implement the general arbitrary-precision algorithm for the original exponent.
@@ -48,14 +48,19 @@ def main() -> None:
         print(f"PASS {script}", flush=True)
     run_json("check_van_root.py", ["--output", str(args.output_dir / "van_root_checks.json")])
     print("PASS check_van_root.py", flush=True)
-    names = [row[0] for row in checks] + ["check_van_root.py"]
+    run_json("check_first_promotion.py", [
+        "--check", "--output", str(args.output_dir / "first_promotion_checks.json"),
+    ])
+    print("PASS check_first_promotion.py", flush=True)
+    names = [row[0] for row in checks] + ["check_van_root.py", "check_first_promotion.py"]
     metadata = {
         "status": "PASS",
         "python": platform.python_version(),
         "arithmetic": "Python fractions.Fraction; no floating-point proof decisions",
         "source_sha256": {name: hashlib.sha256((SCRIPTS / name).read_bytes()).hexdigest()
                           for name in names},
-        "scope": "Finite kernel identities, bounds, and modified-model root brackets. "
+        "scope": "Finite kernel identities, bounds, first-promotion reductions and "
+                 "prime valuations, and modified-model root brackets. "
                  "Analytic proofs are in the manuscripts. The general original-model "
                  "computability algorithm is not implemented by these scripts.",
     }
