@@ -30,5 +30,9 @@ abstract: >-
   activation parameters. A third draft gives the exact original-kernel
   first-promotion transform, rational-summation classification, certified
   tail bounds, and sharp coefficient-height asymptotics at algebraic
-  discounts. Irrationality and transcendence of the original random
+  discounts. It also gives full-critical signed polynomial noncancellation,
+  an algebraic-root limit, and an explicit geometric iteration using exact
+  pressure values, together with an exact full-tree recurrence hierarchy.
+  The remaining computational and arithmetic gaps are stated separately.
+  Irrationality and transcendence of the original random
   friend-tree exponent remain open.

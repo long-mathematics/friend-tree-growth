@@ -6,8 +6,11 @@
     "core_clock_kernel.py": "ecb25b9104a5ccccd3f4ea5068e54fe695d85068f0212f5ba664b22224269058",
     "inert_growth_kernel.py": "a79c9c605980467f52b00713017b33773895e7b634e0cb850d240cf9a9a76cd6",
     "verify_infection_kernel.py": "d6fd0656a72d64cdb8f3310b2b800985574fa0e017db92a600ecd9100daf080c",
+    "check_critical_root_forms.py": "6fa9436b129ac0e4a99f45ec590335c5251f848003e02fb71c172641926765f0",
+    "rapid_root_tools.py": "4d6f6e92f8a751ed659b905b479cc364b1c9292fd2f03e2e609c98ba478581e1",
+    "full_tree_recurrence.py": "0355da94bc0104d849f1c49049b5aa1de903c70304fb14422b79aecfba5157da",
     "check_van_root.py": "bf4dd269a3ec24152b201bf81d323bb69ac34f04747a14badc8626d761af0b94",
     "check_first_promotion.py": "1fdaea886bd98638982edc4d451e9ec2fb5299ba03c6d2134a6533244e9ef2b1"
   },
-  "scope": "Finite kernel identities, bounds, first-promotion reductions and prime valuations, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
+  "scope": "Finite kernel identities, bounds, first-promotion reductions and prime valuations, full-model certificate polynomials, exact Yule tails, generic bracket updates, the full-tree coefficient recurrence, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
 }

@@ -12,7 +12,7 @@ trees. It contains three manuscripts with different scopes.
 | --- | --- | --- |
 | **Effective computation and boundary robustness of the random friend-tree exponent** | An exact pressure characterization, a terminating two-sided computation theorem, a uniform boundary-leaf resolvent estimate, robustness under bounded predictable boundary input, and a sharper rational upper bound for the original exponent. | [PDF](friend_tree_growth.pdf) · [LaTeX](friend_tree_growth.tex) |
 | **Growth and irrationality in local redirection trees** | An exact CMJ representation, almost-sure power-law growth from every finite tree seed, effective root isolation, and irrationality for every finite algebraic activation parameter. | [PDF](local_redirection_irrationality.pdf) · [LaTeX](local_redirection_irrationality.tex) |
-| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | The exact inert-newborn first-promotion transform, rational telescopability classification, accelerated enclosures, sharp coefficient-height growth at algebraic discounts, and the precise remaining arithmetic gaps. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
+| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | Exact first-promotion arithmetic, sharp coefficient heights, full-critical signed certificate polynomials with noncancellation, and exact root and series representations with explicit convergence qualifications. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
 
 These are research drafts dated November 23, 2026. The repository includes
 written proofs, internal dependency audits, and reproducible finite
@@ -88,7 +88,7 @@ The [local-model audit](docs/local_model_proof_audit.md) records the
 branching-process and arithmetic inputs. The exact example brackets are in
 [verification/van_root_checks.json](verification/van_root_checks.json).
 
-## First-promotion arithmetic and transcendence targets
+## Arithmetic and exact root representations
 
 The third manuscript studies the first proper promotion from the original
 inert newborn, including its null stub events. Its exact discounted weights
@@ -114,13 +114,48 @@ the `E`- and `G`-function arithmetic conditions. The note also states an
 equivalent specialization target for transcendence of the local exponents
 and checks the scope of the relevant classical `E*`-function theorem.
 
-These results concern an exact component of the original kernel.
-**They do not prove irrationality or transcendence of `mu` or transcendence
-of the local exponents.** In particular, `Phi(mu) = 1` is not the critical
-equation. A signed expression for the full pressure equation, with proved
-nonvanishing and sufficiently strong height/error estimates, remains to be
-constructed. See the [transcendence dependency audit](docs/transcendence_proof_dependencies.md)
-and [exact first-promotion report](verification/first_promotion_checks.json).
+The continuation then uses the full-environment lower-certificate theorem
+to construct signed integer polynomials `P_(m,R,N)`. An explicit omitted
+history proves `P_(m,R,N)(mu) > 0`, with quantitative lower bounds and
+degree/height bounds. The largest nonnegative roots of explicit product
+polynomials form an increasing sequence `xi_h < mu` with `xi_h -> mu`.
+The corresponding normalized finite pressure residuals decrease to
+`1-r_infty(s)` and remain strictly positive at `mu` before tending to zero.
+Their compact convergence is qualitative; no error rate in `h` is proved.
+The literal cleared polynomial values grow rather
+than become small arithmetic forms, so the needed height/error estimate
+for transcendence remains missing.
+
+For the exact pressure, a different iteration has a proved geometric rate:
+
+$$
+s_{n+1}=s_n+\frac{63}{400\log2}\log r_\infty(s_n),\qquad
+|s_n-\mu|\le(73/82)^n|s_0-\mu|.
+$$
+
+This holds throughout the current enclosure and moves monotonically toward
+`mu`. It requires exact or certified pressure evaluations; there is no
+implemented finite-generation outer error bound for those evaluations.
+An equality-safe trisection of the complete strict-certificate searches
+also gives a rational series with remainder `O((2/3)^n)` after `n`
+completed stages, without a runtime bound for a stage.
+
+Finally, the note restores the exact full-tree beta/Mellin series with
+rational coefficients `a_n = E C_n`. Its convergence abscissa is `mu`;
+the coefficients retain the entire tree dependence. An exact countable
+difference and differential hierarchy, with a finite operator rising-factorial
+formula for each coefficient, makes that dependence explicit. No finite
+scalar recurrence or finite hypergeometric equation is claimed.
+Explicit geometric tails are proved for its
+fixed-time generating series and for the full generation resolvent above
+a certified upper bound on `mu`. Neither is a critical-pole theorem.
+
+**Irrationality and transcendence of `mu`, and transcendence of the local
+exponents, remain unproved.** The transform `Phi` remains just the
+first-promotion component, and `Phi(mu)=1` is false. See the
+[transcendence dependency audit](docs/transcendence_proof_dependencies.md),
+[research targets](docs/RESEARCH_TARGETS.md), and
+[exact first-promotion report](verification/first_promotion_checks.json).
 
 ## Questions still open in this work
 

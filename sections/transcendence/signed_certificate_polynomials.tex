@@ -1,0 +1,411 @@
+% Full-model signed certificates. No arithmetic classification of mu is asserted.
+% Dependencies: actual full-environment kernel and scalar certificate theorem
+% from the repository at 1bb9ebdc991090033b4d287411b66f056483f1d8.
+% Labels use scp:. Requires standard theorem/proposition/corollary environments.
+
+\section{Signed certificate polynomials with global noncancellation}
+\label{scp:section}
+
+Give the initial inert-newborn core genealogical depth zero. For each
+future core $v$, let $\sigma_v$ be its birth time and let
+$\operatorname{depth}(v)$ be its core-genealogical depth. Define
+\[
+ A_m^\infty(s)=\mathbb E_\infty
+ \sum_{\operatorname{depth}(v)=m}e^{-s\sigma_v}.
+\]
+The existing full-environment characterization gives, for $s>0$,
+\[
+ r_\infty(s)=\sup_{m\ge1}
+ \left(\frac{A_m^\infty(s)}{12(s+3)}\right)^{1/m},
+ \qquad r_\infty(\mu)=1,
+ \qquad A_m^\infty(s)\le s^{-m}.
+\]
+In particular $A_m^\infty(\mu)\le12(\mu+3)$, and
+$s<\mu$ if and only if some finite retained-history sum exceeds
+$12(s+3)$. We use precisely these established facts. The first-promotion
+transform alone does not supply this characterization.
+
+\subsection{Retained histories and their denominators}
+
+Fix integers $m,R\ge1$ and $N\ge0$. Start from the actual inert
+newborn, with one real core, one real leaf, and one inert parent stub.
+The budget $R$ counts all actual core-clock rings, including null choices
+of the stub. The budget $N$ counts all real vertex additions after this
+two-vertex initial state. Let $L_{m,R,N}(s)$ be the expected sum of
+$e^{-s\sigma_v}$ over depth-$m$ core births whose birth prefix has used
+at most $R$ core rings and at most $N$ real additions. This is exactly
+the positive finite-history lower sum obtained by retaining beta bursts
+and core outcomes within these budgets. Rewards already earned before
+the first discarded event are retained. A birth at the terminal retained
+ring is counted when its population is still within budget.
+
+At each retained ring, before leaf growth the skeleton has $k$ cores
+and $\ell$ leaves, and the burst adds $b$ leaves. Its occupation entry is
+\[
+ R_{H,s}(L,M)=
+ \left[\prod_{i:L_i>0}\binom{M_i-1}{L_i-1}\right]
+ \frac{b!}{\prod_{u=0}^{b}(s+k+\ell+u)},
+ \qquad b=|M|-\ell.
+\]
+Every displayed shift $k+\ell+u$ is the real population at a stage
+of that burst, so it lies between $2$ and $N+2$.
+For completeness, a zero-leaf state has occupation entry $1/(s+k)$;
+this has the same stated form and range whenever such a state is used.
+
+There is no additional uncancelled $k+s$ denominator from choosing the
+next core. One can write the same discounted transition as the product
+of the discounted ring mass $k/(k+s)$, the normalized burst law
+$(k+s)R_{H,s}$, the uniform source-core probability $1/k$, and its
+neighbour-choice probability. The first three factors multiply to
+$R_{H,s}$. A specified core outcome has neighbour-choice probability
+equal to an integer divided by its source degree $d_j$. In the one-stub
+reachable state class,
+\[
+ 2\le d_j\le N+2.
+\]
+Different source choices leading to the same retained state can be kept
+separate for this argument and then summed.
+
+Put
+\[
+ M_N=\operatorname{lcm}(1,2,\ldots,N+2),\qquad
+ D_{R,N}(s)=M_N^R\prod_{j=2}^{N+2}(s+j)^R,
+ \qquad d_{R,N}=R(N+1).
+\]
+
+\begin{lemma}[A positive coefficient clearer]\label{scp:clearer}
+The polynomial
+\[
+ Q_{m,R,N}(s)=D_{R,N}(s)L_{m,R,N}(s)
+\]
+has nonnegative integer coefficients. Its degree is at most
+$d_{R,N}$, and
+\[
+ Q_{m,R,N}(1)\le D_{R,N}(1).
+\]
+\end{lemma}
+\begin{proof}
+A retained reward prefix has some $r\le R$ core rings. Each burst
+contains any factor $s+j$ at most once, so the product of all its
+burst denominators contains that factor with multiplicity at most $R$.
+Each neighbour degree divides $M_N$, so the product of the $r$ degree
+denominators divides $M_N^R$. All remaining burst numerators, including
+factorials and binomial coefficients, are nonnegative integers. After
+multiplication by $D_{R,N}$, that prefix is therefore a polynomial with
+nonnegative integer coefficients. There are finitely many retained
+prefixes, even in the presence of null rings, because both budgets are
+finite. Summing proves the coefficient assertion and degree bound.
+Finally positivity and the potential-genealogy bound give
+$L_{m,R,N}(1)\le A_m^\infty(1)\le1$.
+\end{proof}
+
+\subsection{An explicit omitted history proves strict nonvanishing}
+
+Define the signed residual and its cleared polynomial by
+\[
+ F_{m,R,N}(s)=12(s+3)-L_{m,R,N}(s),\qquad
+ P_{m,R,N}(s)=12(s+3)D_{R,N}(s)-Q_{m,R,N}(s).
+\]
+Also put
+\[
+ b_{m,R}(s)=
+ \frac{[2(s+2)]^{-R}}{2^m(s+2)_m}.
+\]
+
+\begin{theorem}[Full-critical noncancellation]\label{scp:nonvanishing}
+For every $m,R\ge1$ and $N\ge0$,
+\[
+ F_{m,R,N}(\mu)\ge b_{m,R}(\mu)>0,
+ \qquad
+ P_{m,R,N}(\mu)\ge D_{R,N}(\mu)b_{m,R}(\mu)>0.
+\]
+If $a\le\mu\le b$ is any positive rational enclosure, then the fully
+rational lower bounds
+\[
+ F_{m,R,N}(\mu)\ge b_{m,R}(b),\qquad
+ P_{m,R,N}(\mu)\ge D_{R,N}(a)b_{m,R}(b)
+\]
+hold. Moreover $P_{m,R,N}$ is an integer polynomial satisfying
+\[
+ \deg P_{m,R,N}\le R(N+1)+1,
+ \qquad
+ H(P_{m,R,N})\le49D_{R,N}(1)
+ =49\left[M_N\frac{(N+3)!}{2}\right]^R.
+\]
+Here $H$ denotes the maximum absolute coefficient.
+\end{theorem}
+\begin{proof}
+Consider the event prefix consisting of $R$ initial root rings choosing
+the inert stub, followed by $m$ consecutive promotions along a single
+descending core chain, with no other source-clock rings between these
+specified events. Every initial null ring occurs in the unchanged
+two-real-vertex state, so its discounted mass is
+$1/[2(s+2)]$. Before the $(j+1)$st promotion, the real population is
+$j+2$, and the terminal core has one parent and one leaf. Its specified
+promotion has source rate one and leaf-choice probability $1/2$;
+the discounted next-event mass is therefore $1/[2(s+j+2)]$.
+Multiplication gives exactly $b_{m,R}(s)$.
+
+The final birth has depth $m$, but occurs at core-ring number $R+m$,
+so its reward is absent from $L_{m,R,N}$, regardless of $N$. All
+other omitted rewards are nonnegative. Consequently
+\[
+ A_m^\infty(s)-L_{m,R,N}(s)\ge b_{m,R}(s),\qquad s>0.
+\]
+At $s=\mu$, combine this with
+$A_m^\infty(\mu)\le12(\mu+3)$. Multiplication by the strictly positive
+$D_{R,N}(\mu)$ proves the second assertion. The rational bounds use
+that $b_{m,R}$ decreases and $D_{R,N}$ increases on the positive axis.
+
+The integer and degree assertions follow from Lemma~\ref{scp:clearer}.
+Since $D_{R,N}$ has nonnegative coefficients,
+\[
+ H(12(s+3)D_{R,N})\le48D_{R,N}(1),\qquad
+ H(Q_{m,R,N})\le Q_{m,R,N}(1)\le D_{R,N}(1).
+\]
+The coefficientwise triangle inequality gives the stated height bound.
+\end{proof}
+
+This is noncancellation for a family of signed arithmetic expressions
+attached to the full original-model critical relation. It does not use
+an algebraicity hypothesis on $\mu$. The displayed height bound is a
+coarse explicit bound, not an assertion that the chosen clearer or the
+resulting polynomial is primitive or optimal.
+
+\subsection{An increasing sequence of algebraic roots}
+
+Every $L_{m,R,N}$ extends continuously to $s=0$, is nonincreasing on
+$[0,\infty)$, and tends to zero at infinity. If it is not identically
+zero it is strictly decreasing, because each retained reward is a
+Laplace transform of a positive birth time. Thus $F_{m,R,N}$ is
+strictly increasing and tends to infinity.
+
+Define $\xi_{m,R,N}=0$ when $L_{m,R,N}(0)\le36$. Otherwise define
+$\xi_{m,R,N}$ to be the unique positive solution of
+\[
+ L_{m,R,N}(s)=12(s+3),
+\]
+equivalently the unique positive zero of $P_{m,R,N}$.
+The intermediate value theorem and the preceding monotonicity prove
+existence and uniqueness in the second case.
+
+\begin{theorem}[Exact algebraic-root representation]\label{scp:roots}
+Every $\xi_{m,R,N}$ is a nonnegative algebraic number strictly below
+$\mu$. For
+\[
+ \xi_h=\max_{1\le m\le h}\xi_{m,h,h}\qquad(h\ge1),
+\]
+one has
+\[
+ 0\le\xi_h\le\xi_{h+1}<\mu,
+ \qquad \boxed{\mu=\lim_{h\to\infty}\xi_h=\sup_{h\ge1}\xi_h.}
+\]
+Equivalently, $\xi_h$ is the largest nonnegative real root of the
+explicit integer polynomial
+\[
+ \mathcal P_h(s)=s\prod_{m=1}^h P_{m,h,h}(s),
+ \qquad \deg\mathcal P_h\le h^3+h^2+h+1.
+\]
+Each $\mathcal P_h(\mu)$ is strictly positive.
+\end{theorem}
+\begin{proof}
+The coefficients of $P$ are integers, and its positive zero, when
+present, lies strictly below $\mu$ by Theorem~\ref{scp:nonvanishing}.
+The convention $\xi=0$ has the same strict upper bound.
+
+Increasing either budget retains every previously retained reward and
+possibly more. Hence, for fixed $m$, $L_{m,h,h}(s)$ increases with $h$
+at every nonnegative $s$, and its threshold root is nondecreasing,
+including the zero-root convention. The finite maximum over $m\le h$
+is therefore nondecreasing.
+
+Fix $0<s<\mu$. The established full scalar lower-certificate theorem
+gives finite $m,R,N$ with $L_{m,R,N}(s)>12(s+3)$. For every
+$h\ge\max\{m,R,N\}$, inclusion of retained histories gives
+$L_{m,h,h}(s)>12(s+3)$, so $\xi_h>s$. Since every $\xi_h<\mu$,
+this proves convergence. The product polynomial has no positive roots
+other than the individual threshold roots, and the factor $s$ supplies
+the root zero. Its degree and nonvanishing assertions follow by
+multiplication.
+\end{proof}
+
+\begin{corollary}[Finite residuals for the exact pressure equation]
+\label{scp:pressure-residual}
+For $h\ge1$ and $s>0$, put
+\[
+ \rho_h(s)=\max_{1\le m\le h}
+ \left(\frac{L_{m,h,h}(s)}{12(s+3)}\right)^{1/m},
+ \qquad E_h(s)=1-\rho_h(s),
+\]
+using the nonnegative real root, including $0^{1/m}=0$.
+Then
+\[
+ \rho_h(s)\uparrow r_\infty(s),\qquad
+ E_h(s)\downarrow 1-r_\infty(s).
+\]
+The convergence is uniform on every compact subinterval of $(0,\infty)$,
+without an asserted effective modulus in $h$. At the actual exponent,
+\[
+ E_h(\mu)>0\quad\hbox{for every finite }h,
+ \qquad E_h(\mu)\longrightarrow0.
+\]
+In particular,
+\[
+ \boxed{\displaystyle
+ \mu\text{ is the unique positive solution of }
+ \lim_{h\to\infty}E_h(s)=0.}
+\]
+Each finite residual is obtained from rational functions by nonnegative
+real radicals and a finite maximum, so it is algebraic at every positive
+algebraic $s$.
+\end{corollary}
+\begin{proof}
+Increasing $h$ enlarges both budgets and the range of generations in
+the maximum, proving monotonicity. For each fixed $m$, retained-history
+exhaustion and monotone convergence give
+$L_{m,h,h}(s)\uparrow A_m^\infty(s)$: every birth prefix uses finitely
+many real additions and core rings. Therefore
+\[
+ \lim_{h\to\infty}\rho_h(s)
+ =\sup_{m\ge1}
+ \left(\frac{A_m^\infty(s)}{12(s+3)}\right)^{1/m}
+ =r_\infty(s).
+\]
+More explicitly, the finite maximum is bounded above by the displayed
+supremum, while its limiting value is at least each fixed-$m$ term.
+The omitted-history bound proves $L_{m,h,h}(s)<A_m^\infty(s)$.
+Since the maximum is finite, this gives
+$\rho_h(s)<r_\infty(s)$, in particular $E_h(\mu)>0$.
+Each $\rho_h$ is continuous, and the limiting pressure is continuous;
+the monotone convergence is thus uniform on compact intervals by
+Dini's theorem. Finally the established strict pressure crossing
+identifies the unique zero of $1-r_\infty(s)$ as $\mu$.
+\end{proof}
+
+This residual hierarchy connects the finite signed certificates directly
+to the full critical equation. The finite stages are not asserted to
+have small arithmetic height, and the radicals do not supply a new
+small-form estimate. The exact limiting equation does not provide an
+explicit cutoff-to-error bound for evaluating its left side.
+
+The algebraic numbers $\xi_h$ can be isolated and compared by finite
+integer-polynomial algorithms. No explicit bound on $\mu-\xi_h$ as a
+function of $h$ follows from this proof. In particular, convergence of
+these roots is not asserted to be rapid or computationally inexpensive.
+The finite coefficient bound $L_{m,R,N}(0)\le R$ already shows that
+no positive root is possible when $R\le36$. The following exact bound
+gives a substantially stronger obstruction near the current enclosure.
+
+\begin{proposition}[A necessary core-ring budget]\label{scp:ring-budget}
+For $s>0$, define
+\[
+ p_i(s)=\prod_{j=1}^{i}\frac{j}{j+s},\qquad
+ S_R(s)=\sum_{i=1}^{R}p_i(s).
+\]
+Every retained coefficient satisfies
+\[
+ L_{m,R,N}(s)\le S_R(s).
+\]
+The majorant has the exact evaluation
+\[
+ S_R(s)=
+ \begin{cases}
+ \displaystyle\frac{(R+1)p_R(s)-1}{1-s},&s\ne1,\\[6pt]
+ H_{R+1}-1,&s=1,
+ \end{cases}
+\]
+where $H_n=\sum_{j=1}^n1/j$. Any certificate root in
+\[
+ I=\left[\frac{113}{200},\frac{2832242711}{5000000000}\right]
+\]
+necessarily has $R\ge1222$.
+\end{proposition}
+\begin{proof}
+Before the $i$th actual core-clock ring, the number $k_i$ of real
+cores is at most $i$: the initial population has one core and every
+preceding core ring adds at most one. Between these rings $k_i$ is
+constant, regardless of leaf births. The next core-clock waiting time
+can therefore be constructed as $E_i/k_i$, with fresh independent
+mean-one exponentials $E_i$. If $\tau_i$ denotes the $i$th actual
+core-ring time, then pathwise
+\[
+ \tau_i=\sum_{j=1}^{i}\frac{E_j}{k_j}
+ \ge\sum_{j=1}^{i}\frac{E_j}{j}.
+\]
+Each retained generation-$m$ birth occurs at one of the first $R$
+rings and contributes at most one discounted unit there. Ignoring its
+generation and population restriction consequently gives
+\[
+ L_{m,R,N}(s)
+ \le\sum_{i=1}^{R}\mathbb E e^{-s\tau_i}
+ \le\sum_{i=1}^{R}\prod_{j=1}^{i}\frac{j}{j+s}=S_R(s).
+\]
+For $s\ne1$, the recurrence $(i+s)p_i=i p_{i-1}$ telescopes to
+$(1-s)S_R=(R+1)p_R-1$. At $s=1$, $p_i=1/(i+1)$.
+
+Put $a=113/200$. Exact rational evaluation of the same recurrence gives
+the outward decimal enclosures
+\[
+ 42.76694161<S_{1221}(a)<42.76694162,
+ \qquad
+ 42.78297644<S_{1222}(a)<42.78297645.
+\]
+In particular $S_{1221}(a)<12(a+3)=2139/50=42.78$.
+Since $S_R(s)$ increases with $R$ and decreases with $s$, if
+$R\le1221$ and $s\in I$ then
+\[
+ L_{m,R,N}(s)\le S_{1221}(a)<12(a+3)\le12(s+3).
+\]
+Thus the defining root equation cannot hold there. The displayed
+inequalities concern only a necessary budget; $R=1222$ is not asserted
+to produce a successful root or certificate.
+\end{proof}
+
+\subsection{A quantified root gap and the remaining arithmetic task}
+
+For any retained history weight, its logarithmic derivative in absolute
+value is at most $d_{R,N}/(s+2)$. Summation therefore gives
+\[
+ 0\le-L'_{m,R,N}(s)
+ \le\frac{d_{R,N}}{s+2}L_{m,R,N}(s),\qquad s\ge0.
+\]
+If a positive root $\xi=\xi_{m,R,N}$ belongs to a rational enclosure
+$[a,b]$ for $\mu$, then on $[\xi,\mu]$ the monotonicity of $F$ gives
+$L(s)\le12(s+3)\le12(b+3)$. Consequently
+\[
+ 12\le F'(s)\le
+ K_{R,N}(a,b):=12+\frac{12d_{R,N}(b+3)}{a+2},
+\]
+and the mean value theorem yields the explicit nonzero gap
+\[
+ \boxed{\displaystyle
+ \mu-\xi\ge\frac{b_{m,R}(b)}{K_{R,N}(a,b)}>0.}
+\]
+This lower bound is a separation statement; it is not the upper error
+estimate needed for rapid approximation or a transcendence argument.
+
+There is an exact diagnostic for the literal clearers chosen above.
+When $R=N=h$ and $1\le m\le h$, cancellation of $(s+2)^h$ gives
+\[
+ D_{h,h}(s)b_{m,h}(s)
+ =\frac{M_h^h}{2^{h+m}}
+ \frac{\displaystyle\prod_{j=3}^{h+2}(s+j)^h}
+      {\displaystyle\prod_{j=2}^{m+1}(s+j)}.
+\]
+For $s>0$, the product $\prod_{j=3}^{h+2}(s+j)$ is greater than
+$\prod_{j=2}^{m+1}(s+j)$ and greater than one. Since $M_h\ge6$,
+\[
+ \boxed{P_{m,h,h}(\mu)>(3/2)^h,\qquad
+ \mathcal P_h(\mu)>\mu(3/2)^{h^2}.}
+\]
+Thus these literal cleared values grow rather than form small arithmetic
+linear forms. Dividing out content or positive common polynomial factors
+may change their sizes; this diagnostic is not an impossibility theorem
+for primitive normalization or other signed constructions.
+
+The construction thus supplies explicit signed integer polynomials,
+full-critical nonvanishing, a coarse degree/height bound, and a monotone
+algebraic-root representation of the actual exponent. What remains
+missing is a sufficiently small value relative to degree and height,
+or another global arithmetic representation with such a bound. No
+irrationality or transcendence of $\mu$ follows from the results here.
