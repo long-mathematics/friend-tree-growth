@@ -1,0 +1,379 @@
+% Full-model signed product identities, derived from the original generator.
+% No irrationality or transcendence conclusion is asserted.
+
+\section{A signed hypergeometric product martingale}
+\label{sec:bipartite-product-martingale}
+
+Consider the original free friend tree, started from one edge, or the
+one-stub inert tree, started from a real root of full degree two with one
+real leaf and one inert stub.  Every real vertex has a rate-one source
+clock and selects a uniformly random full neighbor.  A selection of the
+inert stub has no effect.  Choose a consistent bipartition
+$\sigma_v\in\{1,-1\}$ of the real tree; in the inert case take the root
+to have sign $1$.  A new leaf attached to $w$ has sign $-\sigma_w$.
+Degrees $d_v$ always include the inert stub, if present, but every sum
+or product over vertices below includes only real vertices.
+
+For a state $T$, put
+\[
+ h_T(w)=\sum_{u\sim w\text{ real}}\frac1{d_u},\qquad
+ (\mathcal L f)(T)=\sum_{w\text{ real}}h_T(w)
+       \bigl(f(T+w)-f(T)\bigr),
+\]
+where $T+w$ denotes the attachment of one new leaf at $w$.  Thus the
+proper birth rate is $n$ in the free model and $n-1/d_0$ in the inert
+model, where $n$ is the real population and $0$ is the inert root.
+
+\begin{proposition}[Polynomial harmonic family]
+\label{prop:bipartite-product}
+For every complex parameter $z$, the finite-state polynomial
+\begin{equation}
+ P_z(T):=\prod_{v\text{ real}}\prod_{j=1}^{d_v-1}
+       \left(1+\frac{\sigma_vz}{j}\right)
+   =\prod_{v\text{ real}}
+       \frac{(1+\sigma_vz)_{d_v-1}}{(d_v-1)!}
+ \label{eq:bipartite-P}
+\end{equation}
+satisfies $\mathcal LP_z=0$ as a polynomial identity in $z$.
+If $T_n$ is the embedded process at real population $n$, then
+\begin{equation}
+ \mathbb E P_z(T_n)=
+ \begin{cases}
+  1,&\text{free initial edge},\\
+  1+z,&\text{inert newborn state}.
+ \end{cases}
+ \label{eq:bipartite-normalization}
+\end{equation}
+Every fixed coefficient $[z^k]P_z(T_t)$ is a true martingale in continuous
+time.  The whole product $P_z(T_t)$ is a true martingale for real
+$-1\le z\le1$.
+\end{proposition}
+
+\begin{proof}
+The newborn has degree one, so its factor in \eqref{eq:bipartite-P} is
+one.  Only the target's factor changes.  Consequently
+\begin{equation}
+ P_z(T+w)=P_z(T)\left(1+\frac{\sigma_wz}{d_w}\right).
+ \label{eq:bipartite-birth-ratio}
+\end{equation}
+This is a polynomial identity; it does not divide by $P_z(T)$ and remains
+valid at its zeros.  We therefore have
+\begin{align*}
+ (\mathcal LP_z)(T)
+ &=zP_z(T)\sum_w\frac{\sigma_w}{d_w}
+                 \sum_{u\sim w\text{ real}}\frac1{d_u}\\
+ &=zP_z(T)\sum_{\{u,v\}\text{ real edge}}
+                  \frac{\sigma_u+\sigma_v}{d_ud_v}=0.
+\end{align*}
+No source is assigned to the inert stub, so there is no unmatched
+boundary term.  Dividing the generator identity by the positive proper
+birth rate gives the embedded martingale identity.  There are finitely
+many states at each fixed population.  Its expectation is therefore
+well defined for every complex $z$, and the initial products are
+respectively $1$ and $1+z$.
+
+For the continuous-time coefficient assertion, the number of linear
+factors in $P_z$ is $n-2$ in the free case and $n-1$ in the inert case.
+Every factor's nonconstant coefficient has absolute value at most one.
+It follows that
+\[
+ \bigl|[z^k]P_z(T)\bigr|\le {n-1\choose k}\le n^k.
+\]
+Both real populations are dominated by the rate-one Yule process
+started from two vertices.  This process has finite moments of every
+fixed order at each finite time.  Stop at population $M$, apply the
+finite-state martingale identity, and let $M$ tend to infinity.
+The displayed bound, monotonicity of the population, and dominated
+convergence give the true martingale identity, including conditional
+expectations, for each fixed coefficient.
+
+For real $|z|<1$, $P_z$ is strictly positive.  Its Doob transform has
+attachment rates
+\begin{equation}
+ h_T^{(z)}(w)
+    =h_T(w)\left(1+\frac{\sigma_wz}{d_w}\right).
+ \label{eq:bipartite-doob-rates}
+\end{equation}
+They are nonnegative, and their sum equals the original proper birth
+rate by the same edge cancellation.  This transformed pure-birth
+process is nonexplosive, since its total rate at population $n$ is at
+most $n$.  On every finite path its likelihood ratio to the original
+process is $P_z(T_t)/P_z(T_0)$: the waiting rates agree and the jump-rate
+ratios telescope.  Summing over all finite paths gives expectation one
+for this ratio.  The Markov property proves the martingale assertion.
+
+At $z=\pm1$, restrict the same argument to states where $P_z>0$ when
+the initial value is positive.  Transitions to states with $P_z=0$ have
+transformed rate zero; all other rates are nonnegative and their sum
+is unchanged.  Once the original process has $P_z=0$, the polynomial
+birth identity shows that it remains zero.  For the inert initial
+state at $z=-1$, the product is identically zero throughout, since the
+positive root always has degree at least two.  This treats all endpoints.
+No assertion of integrability of the whole product is needed here for
+other complex parameters.
+\end{proof}
+
+The family in \eqref{eq:bipartite-P} is hypergeometric in every individual
+degree: the ratio of consecutive degree factors is
+$(d+\sigma_vz)/d$.  This is an identity for the full original process,
+not a replacement by independent degree processes.
+
+\begin{proposition}[A signed martingale with the core-growth exponent]
+\label{prop:bipartite-variance}
+Write
+\[
+ H_m=\sum_{j=1}^m\frac1j,\qquad
+ H_m^{(2)}=\sum_{j=1}^m\frac1{j^2},\qquad H_0=H_0^{(2)}=0,
+\]
+and define
+\begin{equation}
+ J(T)=\sum_v\sigma_vH_{d_v-1},\qquad
+ S_2(T)=\sum_vH_{d_v-1}^{(2)}.
+ \label{eq:bipartite-J-S2}
+\end{equation}
+Then $J(T_t)$ and $J(T_t)^2-S_2(T_t)$ are true martingales.
+For the free edge initial state, $\mathbb EJ(T_t)=0$; for the inert
+newborn initial state, $\mathbb EJ(T_t)=1$.  In both models,
+\begin{equation}
+ \mathbb EJ(T_t)^2=\mathbb ES_2(T_t),\qquad
+ \mathbb EC(T_t)\le\mathbb EJ(T_t)^2
+       \le\zeta(2)\mathbb EC(T_t).
+ \label{eq:bipartite-variance-comparison}
+\end{equation}
+The same identities hold at every fixed real population.
+In particular, using the known growth exponent of the original free
+tree,
+\begin{equation}
+ \boxed{\mu=\lim_{t\to\infty}\frac{\log\mathbb EJ(T_t)^2}{t}
+       =\lim_{n\to\infty}
+          \frac{\log\mathbb EJ(T_n)^2}{\log n}.}
+ \label{eq:bipartite-mu-variance}
+\end{equation}
+The second equality invokes the known expected-population exponent
+$\mathbb EC(T_n)=n^{\mu+o(1)}$; the first invokes its continuous-time
+counterpart.  The two martingale identities themselves require neither
+growth theorem.
+\end{proposition}
+
+\begin{proof}
+The first two nonconstant coefficients of the product are
+\[
+ P_z(T)=1+zJ(T)+\frac{z^2}{2}\bigl(J(T)^2-S_2(T)\bigr)+O(z^3).
+\]
+Apply Proposition~\ref{prop:bipartite-product}.  At the free initial
+edge, $(J,S_2)=(0,0)$, while at the inert initial state
+$(J,S_2)=(1,1)$.  Thus $J^2-S_2$ has expectation zero in either model.
+Every leaf contributes zero to $S_2$, and every core vertex contributes
+a number between $1$ and $\zeta(2)$.  This proves the comparison, which
+then transfers either already known growth exponent to $\mathbb EJ^2$.
+\end{proof}
+
+There is also a pathwise quadratic-variation identity.  At a birth
+attached to $w$,
+\[
+ \Delta J=\frac{\sigma_w}{d_w},\qquad
+ \Delta S_2=\frac1{d_w^2}=(\Delta J)^2.
+\]
+Consequently the optional quadratic variation satisfies
+\begin{equation}
+ [J]_t=S_2(T_t)-S_2(T_0),
+ \qquad
+ \langle J\rangle_t=\int_0^t\sum_w\frac{h_{T_u}(w)}{d_w(u)^2}\,du.
+ \label{eq:bipartite-brackets}
+\end{equation}
+In particular $|\Delta J|\le1$.  The optional and predictable brackets
+are different objects; only their expectations need agree.
+
+\begin{proposition}[Signed integer specialization]
+\label{prop:bipartite-integer}
+Let $k\ge1$ be an integer and let $N_+$ denote the number of positive
+real vertices.  For either the free tree or the root-positive inert
+tree,
+\begin{equation}
+ P_k(T)=(-1)^{N_+-1}
+   \prod_{\sigma_v=1}{k+d_v-1\choose d_v-1}
+   \prod_{\sigma_v=-1}{k-1\choose d_v-1},
+ \label{eq:bipartite-binomial}
+\end{equation}
+where the second binomial coefficient is zero if $d_v>k$.
+Thus $P_k$ is a signed integer observable, supported on trees in which
+every negative vertex has degree at most $k$.  Its expectation at
+fixed population is exactly $1$ in the free tree and $k+1$ in the inert
+tree.
+
+For the free tree and $n\ge3$,
+\begin{equation}
+ \mathbb P(T_n\text{ is a star with positive center})=\frac1{n-1},
+ \qquad \mathbb P(T_n\text{ is a star})=\frac2{n-1}.
+ \label{eq:bipartite-free-star}
+\end{equation}
+For the inert tree and $n\ge2$,
+\begin{equation}
+ \mathbb P(T_n\text{ is a star centered at its real root})=\frac2n.
+ \label{eq:bipartite-inert-star}
+\end{equation}
+Here the inert root's full degree in such a star is $n$.
+\end{proposition}
+
+\begin{proof}
+The positive degree factor is
+$(1+k)_{d-1}/(d-1)!={k+d-1\choose d-1}$, while the negative factor is
+$(1-k)_{d-1}/(d-1)!=(-1)^{d-1}{k-1\choose d-1}$.
+Every real edge has exactly one negative endpoint.  The inert stub, if
+present, is attached to a positive vertex.  Hence in both models
+\[
+ \sum_{\sigma_v=-1}(d_v-1)=(n-1)-N_-=N_+-1,
+\]
+which proves the sign in \eqref{eq:bipartite-binomial}.  The expectation
+follows from \eqref{eq:bipartite-normalization}.
+
+At $k=1$, all negative vertices must be leaves on the support of $P_1$.
+A connected tree with this property has exactly one positive vertex,
+unless it is the initial free edge.  The supporting state is therefore
+a positive-centered star.  Its product is $n-1$ in the free model.
+Color symmetry gives the second free identity.  In the inert model,
+the positive root is already a core vertex, so the only possible
+positive center is this root.  Its product is $n$, and its initial
+expectation is $2$, proving \eqref{eq:bipartite-inert-star}.
+\end{proof}
+
+\input{sections/transcendence/product_martingale_insertions}
+
+\paragraph{Arithmetic scope and unresolved step.}
+The cancellation in Proposition~\ref{prop:bipartite-product} is exact,
+signed, and statewise.  The integer specializations in
+\eqref{eq:bipartite-binomial} require no clearing of degree denominators.
+More generally, if $D_n=\operatorname{lcm}(1,\ldots,n-1)$, then
+$D_n^k[z^k]P_z(T)$ is an integer at every state of real population $n$.
+This follows directly by expanding the product into elementary
+symmetric functions of numbers $\sigma_v/j$, whose denominators all
+divide $D_n$.  In particular $D_nJ(T)$ and $D_n^2S_2(T)$ are integers.
+These are state-observable denominator bounds, not bounds for their
+expectations: the state probabilities introduce additional denominators.
+The cancellation occurs before any expectation or denominator clearing.  However,
+$z$ is a new deformation parameter, not the critical exponent $\mu$.
+The identities $\mathbb EP_k=1$ or $k+1$ are probability-weighted
+normalizations, and do not make these expectations sums of integers.
+They do not currently supply a nonzero integer expression tending to
+zero when $\mu$ is rational.  Likewise, the second-moment realization
+\eqref{eq:bipartite-mu-variance} identifies the same growth exponent but
+does not constrain its arithmetic type.  A new quantitative bridge
+from the signed product identities to the critical growth equation is
+still required for irrationality.
+
+
+% This comparison process is not the original friend tree.
+\subsection{What the signed product martingales and color process do not determine}
+
+The following comparison process preserves both the full family of signed
+product martingales and the exact two-color population process, but has
+rational core-growth exponent.  In particular these two structures, even
+together with arbitrarily many original finite coefficients, cannot by
+themselves classify the arithmetic nature of the original exponent.
+
+\begin{proposition}[A degree-weighted comparison process]\label{bpm:comparison}
+Fix an integer $K\geq3$.  Start from an edge with its fixed bipartition
+$\sigma_v\in\{+1,-1\}$, use the original friend rule through population
+$K$, and thereafter attach a new leaf at $v$ at rate
+\[
+ \lambda_v(T)=\frac{N_{-\sigma_v}(T)d_v(T)}{n-1},
+ \qquad n=|T|\geq K.
+\]
+The new vertex receives sign $-\sigma_v$.  This process has rational
+transition probabilities and total birth rate $n$.  For every complex
+$z$, the polynomial
+\[
+ P_z(T)=\prod_v\prod_{j=1}^{d_v-1}\left(1+\frac{\sigma_vz}{j}\right)
+\]
+has $\mathbb E P_z(T_n)=1$ at every population.  Its two color populations
+in continuous time are independent rate-one Yule processes, each starting
+from one vertex, exactly as for the original friend process.  Nevertheless,
+if $a_n^*=\mathbb E C(T_n)$ for this comparison process, then
+\[
+ \frac n6-O_K(1)\leq a_n^*\leq n-2,
+ \qquad a_n^*=n^{1+o(1)}.
+\]
+All population coefficients through $K$ and all edge-start generator
+derivatives through order $K-2$ agree with those of the original process.
+\end{proposition}
+
+\begin{proof}
+The sum of the degrees in either bipartition class is $n-1$.  Therefore
+\[
+ \sum_{v:\sigma_v=+1}\lambda_v=N_-,\qquad
+ \sum_{v:\sigma_v=-1}\lambda_v=N_+,
+\]
+and the total rate is $n$.  In particular the continuous-time count pair
+has generator
+\[
+ (\mathcal Af)(i,j)
+ =i\bigl(f(i+1,j)-f(i,j)\bigr)
+  +j\bigl(f(i,j+1)-f(i,j)\bigr),
+\]
+which is the generator of two independent Yule processes. For the
+original rule, each newborn has its source vertex's color, so
+the same projection holds before the switch and hence throughout.
+This is the continuous-time embedding of the known P\'olya color urn
+\cite[Theorem 3.1]{CanningsJordan}.
+Equivalently, at population $n$, $N_+$ is uniform on
+$\{1,\ldots,n-1\}$.
+
+Attaching at $v$ changes $P_z$ by the polynomial identity
+\[
+ P_z(T+v)-P_z(T)=\frac{\sigma_vz}{d_v}P_z(T).
+\]
+This identity remains valid at roots of $P_z$; no division by $P_z$ is
+being used.  For the modified rates,
+\[
+ \sum_v\frac{\sigma_v\lambda_v}{d_v}
+ =\frac{N_+N_--N_-N_+}{n-1}=0.
+\]
+Consequently $\mathcal L^*P_z=0$.  The original generator has the same
+identity.  Conditioning on the finite next-birth distribution therefore
+gives $\mathbb E P_z(T_n)=P_z(T_2)=1$; no unbounded-time optional-stopping
+argument is needed.
+
+Let $L_+,L_-$ be the numbers of leaves of each sign, $C$ the number of
+nonleaves, and $m=\min(N_+,N_-)$.  For $n\geq K$, the exact promotion
+rate and its lower bound are
+\[
+ \mathcal L^*C
+ =\frac{N_-L_++N_+L_-}{n-1}
+ \geq\frac{m(n-C)}{n-1}.
+\]
+Since $m\leq n/2$ deterministically and its uniform-color expectation
+satisfies $\mathbb E m\geq n/4$, division by the total birth rate $n$
+gives
+\[
+ a_{n+1}^*-a_n^*
+ \geq\frac{n}{4(n-1)}-\frac{a_n^*}{2(n-1)}.
+\]
+Writing $b_n=a_n^*-n/6$, this becomes
+\[
+ b_{n+1}\geq
+ \left(1-\frac1{2(n-1)}\right)b_n+\frac1{6(n-1)}.
+\]
+It follows inductively that $b_n\geq\min(b_K,0)$ for every $n\geq K$.
+The upper bound $C\leq n-2$ is deterministic.  These bounds prove the
+claimed exponent.  Agreement of the finite coefficients follows from
+using exactly the original transitions below population $K$.  A generator
+word of order at most $K-2$, started at the edge and applied to $C$, uses
+no modified transition, proving agreement of the stated derivatives.
+\end{proof}
+
+At an integer $z=k\geq1$ these same comparison processes consequently
+satisfy every signed binomial identity
+\[
+ \mathbb E\left[
+ (-1)^{N_+-1}
+ \prod_{\sigma_v=+1}\binom{k+d_v-1}{d_v-1}
+ \prod_{\sigma_v=-1}\binom{k-1}{d_v-1}
+ \right]=1,
+\]
+with the usual convention that the second binomial is zero when
+$d_v>k$.  The comparison does not identify the original exponent, alter
+the original process, or refute an arithmetic theorem using additional
+information specific to the friend rates
+$h_T(v)=\sum_{u\sim v}d_u^{-1}$.  It isolates the missing ingredient:
+the local neighbor dependence must enter any such theorem, beyond the
+color balance and the product-martingale cancellation.

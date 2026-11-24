@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "exact_checks": 19122,
+  "arithmetic": "exact Fraction polynomial arithmetic",
+  "maximum_population": 10,
+  "checks": {
+    "first_product_coefficient": 1404,
+    "free_birth_product_ratio": 1808,
+    "free_doob_rate_correction_zero": 200,
+    "free_exact_variance_identity": 9,
+    "free_expected_product_polynomial_one": 9,
+    "free_harmonic_and_quadratic_generator_zero": 200,
+    "free_polynomial_generator_zero": 200,
+    "free_rate_normalization": 200,
+    "free_two_color_star_probability": 8,
+    "inert_exact_variance_identity": 9,
+    "inert_expected_product_one_plus_z": 9,
+    "inert_harmonic_and_quadratic_generator_zero": 1204,
+    "inert_harmonic_mean_one": 9,
+    "inert_nonstar_product_zero": 1195,
+    "inert_polynomial_generator_zero": 1204,
+    "inert_proper_rate_normalization": 1204,
+    "inert_root_star_probability": 9,
+    "inert_star_product_value": 9,
+    "integer_binomial_specialization": 5616,
+    "pathwise_quadratic_variation_increment": 1808,
+    "quadratic_variation_core_comparison": 1404,
+    "second_product_coefficient": 1404
+  },
+  "free": [
+    {
+      "population": 2,
+      "states": 1,
+      "mean_cores": "0",
+      "mean_J_squared": "0"
+    },
+    {
+      "population": 3,
+      "states": 1,
+      "mean_cores": "1",
+      "mean_J_squared": "1"
+    },
+    {
+      "population": 4,
+      "states": 2,
+      "mean_cores": "4/3",
+      "mean_J_squared": "3/2"
+    },
+    {
+      "population": 5,
+      "states": 3,
+      "mean_cores": "19/12",
+      "mean_J_squared": "269/144"
+    },
+    {
+      "population": 6,
+      "states": 6,
+      "mean_cores": "647/360",
+      "mean_J_squared": "4697/2160"
+    },
+    {
+      "population": 7,
+      "states": 11,
+      "mean_cores": "17189/8640",
+      "mean_J_squared": "22808681/9331200"
+    },
+    {
+      "population": 8,
+      "states": 23,
+      "mean_cores": "4717423/2177280",
+      "mean_J_squared": "1053938309/391910400"
+    },
+    {
+      "population": 9,
+      "states": 47,
+      "mean_cores": "101568829/43545600",
+      "mean_J_squared": "1919758987711/658409472000"
+    },
+    {
+      "population": 10,
+      "states": 106,
+      "mean_cores": "200684675729/80621568000",
+      "mean_J_squared": "490355427521/156764160000"
+    }
+  ],
+  "inert": [
+    {
+      "population": 2,
+      "states": 1,
+      "mean_cores": "1",
+      "mean_J_squared": "1"
+    },
+    {
+      "population": 3,
+      "states": 2,
+      "mean_cores": "4/3",
+      "mean_J_squared": "3/2"
+    },
+    {
+      "population": 4,
+      "states": 4,
+      "mean_cores": "47/30",
+      "mean_J_squared": "167/90"
+    },
+    {
+      "population": 5,
+      "states": 9,
+      "mean_cores": "1633/924",
+      "mean_J_squared": "19847/9240"
+    },
+    {
+      "population": 6,
+      "states": 20,
+      "mean_cores": "1306457/670320",
+      "mean_J_squared": "398923631/165904200"
+    },
+    {
+      "population": 7,
+      "states": 48,
+      "mean_cores": "1593252952349/752475089520",
+      "mean_J_squared": "34020953993233/12899572963200"
+    },
+    {
+      "population": 8,
+      "states": 115,
+      "mean_cores": "19712322686635010567/8663095210625856000",
+      "mean_J_squared": "1482869181240953157361/519785712637551360000"
+    },
+    {
+      "population": 9,
+      "states": 286,
+      "mean_cores": "51583798963742051500183/21269631361128601651200",
+      "mean_J_squared": "169659424245542391043034227/55537370776280237644800000"
+    },
+    {
+      "population": 10,
+      "states": 719,
+      "mean_cores": "146519379156925089554074390432217/57053485461101911852265395200000",
+      "mean_J_squared": "1200075419844086183832420838293636343/369706585787940388802679760896000000"
+    }
+  ],
+  "scope": "Finite checks of the proved identities; no irrationality assertion."
+}

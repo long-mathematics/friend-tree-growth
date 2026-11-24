@@ -12,8 +12,11 @@
     "primitive_population_tools.py": "4c92bd71c6468e8a1d087fb5cf791e4e20c5444c97e9c72baeb370e0ffee829c",
     "laplace_derivative_tools.py": "8aa48a601cd3d6cedd591a608e7b2a5b5b30247eba0ca29e588e6f96a0354d1e",
     "check_generator_obstructions.py": "ceb7dc01aa0a67c6ae32913ac603b1ad22eab1ec695734d62d9a878f56a6431c",
+    "check_bipartite_products.py": "1570e2b790ea7bb29727cf5679c60b69d629cd5993113202f206765667ebc1b9",
+    "check_product_insertions.py": "43f448978812fcdf5094f9675b30f03a67bfc90c26bed491d5de5f8775f98140",
+    "check_product_countermodel.py": "1804cbc690ceb5609b2bc93731ee6b583f432c0f64959c9ffd60ed33c826b03c",
     "check_van_root.py": "bf4dd269a3ec24152b201bf81d323bb69ac34f04747a14badc8626d761af0b94",
     "check_first_promotion.py": "1fdaea886bd98638982edc4d451e9ec2fb5299ba03c6d2134a6533244e9ef2b1"
   },
-  "scope": "Finite kernel identities, bounds, first-promotion reductions and prime valuations, full-model certificate polynomials, exact Yule tails, generic bracket updates, the full-tree coefficient recurrence, reduced population-certificate arithmetic, fixed-order Laplace derivative tails, generator and Hankel obstructions, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
+  "scope": "Finite kernel identities, bounds, first-promotion reductions and prime valuations, full-model certificate polynomials, exact Yule tails, generic bracket updates, the full-tree coefficient recurrence, reduced population-certificate arithmetic, fixed-order Laplace derivative tails, generator and Hankel obstructions, signed product martingales, core/color insertions and a distinct rational-growth comparison, and modified-model root brackets. Analytic proofs are in the manuscripts. The general original-model computability algorithm is not implemented by these scripts."
 }
