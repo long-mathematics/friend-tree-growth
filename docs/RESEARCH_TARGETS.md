@@ -199,6 +199,42 @@ The [dependency audit](transcendence_proof_dependencies.md) records the
 proved components, the classical arithmetic inputs, and the remaining
 transfer problem.
 
+### A signed product route and its exact remaining gap
+
+For the full original process, the bipartite product
+`P_z(T) = product_v (1+sigma_v*z)_(d_v-1)/(d_v-1)!` is annihilated by the
+generator. Its coefficients give a signed harmonic-number martingale `J`
+with `E J^2 = E sum_v H^(2)_(d_v-1)`, between `E C` and `zeta(2) E C`.
+At integer `z=k` the product is a signed integer binomial observable;
+negative vertices of degree greater than `k` contribute zero.
+
+The constructive target is to convert these generator cancellations into
+a characteristic relation that depends on the actual critical discount.
+The exact insertion identity
+`L(x^C P_z)=(x-1)x^C P_z(Lambda+z Lambda_sigma)` removes the nonleaf terms
+and leaves the original neighbor-dependent promotion rates. Closing or
+estimating their tilted resolvent is a concrete version of this target.
+The [product-polynomial note](product_polynomial_targets.md) records a
+more specific structural candidate: after `q=1-z^2`, the averaged core
+insertions and their promotion increments have nonnegative coefficients
+in the exact data through population 9. The equivalent gamma-basis
+positivity remains unproved. An exact positive recurrence in a Möbius
+variable is available, but a seven-vertex example shows that it cannot
+close on colored degree data alone.
+The normalization `E P_z=1` holds for every auxiliary `z` and does not locate
+`mu`. Statewise integrality does not remove probability denominators.
+This limitation is substantive: the comparison rates
+`lambda_v=N_opposite*d_v/(n-1)` preserve the product identities and exact
+color Yule process while producing rational exponent `1`; the switch to
+these rates may be delayed past any specified finite original prefix.
+This comparison does not preserve the original exponent bracket.
+
+For irrationality alone, a simpler sufficient target than transcendence
+is available: nonzero integer polynomials with
+`-log|P_N(mu)| / max(1,deg P_N) -> infinity`. If `mu=p/q`, integrality
+gives `|P_N(mu)| >= q^(-deg P_N)`. Polynomial height does not enter this
+rational-candidate argument. No current construction meets this target.
+
 ## 3. Resolve the critical resolvent boundary term
 
 Separate exploratory work constructs a critical generator eigenfunction
@@ -229,6 +265,15 @@ Attainment of this infimum remains open here. Uniform resolvent suprema
 diverge at least as `1/(s-mu)`, but divergence at a prescribed finite seed,
 a scalar critical pole, and a critical limiting amplitude remain distinct
 unproved targets.
+
+The full-environment operator on `ell^infinity` has
+`r_ess(K_mu)=r(K_mu)=1`. Its finite compressions are nilpotent because
+every genealogical step strictly increases population. Finite inert
+proper-birth and core-ring determinants are also nonzero for positive
+discounts. Thus a Fredholm determinant or finite regeneration reduction
+needs a new invariant space, an exact environment quotient, or a proved
+boundary contribution from infinite population. Existing finite-time
+locality estimates do not by themselves establish such a reduction.
 
 ## 4. Strengthen growth asymptotics
 

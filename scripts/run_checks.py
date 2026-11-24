@@ -47,6 +47,9 @@ def main() -> None:
         ("primitive_population_tools.py", ["--check"], "primitive_population_checks.json"),
         ("laplace_derivative_tools.py", ["--check"], "laplace_derivative_tool_checks.json"),
         ("check_generator_obstructions.py", ["--check"], "generator_obstruction_checks.json"),
+        ("check_bipartite_products.py", ["--check"], "bipartite_product_checks.json"),
+        ("check_product_insertions.py", ["--check"], "product_insertion_checks.json"),
+        ("check_product_countermodel.py", [], "product_countermodel_checks.json"),
     ]
     for script, arguments, filename in checks:
         report = run_json(script, arguments)
@@ -70,6 +73,8 @@ def main() -> None:
                  "Yule tails, generic bracket updates, the full-tree coefficient "
                  "recurrence, reduced population-certificate arithmetic, fixed-order "
                  "Laplace derivative tails, generator and Hankel obstructions, "
+                 "signed product martingales, core/color insertions and a distinct "
+                 "rational-growth comparison, "
                  "and modified-model root brackets. "
                  "Analytic proofs are in the manuscripts. The general original-model "
                  "computability algorithm is not implemented by these scripts.",

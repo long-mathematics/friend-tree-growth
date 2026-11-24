@@ -1,0 +1,100 @@
+% Actual free friend-tree identities; no arithmetic classification is asserted.
+\subsection{Core and color insertions into the signed product}
+\label{bpi:section}
+
+Work with the original free tree, its fixed bipartition
+$\sigma_v\in\{+1,-1\}$, and attachment rates
+$h_T(w)=\sum_{u\sim w}d_u^{-1}$.  Write
+\[
+ P_z(T)=\prod_v\prod_{j=1}^{d_v-1}
+        \left(1+\frac{\sigma_vz}{j}\right),
+ \qquad Q_{z,x}(T)=x^{C(T)}P_z(T),
+\]
+and define the leaf-promotion and edge observables
+\begin{align*}
+ \Lambda&=\sum_{w:\,d_w=1}h_T(w),&
+ \Lambda_\sigma&=\sum_{w:\,d_w=1}\sigma_wh_T(w),\\
+ W&=\sum_{\{u,v\}\in E(T)}\frac1{d_ud_v},&
+ D&=\sum_v\sigma_v=N_+-N_-.
+\end{align*}
+
+\begin{proposition}[Exact insertion identities]
+\label{bpi:identities}
+For every finite free tree with at least two vertices, the following are
+polynomial identities in $x,z\in\mathbb C$:
+\begin{align}
+ \mathcal LQ_{z,x}
+   &=(x-1)Q_{z,x}(\Lambda+z\Lambda_\sigma),
+       \label{bpi:fugacity}\\
+ \mathcal L(P_zC)
+   &=P_z(\Lambda+z\Lambda_\sigma),
+       \label{bpi:core}\\
+ \mathcal L(P_zD)
+   &=P_z(D-2zW).
+       \label{bpi:color}
+\end{align}
+For the edge-start embedded chain, set
+\[
+ a_n(z)=\mathbb E[P_z(T_n)C(T_n)],\qquad
+ d_n(z)=\mathbb E[P_z(T_n)D(T_n)].
+\]
+Then, for every $n\geq2$ and every complex $z$,
+\begin{align}
+ n\bigl(a_{n+1}(z)-a_n(z)\bigr)
+   &=\mathbb E\!\left[P_z(T_n)
+                (\Lambda(T_n)+z\Lambda_\sigma(T_n))\right],
+       \label{bpi:population-core}\\
+ n\bigl(d_{n+1}(z)-d_n(z)\bigr)
+   &=d_n(z)-2z\mathbb E[P_z(T_n)W(T_n)].
+       \label{bpi:population-color}
+\end{align}
+Here $a_2(z)=d_2(z)=0$ and $a_n(0)=\mathbb EC(T_n)$.
+\end{proposition}
+
+\begin{proof}
+For attachment at $w$, put $\delta_w=\mathbf1_{\{d_w=1\}}$.
+The new leaf has degree one and sign $-\sigma_w$.  Thus, as polynomial
+identities without division by $P_z$ or by $x$,
+\[
+ P_z(T+w)=P_z(T)\left(1+\frac{\sigma_wz}{d_w}\right),
+ \qquad C(T+w)=C(T)+\delta_w.
+\]
+Consequently
+\[
+ Q_{z,x}(T+w)-Q_{z,x}(T)
+ =Q_{z,x}(T)\left[
+   \frac{\sigma_wz}{d_w}
+   +(x-1)\delta_w(1+\sigma_wz)\right].
+\]
+The first term vanishes after summation against the rates, since
+\[
+ \sum_w\frac{\sigma_wh_T(w)}{d_w}
+ =\sum_{\{u,v\}\in E(T)}
+       \frac{\sigma_u+\sigma_v}{d_ud_v}=0.
+\]
+This proves \eqref{bpi:fugacity}.  Differentiation in $x$ at $x=1$
+proves \eqref{bpi:core}.
+
+A birth at $w$ changes $D$ by $-\sigma_w$, and hence
+\[
+ \mathcal LD=-\sum_w\sigma_wh_T(w)=\sum_u\sigma_u=D.
+\]
+The product rule for the jump generator, together with
+$\mathcal LP_z=0$, now gives
+\[
+ \mathcal L(P_zD)
+ =P_zD-zP_z\sum_w\frac{h_T(w)}{d_w}
+ =P_z(D-2zW),
+\]
+because each undirected edge occurs twice in the last sum.
+Finally, the total birth rate is $n$, so conditioning on $T_n$ gives
+\eqref{bpi:population-core} and \eqref{bpi:population-color}.
+Every population level has finitely many tree states, making these
+expectations finite polynomials for all complex parameter values.
+\end{proof}
+
+These identities remove the nonleaf terms but retain the actual neighbor
+dependence in $\Lambda\pm\Lambda_\sigma$.  They do not close a finite
+scalar recurrence or establish irrationality.  Their all-complex domain
+is a fixed-state or fixed-population statement; no all-complex
+continuous-time integrability assertion is being made.

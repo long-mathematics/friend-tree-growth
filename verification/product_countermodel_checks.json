@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "exact_checks": 944,
+  "checks_by_category": {
+    "positive_normalized_rates": 94,
+    "exact_color_yule_rate": 188,
+    "product_balance": 94,
+    "direct_product_martingale_drift": 376,
+    "promotion_lower_bound": 93,
+    "uniform_color_minimum_bound": 99
+  },
+  "enumerated_trees": [
+    {
+      "population": 2,
+      "trees": 1
+    },
+    {
+      "population": 3,
+      "trees": 1
+    },
+    {
+      "population": 4,
+      "trees": 2
+    },
+    {
+      "population": 5,
+      "trees": 3
+    },
+    {
+      "population": 6,
+      "trees": 6
+    },
+    {
+      "population": 7,
+      "trees": 11
+    },
+    {
+      "population": 8,
+      "trees": 23
+    },
+    {
+      "population": 9,
+      "trees": 47
+    }
+  ],
+  "scope": "Comparison process only. Original friend-tree irrationality remains open."
+}

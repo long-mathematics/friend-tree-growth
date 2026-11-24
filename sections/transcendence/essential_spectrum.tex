@@ -1,0 +1,170 @@
+% Research fragment.  Dependencies: model_kernel.tex, uniformity.tex,
+% inert_comparison.tex and pressure.tex in main revision 332617a.
+% No claim of irrationality follows from this fragment.
+
+\section{The full-environment kernel has critical essential radius one}
+\label{ess:section}
+
+Write $N(x)$ for the number of real vertices in a newborn environment
+$x\in\mathcal X$.  All operators in this section act on
+$\ell^\infty(\mathcal X)$, with the supremum norm.  Let
+\[
+ u_m(s)=\inf_x A_m(s;x),\qquad
+ v_m(s)=\sup_x A_m(s;x)=\|\mathcal K_s^m\|.
+\]
+The previously proved inert comparison gives
+\[
+ \gamma_s A_m^\infty(s)\le u_m(s)\le A_m^\infty(s),
+ \qquad \gamma_s=[12(s+3)]^{-1},
+\]
+and hence $u_m(s)^{1/m}\longrightarrow r_\infty(s)$.
+
+\begin{proposition}[Finite blocks do not contain the critical root]\label{ess:finite}
+For a finite subset $E\subset\mathcal X$, the compression
+$\mathcal K_{s,E}$ is nilpotent, and
+\[
+ \det(I-z\mathcal K_{s,E})=1 \qquad(z\in\mathbb C).
+\]
+For a finite subset $F$ of the one-stub inert core states, the killed
+proper-birth generator and the compressed core-ring kernel satisfy
+\[
+ \det(sI-L_F)
+ =\prod_{y\in F}\left(s+N(y)-\frac1{D_0(y)}\right),
+\]
+and
+\[
+ \det(I-Q_{s,F})
+ =\prod_{y\in F}\left(1-\frac1{D_0(y)(s+N(y))}\right)>0
+ \quad(s>0).
+\]
+\end{proposition}
+\begin{proof}
+Every genealogical transition creates at least one real vertex and
+retains the whole environment.  Ordering states by $N$ makes each
+finite genealogical compression strictly upper triangular.
+
+In the inert process, a proper birth increases $N$ by one, and its
+total rate is $N-1/D_0$.  This proves the generator formula.  A
+core-ring transition can retain the same population only if no leaf
+birth preceded the ring and the root selected its stub.  Its discounted
+mass is
+\[
+ Q_s(y,y)=\int_0^\infty e^{-(s+N(y))t}\frac{dt}{D_0(y)}
+ =\frac1{D_0(y)(s+N(y))}.
+\]
+All other entries of the same population level vanish.  Thus $Q_{s,F}$
+is upper triangular with the displayed diagonal.  Here $N\ge2$ and
+$D_0\ge2$, so all factors are positive.
+\end{proof}
+
+\begin{theorem}[Essential-radius lower bound]\label{ess:radius}
+For every $s>0$ and every integer $m\ge1$,
+\[
+ \|\mathcal K_s^m\|_{\rm ess}\ge u_m(s),
+ \qquad
+ r_{\rm ess}(\mathcal K_s)\ge r_\infty(s).
+\]
+Consequently
+\[
+ \boxed{r_{\rm ess}(\mathcal K_\mu)
+       =r(\mathcal K_\mu)=1.}
+\]
+\end{theorem}
+\begin{proof}
+Fix $m,s$ and $\varepsilon>0$.  There are newborn environments of
+arbitrarily large population.  Recursively choose such environments
+$x_j$, and finite integers $M_j$, as follows.  All transitions counted
+by $\mathcal K_s^m$ end in a finite environment of population at least
+$N(x_j)+m$.  The corresponding row has finite mass
+$A_m(s;x_j)$.  Hence monotone convergence permits a cutoff $M_j$ such
+that
+\[
+ \mathcal K_s^m
+ \mathbf1_{\{N(x_j)+m\le N\le M_j\}}(x_j)
+ \ge A_m(s;x_j)-\varepsilon.
+\]
+Choose $x_{j+1}$ with $N(x_{j+1})>M_j$.  The resulting functions
+\[
+ f_j=\mathbf1_{\{N(x_j)+m\le N\le M_j\}}
+\]
+have pairwise disjoint supports and supremum norm at most one.
+
+The sequence $(f_j)$ is weakly null in $\ell^\infty$.  Indeed, for
+any bounded linear functional $\varphi$, choose scalars of modulus
+one making each summand nonnegative; disjointness then gives
+\[
+ \sum_{j=1}^J|\varphi(f_j)|\le\|\varphi\|
+ \quad\text{for every }J.
+\]
+In particular $\varphi(f_j)\to0$.  This argument uses disjoint bounded
+population bands, not tail indicators; the latter need not be weakly
+null in $\ell^\infty$.
+
+If $S$ is compact, then $\|Sf_j\|\to0$.  Therefore
+\[
+ \|\mathcal K_s^m-S\|
+ \ge (\mathcal K_s^mf_j)(x_j)-\|Sf_j\|
+ \ge u_m(s)-\varepsilon-o(1).
+\]
+Taking the infimum over compact $S$ and then letting
+$\varepsilon\downarrow0$ proves the essential-norm inequality.
+The spectral-radius formula in the quotient by compact operators
+gives
+\[
+ r_{\rm ess}(\mathcal K_s)
+ =\lim_m\|\mathcal K_s^m\|_{\rm ess}^{1/m}
+ \ge\lim_m u_m(s)^{1/m}=r_\infty(s).
+\]
+
+To identify the full spectral radius at the critical point, put
+$R(s)=r(\mathcal K_s)=\lim_m v_m(s)^{1/m}$.  Each $A_m(s;x)$ is a
+positive Laplace transform.  H\"older's inequality and the supremum
+over $x$ show that $v_m(s)$ is log-convex.  The finite pointwise limit
+\[
+ \log R(s)=\lim_m\frac1m\log v_m(s)
+\]
+is therefore convex and continuous on $(0,\infty)$; finiteness follows
+from
+\[
+ -\log[2(s+2)]\le\log R(s)\le-\log s.
+\]
+For $s>\mu$, the uniform newborn resolvent estimate gives
+\[
+ v_m(s)\le
+ s\sup_x\int_0^\infty e^{-st}F_x(t)\,dt<\infty
+ \quad\text{uniformly in }m.
+\]
+Thus $R(s)\le1$ for $s>\mu$, and continuity gives $R(\mu)\le1$.
+On the other hand,
+$R(\mu)\ge r_\infty(\mu)=1$.
+Combining this with the essential lower bound proves the claim.
+\end{proof}
+
+\begin{corollary}[A second exact scalar characteristic]\label{ess:characteristic}
+The full spectral radius $R(s)=r(\mathcal K_s)$ is continuous and
+strictly decreasing on $(0,\infty)$ and
+\[
+ R(s)>1\ (s<\mu),\quad R(\mu)=1,\quad R(s)<1\ (s>\mu).
+\]
+\end{corollary}
+\begin{proof}
+The function $\log R$ is convex and nonincreasing.  If it were equal
+at two distinct points, these two properties would force it to be
+constant thereafter, contrary to $\log R(s)\le-\log s\to-\infty$.
+\end{proof}
+
+This theorem rules out a spectral-radius gap at the critical parameter
+on the full supremum-norm space.  In particular, the full operator is not compact, and finite-rank
+operators cannot approximate it in operator norm.  It does not rule
+out a smaller invariant space of suitably local observables, or an
+exact quotient that forgets remote population while retaining all
+information needed for the growth exponent.  Nor does equality of
+the spectral and essential spectral radii, by itself, assert that the
+particular spectral point $1$ cannot be isolated.
+
+Finite Schur complements of the displayed finite blocks cannot produce
+a positive critical root.  Any useful scalar renewal reduction must
+therefore introduce an exact quotient or retain a nontrivial contribution
+from the boundary at infinite population.  A Fredholm or special-function
+argument requires a proof for that new object; it cannot be imported
+from the finite whole-environment compressions.

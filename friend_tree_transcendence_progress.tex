@@ -25,7 +25,7 @@
 \title{Transcendence targets for the friend-tree exponent:\\
 exact first-promotion reduction and arithmetic obstructions}
 \author{Christopher D. Long}
-\date{November 23, 2026}
+\date{November 24, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -57,9 +57,17 @@ all reachable poles survive, yet even its fully reduced primitive
 numerators exceed one at the critical point and have minimum logarithmic
 growth $N\log N+O(N)$. We also give a core-comparable variational equation,
 uniform critical resolvent divergence, and obstructions to finite linear
-and positive scalar spectral closures. Neither irrationality nor
-transcendence of the original exponent is proved: sufficiently small
-critical values relative to degree and height remain missing.
+and positive scalar spectral closures. A bipartite hypergeometric product
+is an exact polynomial martingale for the full process; its second
+coefficient realizes the core-growth exponent as a signed harmonic
+martingale's variance exponent. Integer specializations give signed
+binomial identities, but a rational-growth comparison process shows why
+these identities alone cannot settle irrationality. The full-environment
+kernel has spectral and essential spectral radius one at criticality,
+excluding a compact-operator reduction on its original supremum-norm
+space. Neither irrationality nor transcendence of the original exponent
+is proved: a critical arithmetic specialization with sufficiently small
+nonzero values remains missing.
 \end{abstract}
 
 \section{Scope and the critical arithmetic question}
@@ -86,7 +94,7 @@ real leaf, and one inert parent stub. The stub counts toward degree but
 has no source clock. It differs from a free star, whose first core ring
 always promotes a leaf. A first-promotion transform is an exact kernel
 component; its evaluation is not a new equation for $\mu$.
-Sections~\ref{scp:section}--\ref{fgo:section} then use the established
+Sections~\ref{scp:section}--\ref{ess:section} then use the established
 full pressure and certificate theorems to obtain global arithmetic
 noncancellation and precise root representations. Analytic convergence
 rates for exact pressure queries and error bounds per completed
@@ -641,6 +649,8 @@ available without a separate exact transfer.
 \input{sections/transcendence/tilted_laplace_relations}
 \input{sections/transcendence/population_eigenmodes}
 \input{sections/transcendence/generator_obstructions}
+\input{sections/transcendence/bipartite_product_martingale}
+\input{sections/transcendence/essential_spectrum}
 
 \section{The remaining small-value problem and a dependency audit}
 
@@ -662,6 +672,34 @@ small values required below. The new derivative-ratio relation of
 Section~\ref{tl:section} instead uses rationally enclosable derivatives
 at a fixed discount. It supplies neither an effective derivative-order
 error nor an arithmetic classification of their limiting ratio.
+
+The signed product in Section~\ref{sec:bipartite-product-martingale}
+cancels exactly under the original generator and gives the same exponent
+through a martingale second moment. Its parameter is independent of the
+critical discount, however. Integer specializations are integer-valued
+observables averaged with rational probabilities, not small integers.
+Proposition~\ref{bpm:comparison} preserves every such product identity,
+the two-color Yule process, and any prescribed finite prefix of the
+original evolution while having exponent one. Thus a successful use of
+the product family must retain more of the original neighbor dependence.
+Section~\ref{ess:section} shows a separate analytic difficulty:
+the full-environment critical kernel is not compact, and none of its
+finite population compressions has a positive characteristic root.
+
+\paragraph{The weaker target sufficient for irrationality.}
+For irrationality alone, the height requirement in the transcendence
+criterion below is unnecessary. It suffices to construct
+$P_N\in\mathbb Z[X]$ with $P_N(\mu)\ne0$ along an infinite sequence and
+\[
+ \frac{-\log|P_N(\mu)|}{\max(1,\deg P_N)}\longrightarrow\infty.
+\]
+Indeed, if $\mu=p/q$ in lowest terms and $d_N=\deg P_N$, then
+$q^{d_N}P_N(p/q)$ is a nonzero integer, so
+$|P_N(\mu)|\ge q^{-d_N}$, a contradiction. For a fixed rational
+candidate, one nonzero polynomial value smaller than $q^{-d_N}$ already
+excludes that candidate. No bound on $H(P_N)$ enters this argument.
+Neither the primitive positive certificates nor the new product
+normalizations currently give these small values.
 
 One precise transcendence target is to construct integer polynomials
 $P_N$ from the actual critical equation such that, infinitely often,
@@ -730,6 +768,9 @@ Fixed-generation population tail & Potential-genealogy second moments and a Yule
 Fixed-discount derivative ratio & Gamma concentration including first moments, and exact rational beta-derivative tails; no derivative-order rate.\\
 Core-growth variational equation & Uniform core comparability and the canonical resolvent; uniform critical divergence, not a pointwise pole.\\
 Closure obstructions & Increasing star poles and an exact negative Hankel certificate; the specified linear and positive spectral closures fail.\\
+Signed product martingales & Edgewise bipartite cancellation, Yule moment bounds, and a conservative Doob transform; exact integer specializations and a variance realization of $\mu$.\\
+Rational-growth comparison & Degree-weighted rational attachment rates preserve the product identities and color process; their core exponent is one.\\
+Critical essential radius & Disjoint population bands, inert comparison, uniform resolvents, and log-convexity; no critical spectral-radius gap on $\ell^\infty$.\\
 Arithmetic small forms & Noncancellation is available for the certificate family; sufficiently small values relative to height are not.\\
 Transcendence of $\mu$ & Unresolved. The local-family transcendence assertion is also unresolved.\\
 \bottomrule
@@ -765,15 +806,25 @@ and Hankel identities. Their reference reports record respectively
 $1{,}340$, $3{,}686$, and $29$ exact checks. These checks do not replace
 the all-budget pole theorem, the concentration proof, or the
 localization and nonescape arguments.
+The programs \texttt{scripts/check\_bipartite\_products.py} and
+\texttt{scripts/check\_product\_insertions.py}, together with
+\texttt{scripts/check\_product\_countermodel.py}, audit the new
+polynomial, second-moment, insertion, and comparison-process identities by exact
+tree enumeration. Their finite checks do not establish a limiting
+exponent or replace the essential-spectrum argument.
 
 \paragraph{Acknowledgment.}
 AI tools assisted with proof exploration, independent arithmetic audits,
 literature retrieval, and preparation of reproducible calculations.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 \bibitem{KR} P. L. Krapivsky and S. Redner,
 \emph{Emergent Network Modularity}, J. Stat. Mech. (2017), 073405.
 \url{https://arxiv.org/abs/1706.01514}.
+\bibitem{CanningsJordan} C. Cannings and J. Jordan,
+\emph{Random walk attachment graphs}, Electron. Commun. Probab.
+18 (2013), paper 77, 1--5, Theorem 3.1.
+\url{https://doi.org/10.1214/ECP.v18-2518}.
 \bibitem{Uzay} C. Uzay, \emph{friend-tree-exponent}, proof revision
 \texttt{88f2f9c8c3ebc1b4e0c980db6afd97d29f3df176}.
 \url{https://github.com/uzay-eth/friend-tree-exponent}.

@@ -74,6 +74,15 @@ The theorem numbers below refer to the continuation.
 | Uniform critical resolvent divergence | Population-eigenfunction section, `pm:uniform-pole` | Variational growth comparison and the original bound `V_s <= (1+W(s))C/s`; no exchange of supremum and integral and no claim of a pointwise critical pole |
 | No finite invariant linear closure containing the core count | Generator section, `fgo:star-pole` and `fgo:independence` | Finite history patterns on stars, increasing pole orders, and two elementary seed comparisons; does not exclude an edge-start scalar equation or a nonlinear closure |
 | Failure of a positive scalar spectral representation | Generator section | Exact edge-start generator derivatives, negative Hankel determinant, and an explicit negative-square certificate; specific to `F_2'/2` and positive measures with exponential moments near zero |
+| Signed hypergeometric product martingale | Product section, `prop:bipartite-product` | Exact birth ratio and cancellation over real edges; all fixed-population complex parameters, all fixed continuous-time coefficients, and whole-product continuous-time martingales for real `abs(z)<=1` |
+| Harmonic martingale realization of the exponent | Product section, `prop:bipartite-variance` | First two product coefficients, Yule moment domination, and `C <= S_2 <= zeta(2) C`; the exponent is transferred from the existing original mean-growth theorem |
+| Exact core and color insertions | Product section, `bpi:identities` | Polynomial birth identities and the jump-generator product rule; removes the nonleaf terms but retains the actual neighbor-dependent leaf-promotion observables |
+| Signed integer specializations | Product section, `prop:bipartite-integer` | Pochhammer/binomial identities, bipartition degree sums, and finite-population normalization; integer observable values do not clear probability denominators |
+| Rational-growth comparison preserving the products and color law | Product section, `bpm:comparison` | Explicit degree-weighted attachment rates, the two-color Yule projection, and a linear lower bound on the expected core count; a different process, with exponent one |
+| Finite full-environment determinant obstruction | Essential-spectrum section, `ess:finite` | Strict population increase for genealogical/proper births; the only same-population core-ring transition is the explicit null ring |
+| Critical essential radius one | Essential-spectrum section, `ess:radius` | Disjoint population bands weakly null in `ell^infinity`, compact-operator norm decay, inert coefficient comparison, uniform supercritical resolvent bounds, and log-convexity |
+| Full spectral-radius characteristic | Essential-spectrum section, `ess:characteristic` | Continuity, convexity and decrease of `log r(K_s)`, plus the upper bound `r(K_s)<=1/s`; does not imply a compactness gap or arithmetic specialization |
+| Sufficient irrationality small-value criterion | Final arithmetic audit | If `mu=p/q`, then `q^(deg P) P(mu)` is a nonzero integer; no polynomial-height hypothesis is needed for this weaker target |
 | Sufficient polynomial small-value criterion | Final arithmetic audit | The nonzero integer resultant for an algebraic candidate; signed nonzero polynomials are now available, but the required small-value estimate relative to height remains unproved |
 
 The height theorem uses absolute logarithmic Weil height. If
@@ -184,6 +193,30 @@ first-promotion value is `H_s(1)-1`, not an asserted `E_s` specialization.
 The local-family equivalence likewise proves neither its transcendence
 assertions nor a transfer to the original model.
 
+The signed product family uses a new auxiliary parameter, not the critical
+discount. Its exact binomial normalizations and coefficient denominator
+bounds apply to state values; they do not construct small integer values
+at `mu`. The degree-weighted comparison process preserves all product
+identities, the original color population law, and an arbitrarily long
+original finite prefix while having exponent one. It does not preserve
+the original numerical bracket, and is not a modification of the model
+used to define `mu`. It shows precisely why the preserved identities
+alone cannot supply an arithmetic classification.
+
+The critical full-environment kernel is noncompact on its original
+supremum-norm space, with essential spectral radius equal to spectral
+radius. This theorem does not assert that the particular spectral point
+one is nonisolated. It does not exclude an invariant space of local
+observables or a quotient with different spectral properties. Such a
+space or quotient must be constructed and proved to retain the critical
+growth before a compact-operator arithmetic argument can use it.
+The separate [signed renewal note](signed_renewal_scope.md) gives a local
+rank-one resolvent identity and an explicit weighted-shift comparison with
+a rational critical root in the certified interval. Even its nonnegative
+renewal coefficients have total mass below one at criticality. This
+demonstrates the precise missing pointwise boundary theorem; it is not an
+alternative realization of the friend rule.
+
 ## Reproduction and finite verification
 
 The reference run of `scripts/check_first_promotion.py` contains 106,865
@@ -206,6 +239,9 @@ python3 scripts/full_tree_recurrence.py --check --output build/verification/full
 python3 scripts/primitive_population_tools.py --check
 python3 scripts/laplace_derivative_tools.py --check
 python3 scripts/check_generator_obstructions.py --check
+python3 scripts/check_bipartite_products.py --check
+python3 scripts/check_product_insertions.py --check
+python3 scripts/check_product_countermodel.py
 ```
 
 The committed reference report is
@@ -240,6 +276,16 @@ recurrence, independent Newton identities, and tail telescoping. The
 generator-obstruction checker records 29 exact checks of star formulas,
 the seven derivatives, the two negative-moment certificates, and the
 explicit cancellation example. Reports are committed in `verification/`.
+
+The product checker audits whole rational polynomials through population
+10 in both the free and inert models, including birth ratios, martingale
+coefficients, exact second moments, star probabilities, and integer
+specializations. The comparison checker uses all free trees through
+population 9 to check its distinct rational rates, product identities,
+color rates, and promotion inequality. The insertion checker audits entire
+bivariate polynomials at all free trees through population 9 and the
+corresponding finite-population recurrences. None of these checkers proves
+the infinite growth statement or the essential-spectrum theorem.
 
 The finite checks do not establish an infinite tail limit, prime-density
 estimate, denominator asymptotic, or transcendence assertion. Those limits

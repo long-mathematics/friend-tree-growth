@@ -12,7 +12,7 @@ trees. It contains three manuscripts with different scopes.
 | --- | --- | --- |
 | **Effective computation and boundary robustness of the random friend-tree exponent** | An exact pressure characterization, a terminating two-sided computation theorem, a uniform boundary-leaf resolvent estimate, robustness under bounded predictable boundary input, and a sharper rational upper bound for the original exponent. | [PDF](friend_tree_growth.pdf) · [LaTeX](friend_tree_growth.tex) |
 | **Growth and irrationality in local redirection trees** | An exact CMJ representation, almost-sure power-law growth from every finite tree seed, effective root isolation, and irrationality for every finite algebraic activation parameter. | [PDF](local_redirection_irrationality.pdf) · [LaTeX](local_redirection_irrationality.tex) |
-| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | Exact first-promotion arithmetic, sharp coefficient heights, primitive critical-certificate noncancellation and growth, a fixed-discount derivative-ratio formula, a core-growth variational equation, and explicit closure obstructions. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
+| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | First-promotion arithmetic, critical-certificate noncancellation, exact root relations, signed hypergeometric product martingales, a variance realization of the exponent, and critical essential-spectrum and closure obstructions. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
 
 These are research drafts dated November 23, 2026. The repository includes
 written proofs, internal dependency audits, and reproducible finite
@@ -206,6 +206,73 @@ Hankel determinant rules out a positive real exponential-mixture
 representation for `F_2'(t)/2`. These results do not exclude a special
 edge-start scalar equation, nonlinear reductions, or other arithmetic
 constructions.
+
+### Signed hypergeometric products for the original tree
+
+Fix bipartition signs `sigma_v = ±1`, and write `d_v` for full degrees.
+The exact polynomial
+
+$$
+P_z(T)=\prod_v\frac{(1+\sigma_v z)_{d_v-1}}{(d_v-1)!}
+$$
+
+satisfies `L P_z = 0`: the generator contributions cancel across every
+real edge. At fixed population its expectation is `1` for the free edge
+and `1+z` for the root-positive inert newborn. Every fixed coefficient is
+a true continuous-time martingale; the whole product has this assertion
+for real `|z| <= 1`.
+
+Set `J = sum_v sigma_v H_(d_v-1)` and
+`S_2 = sum_v H^(2)_(d_v-1)`. Then `J` and `J^2-S_2` are martingales, and
+
+$$
+\mathbb E J^2=\mathbb E S_2,\qquad
+\mathbb E C\le\mathbb E J^2\le\zeta(2)\mathbb E C.
+$$
+
+Thus the original exponent is also the variance-growth exponent of this
+signed harmonic martingale in the free model. At every positive integer
+`z=k`, `P_k` is a signed integer product of binomial coefficients, supported
+on trees whose negative vertices all have degree at most `k`.
+
+For the original free model, a core insertion retains the exact friend
+rates while canceling every nonleaf term:
+
+$$
+L(x^C P_z)=(x-1)x^C P_z(\Lambda+z\Lambda_\sigma),
+\quad
+\Lambda_\sigma=\sum_{w\text{ leaf}}\sigma_w\sum_{u\sim w}\frac1{d_u}.
+$$
+
+It gives an exact polynomial recurrence for `E[P_z(T_n) C(T_n)]`.
+Controlling the remaining neighbor-dependent leaf term is a concrete
+target for a critical arithmetic equation; no finite closure is asserted.
+The [product-polynomial research note](docs/product_polynomial_targets.md)
+records a finite positive-expansion pattern and the precise missing
+preservation argument.
+
+These exact cancellations do not yet provide an irrationality argument.
+The auxiliary parameter `z` is independent of the critical discount, and
+integer state values are averaged with noninteger probabilities. A
+comparison process with rational attachment rates preserves all these
+product identities, the original two-color Yule law, and any prescribed
+finite original prefix, yet has core exponent `1`. An arithmetic transfer
+must use additional information in the exact friend attachment rates.
+
+On the original space of bounded functions of full newborn environments,
+the critical kernel satisfies
+
+$$
+r_{\mathrm{ess}}(\mathcal K_\mu)=r(\mathcal K_\mu)=1.
+$$
+
+Every finite full-environment compression is nilpotent. A compact-operator
+or finite-determinant reduction therefore requires a justified new space,
+quotient, or contribution from infinite population.
+An [exact signed renewal reduction](docs/signed_renewal_scope.md) is also
+available locally in a generation variable. Its critical substitution
+still requires a pointwise boundary theorem; an explicit rational
+weighted shift shows why the existing operator bounds do not suffice.
 
 **Irrationality and transcendence of `mu`, and transcendence of the local
 exponents, remain unproved.** The transform `Phi` remains just the
