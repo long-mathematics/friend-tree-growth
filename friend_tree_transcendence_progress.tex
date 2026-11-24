@@ -65,7 +65,13 @@ binomial identities, but a rational-growth comparison process shows why
 these identities alone cannot settle irrationality. The full-environment
 kernel has spectral and essential spectral radius one at criticality,
 excluding a compact-operator reduction on its original supremum-norm
-space. Neither irrationality nor transcendence of the original exponent
+space. A directional disagreement estimate nevertheless gives a uniform
+comparison with the fixed inert resolvent. It proves critical divergence,
+a bounded positive genealogical eigenfunction, and attainment of the
+core-growth variational equation. In particular, the original mean core
+count is bounded above and below by positive constants times $n^\mu$.
+The signed renewal germ has a genuine critical boundary value along the
+positive real axis. Neither irrationality nor transcendence of the original exponent
 is proved: a critical arithmetic specialization with sufficiently small
 nonzero values remains missing.
 \end{abstract}
@@ -94,16 +100,21 @@ real leaf, and one inert parent stub. The stub counts toward degree but
 has no source clock. It differs from a free star, whose first core ring
 always promotes a leaf. A first-promotion transform is an exact kernel
 component; its evaluation is not a new equation for $\mu$.
-Sections~\ref{scp:section}--\ref{ess:section} then use the established
+Sections~\ref{scp:section}--\ref{cr:section} then use the established
 full pressure and certificate theorems to obtain global arithmetic
 noncancellation and precise root representations. Analytic convergence
 rates for exact pressure queries and error bounds per completed
 certificate stage are distinguished from running-time bounds. The new
 fixed-discount derivative ratio needs neither an exact-pressure oracle
-nor a limiting growth amplitude, but has no established effective rate
-in derivative order. The primitive certificate obstruction concerns one
+nor a limiting growth amplitude. The final critical comparison now gives
+an $O_s(m^{-1/2})$ derivative-order bound in terms of finite comparison
+constants that have not been numerically evaluated.
+The primitive certificate obstruction concerns one
 precise family, and the variational equation requires a specified growth
 class for its eigenfunctions.
+The last analytic section proves that this class contains a critical
+eigenfunction. Its normalization is obtained from actual core resolvents,
+not from the unrelated population modes that exist at every discount.
 
 \section{The exact first-promotion transform}
 
@@ -651,6 +662,7 @@ available without a separate exact transfer.
 \input{sections/transcendence/generator_obstructions}
 \input{sections/transcendence/bipartite_product_martingale}
 \input{sections/transcendence/essential_spectrum}
+\input{sections/transcendence/critical_resolvent_compactness}
 
 \section{The remaining small-value problem and a dependency audit}
 
@@ -670,8 +682,9 @@ pressure queries, and the rational series in Section~\ref{rr:section}
 counts completed certificate searches. Neither yields the arithmetic
 small values required below. The new derivative-ratio relation of
 Section~\ref{tl:section} instead uses rationally enclosable derivatives
-at a fixed discount. It supplies neither an effective derivative-order
-error nor an arithmetic classification of their limiting ratio.
+at a fixed discount. Proposition~\ref{cr:derivative-ratio-rate} now
+supplies a derivative-order estimate, but neither numerically evaluated
+comparison constants nor an arithmetic classification of the limit.
 
 The signed product in Section~\ref{sec:bipartite-product-martingale}
 cancels exactly under the original generator and gives the same exponent
@@ -685,6 +698,13 @@ the product family must retain more of the original neighbor dependence.
 Section~\ref{ess:section} shows a separate analytic difficulty:
 the full-environment critical kernel is not compact, and none of its
 finite population compressions has a positive characteristic root.
+Section~\ref{cr:section} resolves the previously missing fixed-seed
+boundary statement by a different argument: a directional disagreement
+estimate, a finite collection of inert profiles, and permanent exterior
+guardian events. It gives uniformly positive critical generation
+coefficients and a signed renewal germ whose continuation tends to one
+along the positive real axis. These analytic statements do not make
+the renewal coefficients rational at rational discounts.
 
 \paragraph{The weaker target sufficient for irrationality.}
 For irrationality alone, the height requirement in the transcendence
@@ -732,7 +752,9 @@ The population eigenfunctions in Section~\ref{pm:section} show that
 bare positive kernel harmonicity cannot supply this construction:
 it holds at every positive discount. The core-comparable variational
 equation does characterize $\mu$, but its optimizing class is infinite
-and the infimum is not proved to be attained. The growing star poles
+even though Section~\ref{cr:section} now proves that its infimum is
+attained. No arithmetic description of the optimizing eigenfunction's
+state values has been proved. The growing star poles
 in Section~\ref{fgo:section} rule out a finite invariant linear
 observable space containing $C$; their noncancellation does not persist
 automatically after edge-start averaging. These are specific obstructions,
@@ -765,12 +787,15 @@ Rational series and resolvent tails & Complete strict searches and H\"older inte
 Full-tree recurrence hierarchy & Exact attachment probabilities and generator iteration; no finite scalar closure is asserted.\\
 Primitive population certificates & Same-sign residues at each reachable pole, a minimal scalar clearer, and an explicit omitted history; primitive critical values exceed one.\\
 Fixed-generation population tail & Potential-genealogy second moments and a Yule hitting bound; explicit error, with generation held fixed.\\
-Fixed-discount derivative ratio & Gamma concentration including first moments, and exact rational beta-derivative tails; no derivative-order rate.\\
-Core-growth variational equation & Uniform core comparability and the canonical resolvent; uniform critical divergence, not a pointwise pole.\\
+Fixed-discount derivative ratio & Gamma concentration, exact rational beta-derivative tails, and the new constant-factor mean bounds; an $O_s(m^{-1/2})$ order estimate with unevaluated comparison constants.\\
+Core-growth variational equation & Uniform core comparability and the canonical resolvent; its infimum is attained by the critical core eigenfunction.\\
 Closure obstructions & Increasing star poles and an exact negative Hankel certificate; the specified linear and positive spectral closures fail.\\
 Signed product martingales & Edgewise bipartite cancellation, Yule moment bounds, and a conservative Doob transform; exact integer specializations and a variance realization of $\mu$.\\
 Rational-growth comparison & Degree-weighted rational attachment rates preserve the product identities and color process; their core exponent is one.\\
 Critical essential radius & Disjoint population bands, inert comparison, uniform resolvents, and log-convexity; no critical spectral-radius gap on $\ell^\infty$.\\
+Fixed-seed critical boundary & Directional infection weights, prefix-free cuts, finite guardian embeddings, and root-input Dynkin comparison; fixed inert critical divergence and bounded positive critical eigenfunctions.\\
+Mean growth up to constant factors & Core-comparable generator eigenfunctions and the exact embedded rising-factorial expectation; $\mathbb E C_n=\Theta(n^\mu)$, without a limiting amplitude.\\
+Signed renewal boundary & Uniform positive critical generation coefficients; continuation along the positive real axis tends to one, without a claim about the signed Taylor radius.\\
 Arithmetic small forms & Noncancellation is available for the certificate family; sufficiently small values relative to height are not.\\
 Transcendence of $\mu$ & Unresolved. The local-family transcendence assertion is also unresolved.\\
 \bottomrule
@@ -812,6 +837,11 @@ The programs \texttt{scripts/check\_bipartite\_products.py} and
 polynomial, second-moment, insertion, and comparison-process identities by exact
 tree enumeration. Their finite checks do not establish a limiting
 exponent or replace the essential-spectrum argument.
+The program \texttt{scripts/check\_critical\_boundary.py} checks the
+eligible-core count, cut-profile invariants, exact absorption constants,
+and prefix-free path weights against an independent probability-splitting
+walk on small rooted inert trees. It does not replace the infinite
+coupling, guardian, compactness, or eigenfunction proofs.
 
 \paragraph{Acknowledgment.}
 AI tools assisted with proof exploration, independent arithmetic audits,

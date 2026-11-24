@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "exact_checks": 435595,
+  "arithmetic": "integers and fractions.Fraction; no floating-point decisions",
+  "maximum_real_population": 9,
+  "checks": {
+    "combined_weighted_cut_error_bound": 21549,
+    "cut_orientation_follows_newborn_path": 16090,
+    "cut_paths_are_prefix_free": 21549,
+    "cut_profile_has_inert_stub": 21549,
+    "cut_profile_keeps_newborn_tag": 21549,
+    "cut_profile_preserves_core_and_stub_degrees": 21549,
+    "cut_profile_preserves_full_degrees": 21549,
+    "cut_profile_preserves_leaf_counts": 21549,
+    "degree_one_cores_have_leaves": 485,
+    "depth_cut_rate_condition": 11636,
+    "depth_weighted_rate_bound": 11636,
+    "direct_walk_finds_exact_cut_frontier": 21549,
+    "direct_walk_terminal_mass_one": 21549,
+    "direct_walk_visits_exact_retained_profile": 21549,
+    "distinct_cut_edges": 21549,
+    "eligible_core_partition": 485,
+    "eligible_core_quarter_bound": 485,
+    "eligible_include_degree_one_cores": 485,
+    "enumerated_real_population": 485,
+    "enumerated_single_root_stub": 485,
+    "enumeration_one_real_vertex_per_birth": 1139,
+    "enumeration_positive_proper_channel": 1139,
+    "exact_relative_error_constant": 1,
+    "forward_path_denominator_positive": 17858,
+    "high_core_degree_count": 485,
+    "high_degree_cut_rate_condition": 4454,
+    "high_degree_weighted_rate_bound": 4454,
+    "isolated_bare_two_count": 485,
+    "isolated_bare_two_edge_bound": 485,
+    "isolated_bare_twos_are_independent": 485,
+    "isolated_incident_edges_are_distinct": 485,
+    "newborn_rooted_paths_cover_core": 489,
+    "nontrivial_retained_target_denominator_witness": 1,
+    "one_stub_core_degree_sum": 485,
+    "path_product_matches_direct_walk": 16090,
+    "prefix_frontier_mass_bound": 21549,
+    "prefix_sum_matches_direct_walk": 21549,
+    "rational_depth_discount": 1,
+    "rational_sixteen_step_discount": 1,
+    "relative_error_absorption_margin": 1,
+    "relative_error_constant_upper_bound": 1,
+    "retained_vertices_below_cut_limits": 21549,
+    "summed_depth_cut_bound": 21549,
+    "summed_high_degree_cut_bound": 21549
+  },
+  "population_rows": [
+    {
+      "real_population": 2,
+      "rooted_one_stub_states": 1,
+      "newborn_tag_choices": 1,
+      "cut_profiles_checked": 2
+    },
+    {
+      "real_population": 3,
+      "rooted_one_stub_states": 2,
+      "newborn_tag_choices": 1,
+      "cut_profiles_checked": 6
+    },
+    {
+      "real_population": 4,
+      "rooted_one_stub_states": 4,
+      "newborn_tag_choices": 2,
+      "cut_profiles_checked": 21
+    },
+    {
+      "real_population": 5,
+      "rooted_one_stub_states": 9,
+      "newborn_tag_choices": 6,
+      "cut_profiles_checked": 96
+    },
+    {
+      "real_population": 6,
+      "rooted_one_stub_states": 20,
+      "newborn_tag_choices": 15,
+      "cut_profiles_checked": 340
+    },
+    {
+      "real_population": 7,
+      "rooted_one_stub_states": 48,
+      "newborn_tag_choices": 42,
+      "cut_profiles_checked": 1284
+    },
+    {
+      "real_population": 8,
+      "rooted_one_stub_states": 115,
+      "newborn_tag_choices": 112,
+      "cut_profiles_checked": 4424
+    },
+    {
+      "real_population": 9,
+      "rooted_one_stub_states": 286,
+      "newborn_tag_choices": 310,
+      "cut_profiles_checked": 15376
+    }
+  ],
+  "rooted_one_stub_states_checked": 485,
+  "newborn_tag_choices_checked": 489,
+  "cut_profiles_checked": 21549,
+  "minimum_eligible_core_fraction_in_finite_sample": "1/3",
+  "largest_prefix_frontier_mass": "1",
+  "largest_weighted_error_to_bound_ratio": "5/6",
+  "relative_error_certificate": {
+    "s0": "11/20",
+    "infection_mass_bound": "19/20",
+    "radius": 161,
+    "degree_threshold": 1024,
+    "kappa_exact": "32531310513656287747816438712723502842565439566983688582259902701249190699229421168777053936446329694022912798484074085852619335644853714823871346164737896385726476519803647927298744105729376465805480924801/221052122646299066378307330948337806722959797125120000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "kappa_upper": "375/1936",
+    "absorption_threshold": "1/4"
+  },
+  "retained_target_denominator_witness": {
+    "real_population": 6,
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "leaves": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "stubs": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "tag": 2,
+    "radius": 2,
+    "degree_threshold": 4,
+    "correct_frontier_mass": "1",
+    "mass_if_retained_target_factor_is_omitted": "2"
+  },
+  "scope": "Finite one-stub core counting, cut-profile degree preservation, prefix-free path probabilities, weighted cut inequalities, and an exact rational absorption constant. This does not prove the infinite coupling, guardian construction, critical boundary theorem, or irrationality."
+}

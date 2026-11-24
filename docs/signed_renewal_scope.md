@@ -1,8 +1,9 @@
-# A signed renewal reduction and its missing critical boundary theorem
+# A signed renewal reduction and its critical boundary theorem
 
-This note records a further exact reduction of the **original** environment
-kernel and the step that is still unproved. It does not prove irrationality
-of the friend-tree exponent. The input kernel, comparison estimates, and
+This note records an exact reduction of the **original** environment kernel,
+the newly proved fixed-seed boundary theorem, and the arithmetic step that
+remains unproved. It does not prove irrationality of the friend-tree exponent.
+The input kernel, comparison estimates, and
 uniform resolvent bounds are those in the original manuscript and the
 [arithmetic dependency audit](transcendence_proof_dependencies.md).
 
@@ -66,26 +67,51 @@ These formulas keep all original environment dependence. They do not
 introduce independent descendant families. The `A_m` are exact kernel
 values, and are not known to be rational merely because `s` is rational.
 
-## 2. Why this is not yet the equation `B_mu(1)=1`
+## 2. The critical boundary is now proved along the positive real axis
 
-The pressure condition gives radius of convergence one for `F_mu`.
-It does **not** imply that its boundary value is infinite. To deduce the
-critical equation `B_mu(1)=1` from the identity above, one still needs both:
+The [critical boundary section](../sections/transcendence/critical_resolvent_compactness.tex)
+uses the actual friend dynamics to prove
 
-1. A justified continuation or convergence of the signed expression to
-   `z=1`. The local Neumann expansion does not give this automatically;
-   zeros of `F_s` can obstruct the Taylor series of its reciprocal.
-2. Divergence of the **fixed inert** critical resolvent
-   `sum_m A_m^infinity(mu)`. The known divergence of a supremum over
-   initial states does not establish this pointwise assertion.
+\[
+\frac1K\le A_m^\infty(\mu)\le48\qquad(m\ge0)
+\]
 
-Even if both analytic statements were proved, an arithmetic
-specialization and a noncancellation or small-value estimate would still
-be required. The signed identity alone supplies none of those conclusions.
+for a fixed finite `K`. The earlier sharper upper bound below `43` also
+remains valid. The proof uses directional infection estimates, prefix-free
+cuts, finite inert profiles, and guardian events independent of the interior
+drivers. It establishes divergence at the fixed inert seed, rather than
+deducing that statement from divergence of a supremum.
+
+For `0<=z<1` this gives
+
+\[
+\frac1{K(1-z)}\le F_\mu(z)\le\frac{48}{1-z}.
+\]
+
+Since `F_mu` is positive on this interval, the signed germ continues there
+by `B_mu(z)=1-1/F_mu(z)`. Its critical boundary remainder satisfies
+
+\[
+\boxed{\frac{1-z}{48}\le1-B_\mu(z)\le K(1-z),\qquad
+\lim_{z\uparrow1}B_\mu(z)=1.}
+\]
+
+This is a nonzero, controlled **analytic** remainder. The statement is
+about continuation along the positive real axis. It does not assert that
+the signed Taylor series has radius at least one, or that `sum_m b_m(mu)`
+converges: complex zeros of `F_mu` still require separate analysis.
+
+An arithmetic specialization is also still required. At rational `r`,
+the exact values `A_j^infinity(r)` and `b_j(r)` are not known to be rational.
+Rational finite-history approximations need error bounds after their
+denominators are cleared. See the
+[rational-specialization audit](rational_specialization_audit.md) for the
+precise remaining integer-small-value condition.
 
 ## 3. A rational critical kernel with finite pointwise boundary values
 
-The following positive weighted shift makes the boundary gap explicit.
+The following positive weighted shift explains why the earlier operator
+estimates alone could not prove the boundary theorem.
 Choose any rational `eta` in the certified interval for `mu`, and set
 
 \[
@@ -187,8 +213,10 @@ B_\eta(1)=\sum_{m\ge1}b_m
 This is a comparison **operator**, not another realization of the friend
 rule. It proves that the listed operator estimates, rational entries,
 and a rational critical root within the numerical interval can coexist.
-The actual friend dynamics must supply additional information before
-the signed renewal expression becomes an arithmetic critical equation.
+The directional and guardian arguments now supply additional information
+for the actual friend dynamics. This comparison lacks their resulting
+uniformly positive critical generation coefficients. It remains useful
+for separating the earlier operator estimates from that stronger theorem.
 
 ## 4. What a local-environment reduction still has to prove
 
@@ -198,6 +226,9 @@ not prove that `K_s` contracts a norm on *arbitrary* local observables,
 or that it is compact on a space which retains the critical exponent.
 The new essential-radius theorem rules out such compactness on the
 original full supremum-norm space.
+The new relative approximation of resolvent rewards does not contradict
+this result: it applies to a particular normalized family, not arbitrary
+bounded observables.
 
 Retagging at a child moves a fixed old vertex one edge farther away.
 Discrepancies can also propagate inward before that birth. A successful

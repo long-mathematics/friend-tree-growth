@@ -12,9 +12,9 @@ trees. It contains three manuscripts with different scopes.
 | --- | --- | --- |
 | **Effective computation and boundary robustness of the random friend-tree exponent** | An exact pressure characterization, a terminating two-sided computation theorem, a uniform boundary-leaf resolvent estimate, robustness under bounded predictable boundary input, and a sharper rational upper bound for the original exponent. | [PDF](friend_tree_growth.pdf) · [LaTeX](friend_tree_growth.tex) |
 | **Growth and irrationality in local redirection trees** | An exact CMJ representation, almost-sure power-law growth from every finite tree seed, effective root isolation, and irrationality for every finite algebraic activation parameter. | [PDF](local_redirection_irrationality.pdf) · [LaTeX](local_redirection_irrationality.tex) |
-| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | First-promotion arithmetic, critical-certificate noncancellation, exact root relations, signed hypergeometric product martingales, a variance realization of the exponent, and critical essential-spectrum and closure obstructions. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
+| **Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions** | First-promotion arithmetic, critical-certificate noncancellation, signed product martingales, fixed-seed critical divergence, core-comparable critical eigenfunctions, and original mean growth up to constant factors. | [PDF](friend_tree_transcendence_progress.pdf) · [LaTeX](friend_tree_transcendence_progress.tex) |
 
-These are research drafts dated November 23, 2026. The repository includes
+These are research drafts dated November 23–24, 2026. The repository includes
 written proofs, internal dependency audits, and reproducible finite
 calculations. It does not claim external peer review or proof-assistant
 formalization.
@@ -162,7 +162,8 @@ formula for each coefficient, makes that dependence explicit. No finite
 scalar recurrence or finite hypergeometric equation is claimed.
 Explicit geometric tails are proved for its
 fixed-time generating series and for the full generation resolvent above
-a certified upper bound on `mu`. Neither is a critical-pole theorem.
+a certified upper bound on `mu`. The critical boundary is treated
+separately by the directional comparison described below.
 
 ### Stronger relations at a fixed discount and in the core-growth class
 
@@ -182,9 +183,12 @@ $$
 
 At the single rational discount `s=2`, each `B_m` has a positive rational
 coefficient series and an explicit rational finite-population tail.
-This makes each fixed-index ratio computably enclosable. There is no
-proved effective rate as `m` tends to infinity, so the individual
-ratio intervals are not certified brackets for `mu`.
+This makes each fixed-index ratio computably enclosable. The new
+constant-factor growth theorem also gives an `O_s(m^(-1/2))`
+derivative-order error, with a displayed bound in terms of the
+core-comparison constants. Those constants have not been numerically
+evaluated, so the calculator's individual ratio intervals still do
+not by themselves give certified brackets for `mu`.
 
 For the inert generator `L_infty`, let `A_C` consist of functions with
 `C <= f <= K_f C` uniformly over all reachable states. Then
@@ -194,8 +198,20 @@ $$
        \frac{L_\infty f(y)}{f(y)}.
 $$
 
-The uniform resolvent supremum diverges at least as `1/(s-mu)`.
-This is distinct from a pole of the transform at one initial state.
+The continuation now proves attainment of this infimum. There are positive
+critical generator eigenfunctions for both the inert and free processes,
+uniformly comparable with `C` on states with at least one core.
+Consequently the original free-tree mean satisfies
+
+$$
+F_2(t)=\Theta(e^{\mu t})\quad(t\ge1),\qquad
+\mathbb E C_n=\Theta(n^\mu).
+$$
+
+These are two-sided constant-factor bounds, not a limiting amplitude.
+The uniform and fixed inert resolvents have two-sided bounds proportional
+to `1/(s-mu)` as `s` decreases to `mu`. No meromorphic continuation or
+existence of a pole residue is asserted.
 The growth class is essential: strictly positive eigenfunctions of the
 actual full kernel exist at **every** `s>0`, with no core-ring escape.
 
@@ -270,9 +286,20 @@ Every finite full-environment compression is nilpotent. A compact-operator
 or finite-determinant reduction therefore requires a justified new space,
 quotient, or contribution from infinite population.
 An [exact signed renewal reduction](docs/signed_renewal_scope.md) is also
-available locally in a generation variable. Its critical substitution
-still requires a pointwise boundary theorem; an explicit rational
-weighted shift shows why the existing operator bounds do not suffice.
+available locally in a generation variable. A new directional disagreement
+estimate resolves its fixed-seed boundary gap. For some finite `K`,
+
+$$
+\frac1K\le A_m^\infty(\mu)<43\qquad(m\ge0).
+$$
+
+Thus `F_mu(z)=sum_m A_m^infinity(mu) z^m` diverges as `z` increases to one,
+and the signed germ `B_mu(z)=1-1/F_mu(z)`, continued along the positive
+real axis, tends to one. This does not prove that the signed Taylor
+series converges up to one: complex zeros of `F_mu` require separate
+analysis. Its coefficients also remain infinite kernel values at rational
+discounts. The [rational-specialization audit](docs/rational_specialization_audit.md)
+states the remaining integer-small-value requirement.
 
 **Irrationality and transcendence of `mu`, and transcendence of the local
 exponents, remain unproved.** The transform `Phi` remains just the
@@ -288,8 +315,8 @@ first-promotion component, and `Phi(mu)=1` is false. See the
 - A practical, certified arbitrary-precision solver for the original exponent.
 - A finite special-function equation for the original exponent with the
   specialization and nonvanishing properties required for an arithmetic proof.
-- Sharp mean asymptotics or a positive almost-sure power-law amplitude for the
-  original process.
+- A limiting mean amplitude, or a positive almost-sure power-law amplitude,
+  beyond the proved constant-factor mean bounds for the original process.
 
 The [research targets](docs/RESEARCH_TARGETS.md) distinguish these goals from
 the completed arguments. In particular, computability and a positive Mellin

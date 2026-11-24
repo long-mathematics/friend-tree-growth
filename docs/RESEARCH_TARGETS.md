@@ -6,7 +6,9 @@ comparison. The local-model companion supplies a concrete irrationality
 theorem. The arithmetic continuation proves first-promotion reductions and
 coefficient-height asymptotics, full-critical certificate-polynomial
 noncancellation, primitive-numerator growth, and several exact root and
-derivative-ratio representations. The following
+derivative-ratio representations. The new critical-boundary theorem
+also proves core-comparable eigenfunctions, the exact critical core-ring
+equation, and mean core growth up to constant factors. The following
 targets concern the remaining analytic, arithmetic, and computational gaps.
 
 ## 1. Make computation practical
@@ -50,7 +52,9 @@ $$
 
 This gives a stopping rule for the generation sum, with finite-history
 errors handled separately. The rate deteriorates as `s` approaches `b`.
-It does not prove divergence or a pole at the critical point.
+That tail estimate alone does not prove critical divergence. The new
+directional comparison supplies a separate proof of fixed-seed
+divergence and two-sided reciprocal-linear real-axis bounds.
 
 The exact Yule population-tail helper also improves fixed-time finite-state
 calculations to a geometric population cutoff bound. This identity is
@@ -75,10 +79,12 @@ B_m(s)=\frac1{m!}\int_0^\infty t^m e^{-st}F_2(t)\,dt,
 $$
 
 has positive rational coefficient expansions and explicit finite-population
-tails for every fixed derivative. It uses no exact-pressure oracle. Its
-remaining analytic target is a quantitative rate in derivative order.
-The current proof only assumes `F_2(t)=exp(mu*t+o(t))`, so the implemented
-finite-index ratio intervals do not give error bars for `mu`.
+tails for every fixed derivative. It uses no exact-pressure oracle.
+The new estimate `F_2(t)=Theta(exp(mu*t))` now gives an
+`O_s(m^(-1/2))` derivative-order bound, with a displayed constant in terms
+of the core-comparison constants. Those constants have not been
+numerically evaluated. The implemented finite-index ratio intervals
+therefore still need this additional error input before enclosing `mu`.
 
 ## 2. Identify a usable arithmetic characteristic
 
@@ -235,36 +241,43 @@ is available: nonzero integer polynomials with
 gives `|P_N(mu)| >= q^(-deg P_N)`. Polynomial height does not enter this
 rational-candidate argument. No current construction meets this target.
 
-## 3. Resolve the critical resolvent boundary term
+## 3. Use the now-proved critical boundary in an arithmetic construction
 
-Separate exploratory work constructs a critical generator eigenfunction
-and identifies an escape term when converting it to a first-core-event
-kernel equation. Eliminating that term requires a growth bound or an
-appropriate nonescape theorem for the transformed process. A sufficient
-fixed-skeleton polynomial-growth condition has been identified, but the
-required condition is not established in the general critical case.
+The [critical-boundary section](../sections/transcendence/critical_resolvent_compactness.tex)
+resolves the fixed-seed divergence and core-ring escape questions.
+Directional infection weights give a uniform relative approximation
+by finitely many stub profiles. Independent permanent guardian events
+compare those profiles to the inert seed. A root-input Dynkin comparison
+then extends the common resolvent scale to all newborn environments.
 
-This is a route toward a sharper critical operator description. It is not
-an unresolved prerequisite of the effective computability theorem in the
-main draft, which uses finite-time upper certificates and the uniform
-growth equality.
+In particular, for a fixed finite `K`,
 
-The new population modes sharpen the necessary formulation. Positive
-eigenfunctions of the actual inert generator and the full core-ring kernel
-exist at every `s>0`, and their transformed processes have no core-ring
-escape. They do not solve the previous critical-eigenfunction problem:
-they are different functions and grow as a power of total population.
+$$
+\frac1K\le A_m^\infty(\mu)<43,\qquad
+\int_0^\infty e^{-\mu t}F_\infty(t)\,dt=\infty.
+$$
 
-Requiring uniform core comparability gives an exact variational equation,
+Normalized core resolvents yield positive eigenfunctions uniformly
+comparable with `C`. Thus the variational equation
 
 $$
 \mu=\inf_{C\le f\le K_f C}\sup_y\frac{L_\infty f(y)}{f(y)}.
 $$
 
-Attainment of this infimum remains open here. Uniform resolvent suprema
-diverge at least as `1/(s-mu)`, but divergence at a prescribed finite seed,
-a scalar critical pole, and a critical limiting amplitude remain distinct
-unproved targets.
+is now attained. For the selected one-stub eigenfunction,
+`Q_mu H=H` has no escape term; before the first core ring the omitted
+boundary is at most `A_* C exp(-(mu+C)t)`.
+The population modes that exist at every discount remain outside this
+core-comparable class.
+
+The [signed renewal germ](signed_renewal_scope.md) consequently has a
+genuine positive-real boundary value `B_mu(1)=1`, interpreted by
+continuation. Its signed Taylor radius, an arithmetic description of its
+infinite kernel coefficients, and a denominator-normalized nonzero
+small-value estimate remain unresolved. The
+[rational-specialization audit](rational_specialization_audit.md) makes
+that next requirement precise. Real-axis reciprocal-linear bounds do
+not themselves give a meromorphic pole or a limiting residue.
 
 The full-environment operator on `ell^infinity` has
 `r_ess(K_mu)=r(K_mu)=1`. Its finite compressions are nilpotent because
@@ -278,7 +291,12 @@ locality estimates do not by themselves establish such a reduction.
 ## 4. Strengthen growth asymptotics
 
 For the original tree, determine whether normalized core counts have a
-positive finite limit, and obtain sharp mean asymptotics. The bounded-input
+positive finite limit, and obtain a limiting mean amplitude. The new
+core-comparable eigenfunctions prove
+`F_2(t)=Theta(exp(mu*t))` and `E C_n=Theta(n^mu)`. They also give an
+exact Pochhammer expectation for the selected eigenfunction and a
+nonnegative normalized martingale; neither alone proves a positive
+limiting core amplitude. The bounded-input
 theorem currently identifies continuous-time mean exponents uniformly over
 the stated policies. It does not assert arbitrary boundary perturbation
 invariance, pathwise robustness, or a limiting amplitude.
