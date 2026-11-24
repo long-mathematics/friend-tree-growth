@@ -22,12 +22,12 @@
   {
     "source": "friend_tree_transcendence_progress.tex",
     "pdf": "friend_tree_transcendence_progress.pdf",
-    "pages": 47,
-    "bytes": 583561,
-    "sha256": "beff3493ebbbc1c66fe1bceb640081db881dd76b30a9b03b4566030c76bad27d",
+    "pages": 57,
+    "bytes": 649284,
+    "sha256": "bbbd37411d831f82013aef1e06b43691116554cfe34eeb24f17548ffadde25ab",
     "passes": 3,
     "unresolved_references": false,
     "overfull_boxes": false,
-    "visual_review": "All 47 final pages rendered at 75 dpi and visually inspected after the signed-product and essential-spectrum integration."
+    "visual_review": "All 57 pages rendered at 75 dpi and visually inspected after the critical-boundary integration; final cross-reference edits changed only pages 17 and 21, both rerendered at 90 dpi and inspected."
   }
 ]

@@ -1,0 +1,820 @@
+% Original friend-tree dynamics, not a scalar independent-family replacement.
+% Dependencies: the aggregate disagreement construction and m(s)<=19/20
+% for s>=11/20, the exterior killed-reservoir survival lemma, and the
+% established inert pressure r_infinity(mu)=1.
+
+\section{Critical boundary values and core-comparable eigenfunctions}
+\label{cr:section}
+
+The inputs from the original manuscript\cite{Long} are its aggregate
+disagreement coupling, the certified infection mass at most $19/20$ for
+discounts at least $11/20$, the exterior reservoir survival probability
+at least $1/6$, the uniform supercritical resolvent bound, and the inert
+pressure equation $r_\infty(\mu)=1$. The proof below strengthens those
+inputs to fixed-seed critical statements.
+
+Put $s_0=11/20$ and $q=19/20$.  Let $\mathcal X^\partial$ be the
+class of finite newborn environments containing at least one inert
+stub.  The whole environment, including every stub, is retained when
+retagging, so this class is invariant under the genealogical kernel.
+For $x\in\mathcal X^\partial$, set
+\[
+ V_{s,T}^{\rm tag}(x)=\int_0^T e^{-st}F_x(t)\,dt,
+ \qquad W_T^\partial(s)=\sup_{x\in\mathcal X^\partial}
+ V_{s,T}^{\rm tag}(x).
+\]
+Use $V_s^{\rm tag},W^\partial(s)$ for infinite horizons, and abbreviate
+$V_s^\infty=V_s^{\rm tag}(x_\infty)$.  The already proved uniform
+resolvent theorem gives $W^\partial(s)<\infty$ for $s>\mu$.
+For finite $T$, Yule domination gives finiteness for every $s>0$.
+
+\subsection{A directional version of the disagreement gradient}
+
+Consider a finite retained core tree with any finite number of stubs.
+Mark an old core $u$ and count only its retained descendant component,
+the side of its parent edge containing $u$, or the whole component if
+that parent is an inert stub.  Its present cores and all their future
+descendants are included in the reward.  Let $v$ be an old core
+outside this counted component.  Write its old path to $u$ as
+\[
+ v=v_r,v_{r-1},\ldots,v_1,v_0=u,
+\]
+and let $d_i\ge2$ be the full degree of $v_i$ in the state before an
+additional leaf is attached at $v$.  The path contains only real
+cores and persists forever.
+
+\begin{lemma}[Directional root-leaf gradient]
+\label{cr:directional}
+If the retained environment has at least one stub, then for $s\ge s_0$
+and finite $T$ the difference in the two tagged discounted rewards is
+at most
+\begin{equation}
+ \frac{2W_T^\partial(s)}{s(1-q)}
+ q^r\prod_{i=1}^r\frac1{d_i-1}.
+ \label{cr:directional-bound}
+\end{equation}
+For an additional leaf at $u$ itself, use $r=0$ and the empty product
+one.  The estimate is uniform in the old state and its finite stubs.
+\end{lemma}
+\begin{proof}
+Use the aggregate leaf-gain and promotion coupling from the existing
+disagreement construction.  Start the infection at $v$.  At the first
+infection of any other eligible core, its two degrees differ by one;
+freeze its then-present common neighbors, and charge every new core
+family born from it subsequently.  The infected old eligible set
+remains connected.  A charged branch can contact the old tree only
+at the core from which it was born.  It therefore cannot bypass an
+edge of the displayed old path.  Its repeated feedback is retained
+in the coupling, rather than deleted.
+
+At a noninitial infected core of smaller full degree $d$, use the
+existing reservoir $Q=Z+R+B$: degree difference $Z$, union promotions
+$R$, and infections of frozen outward neighbors $B$.  The existing
+argument includes all repeated feedback through the predecessor,
+infected outward neighbors and charged branches, and gives upward
+rate at most $Q+5/2$.  At the initial infection there is no infected
+predecessor and there may be $d$, rather than $d-1$, frozen outward
+neighbors.  In this case
+\[
+ |a^+-a^-|\le Z+R+B/2,
+ \qquad \text{rate}(B\text{ increases})
+ \le \frac{dZ}{d(d+Z)}\le1.
+\]
+Thus the reservoir's upward rate is at most $Q+2$, which is also
+bounded by $Q+5/2$.  In both cases it is dominated, conditionally on
+the entire infection history, by the same pure-birth chain $Y$ with
+$Y(0)=1$ and rate $n+5/2$ at $n$.
+
+For a specified still-uninfected frozen neighbor, its infection
+intensity is at most $Z/[d(d+Z)]$.  Its expected discounted first
+infection indicator is consequently at most
+\[
+ e_d(s):=\mathbb E\int_0^\infty
+ e^{-st}\frac{Y(t)}{d(d+Y(t))}\,dt
+ =\frac{m_d(s)}{d-1}\le\frac q{d-1}.
+\]
+This is a bound for each specified edge, not merely for the sum of
+the offspring.  It remains valid for the initial infection with $d$
+candidates, because the reservoir domination just verified is the
+same.  Full degrees never decrease, so the smaller degree upon
+infection at $v_i$ is at least its initial degree $d_i$.
+
+The first infection of $u$ must traverse each old path edge in order.
+Conditional expectation at the successive infections therefore gives
+\[
+ \mathbb E[e^{-s\tau_u};\tau_u<\infty]
+ \le q^r\prod_{i=1}^r(d_i-1)^{-1}.
+\]
+No independence between path vertices or charged families is used.
+Before $\tau_u$, both counted descendant histories agree.  After it,
+run the existing disagreement exploration restricted to the counted
+component.  Its expected discounted number of eligible infections,
+relative to $\tau_u$, is at most $1/(1-q)$.  At each such infected
+core the union-promotion rate is at most one; each promotion charges
+at most two newborn families, each with remaining discounted reward
+at most $W_T^\partial(s)$.  The whole retained environment of every
+family still contains an inert stub.  Its expected discounted charge
+is at most $2W_T^\partial(s)/s$.  This proves
+\eqref{cr:directional-bound} exactly as in the original gradient proof.
+Localization at population and infection generation, followed by
+Tonelli, justifies the estimates at finite horizon.
+\end{proof}
+
+\subsection{Uniform relative approximation by finitely many profiles}
+
+For a newborn $x$, use the existing cut map $\pi_{R,M}$: traverse the
+initial core from the tag, cut a branch at its first core of initial
+full degree at least $M$, or at depth $R$, and replace each cut edge
+by an inert stub.  Initial leaf counts and full core-neighbor counts
+of retained cores are preserved.  All retained full degrees are less
+than $M$, and retained depths are less than $R$, so the range is
+finite.  An original stub either remains retained or lies beyond a
+cut edge, which becomes a stub.  Consequently
+\[
+ x\in\mathcal X^\partial\quad\Longrightarrow\quad
+ \pi_{R,M}x\in\mathcal X^\partial.
+\]
+
+\begin{lemma}[Relative finite-profile estimate]
+\label{cr:profiles}
+For $s\ge s_0$, $R\ge1$, $M\ge3$, and finite $T$,
+\begin{equation}
+ \left|V_{s,T}^{\rm tag}(x)
+       -V_{s,T}^{\rm tag}(\pi_{R,M}x)\right|
+ \le\kappa_{R,M}(s)W_T^\partial(s),
+ \label{cr:relative-profile}
+\end{equation}
+uniformly over $x\in\mathcal X^\partial$, where
+\[
+ \kappa_{R,M}(s)=\frac{2}{s^2(1-q)}
+ \left(\frac1M+\frac12q^{R-1}\right).
+\]
+\end{lemma}
+\begin{proof}
+Keep the exterior evolution, but delete the incoming arrow channel
+across every chosen cut edge $w\to v$, with $v$ retained and $w$
+removed.  The retained projection of this modified process follows
+exactly the inert profile law.  Outgoing choices $v\to w$ alter only
+the exterior, and are null choices in that projection.  No later
+branch can create another connection across this initial tree cut.
+
+The actual retained process differs from the profile generator only
+by predictable leaf inputs $q_{wv}(t)\Delta_v$, where
+\[
+ 0\le q_{wv}(t)=1/D_w(t)\le1/D_w(0).
+\]
+Apply the finite-horizon discounted backward Dynkin identity to the
+tagged profile value function, evaluated along the actual retained
+state.  Each perturbation is bounded by Lemma~\ref{cr:directional}.
+The counted component may already contain many old cores at the
+time of perturbation; this is permitted in that lemma.  The old path
+from $v$ to the tag persists, and every current full degree on it is
+at least its initial core-neighbor count $c_i$, including stubs.
+For an internal vertex on a cut path, $c_i\ge2$.
+
+The newborn tag has initial core-neighbor count one.  Consider a
+nonbacktracking walk on the initial core-and-stub tree: the first
+step is forced, and at each later core $i$ it chooses uniformly
+among the $c_i-1$ forward core neighbors or stubs.  For the path
+ending with the cut edge $w\to v$, with $v$ at depth $r$, its cylinder
+probability is
+\[
+ p(w)=\prod_{i=1}^{r}(c_i-1)^{-1}.
+\]
+For a cut adjacent to the tag this is the empty product one.  First-cut
+paths are prefix-free, so $\sum_w p(w)\le1$.  The directional gradient
+contributes at most $q^rp(w)$, multiplied by its common prefactor.
+
+For cuts caused by high degree, $1/D_w(0)\le1/M$ and $q^r\le1$.
+For all remaining depth cuts, $r=R-1$ and
+$1/D_w(0)\le1/2$.  Summing these two disjoint collections gives
+\[
+ \sum_{w\to v}\frac{q^{\operatorname{depth}(v)}p(w)}{D_w(0)}
+ \le\frac1M+\frac12q^{R-1}.
+\]
+Finally $W_{T-t}^\partial(s)\le W_T^\partial(s)$ and
+$\int_0^T e^{-st}dt\le1/s$.  These estimates yield
+\eqref{cr:relative-profile}.  The cut set is finite for each initial
+environment.  Its size never enters the bound, because the path
+probabilities have already been summed.  Population localization and
+finite-time moments justify Dynkin's identity before taking the limit.
+\end{proof}
+
+For example, take $R=161$ and $M=1024$.  The rational inequality
+$2\cdot19^{16}<20^{16}$ implies $q^{160}<1/1024$, and therefore
+\[
+ \kappa_{161,1024}(s)
+ \le\frac{40}{(11/20)^2}\frac3{2048}
+ =\frac{375}{1936}<\frac14
+ \qquad(s\ge s_0).
+\]
+No numerical approximation is needed for this choice.
+
+\subsection{Each stub profile is dominated by a fixed inert seed}
+
+\begin{lemma}[Permanent guardian embedding]
+\label{cr:guardian}
+For each fixed finite newborn profile $p\in\mathcal X^\partial$,
+there are $h_p<\infty$ and $a_p>0$ such that
+\begin{equation}
+ F_\infty(h_p+t)\ge a_pF_p(t)\qquad(t\ge0).
+ \label{cr:guardian-time}
+\end{equation}
+Consequently, on every bounded interval $0<s\le S$,
+\[
+ V_s^{\rm tag}(p)\le a_p^{-1}e^{Sh_p}V_s^\infty.
+\]
+\end{lemma}
+\begin{proof}
+Let $b\ge1$ be the number of profile stubs.  Replace every stub by
+an edge to a separate new real guardian with a private real leaf.
+Choose one guardian as the original inert root and give that guardian
+the one original inert stub.  The augmented real graph is a finite
+tree with exactly one inert stub, and the guardian root has its
+private leaf.  It can be obtained from $x_\infty$ by finitely many
+specified leaf attachments, since every real target has a real
+neighbor with positive rate of choosing it.  The profile tag is a
+leaf of its initial core skeleton with its own sole leaf; build its
+promotion last.  Requiring the finitely many prescribed clocks and
+choices in bounded time, with other clocks silent during preparation,
+gives an event of probability $p_p>0$ on which the augmented tree is
+exact at a deterministic time $h_p$.  All its cores descend from the
+original inert root.
+
+Restart independent drivers at $h_p$.  For each guardian, use exactly
+the exterior killed-reservoir construction from the uniform boundary
+removal lemma.  The reservoir $X$ starts at one, births at rate $X$
+using that guardian's independent leaf-birth Poisson measure, and
+loses one at every guardian source-clock ring while positive.  At
+such a ring kill the reservoir if its independent uniform mark
+$U\le1/X$.  The existing explicit bounded subharmonic function proves
+that its permanent survival probability is at least $1/6$.
+
+Couple $X$ below the actual guardian leaf count.  Actual leaf births
+dominate the reservoir births, a source ring removes at most one
+actual leaf, and all immigration from the profile or other exterior
+branches only adds leaves.  Thus $D_g\ge L_g\ge X$ before killing.
+Choose the guardian's unique interior neighbor exactly when
+$U\le1/D_g$.  This is a correct uniform-neighbor construction.  On
+reservoir survival, $U>1/X\ge1/D_g$ at every guardian ring, so the
+guardian never sends an arrival to the profile.
+
+These survival events use only the independent guardian driver arrays,
+not the interior driver array.  They allow all guardian promotions
+and all exterior side-branch evolution; they do not require a guardian
+to remain a star.  Their joint probability is at least $6^{-b}$.
+On their intersection the interior has exactly the prescribed profile
+law, using unchanged independent interior drivers.  Outward interior
+choices only add leaves at guardians, which cannot spoil the lower
+reservoir coupling.  Conditional on the whole preparation history,
+the expected tagged profile reward times the intersection indicator
+is therefore at least $6^{-b}F_p(t)$.
+
+That tagged reward is part of the original inert root's total core
+reward.  Taking $a_p=p_p6^{-b}$ proves
+\eqref{cr:guardian-time}.  Integrating from $h_p$ to infinity proves
+the resolvent assertion.  This exact construction uses the assumption
+that the profile has a stub; no such embedding is asserted for a
+stub-free profile.
+\end{proof}
+
+\subsection{Critical divergence and a bounded positive eigenfunction}
+
+\begin{theorem}[Uniform comparison to the inert resolvent]
+\label{cr:uniform-inert}
+There is a finite constant $K$ such that
+\begin{equation}
+ W^\partial(s)\le K V_s^\infty
+ \qquad(\mu<s\le1).
+ \label{cr:uniform-inert-bound}
+\end{equation}
+Moreover
+\begin{equation}
+ \boxed{V_\mu^\infty=\infty,
+ \qquad\sum_{m\ge0}A_m^\infty(\mu)=\infty.}
+ \label{cr:critical-divergence}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Fix $R=161,M=1024$ and let $\mathcal P$ be the finite range of the
+profile map on $\mathcal X^\partial$.  Lemma~\ref{cr:profiles} gives
+at each finite horizon
+\[
+ W_T^\partial(s)\le
+ \max_{p\in\mathcal P}V_{s,T}^{\rm tag}(p)
+ +\frac{375}{1936}W_T^\partial(s).
+\]
+By Lemma~\ref{cr:guardian}, the maximum of the infinite-horizon values
+is at most $K_0V_s^\infty$, where
+$K_0=\max_{p\in\mathcal P}a_p^{-1}e^{h_p}<\infty$ for $s\le1$.
+Absorption and then $T\to\infty$ prove
+\eqref{cr:uniform-inert-bound} with
+$K=K_0/(1-375/1936)$.
+
+Suppose $V_\mu^\infty$ were finite.  The same finite-horizon argument
+at $s=\mu>s_0$ would give $W^\partial(\mu)<\infty$.  Tonelli and the
+first genealogical decomposition then give the bounded function
+\[
+ f(x)=\mu V_\mu^{\rm tag}(x)
+      =1+\sum_{m\ge1}A_m(\mu;x),
+ \quad 1\le f\le\mu W^\partial(\mu),
+ \quad\mathcal K_\mu f=f-1.
+\]
+Let $B=\mu W^\partial(\mu)$.  Then $B>1$ and
+$\mathcal K_\mu f\le(1-1/B)f$.  Positivity gives
+\[
+ A_m^\infty(\mu)
+ \le (\mathcal K_\mu^m f)(x_\infty)
+ \le (1-1/B)^m f(x_\infty).
+\]
+This contradicts the already established pressure equation
+$\lim_m A_m^\infty(\mu)^{1/m}=1$.  Hence
+$V_\mu^\infty=\infty$, and the genealogical resolvent identity proves
+the second assertion.
+\end{proof}
+
+\begin{theorem}[A bounded positive critical genealogical eigenfunction]
+\label{cr:eigenfunction}
+On $\mathcal X^\partial$ there is a bounded function $h$ such that
+\begin{equation}
+ h(x_\infty)=1,\qquad
+ \gamma_1\le h(x)\le K,\qquad
+ \mathcal K_\mu h=h,
+ \quad\gamma_1=\frac1{48}.
+ \label{cr:eigenfunction-bounds}
+\end{equation}
+In particular, for every $m\ge0$,
+\begin{equation}
+ \boxed{\frac1K\le A_m^\infty(\mu)\le\frac1{\gamma_1}=48.}
+ \label{cr:critical-lower-coefficients}
+\end{equation}
+The previous sharper upper bound $A_m^\infty(\mu)<43$ remains valid.
+\end{theorem}
+\begin{proof}
+For $\mu<s\le1$, normalize
+$h_s(x)=V_s^{\rm tag}(x)/V_s^\infty$.  The uniform comparison gives
+$h_s\le K$.  The original minorization and the genealogical resolvent
+identity give
+\[
+ V_s^{\rm tag}(x)
+ =\frac1s\left(1+\sum_{m\ge1}A_m(s;x)\right)
+ \ge\gamma_s V_s^\infty\ge\gamma_1 V_s^\infty.
+\]
+The first genealogical decomposition gives the exact equation
+\[
+ h_s=\frac1{sV_s^\infty}+\mathcal K_s h_s.
+\]
+Take a sequence $s\downarrow\mu$ and a diagonal subsequence on the
+countable space $\mathcal X^\partial$.  Its pointwise limit $h$ has
+the displayed bounds and normalization.  Monotone convergence gives
+$V_s^\infty\to V_\mu^\infty=\infty$.  In the kernel expression,
+$|h_s|\le K$ and
+\[
+ \mathbb E_x\sum_{v\text{ child}}e^{-\mu\sigma_v}\le1/\mu.
+\]
+Dominated convergence therefore gives
+$\mathcal K_s h_s\to\mathcal K_\mu h$ at each state.  Thus
+$\mathcal K_\mu h=h$.  Iteration and positivity yield
+\[
+ \gamma_1 A_m^\infty(\mu)
+ \le(\mathcal K_\mu^m h)(x_\infty)=1
+ \le K A_m^\infty(\mu),
+\]
+which proves \eqref{cr:critical-lower-coefficients}.
+\end{proof}
+
+The uniform profile comparison does not make the whole-environment
+operator compact on $\ell^\infty$.  It is a relative approximation
+for this particular family of resolvent rewards.  Accordingly, the
+critical eigenfunction is compatible with the previously proved
+critical essential spectral radius one.
+
+\begin{corollary}[A genuine critical renewal boundary value]
+\label{cr:renewal-boundary}
+Let $F_s(z)=\sum_{m\ge0}A_m^\infty(s)z^m$ and define the signed
+renewal germ $B_s(z)=1-1/F_s(z)$ near zero. Its Taylor coefficients are
+the finite signed expressions
+\[
+ b_m(s)=
+ \sum_{j=1}^{m}(-1)^{j-1}
+ \sum_{\substack{n_1+\cdots+n_j=m\\n_i\ge1}}
+ \prod_{i=1}^{j} A_{n_i}^\infty(s).
+\]
+Along the real interval
+$0\le z<1$, $F_\mu(z)>0$ and this formula continues the germ, and
+\[
+ \frac{1-z}{48}\le1-B_\mu(z)\le K(1-z),
+ \qquad \lim_{z\uparrow1}B_\mu(z)=1.
+\]
+\end{corollary}
+\begin{proof}
+Expand the reciprocal formally at zero to obtain the coefficient formula;
+the kernel norm bound makes it an analytic germ, for example on
+$|z|<s/2$. The bounded positive critical coefficients give
+$1/[K(1-z)]\le F_\mu(z)\le48/(1-z)$ for real $z<1$.
+Taking reciprocals proves both assertions.
+\end{proof}
+
+This boundary statement is a continuation along the positive real
+axis.  It does not assert that the signed Taylor series for $B_\mu$
+has radius at least one, nor that its coefficients are nonnegative.
+Complex zeros of $F_\mu$ would require separate analysis.  No arithmetic
+classification of $\mu$ follows here: the $A_j^\infty(r)$ are infinite
+kernel values, not known rational numbers at a rational discount $r$.
+
+\subsection{Removing the stub restriction from newborn comparison}
+
+Let $W(s)$ again denote the supremum over all finite newborn environments,
+including those with no inert stub.
+
+\begin{theorem}[All newborn resolvents have one common critical scale]
+\label{cr:all-newborns}
+There is a finite constant $K_{\rm all}$ such that
+\[
+ W(s)\le K_{\rm all}V_s^\infty
+ \qquad(\mu<s\le1).
+\]
+One may take $K_{\rm all}=1+20K/s_0^2$, where $K$ is from
+Theorem~\ref{cr:uniform-inert}.  Consequently the bounded positive
+critical eigenfunction construction extends to the entire newborn
+class $\mathcal X$:
+\[
+ h(x_\infty)=1,\quad\gamma_1\le h\le K_{\rm all},
+ \quad\mathcal K_\mu h=h.
+\]
+\end{theorem}
+\begin{proof}
+Cut the newborn tag's parent edge at time zero.  The retained state
+starts at $x_\infty$.  In the actual process it has the inert generator
+plus a predictable root-leaf input of intensity
+\[
+ q_t=1/D_p(t)\le1/2
+\]
+if the parent is real; the intensity is zero for an inert parent.
+All outward selections from the retained component affect only the
+exterior and are null in the retained state.  The exterior may respond
+to the retained history; predictability is all that is needed below.
+
+For the inert finite-horizon value $V_{s,r}(y)$, the root-leaf gradient
+can be written with $W_T^\partial(s)$:
+\[
+ |\Delta_{\rm root}V_{s,r}(y)|
+ \le\frac{40}{s}W_T^\partial(s)\qquad(0\le r\le T).
+\]
+Indeed, the two reference processes in this gradient retain their
+original root stub.  Every charged newborn family is evaluated in
+that full retained environment, so it belongs to
+$\mathcal X^\partial$.  This is Lemma~\ref{cr:directional} with $r=0$.
+
+Apply the finite-horizon discounted backward Dynkin identity to this
+inert value along the actual controlled retained state.  It gives
+\[
+ V_{s,T}^{\rm tag}(x)=V_{s,T}^\infty+
+ \mathbb E_x\int_0^T e^{-st}q_t
+       \Delta_{\rm root}V_{s,T-t}(Y_t)\,dt.
+\]
+Thus, uniformly in the exterior,
+\[
+ V_{s,T}^{\rm tag}(x)
+ \le V_{s,T}^\infty+\frac{20}{s^2}W_T^\partial(s).
+\]
+Take the supremum over $x$, let $T\to\infty$, and use
+Theorem~\ref{cr:uniform-inert}.  This proves the displayed constant.
+Finally normalize all newborn resolvents by $V_s^\infty$ and repeat
+the diagonal and dominated-convergence proof of
+Theorem~\ref{cr:eigenfunction}, now on $\mathcal X$.
+\end{proof}
+
+\subsection{A core-comparable critical generator eigenfunction}
+
+Here the old state $y$ has exactly one inert stub, at its retained
+root, and $V_s(y)$ counts all its old and future cores.  This restriction
+is needed for the degree counting below.
+
+\begin{lemma}[A positive density of old cores can found newborn families]
+\label{cr:old-core-lower}
+Put
+\[
+ p_* = \frac{e^{-2}(1-e^{-1})^2}{6},
+ \qquad a_* = \frac{p_*e^{-2}}{192}>0.
+\]
+For every finite one-stub old state $y$ and $\mu<s\le1$,
+\[
+ V_s(y)\ge a_* C(y)V_s^\infty.
+\]
+\end{lemma}
+\begin{proof}
+Write $k=C(y)$ and let $c_v$ denote the number of core neighbors plus
+the stub, where present.  Thus $c_v\ge1$ and
+$\sum_vc_v=2k-1$.  Let $n_1$ be the number with $c_v=1$, let
+$H=\{v:c_v\ge3\}$, and let
+\[
+ B=\{v:c_v=2,\ L_v=0\}.
+\]
+Every $c_v=1$ vertex has a leaf, since its full degree is at least two.
+The degree sum implies $|H|\le n_1-1$.
+Let $I\subset B$ consist of those vertices with no real neighbor in
+$B$.  These form an independent set.  All its vertices have two real
+core edges except possibly the root, which may use the unique stub.
+Its incident core edges are distinct, so
+$2|I|-1\le k-1$, or $|I|\le k/2$.
+
+Call a core eligible if it has $c_v\le2$ and at least one leaf, or if
+it belongs to $B\setminus I$.  For their number $e$ we have
+\[
+ e=k-|H|-|I|,\qquad e\ge n_1.
+\]
+Combining the inequalities gives $e\ge k/4$.
+
+If an eligible core $v$ has a leaf, its first source-clock ring by
+time one chooses a leaf with probability at least $1/3$: before that
+ring, its core-neighbor count remains fixed at at most two and its
+leaf count can only grow.  The event probability is at least
+$(1-e^{-1})/3\ge p_*$.
+
+Otherwise $v\in B$ has a neighbor $w\in B$.  During the first unit
+interval keep $v$ and the other real neighbor of $w$, if any, silent.
+This costs at most the factor $e^{-2}$.  Then $w$ keeps degree two and
+no leaves during that interval.  Require its first ring to occur by
+time one and select $v$, with probability $(1-e^{-1})/2$.  This gives
+$v$ a leaf.  Further rings of $w$ are allowed.  During the second unit
+interval the first ring of $v$ occurs with probability $1-e^{-1}$,
+and selects a leaf with probability at least $1/3$.  Thus $v$ produces
+a newborn core child by time two with probability at least $p_*$.
+Other immigration and leaf births only improve the stated leaf-choice
+lower bounds.  If $w$'s other neighbor is the stub, the unnecessary
+silence condition can simply be omitted.
+
+For each eligible old core retain at most the one child specified by
+this event.  These newborns have mutually disjoint future genealogies,
+even though their subsequent dynamics need not be independent.
+Conditional on a child's birth at $\tau\le2$, its future discounted
+mean is at least $\gamma_sV_s^\infty\ge V_s^\infty/48$ by the
+existing newborn minorization.  Discounting the birth costs at most
+$e^{-2s}\ge e^{-2}$.  Summing these nonnegative disjoint family rewards
+over at least $k/4$ eligible old cores proves the assertion.
+\end{proof}
+
+\begin{theorem}[Critical eigenfunction in the core-comparable class]
+\label{cr:generator-eigenfunction}
+There is a function $H$ on the finite one-stub old states such that
+\[
+ H(x_\infty)=1,\qquad
+ a_* C(y)\le H(y)\le A_*C(y),\qquad
+ \mathcal L_\infty H=\mu H,
+\]
+for a finite constant $A_*$.  Moreover
+\[
+ P_t^\infty H(y)=e^{\mu t}H(y)
+ \qquad(t\ge0).
+\]
+\end{theorem}
+\begin{proof}
+Normalize $H_s(y)=V_s(y)/V_s^\infty$ for $\mu<s\le1$.
+Lemma~\ref{cr:old-core-lower} gives the uniform lower bound.
+The old-core decomposition, using the closed stub subclass for each
+future newborn family, gives
+\[
+ V_s(y)\le\frac{C(y)}s(1+W^\partial(s)).
+\]
+Since $V_s^\infty\ge1/s\ge1$, Theorem~\ref{cr:uniform-inert} yields
+\[
+ H_s(y)\le\frac{1+K}{s_0}C(y).
+\]
+Take a pointwise convergent diagonal subsequence on the countable old
+state space.  At each fixed state the generator has only finitely many
+possible distinct ordinary birth transitions.  Dividing the resolvent
+equation by $V_s^\infty$ and passing to the limit therefore gives
+\[
+ (\mu-\mathcal L_\infty)H=0.
+\]
+Its normalization and both comparison bounds pass to the limit.
+
+For the semigroup assertion, the finite-time resolvent identity is
+\[
+ V_s(y)=\int_0^t e^{-su}P_u^\infty C(y)\,du
+       +e^{-st}P_t^\infty V_s(y).
+\]
+Divide by $V_s^\infty\to\infty$.  The first term tends to zero.
+The uniform bound $H_s\le A_*C$ and finite-time Yule moments justify
+dominated convergence in the second term, giving
+$H(y)=e^{-\mu t}P_t^\infty H(y)$.
+\end{proof}
+
+In particular the elementary population-mode eigenfunctions that exist
+at all positive parameters are no longer the only available harmonic
+relations: the original critical parameter has an eigenfunction in the
+specific core-comparable class.  This is an analytic selection theorem.
+It still supplies no number-theoretic classification of that parameter.
+Scaling $H$ by $a_*^{-1}$ gives an element of the class
+$\mathcal A_C$ that attains the infimum in
+Theorem~\ref{pm:variational}.
+
+\begin{corollary}[The critical core-ring equation has no escape term]
+\label{cr:core-ring-noescape}
+For the one-stub eigenfunction $H$ of
+Theorem~\ref{cr:generator-eigenfunction},
+\[
+ Q_\mu H=H.
+\]
+More precisely, if $T$ is the first core-clock ring from a state with
+$k$ cores, then
+\[
+ \mathbb E_y[e^{-\mu t}H(Y_t);T>t]
+ \le A_* k e^{-(\mu+k)t}\longrightarrow0.
+\]
+\end{corollary}
+\begin{proof}
+Before $T$, only leaf clocks ring, so the core count stays $k$, while
+$\Pr(T>t)=e^{-kt}$.  Core comparison gives the displayed escape bound.
+The semigroup identity makes $e^{-\mu t}H(Y_t)$ a true martingale.
+Its stopped values at $T\wedge t$ are bounded by $A_*(k+1)$, since
+the first core ring raises the core count by at most one.  Optional
+stopping and dominated convergence therefore yield
+$H(y)=\mathbb E_y[e^{-\mu T}H(Y_T)]=Q_\mu H(y)$.
+\end{proof}
+
+\begin{corollary}[Uniform exponential bounds and the free-tree eigenfunction]
+\label{cr:free-eigenfunction}
+The inert newborn mean satisfies
+\[
+ A_*^{-1}e^{\mu t}\le F_\infty(t)\le a_*^{-1}e^{\mu t}
+ \qquad(t\ge0).
+\]
+Consequently, for every $s>\mu$,
+\begin{equation}
+ \frac1{A_*(s-\mu)}\le V_s^\infty
+ \le\frac1{a_*(s-\mu)}.
+ \label{cr:real-pole-order}
+\end{equation}
+This is a two-sided real-axis estimate; neither a meromorphic
+continuation nor existence of a residue is asserted.
+On the free old-state class with at least one core, there is likewise
+a core-comparable function $H_{\rm free}$ with
+\[
+ \mathcal L_{\rm free}H_{\rm free}=\mu H_{\rm free},
+ \qquad P_t^{\rm free}H_{\rm free}=e^{\mu t}H_{\rm free}.
+\]
+Consequently the original edge-start mean satisfies
+$F_2(t)\asymp e^{\mu t}$ for $t\ge1$, with fixed positive comparison
+constants.  Its embedded expected core count satisfies
+$\mathbb E C_n\asymp n^\mu$ for $n\ge3$.
+\end{corollary}
+\begin{proof}
+For the inert process, apply its positive semigroup to
+$a_*C\le H\le A_*C$ and use $H(x_\infty)=1$.
+
+For a free old state with $k\ge2$ cores, the same eligible-core proof
+uses $\sum c_v=2k-2$, $|H|\le n_1-2$, and
+$2|I|\le k-1$.  It therefore again gives at least $k/4$ eligible
+cores and the same lower bound
+$V_s^{\rm free}(y)\ge a_*kV_s^\infty$.
+If $k=1$, the unique core has at least two leaves and no core neighbor;
+its first source ring produces a child, so the same weaker constant
+is valid directly.  The upper bound now uses
+$W(s)\le K_{\rm all}V_s^\infty$ in the old-core decomposition.
+Normalize by $V_s^\infty$ and repeat the generator and semigroup
+limit proof.  This establishes $H_{\rm free}$ on the closed class
+of states with at least one core.  No core-comparable function is
+claimed at the initial edge itself, whose core count is zero.
+
+The first free birth has independent exponential time of rate two,
+and leaves the three-vertex star $S_3$.  Thus
+\[
+ F_2(t)=\int_0^t2e^{-2u}F_{S_3}(t-u)\,du.
+\]
+Core comparison for $H_{\rm free}$ gives
+$F_{S_3}(t)\asymp e^{\mu t}$, and this convolution proves the assertion
+for $t\ge1$.
+
+If desired, the positive eigenfunction itself extends to the initial
+edge $E_2$ by the uniquely required value
+\[
+ H_{\rm free}(E_2)=\frac{2H_{\rm free}(S_3)}{\mu+2}.
+\]
+The generator equation there is
+$2(H_{\rm free}(S_3)-H_{\rm free}(E_2))
+ =\mu H_{\rm free}(E_2)$, and the same first-birth decomposition
+proves the semigroup equation at $E_2$.  Core comparison is still
+asserted only when the state has a core.
+
+Finally, on a free tree of population $n\ge2$ the generator equation
+is exactly
+\[
+ \mathbb E[H_{\rm free}(T_{n+1})\mid T_n]
+  =\left(1+\frac\mu n\right)H_{\rm free}(T_n).
+\]
+Starting from $E_2$, iteration gives the precise identity
+\[
+ \mathbb E H_{\rm free}(T_n)
+ =H_{\rm free}(E_2)
+   \prod_{j=2}^{n-1}\left(1+\frac\mu j\right)
+ =H_{\rm free}(E_2)
+   \frac{(\mu+2)_{n-2}}{(n-1)!}
+ =H_{\rm free}(E_2)
+   \frac{\Gamma(n+\mu)}{\Gamma(n)\Gamma(2+\mu)}.
+\]
+Its core-comparability and the elementary gamma-ratio asymptotic yield
+$\mathbb E C_n\asymp n^\mu$.
+\end{proof}
+
+The last product also gives a nonnegative embedded-chain martingale
+\[
+ \frac{(n-1)!}{(\mu+2)_{n-2}}H_{\rm free}(T_n).
+\]
+The function $H_{\rm free}$ is selected by the limiting resolvents; an
+explicit arithmetic formula for its values has not been proved.
+
+% Consequence of the newly proved two-sided exponential mean bounds.
+% This does not identify an arithmetic type or a limiting amplitude.
+
+\subsection{A quantitative derivative-order bound at a fixed discount}
+
+Let $H_{\rm free}$ be the critical core-comparable eigenfunction, and
+write its comparison as
+\[
+ a_*C\le H_{\rm free}\le A_{\rm free}C
+\]
+on free states with a core.  One may use
+$A_{\rm free}=(1+K_{\rm all})/s_0$ and the constant $a_*$ from
+Lemma~\ref{cr:old-core-lower}.  The first-birth decomposition of the
+edge-start process gives, for all $t\ge0$,
+\begin{equation}
+ a(e^{\mu t}-e^{-2t})\le F_2(t)
+ \le b(e^{\mu t}-e^{-2t}),
+ \qquad \frac ba=\frac{A_{\rm free}}{a_*}=:L,
+ \label{cr:two-exponential-envelope}
+\end{equation}
+where
+\[
+ a=\frac{2H_{\rm free}(S_3)}{(\mu+2)A_{\rm free}},
+ \qquad b=\frac{2H_{\rm free}(S_3)}{(\mu+2)a_*}.
+\]
+
+For a fixed $s>\mu$, retain
+\[
+ Z_m(s)=\int_0^\infty t^m e^{-st}F_2(t)\,dt,
+ \qquad B_m(s)=Z_m(s)/m!.
+\]
+Put $\lambda=s-\mu$ and $\rho=\lambda/(s+2)\in(0,1)$.
+
+\begin{proposition}[Derivative-ratio rate]
+\label{cr:derivative-ratio-rate}
+For every integer $m\ge0$,
+\begin{equation}
+ \left|\lambda\frac{B_{m+1}(s)}{B_m(s)}-1\right|
+ \le\Delta_m(s):=
+ \frac{L}{(1-\rho^{m+1})\sqrt{m+1}}.
+ \label{cr:ratio-rate-forward}
+\end{equation}
+Whenever $\Delta_m(s)<1$,
+\begin{equation}
+ \left|\frac{B_m(s)}{B_{m+1}(s)}-(s-\mu)\right|
+ \le (s-\mu)\frac{\Delta_m(s)}{1-\Delta_m(s)}.
+ \label{cr:ratio-rate-inverse}
+\end{equation}
+In particular, at each fixed $s>\mu$,
+\[
+ \frac{B_m(s)}{B_{m+1}(s)}=(s-\mu)+O_s(m^{-1/2}).
+\]
+\end{proposition}
+\begin{proof}
+Set $A(t)=e^{-\mu t}F_2(t)$, and let $T$ be gamma distributed with
+shape $r=m+1$ and rate $\lambda$.  By
+\eqref{cr:two-exponential-envelope},
+\[
+ a(1-e^{-(\mu+2)t})\le A(t)\le b.
+\]
+Consequently
+\[
+ \mathbb EA(T)\ge a(1-\rho^r).
+\]
+Writing $U=\lambda T/r$, the gamma mean and variance give
+$\mathbb EU=1$ and $\mathbb E(U-1)^2=1/r$.  Directly from the integral
+definitions,
+\[
+ \lambda\frac{B_{m+1}(s)}{B_m(s)}
+ =\frac{\mathbb E[A(T)U]}{\mathbb EA(T)}.
+\]
+Cauchy--Schwarz and $A\le b$ now show
+\[
+ \left|\frac{\mathbb E[A(T)(U-1)]}{\mathbb EA(T)}\right|
+ \le\frac{b}{a(1-\rho^r)\sqrt r},
+\]
+which is \eqref{cr:ratio-rate-forward}.  The inverse-ratio bound follows
+by taking the reciprocal of $1+\varepsilon_m$, with
+$|\varepsilon_m|\le\Delta_m<1$.
+\end{proof}
+
+The constants in this bound are finite constants from the explicit
+comparison constructions.  They have not been numerically evaluated
+here, and the finite profile range used to prove their existence is
+very large.  This establishes a derivative-order rate, not a practical
+precision estimate for the existing calculator.  No monotonicity or
+fixed one-sided sign of the ratio error is asserted.  Nor is a
+power-law amplitude or a meromorphic singularity required.
+For a certified lower bound $a_0\le\mu$ and $s>\mu$, replacing
+$\rho$ by $(s-a_0)/(s+2)$ and $\lambda$ by $s-a_0$ gives an upper
+error bound that does not require the unknown value of $\mu$.
+A certified numerical bound on $L$ is still needed to use that
+estimate with computed derivative intervals.

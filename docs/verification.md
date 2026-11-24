@@ -37,6 +37,7 @@ successful run, with source hashes in `quick_check_run.json`.
 | `check_bipartite_products.py --check` | Whole-polynomial generator and expectation identities through population 10 in both free and inert models, harmonic coefficients, second moments, integer binomial values, and star probabilities | Supports the signed product and variance identities; true-martingale and exponent statements require the written proofs |
 | `check_product_insertions.py --check` | 1,167 exact checks of entire bivariate polynomials on all free trees through population 9 and their finite-population recurrences | Checks the core, color, and core-count-generating insertions; it does not close their remaining neighbor-dependent expectations |
 | `check_product_countermodel.py` | 944 exact checks on all 94 unlabelled trees through population 9 and the uniform-color expectation bound | Checks a distinct rational-growth comparison process, not the original exponent |
+| `check_critical_boundary.py --check` | 435,595 exact checks on 485 rooted one-stub states through population 9, all 489 newborn-tag choices, and 21,549 cut profiles | Checks eligible-core counting, full-degree/stub preservation, exact absorption constants, and prefix-free weights against an independent probability-splitting walk; the infinite coupling and eigenfunction theorems remain analytic |
 
 The root checker produces intervals of width `2**-90` using rational enclosures
 for the exponential-integral series. Floating-point values printed elsewhere
@@ -82,11 +83,20 @@ The derivative helper's
 encloses derivatives at a fixed discount using exact full-tree coefficients.
 The caller must supply the actual coefficients; elementary size-bound
 validation alone does not prove their provenance. These intervals enclose
-the fixed-index ratios, while the limit in derivative order has no
-certified rate. The
+the fixed-index ratios. The new derivative-order bound is expressed in
+finite core-comparison constants that have not been numerically evaluated;
+the helper therefore does not yet turn these intervals into error bars
+for the limiting exponent. The
 [generator obstruction report](../verification/generator_obstruction_checks.json)
 records exact identities; its negative generator-moment Hankel matrix is
 different from the positive time-tilted moment matrices in the manuscript.
+
+The [critical-boundary report](../verification/critical_boundary_checks.json)
+also records a six-vertex witness for a potentially consequential indexing
+error: omitting the retained boundary target's factor gives frontier mass
+two instead of one. The correct path products agree exactly with the
+independent local probability calculation. These finite checks do not
+establish guardian independence, critical divergence, or irrationality.
 
 The Yule helper evaluates an exact finite binomial-tail expression at a
 rational survival parameter. Using a rational lower bound for `exp(-T)`
@@ -109,6 +119,7 @@ python3 scripts/full_tree_recurrence.py --check --output build/verification/full
 python3 scripts/primitive_population_tools.py --check --output build/verification/primitive_population_checks.json
 python3 scripts/laplace_derivative_tools.py --check --output build/verification/laplace_derivative_tool_checks.json
 python3 scripts/check_generator_obstructions.py --check --output build/verification/generator_obstruction_checks.json
+python3 scripts/check_critical_boundary.py --check --output build/verification/critical_boundary_checks.json
 ```
 
 To compute a different finite prefix of the full-tree coefficients, use

@@ -50,6 +50,7 @@ def main() -> None:
         ("check_bipartite_products.py", ["--check"], "bipartite_product_checks.json"),
         ("check_product_insertions.py", ["--check"], "product_insertion_checks.json"),
         ("check_product_countermodel.py", [], "product_countermodel_checks.json"),
+        ("check_critical_boundary.py", ["--check"], "critical_boundary_checks.json"),
     ]
     for script, arguments, filename in checks:
         report = run_json(script, arguments)
@@ -75,6 +76,7 @@ def main() -> None:
                  "Laplace derivative tails, generator and Hankel obstructions, "
                  "signed product martingales, core/color insertions and a distinct "
                  "rational-growth comparison, "
+                 "critical-boundary eligible-core counts and prefix-free cut weights, "
                  "and modified-model root brackets. "
                  "Analytic proofs are in the manuscripts. The general original-model "
                  "computability algorithm is not implemented by these scripts.",

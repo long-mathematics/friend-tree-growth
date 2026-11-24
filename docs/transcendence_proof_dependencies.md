@@ -70,8 +70,8 @@ The theorem numbers below refer to the continuation.
 | Fixed-discount Laplace derivative-ratio limit | Derivative section, `tl:ratio` | The established free-tree mean exponent and gamma concentration, with a separate first-moment tail argument; requires no limiting amplitude or generation-ratio limit |
 | Rational derivative series and finite tails | Derivative section, `tl:beta-jet` and `tl:rational-tail` | Positive beta-product coefficients, complete homogeneous polynomials, and an exactly telescoping dominant tail for `s>1`; finite-index ratio enclosures do not enclose `mu` |
 | Positive population modes at every discount | Population-eigenfunction section, `pm:all-discounts` | Proper-birth coupling between rates `n-1/2` and `n`, positive gamma-bounded population limits, Markov scaling, finite first-step equations, and a conservative Doob transform; marked core hazard proves no escape |
-| Core-growth variational characterization | Population-eigenfunction section, `pm:variational` | Uniform comparability with `C`, localized Dynkin/Fatou, and the inherited canonical resolvent; no attainment of the infimum is asserted |
-| Uniform critical resolvent divergence | Population-eigenfunction section, `pm:uniform-pole` | Variational growth comparison and the original bound `V_s <= (1+W(s))C/s`; no exchange of supremum and integral and no claim of a pointwise critical pole |
+| Core-growth variational characterization | Population-eigenfunction section, `pm:variational` | Uniform comparability with `C`, localized Dynkin/Fatou, and the inherited canonical resolvent; attainment is proved in the later critical-boundary section |
+| Uniform critical resolvent divergence | Population-eigenfunction section, `pm:uniform-pole` | Variational growth comparison and the original bound `V_s <= (1+W(s))C/s`; the later directional argument separately supplies fixed-seed divergence |
 | No finite invariant linear closure containing the core count | Generator section, `fgo:star-pole` and `fgo:independence` | Finite history patterns on stars, increasing pole orders, and two elementary seed comparisons; does not exclude an edge-start scalar equation or a nonlinear closure |
 | Failure of a positive scalar spectral representation | Generator section | Exact edge-start generator derivatives, negative Hankel determinant, and an explicit negative-square certificate; specific to `F_2'/2` and positive measures with exponential moments near zero |
 | Signed hypergeometric product martingale | Product section, `prop:bipartite-product` | Exact birth ratio and cancellation over real edges; all fixed-population complex parameters, all fixed continuous-time coefficients, and whole-product continuous-time martingales for real `abs(z)<=1` |
@@ -82,6 +82,17 @@ The theorem numbers below refer to the continuation.
 | Finite full-environment determinant obstruction | Essential-spectrum section, `ess:finite` | Strict population increase for genealogical/proper births; the only same-population core-ring transition is the explicit null ring |
 | Critical essential radius one | Essential-spectrum section, `ess:radius` | Disjoint population bands weakly null in `ell^infinity`, compact-operator norm decay, inert coefficient comparison, uniform supercritical resolvent bounds, and log-convexity |
 | Full spectral-radius characteristic | Essential-spectrum section, `ess:characteristic` | Continuity, convexity and decrease of `log r(K_s)`, plus the upper bound `r(K_s)<=1/s`; does not imply a compactness gap or arithmetic specialization |
+| Directional boundary gradient | Critical-boundary section, `cr:directional` | The original aggregate coupling and its certified reservoir; a specified-edge infection bound, including the initial infection with no predecessor; charged families retain an inert stub |
+| Uniform relative finite-profile approximation | Critical-boundary section, `cr:profiles` | Directional gradient, prefix-free nonbacktracking cylinders, nondecreasing full degrees, and finite-horizon backward Dynkin; explicit error at most `375/1936<1/4` |
+| Permanent finite-profile embedding | Critical-boundary section, `cr:guardian` | Positive-probability finite preparation and the original killed-reservoir survival lemma; independent guardian drivers preserve the entire interior law |
+| Fixed inert critical divergence | Critical-boundary section, `cr:uniform-inert` | Absorption of the relative profile error, finite guardian embeddings, and contradiction with the inert pressure equation; does not exchange supremum and integral |
+| Bounded positive critical genealogical eigenfunction | Critical-boundary section, `cr:eigenfunction` and `cr:all-newborns` | Normalized resolvents, a countable diagonal limit, and dominated kernel convergence; the all-environment extension uses predictable parent input bounded by one half |
+| Uniformly positive critical generation coefficients | Critical-boundary section, `cr:critical-lower-coefficients` | Iteration of the bounded positive eigenfunction; `A_m^infinity(mu)>=1/K` for every generation |
+| Critical signed renewal boundary | Critical-boundary section, `cr:renewal-boundary` | Two-sided generation coefficient bounds; continuation of the signed germ along the positive real axis, not an assertion of Taylor-series convergence at one |
+| Core-comparable critical generator eigenfunctions | Critical-boundary section, `cr:generator-eigenfunction` and `cr:free-eigenfunction` | An eligible-core counting lemma, uniform child creation, newborn minorization, uniform resolvent comparison, and finite-state generator limits; excludes the zero-core edge from core comparability |
+| Critical core-ring equation with no escape | Critical-boundary section, `cr:core-ring-noescape` | The true critical martingale, bounded core count before the first core ring, and optional stopping; the omitted boundary is bounded by `A_* k exp(-(mu+k)t)` |
+| Original mean growth up to constant factors | Critical-boundary section, `cr:free-eigenfunction` | Core-comparable semigroup eigenfunctions and the exact embedded rising-factorial expectation; `E C_n=Theta(n^mu)`, without a limiting amplitude |
+| Quantitative fixed-discount derivative-order bound | Critical-boundary section, `cr:derivative-ratio-rate` | The two-exponential envelope for the free mean and gamma mean/variance; `O_s(m^(-1/2))` with a displayed bound in terms of finite but unevaluated core-comparison constants |
 | Sufficient irrationality small-value criterion | Final arithmetic audit | If `mu=p/q`, then `q^(deg P) P(mu)` is a nonzero integer; no polynomial-height hypothesis is needed for this weaker target |
 | Sufficient polynomial small-value criterion | Final arithmetic audit | The nonzero integer resultant for an algebraic candidate; signed nonzero polynomials are now available, but the required small-value estimate relative to height remains unproved |
 
@@ -164,15 +175,22 @@ The operator-factorial representation uses finite polynomial operations
 on the generator and assumes no bounded-operator functional calculus.
 The explicit generation-resolvent tail
 applies above a certified upper bound and deteriorates toward it. Bounded
-critical coefficients and pressure one do not establish divergence of the
-critical generation sum, so no reciprocal-resolvent zero or pointwise
-critical pole is asserted. Uniform resolvent suprema do diverge at least
-as `1/(s-mu)`; this does not imply divergence at any prescribed finite seed.
+critical coefficients and pressure one alone do not establish divergence
+of the critical generation sum. The new directional-gradient and guardian
+argument supplies the additional actual-model input: the critical
+coefficients have a uniform positive lower bound. The fixed inert and
+free transforms now have two-sided reciprocal-linear bounds as `s`
+decreases to `mu`. These are real-axis estimates, not a meromorphic
+continuation or a proved limiting residue.
 
 The derivative-ratio formula provides a genuine stronger limit relation
 at one fixed rational discount, and every fixed derivative has certified
-rational series enclosures. The proof uses only a qualitative mean
-exponent, however, and supplies no effective rate in derivative order.
+rational series enclosures. Its original proof used only a qualitative
+mean exponent. The new critical eigenfunction theorem gives two-sided
+exponential mean bounds and therefore an `O_s(m^(-1/2))` derivative-order
+estimate. Its core-comparison constants have not been numerically
+evaluated, so the existing calculator does not yet supply certified
+error bars for the limiting exponent.
 Moment positivity concerns the unnormalized time-tilted integrals `Z_m`;
 their values are not known to be rational. It therefore does not supply
 a rational continued-fraction proof of irrationality. The negative
@@ -181,8 +199,10 @@ generator-moment Hankel certificate concerns a different sequence.
 The all-discount population eigenfunctions show that exact positivity and
 even no-escape harmonicity for the full kernel do not identify the critical
 parameter. Uniform comparability with the core count does identify it.
-These population modes do not resolve the escape term of the separately
-constructed core-reward-normalized critical eigenfunction. Likewise the
+The new critical construction attains that class for both the one-stub
+and free generators. Its core-ring stopping boundary vanishes by the
+explicit bound `A_* k exp(-(mu+k)t)`. No arithmetic formula for this
+selected eigenfunction's state values has been proved. Likewise the
 statewise star-pole theorem does not prove edge-start numerical denominator
 noncancellation: the explicit fifth-prime cancellation in the sixth
 generator derivative demonstrates the missing transfer.
@@ -211,11 +231,16 @@ observables or a quotient with different spectral properties. Such a
 space or quotient must be constructed and proved to retain the critical
 growth before a compact-operator arithmetic argument can use it.
 The separate [signed renewal note](signed_renewal_scope.md) gives a local
-rank-one resolvent identity and an explicit weighted-shift comparison with
-a rational critical root in the certified interval. Even its nonnegative
-renewal coefficients have total mass below one at criticality. This
-demonstrates the precise missing pointwise boundary theorem; it is not an
-alternative realization of the friend rule.
+rank-one resolvent identity and now records its actual-model critical
+boundary theorem. The controlled positive real-axis remainder does not
+establish convergence of the signed Taylor series or make its coefficients
+rational at rational discounts. The
+[rational-specialization audit](rational_specialization_audit.md) states
+the remaining denominator-normalized approximation problem and proves a
+specific limitation of fixed finite discount-shift cancellation.
+The weighted-shift comparison in the renewal note retains its original
+scope: it shows why the coarser operator estimates alone were insufficient,
+and is not another realization of the friend rule.
 
 ## Reproduction and finite verification
 
@@ -238,6 +263,7 @@ python3 scripts/rapid_root_tools.py
 python3 scripts/full_tree_recurrence.py --check --output build/verification/full_tree_recurrence_checks.json
 python3 scripts/primitive_population_tools.py --check
 python3 scripts/laplace_derivative_tools.py --check
+python3 scripts/check_critical_boundary.py --check --output build/verification/critical_boundary_checks.json
 python3 scripts/check_generator_obstructions.py --check
 python3 scripts/check_bipartite_products.py --check
 python3 scripts/check_product_insertions.py --check
@@ -286,6 +312,16 @@ color rates, and promotion inequality. The insertion checker audits entire
 bivariate polynomials at all free trees through population 9 and the
 corresponding finite-population recurrences. None of these checkers proves
 the infinite growth statement or the essential-spectrum theorem.
+
+The critical-boundary checker records 435,595 exact checks on 485 rooted
+one-stub states through population 9, all 489 newborn-tag choices, and
+21,549 cut profiles. It verifies the eligible-core count, preservation
+of full degrees and stubs, the rational absorption constant, and agreement
+of path products with an independent probability-splitting walk.
+Its six-vertex witness detects omission of the retained boundary target's
+denominator. The infinite infection, guardian-independence, resolvent,
+and critical eigenfunction arguments are written proofs, not finite
+enumeration claims.
 
 The finite checks do not establish an infinite tail limit, prime-density
 estimate, denominator asymptotic, or transcendence assertion. Those limits
